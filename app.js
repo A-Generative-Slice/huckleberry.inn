@@ -1,92 +1,93 @@
 /**
- * Your Huckleberry (@huckleberry.inn) - Cloud Kitchen Interactive App
+ * Your Huckleberry (@huckleberry.inn) - Luxury Atelier & Cloud Kitchen App
+ * Shafee Mohammed Road, Thousand Lights / Nungambakkam, Chennai
  * Powered by A Generative Slice
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Current Builder State
+  // Application State
   const state = {
     tierId: 'tier-2',
     flavorId: 'lychee-rose',
     finishId: 'vintage-lambeth',
     isEggless: true,
-    isVegan: false,
-    customMessage: 'Happy Birthday Sarah! ✨',
+    customMessage: 'Happy Celebration',
     deliveryPin: '600006',
     deliveryDate: getTomorrowDateString(),
-    deliverySlot: '4:00 PM – 6:00 PM (Fresh Evening Batch)',
-    addonPlaque: true,
-    addonCandles: false,
-    addonGoldLeaf: false
+    deliverySlot: '4:00 PM – 6:00 PM (Fresh Evening)'
   };
 
-  // DOM Elements Cache
-  const tierContainer = document.getElementById('tier-options-container');
-  const flavorContainer = document.getElementById('flavor-options-container');
-  const finishContainer = document.getElementById('finish-options-container');
-  const deliverySelect = document.getElementById('delivery-zone-select');
-  const galleryContainer = document.getElementById('gallery-container');
-  const galleryFilterBtns = document.querySelectorAll('.filter-btn');
+  // DOM Elements
+  const tierContainer = document.getElementById('tier-cards-container');
+  const flavorContainer = document.getElementById('flavor-cards-container');
+  const finishContainer = document.getElementById('finish-cards-container');
+  const zoneSelect = document.getElementById('select-zone');
+  const cakeCanvas = document.getElementById('dynamic-cake-canvas');
 
-  // Summary Elements
-  const cakeCanvas = document.getElementById('cake-canvas');
-  const summaryTier = document.getElementById('summary-tier');
-  const summaryFlavor = document.getElementById('summary-flavor');
-  const summaryFinish = document.getElementById('summary-finish');
-  const summaryDietary = document.getElementById('summary-dietary');
-  const summaryMessage = document.getElementById('summary-message');
-  const summaryDelivery = document.getElementById('summary-delivery');
-  const summarySlot = document.getElementById('summary-slot');
-  const totalAmountEl = document.getElementById('total-amount');
-  const advanceAmountEl = document.getElementById('advance-amount');
+  // Spec Summary Elements
+  const specTier = document.getElementById('spec-tier-text');
+  const specFlavor = document.getElementById('spec-flavor-text');
+  const specFinish = document.getElementById('spec-finish-text');
+  const specDietary = document.getElementById('spec-dietary-text');
+  const specPlaque = document.getElementById('spec-plaque-text');
+  const specZone = document.getElementById('spec-zone-text');
+  const specSlot = document.getElementById('spec-slot-text');
+  const totalPriceLabel = document.getElementById('label-total-price');
+  const advancePriceLabel = document.getElementById('label-advance-price');
+
+  // Mobile Bar Elements
+  const mobileTier = document.getElementById('mobile-bar-tier');
+  const mobilePrice = document.getElementById('mobile-bar-price');
+  const mobileWhatsAppBtn = document.getElementById('btn-mobile-whatsapp');
 
   // Inputs
-  const egglessToggle = document.getElementById('toggle-eggless');
-  const customMessageInput = document.getElementById('input-custom-message');
-  const deliveryDateInput = document.getElementById('input-delivery-date');
-  const deliverySlotSelect = document.getElementById('select-delivery-slot');
-  const addonPlaqueCheck = document.getElementById('check-addon-plaque');
-  const addonCandlesCheck = document.getElementById('check-addon-candles');
-  const addonGoldLeafCheck = document.getElementById('check-addon-goldleaf');
+  const egglessCheck = document.getElementById('chk-eggless');
+  const inscriptionInput = document.getElementById('txt-inscription');
+  const dateInput = document.getElementById('date-delivery');
+  const slotSelect = document.getElementById('slot-delivery');
 
-  // Action Buttons & Modals
-  const btnWhatsapp = document.getElementById('btn-whatsapp-dispatch');
-  const orderModal = document.getElementById('order-confirmation-modal');
-  const closeModalBtn = document.getElementById('btn-close-modal');
+  // Modal & Drawer Elements
+  const dispatchBtn = document.getElementById('btn-dispatch-whatsapp');
+  const orderDialog = document.getElementById('order-modal-dialog');
+  const closeDialogBtn = document.getElementById('btn-close-dialog');
+  const dialogTokenId = document.getElementById('dialog-token-id');
+  const dialogPriceDisplay = document.getElementById('dialog-price-display');
+  const dialogWaCta = document.getElementById('dialog-wa-cta');
+
   const kitchenDrawer = document.getElementById('kitchen-ops-drawer');
   const drawerHeader = document.getElementById('drawer-header');
-  const navKitchenToggle = document.getElementById('btn-nav-kitchen');
-  const opsOrdersList = document.getElementById('ops-orders-list');
-  const btnSimulateOrder = document.getElementById('btn-simulate-order');
+  const openOpsBtn = document.getElementById('btn-open-ops');
+  const feedOrdersContainer = document.getElementById('feed-orders-container');
+  const addMockOrderBtn = document.getElementById('btn-add-mock-order');
 
-  // Initialize Date Input Default (Tomorrow)
-  if (deliveryDateInput) {
-    deliveryDateInput.min = getTomorrowDateString();
-    deliveryDateInput.value = state.deliveryDate;
+  // Initialize Date Input
+  if (dateInput) {
+    dateInput.min = getTomorrowDateString();
+    dateInput.value = state.deliveryDate;
   }
 
-  // 1. Render Tiers
+  // 1. Render Architectural Tiers
   function renderTiers() {
     if (!tierContainer) return;
     tierContainer.innerHTML = HUCKLEBERRY_DATA.tiers.map(tier => `
-      <div class="option-card ${tier.id === state.tierId ? 'active' : ''}" data-tier-id="${tier.id}">
-        ${tier.popular ? `<span class="option-badge">${tier.tag}</span>` : ''}
+      <div class="select-card ${tier.id === state.tierId ? 'selected' : ''}" data-tier="${tier.id}">
+        ${tier.popular ? `<span class="select-card-badge">${tier.tag}</span>` : ''}
         <div>
-          <div class="option-name">${tier.name}</div>
-          <div class="option-desc">${tier.description}</div>
+          <div class="select-card-name">${tier.name}</div>
+          <div class="select-card-desc">${tier.description}</div>
         </div>
-        <div class="option-meta">
-          <span class="price">₹${tier.basePrice.toLocaleString('en-IN')}</span>
-          <span class="servings">⚖️ ${tier.weightKg} (${tier.servings})</span>
+        <div class="select-card-meta">
+          <span class="price-tag">₹${tier.basePrice.toLocaleString('en-IN')}</span>
+          <span class="weight-tag">${tier.weightKg} • ${tier.servings}</span>
         </div>
       </div>
     `).join('');
 
-    tierContainer.querySelectorAll('.option-card').forEach(card => {
+    tierContainer.querySelectorAll('.select-card').forEach(card => {
       card.addEventListener('click', () => {
-        state.tierId = card.dataset.tierId;
+        state.tierId = card.dataset.tier;
         renderTiers();
-        updateSummaryAndVisualizer();
+        updateSummary();
       });
     });
   }
@@ -95,27 +96,27 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderFlavors() {
     if (!flavorContainer) return;
     flavorContainer.innerHTML = HUCKLEBERRY_DATA.flavors.map(flavor => `
-      <div class="option-card ${flavor.id === state.flavorId ? 'active' : ''}" data-flavor-id="${flavor.id}">
-        ${flavor.badge ? `<span class="option-badge">${flavor.badge}</span>` : ''}
+      <div class="select-card ${flavor.id === state.flavorId ? 'selected' : ''}" data-flavor="${flavor.id}">
+        ${flavor.badge ? `<span class="select-card-badge">${flavor.badge}</span>` : ''}
         <div>
-          <div class="option-name">
-            <span class="flavor-dot" style="background-color: ${flavor.colorHex}"></span>
+          <div class="select-card-name">
+            <span class="swatch-pip" style="background-color: ${flavor.colorHex}"></span>
             ${flavor.name}
           </div>
-          <div class="option-desc">${flavor.notes}</div>
+          <div class="select-card-desc">${flavor.notes}</div>
         </div>
-        <div class="option-meta">
-          <span class="price">${flavor.priceAdd > 0 ? `+ ₹${flavor.priceAdd}` : 'Included'}</span>
-          <span class="servings">Chef Calibrated</span>
+        <div class="select-card-meta">
+          <span class="price-tag">${flavor.priceAdd > 0 ? `+ ₹${flavor.priceAdd}` : 'Included'}</span>
+          <span class="weight-tag">Pastry Chef Recipe</span>
         </div>
       </div>
     `).join('');
 
-    flavorContainer.querySelectorAll('.option-card').forEach(card => {
+    flavorContainer.querySelectorAll('.select-card').forEach(card => {
       card.addEventListener('click', () => {
-        state.flavorId = card.dataset.flavorId;
+        state.flavorId = card.dataset.flavor;
         renderFlavors();
-        updateSummaryAndVisualizer();
+        updateSummary();
       });
     });
   }
@@ -124,388 +125,278 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderFinishes() {
     if (!finishContainer) return;
     finishContainer.innerHTML = HUCKLEBERRY_DATA.finishes.map(finish => `
-      <div class="option-card ${finish.id === state.finishId ? 'active' : ''}" data-finish-id="${finish.id}">
+      <div class="select-card ${finish.id === state.finishId ? 'selected' : ''}" data-finish="${finish.id}">
         <div>
-          <div class="option-name">${finish.name}</div>
-          <div class="option-desc">${finish.desc}</div>
+          <div class="select-card-name">${finish.name}</div>
+          <div class="select-card-desc">${finish.desc}</div>
         </div>
-        <div class="option-meta">
-          <span class="price">+ ₹${finish.priceAdd}</span>
-          <span class="servings">Artisanal Decor</span>
+        <div class="select-card-meta">
+          <span class="price-tag">+ ₹${finish.priceAdd}</span>
+          <span class="weight-tag">Hand-Piped</span>
         </div>
       </div>
     `).join('');
 
-    finishContainer.querySelectorAll('.option-card').forEach(card => {
+    finishContainer.querySelectorAll('.select-card').forEach(card => {
       card.addEventListener('click', () => {
-        state.finishId = card.dataset.finishId;
+        state.finishId = card.dataset.finish;
         renderFinishes();
-        updateSummaryAndVisualizer();
+        updateSummary();
       });
     });
   }
 
   // 4. Render Delivery Zones
-  function renderDeliveryZones() {
-    if (!deliverySelect) return;
-    deliverySelect.innerHTML = HUCKLEBERRY_DATA.deliveryZones.map(zone => `
-      <option value="${zone.pin}" ${zone.pin === state.deliveryPin ? 'selected' : ''}>
-        ${zone.zone} (${zone.fee === 0 ? 'FREE Pickup' : `+ ₹${zone.fee} Delivery`})
+  function renderZones() {
+    if (!zoneSelect) return;
+    zoneSelect.innerHTML = HUCKLEBERRY_DATA.deliveryZones.map(z => `
+      <option value="${z.pin}" ${z.pin === state.deliveryPin ? 'selected' : ''}>
+        ${z.zone} (${z.fee === 0 ? 'Free Kitchen Pickup' : `+ ₹${z.fee} Delivery`})
       </option>
     `).join('');
 
-    deliverySelect.addEventListener('change', (e) => {
+    zoneSelect.addEventListener('change', (e) => {
       state.deliveryPin = e.target.value;
-      updateSummaryAndVisualizer();
+      updateSummary();
     });
   }
 
-  // 5. Render Gallery
-  function renderGallery(filter = 'all') {
-    if (!galleryContainer) return;
-    const items = filter === 'all' 
-      ? HUCKLEBERRY_DATA.signatureGallery 
-      : HUCKLEBERRY_DATA.signatureGallery.filter(item => item.category === filter);
-
-    galleryContainer.innerHTML = items.map(item => `
-      <article class="gallery-card" data-category="${item.category}">
-        <div class="card-img-wrap">
-          <img src="${item.image}" alt="${item.title}" loading="lazy" />
-          <span class="card-tag-pill">${item.weight}</span>
-        </div>
-        <div class="card-content">
-          <h3 class="card-title">${item.title}</h3>
-          <p class="card-desc">${item.description}</p>
-          <div class="card-footer-row">
-            <span class="card-price">${item.price}</span>
-            <button class="btn btn-sm btn-outline btn-customize-item" data-title="${item.title}" data-category="${item.category}">
-              Customize Design ➔
-            </button>
-          </div>
-        </div>
-      </article>
-    `).join('');
-
-    // Attach customize triggers
-    galleryContainer.querySelectorAll('.btn-customize-item').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const cat = btn.dataset.category;
-        if (cat === 'miniature') state.tierId = 'miniature-couture';
-        else if (cat === 'cheesecake') state.flavorId = 'burnt-basque';
-        else state.tierId = 'tier-2';
-
-        renderTiers();
-        renderFlavors();
-        updateSummaryAndVisualizer();
-
-        // Smooth scroll to builder
-        const builderEl = document.getElementById('cake-builder');
-        if (builderEl) {
-          builderEl.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    });
-  }
-
-  // Filter Buttons
-  galleryFilterBtns.forEach(btn => {
+  // 5. Quick Select buttons from Showcase cards
+  document.querySelectorAll('.btn-quick-select').forEach(btn => {
     btn.addEventListener('click', () => {
-      galleryFilterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      renderGallery(btn.dataset.filter);
+      const tierTarget = btn.dataset.tier;
+      if (tierTarget) {
+        state.tierId = tierTarget;
+        renderTiers();
+        updateSummary();
+        const builder = document.getElementById('custom-builder');
+        if (builder) builder.scrollIntoView({ behavior: 'smooth' });
+      }
     });
   });
 
-  // 6. Dynamic Cake Visualizer & Price Calculation
-  function updateSummaryAndVisualizer() {
-    const tier = HUCKLEBERRY_DATA.tiers.find(t => t.id === state.tierId);
-    const flavor = HUCKLEBERRY_DATA.flavors.find(f => f.id === state.flavorId);
-    const finish = HUCKLEBERRY_DATA.finishes.find(f => f.id === state.finishId);
+  // 6. Update Summary, Pricing and Dynamic Visualizer
+  function updateSummary() {
+    const tier = HUCKLEBERRY_DATA.tiers.find(t => t.id === state.tierId) || HUCKLEBERRY_DATA.tiers[0];
+    const flavor = HUCKLEBERRY_DATA.flavors.find(f => f.id === state.flavorId) || HUCKLEBERRY_DATA.flavors[0];
+    const finish = HUCKLEBERRY_DATA.finishes.find(f => f.id === state.finishId) || HUCKLEBERRY_DATA.finishes[0];
     const zone = HUCKLEBERRY_DATA.deliveryZones.find(z => z.pin === state.deliveryPin) || HUCKLEBERRY_DATA.deliveryZones[0];
 
-    // Price Math
-    let total = tier.basePrice + flavor.priceAdd + finish.priceAdd + zone.fee;
-    if (state.addonPlaque) total += 150;
-    if (state.addonCandles) total += 200;
-    if (state.addonGoldLeaf) total += 350;
+    const total = tier.basePrice + flavor.priceAdd + finish.priceAdd + zone.fee;
+    const advance = Math.round(total * 0.5);
 
-    const advanceDeposit = Math.round(total * 0.5);
+    // Sidebar text
+    if (specTier) specTier.textContent = `${tier.name} (${tier.weightKg})`;
+    if (specFlavor) specFlavor.textContent = flavor.name;
+    if (specFinish) specFinish.textContent = finish.name;
+    if (specDietary) specDietary.textContent = state.isEggless ? '100% Eggless Recipe' : 'Standard Recipe';
+    if (specPlaque) specPlaque.textContent = state.customMessage.trim() ? `“${state.customMessage}”` : 'None';
+    if (specZone) specZone.textContent = zone.zone.split('(')[0].trim();
+    if (specSlot) specSlot.textContent = `${state.deliveryDate} • ${state.deliverySlot.split('(')[0].trim()}`;
 
-    // Update Summary Sidebar Texts
-    if (summaryTier) summaryTier.textContent = `${tier.name} (${tier.weightKg})`;
-    if (summaryFlavor) summaryFlavor.textContent = flavor.name;
-    if (summaryFinish) summaryFinish.textContent = finish.name;
-    if (summaryDietary) summaryDietary.textContent = state.isEggless ? '100% Eggless Recipe' : 'Standard Recipe';
-    if (summaryMessage) summaryMessage.textContent = state.customMessage.trim() ? `"${state.customMessage}"` : 'None';
-    if (summaryDelivery) summaryDelivery.textContent = zone.zone.split('(')[0].trim();
-    if (summarySlot) summarySlot.textContent = `${state.deliveryDate} | ${state.deliverySlot.split('(')[0].trim()}`;
+    if (totalPriceLabel) totalPriceLabel.textContent = `₹${total.toLocaleString('en-IN')}`;
+    if (advancePriceLabel) advancePriceLabel.textContent = `₹${advance.toLocaleString('en-IN')}`;
 
-    if (totalAmountEl) totalAmountEl.textContent = `₹${total.toLocaleString('en-IN')}`;
-    if (advanceAmountEl) advanceAmountEl.textContent = `₹${advanceDeposit.toLocaleString('en-IN')}`;
+    // Mobile bar
+    if (mobileTier) mobileTier.textContent = `${tier.name} (${tier.weightKg})`;
+    if (mobilePrice) mobilePrice.textContent = `₹${total.toLocaleString('en-IN')}`;
 
-    // Render Dynamic Visualizer Tiers
-    renderVisualizerTiers(tier, flavor, finish);
+    // Render Canvas Tiers
+    renderCanvasTiers(tier, flavor);
   }
 
-  function renderVisualizerTiers(tier, flavor, finish) {
+  function renderCanvasTiers(tier, flavor) {
     if (!cakeCanvas) return;
-    const frostingColor = flavor.frostingHex || '#FADADD';
-    const spongeColor = flavor.colorHex || '#361B14';
-    const topperText = state.customMessage.slice(0, 24) || 'Your Huckleberry';
+    const frostingColor = flavor.frostingHex || '#FCECEF';
+    const spongeColor = flavor.colorHex || '#EAC1C8';
+    const plaqueText = state.customMessage.slice(0, 26) || 'Your Huckleberry';
 
-    let tiersMarkup = '';
+    let markup = '';
 
-    if (tier.id === 'miniature-couture') {
-      tiersMarkup = `
-        <div class="cake-stand">
-          <div class="cake-topper-text">✨ Petite Couture Box ✨</div>
-          <div class="cake-tier tier-layer-top" style="background: ${frostingColor}; border-top: 5px solid ${spongeColor}; width: 80px; height: 32px; border-radius: 4px;">
-            <div class="tier-piping"></div>
-          </div>
-          <div class="cake-pedestal" style="width: 140px; height: 8px;"></div>
+    if (tier.id === 'mini-couture') {
+      markup = `
+        <div class="canvas-cake-stand">
+          <div class="canvas-topper-pill">Mini Couture Box</div>
+          <div class="cake-tier-block tier-block-top" style="background: ${frostingColor}; border-top: 4px solid ${spongeColor}; width: 85px; height: 36px; border-radius: 4px;"></div>
+          <div class="cake-stand-pedestal" style="width: 140px; height: 7px;"></div>
+        </div>
+      `;
+    } else if (tier.id === 'bento-noir') {
+      markup = `
+        <div class="canvas-cake-stand">
+          <div class="canvas-topper-pill">${escapeHtml(plaqueText)}</div>
+          <div class="cake-tier-block tier-block-base" style="background: #1C1819; border: 2px solid #C29557; width: 130px; height: 44px; border-radius: 6px;"></div>
+          <div class="cake-stand-pedestal" style="width: 170px;"></div>
         </div>
       `;
     } else if (tier.id === 'tier-1') {
-      tiersMarkup = `
-        <div class="cake-stand">
-          <div class="cake-topper-text">${escapeHtml(topperText)}</div>
-          <div class="cake-tier tier-layer-base" style="background: ${frostingColor}; border-top: 6px solid ${spongeColor}; width: 170px; height: 60px;">
-            <div class="tier-piping"></div>
-          </div>
-          <div class="cake-pedestal" style="width: 210px;"></div>
+      markup = `
+        <div class="canvas-cake-stand">
+          <div class="canvas-topper-pill">${escapeHtml(plaqueText)}</div>
+          <div class="cake-tier-block tier-block-base" style="background: ${frostingColor}; border-top: 5px solid ${spongeColor}; width: 170px; height: 60px;"></div>
+          <div class="cake-stand-pedestal" style="width: 210px;"></div>
         </div>
       `;
-    } else if (tier.id === 'tier-2') {
-      tiersMarkup = `
-        <div class="cake-stand">
-          <div class="cake-topper-text">${escapeHtml(topperText)}</div>
-          <div class="cake-tier tier-layer-top" style="background: ${frostingColor}; border-top: 5px solid ${spongeColor};">
-            <div class="tier-piping"></div>
-          </div>
-          <div class="cake-tier tier-layer-base" style="background: ${frostingColor}; border-top: 6px solid ${spongeColor};">
-            <div class="tier-piping"></div>
-          </div>
-          <div class="cake-pedestal"></div>
-        </div>
-      `;
-    } else if (tier.id === 'tier-3') {
-      tiersMarkup = `
-        <div class="cake-stand">
-          <div class="cake-topper-text">${escapeHtml(topperText)}</div>
-          <div class="cake-tier tier-layer-top" style="background: ${frostingColor}; border-top: 4px solid ${spongeColor}; width: 95px; height: 34px;">
-            <div class="tier-piping"></div>
-          </div>
-          <div class="cake-tier tier-layer-mid" style="background: ${frostingColor}; border-top: 5px solid ${spongeColor};">
-            <div class="tier-piping"></div>
-          </div>
-          <div class="cake-tier tier-layer-base" style="background: ${frostingColor}; border-top: 6px solid ${spongeColor}; width: 220px; height: 56px;">
-            <div class="tier-piping"></div>
-          </div>
-          <div class="cake-pedestal" style="width: 250px;"></div>
+    } else {
+      // Two-Tier
+      markup = `
+        <div class="canvas-cake-stand">
+          <div class="canvas-topper-pill">${escapeHtml(plaqueText)}</div>
+          <div class="cake-tier-block tier-block-top" style="background: ${frostingColor}; border-top: 4px solid ${spongeColor};"></div>
+          <div class="cake-tier-block tier-block-base" style="background: ${frostingColor}; border-top: 5px solid ${spongeColor};"></div>
+          <div class="cake-stand-pedestal"></div>
         </div>
       `;
     }
 
-    cakeCanvas.innerHTML = tiersMarkup;
+    cakeCanvas.innerHTML = markup;
   }
 
-  // 7. Input Event Listeners
-  if (egglessToggle) {
-    egglessToggle.addEventListener('change', (e) => {
+  // 7. Input Listeners
+  if (egglessCheck) {
+    egglessCheck.addEventListener('change', (e) => {
       state.isEggless = e.target.checked;
-      updateSummaryAndVisualizer();
+      updateSummary();
     });
   }
 
-  if (customMessageInput) {
-    customMessageInput.addEventListener('input', (e) => {
+  if (inscriptionInput) {
+    inscriptionInput.addEventListener('input', (e) => {
       state.customMessage = e.target.value;
-      updateSummaryAndVisualizer();
+      updateSummary();
     });
   }
 
-  if (deliveryDateInput) {
-    deliveryDateInput.addEventListener('change', (e) => {
+  if (dateInput) {
+    dateInput.addEventListener('change', (e) => {
       state.deliveryDate = e.target.value;
-      updateSummaryAndVisualizer();
+      updateSummary();
     });
   }
 
-  if (deliverySlotSelect) {
-    deliverySlotSelect.addEventListener('change', (e) => {
+  if (slotSelect) {
+    slotSelect.addEventListener('change', (e) => {
       state.deliverySlot = e.target.value;
-      updateSummaryAndVisualizer();
+      updateSummary();
     });
   }
 
-  if (addonPlaqueCheck) {
-    addonPlaqueCheck.addEventListener('change', (e) => {
-      state.addonPlaque = e.target.checked;
-      updateSummaryAndVisualizer();
-    });
-  }
+  // 8. Order Generator & WhatsApp Dispatch
+  function triggerOrder() {
+    const tier = HUCKLEBERRY_DATA.tiers.find(t => t.id === state.tierId) || HUCKLEBERRY_DATA.tiers[0];
+    const flavor = HUCKLEBERRY_DATA.flavors.find(f => f.id === state.flavorId) || HUCKLEBERRY_DATA.flavors[0];
+    const finish = HUCKLEBERRY_DATA.finishes.find(f => f.id === state.finishId) || HUCKLEBERRY_DATA.finishes[0];
+    const zone = HUCKLEBERRY_DATA.deliveryZones.find(z => z.pin === state.deliveryPin) || HUCKLEBERRY_DATA.deliveryZones[0];
 
-  if (addonCandlesCheck) {
-    addonCandlesCheck.addEventListener('change', (e) => {
-      state.addonCandles = e.target.checked;
-      updateSummaryAndVisualizer();
-    });
-  }
+    const total = tier.basePrice + flavor.priceAdd + finish.priceAdd + zone.fee;
+    const advance = Math.round(total * 0.5);
+    const token = 'HK-' + Math.floor(1000 + Math.random() * 9000);
 
-  if (addonGoldLeafCheck) {
-    addonGoldLeafCheck.addEventListener('change', (e) => {
-      state.addonGoldLeaf = e.target.checked;
-      updateSummaryAndVisualizer();
-    });
-  }
-
-  // 8. 1-Tap WhatsApp Kitchen Dispatch Generator
-  if (btnWhatsapp) {
-    btnWhatsapp.addEventListener('click', () => {
-      const tier = HUCKLEBERRY_DATA.tiers.find(t => t.id === state.tierId);
-      const flavor = HUCKLEBERRY_DATA.flavors.find(f => f.id === state.flavorId);
-      const finish = HUCKLEBERRY_DATA.finishes.find(f => f.id === state.finishId);
-      const zone = HUCKLEBERRY_DATA.deliveryZones.find(z => z.pin === state.deliveryPin) || HUCKLEBERRY_DATA.deliveryZones[0];
-
-      let total = tier.basePrice + flavor.priceAdd + finish.priceAdd + zone.fee;
-      if (state.addonPlaque) total += 150;
-      if (state.addonCandles) total += 200;
-      if (state.addonGoldLeaf) total += 350;
-      const advanceDeposit = Math.round(total * 0.5);
-
-      const bookingToken = 'HK-' + Math.floor(1000 + Math.random() * 9000);
-
-      // WhatsApp Message String
-      const messageText = 
-`🎂 *NEW CUSTOM CAKE BOOKING - YOUR HUCKLEBERRY*
-======================================
-*Booking Token:* #${bookingToken}
-*Cake Tier:* ${tier.name} (${tier.weightKg})
-*Base Flavor:* ${flavor.name}
-*Artisanal Finish:* ${finish.name}
-*Dietary:* ${state.isEggless ? '🌱 100% Eggless Recipe' : 'Standard Recipe'}
-*Piped Message:* "${state.customMessage || 'Happy Celebration'}"
-*Add-ons:* ${[state.addonPlaque ? 'Acrylic Plaque' : '', state.addonCandles ? 'Candle Kit' : '', state.addonGoldLeaf ? '24K Gold Leaf' : ''].filter(Boolean).join(', ') || 'Standard Decor'}
---------------------------------------
-*Delivery / Pickup Zone:* ${zone.zone}
-*Scheduled Date:* ${state.deliveryDate}
-*Time Slot:* ${state.deliverySlot}
---------------------------------------
-*Total Order Estimate:* ₹${total.toLocaleString('en-IN')}
-*Advance Deposit Required (50%):* ₹${advanceDeposit.toLocaleString('en-IN')}
-======================================
-_Automated Cloud Kitchen Order from Huckleberry Portal_
+    const message = 
+`🎂 *CUSTOM CAKE RESERVATION - YOUR HUCKLEBERRY*
+Shafee Mohammed Road, Thousand Lights, Chennai
+----------------------------------------
+*Token:* #${token}
+*Architecture:* ${tier.name} (${tier.weightKg})
+*Flavor Profile:* ${flavor.name}
+*Artisanal Piping:* ${finish.name}
+*Dietary:* ${state.isEggless ? '100% Eggless Recipe' : 'Standard Recipe'}
+*Plaque Message:* "${state.customMessage || 'Happy Celebration'}"
+----------------------------------------
+*Zone:* ${zone.zone}
+*Date:* ${state.deliveryDate}
+*Kitchen Slot:* ${state.deliverySlot}
+----------------------------------------
+*Estimated Total:* ₹${total.toLocaleString('en-IN')}
+*Advance Deposit (50%):* ₹${advance.toLocaleString('en-IN')}
+----------------------------------------
+_Dispatched via Your Huckleberry Direct Portal_
 _Please confirm kitchen slot availability!_`;
 
-      const encodedMsg = encodeURIComponent(messageText);
-      const waUrl = `https://wa.me/${HUCKLEBERRY_DATA.bakery.whatsappNumber}?text=${encodedMsg}`;
+    const encoded = encodeURIComponent(message);
+    const waLink = `https://wa.me/${HUCKLEBERRY_DATA.bakery.whatsappNumber}?text=${encoded}`;
 
-      // Populate Modal & Show
-      const modalTokenEl = document.getElementById('modal-booking-token');
-      const modalAmountEl = document.getElementById('modal-booking-amount');
-      const modalWaLink = document.getElementById('modal-wa-link');
+    if (dialogTokenId) dialogTokenId.textContent = `#${token}`;
+    if (dialogPriceDisplay) dialogPriceDisplay.textContent = `₹${total.toLocaleString('en-IN')} (Advance Deposit: ₹${advance.toLocaleString('en-IN')})`;
+    if (dialogWaCta) dialogWaCta.href = waLink;
 
-      if (modalTokenEl) modalTokenEl.textContent = `#${bookingToken}`;
-      if (modalAmountEl) modalAmountEl.textContent = `₹${total.toLocaleString('en-IN')} (Advance: ₹${advanceDeposit.toLocaleString('en-IN')})`;
-      if (modalWaLink) modalWaLink.href = waUrl;
+    if (orderDialog) orderDialog.showModal();
 
-      if (orderModal) {
-        orderModal.showModal();
-      }
-
-      // Add to Simulated Kitchen Queue
-      addSimulatedOrder({
-        id: bookingToken,
-        customer: "Website Direct Booking (Chennai)",
-        tier: `${tier.name} (${tier.weightKg})`,
-        flavor: flavor.name,
-        finish: finish.name,
-        date: `${state.deliveryDate}, ${state.deliverySlot.split(' ')[0]}`,
-        amount: `₹${total.toLocaleString('en-IN')}`,
-        status: "Slot Requested (WhatsApp Dispatched)",
-        source: "Direct Portal Checkout",
-        timeAgo: "Just now"
-      });
+    // Add to kitchen queue
+    addFeedOrder({
+      id: token,
+      client: "Direct Portal Booking (Chennai)",
+      item: `${tier.name} (${tier.weightKg})`,
+      spec: `${flavor.name} • ${finish.name}`,
+      slot: `${state.deliveryDate} • ${state.deliverySlot.split(' ')[0]}`,
+      price: `₹${total.toLocaleString('en-IN')}`,
+      status: "Slot Requested",
+      time: "Just now"
     });
   }
 
-  if (closeModalBtn && orderModal) {
-    closeModalBtn.addEventListener('click', () => {
-      orderModal.close();
-    });
+  if (dispatchBtn) dispatchBtn.addEventListener('click', triggerOrder);
+  if (mobileWhatsAppBtn) mobileWhatsAppBtn.addEventListener('click', triggerOrder);
+
+  if (closeDialogBtn && orderDialog) {
+    closeDialogBtn.addEventListener('click', () => orderDialog.close());
   }
 
-  // 9. Kitchen Operations Drawer Simulator
-  function toggleDrawer() {
+  // 9. Kitchen Drawer Simulator
+  function toggleOpsDrawer() {
     if (!kitchenDrawer) return;
     kitchenDrawer.classList.toggle('open');
   }
 
-  if (drawerHeader) drawerHeader.addEventListener('click', toggleDrawer);
-  if (navKitchenToggle) navKitchenToggle.addEventListener('click', (e) => {
+  if (drawerHeader) drawerHeader.addEventListener('click', toggleOpsDrawer);
+  if (openOpsBtn) openOpsBtn.addEventListener('click', (e) => {
     e.preventDefault();
     if (kitchenDrawer && !kitchenDrawer.classList.contains('open')) {
       kitchenDrawer.classList.add('open');
     }
   });
 
-  function renderKitchenSimulator() {
-    if (!opsOrdersList) return;
-    opsOrdersList.innerHTML = HUCKLEBERRY_DATA.kitchenSimulatorOrders.map(order => `
-      <div class="ops-order-card">
-        <div class="ops-card-top">
-          <span class="ops-order-id">#${order.id}</span>
-          <span class="ops-order-time">⏱️ ${order.timeAgo}</span>
+  function renderFeed() {
+    if (!feedOrdersContainer) return;
+    feedOrdersContainer.innerHTML = HUCKLEBERRY_DATA.liveOrders.map(ord => `
+      <div class="order-feed-card">
+        <div class="order-feed-top">
+          <span>#${ord.id}</span>
+          <span>${ord.time}</span>
         </div>
-        <div class="ops-customer-name">${order.customer}</div>
-        <div class="ops-cake-details">
-          <strong>${order.tier}</strong> • ${order.flavor}<br>
-          <em>${order.finish} • ${order.date}</em>
+        <div class="order-feed-client">${ord.client}</div>
+        <div class="order-feed-desc">
+          <strong>${ord.item}</strong><br>
+          ${ord.spec} • ${ord.slot}
         </div>
-        <div class="ops-card-footer">
-          <span class="ops-status-pill ${getStatusClass(order.status)}">${order.status}</span>
-          <span class="ops-amount">${order.amount}</span>
+        <div class="order-feed-footer">
+          <span class="order-status-badge">${ord.status}</span>
+          <span style="font-weight: 600; color: var(--color-bordeaux);">${ord.price}</span>
         </div>
       </div>
     `).join('');
   }
 
-  function addSimulatedOrder(order) {
-    HUCKLEBERRY_DATA.kitchenSimulatorOrders.unshift(order);
-    renderKitchenSimulator();
-    // Highlight drawer briefly
-    if (kitchenDrawer) {
-      kitchenDrawer.style.boxShadow = '0 -10px 45px rgba(82, 22, 47, 0.4)';
-      setTimeout(() => {
-        kitchenDrawer.style.boxShadow = '';
-      }, 2000);
-    }
+  function addFeedOrder(ord) {
+    HUCKLEBERRY_DATA.liveOrders.unshift(ord);
+    renderFeed();
   }
 
-  if (btnSimulateOrder) {
-    btnSimulateOrder.addEventListener('click', () => {
-      const mockOrder = {
+  if (addMockOrderBtn) {
+    addMockOrderBtn.addEventListener('click', () => {
+      const mock = {
         id: 'HK-' + Math.floor(2000 + Math.random() * 8000),
-        customer: "Pooja V. (Nungambakkam High Rd)",
-        tier: "2-Tier Celebration (2.5 kg)",
-        flavor: "Burnt Basque + Belgian Truffle",
-        finish: "Vintage Lambeth Ruffle",
-        date: "Sunday, 5:00 PM Slot",
-        amount: "₹4,300",
-        status: "Advance Paid (Slot Locked)",
-        source: "Automated Portal Checkout",
-        timeAgo: "Just now"
+        client: "Meera V., Nungambakkam",
+        item: "She’s The Moment (2.5 kg)",
+        spec: "Persian Lychee Rose • Vintage Lambeth",
+        slot: "Tomorrow, 5:00 PM Slot",
+        price: "₹3,950",
+        status: "Advance Confirmed",
+        time: "Just now"
       };
-      addSimulatedOrder(mockOrder);
-      alert('✨ Simulated High-Ticket Order Generated!\nNotice how this order is automatically sized, priced, and routed to the kitchen queue with zero DM lag.');
+      addFeedOrder(mock);
+      alert('High-ticket custom order simulated! Notice how the order specification is automatically sized, priced, and routed to the kitchen queue.');
     });
-  }
-
-  function getStatusClass(status) {
-    if (status.includes('Paid') || status.includes('Locked')) return 'confirmed';
-    if (status.includes('Baking')) return 'baking';
-    if (status.includes('Ready') || status.includes('Dispatch')) return 'ready';
-    return '';
   }
 
   // Utilities
@@ -525,12 +416,11 @@ _Please confirm kitchen slot availability!_`;
     }[tag] || tag));
   }
 
-  // Initial Boot
+  // Initial Load
   renderTiers();
   renderFlavors();
   renderFinishes();
-  renderDeliveryZones();
-  renderGallery('all');
-  renderKitchenSimulator();
-  updateSummaryAndVisualizer();
+  renderZones();
+  renderFeed();
+  updateSummary();
 });

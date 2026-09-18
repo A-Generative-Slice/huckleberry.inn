@@ -3,574 +3,756 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Huckleberry (@huckleberry.inn) | Luxury Artisanal Cakes & Cloud Kitchen | Chennai</title>
-  <meta name="description" content="Artisanal custom cakes, Miniature Couture series, and Basque cheesecakes from Your Huckleberry, Thousand Lights / Nungambakkam, Chennai. Automated custom tier and flavor checkout." />
-  
-  <!-- Open Graph / Meta -->
-  <meta property="og:title" content="Your Huckleberry | Luxury Artisanal Cakes Chennai" />
-  <meta property="og:description" content="Automated custom cake tier & flavor checkout portal for @huckleberry.inn, Shafee Mohammed Road, Thousand Lights, Chennai." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/logo.svg" />
+  <title>Your Huckleberry (@huckleberry.inn) | Luxury Artisanal Pâtisserie & Cloud Kitchen | Chennai</title>
+  <meta name="description" content="Artisanal celebration cakes, Miniature Couture series, and handcrafted tarts by Your Huckleberry, Shafee Mohammed Road, Thousand Lights / Nungambakkam, Chennai." />
 
-  <link rel="icon" type="image/svg+xml" href="assets/logo.svg" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Your Huckleberry | Luxury Artisanal Cakes Chennai" />
+  <meta property="og:description" content="Direct cloud kitchen portal for @huckleberry.inn. Automated custom tier & flavor checkout in Thousand Lights & Nungambakkam, Chennai." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/images/mini-couture-collection.jpg" />
+
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Top Announcement Bar -->
-  <div class="announcement-bar">
-    <div class="badge-live">
-      <span class="pulse-dot"></span>
-      <span>Baking Fresh in Thousand Lights / Nungambakkam</span>
+  <!-- Top Status Bar -->
+  <div class="top-notice-bar">
+    <div class="live-indicator">
+      <span class="live-dot"></span>
+      <span>Kitchen Atelier Active • Shafee Mohammed Road, Chennai</span>
     </div>
     <div>
-      <span>Limited Custom Slots This Weekend • </span>
-      <a href="#cake-builder">Reserve Slot ➔</a>
+      <span>Limited Weekend Custom Slots • </span>
+      <a href="#custom-builder">Reserve Baking Slot ➔</a>
     </div>
   </div>
 
-  <!-- Header & Navigation -->
-  <header class="site-header">
-    <div class="nav-container">
-      <a href="#" class="brand-link">
-        <img src="assets/logo.svg" alt="Your Huckleberry Logo" class="brand-logo-img" />
+  <!-- Main Navigation Bar -->
+  <header class="site-navbar">
+    <div class="navbar-inner">
+      <a href="#" class="brand-wrapper">
+        <img src="assets/logo.jpg" alt="Your Huckleberry Arch Crest" class="brand-arch-logo" />
+        <div class="brand-meta">
+          <span class="brand-name">Your Huckleberry</span>
+          <span class="brand-locale">Thousand Lights • Chennai</span>
+        </div>
       </a>
 
       <nav>
-        <ul class="nav-links">
-          <li><a href="#cake-builder">Cake Builder</a></li>
-          <li><a href="#signature-menu">Miniature Couture</a></li>
-          <li><a href="#signature-menu">Signature Menu</a></li>
-          <li><a href="#dm-solution">Why Direct Booking</a></li>
-          <li><a href="#location-info">Thousand Lights Kitchen</a></li>
+        <ul class="nav-menu">
+          <li><a href="#mini-couture">Mini Couture</a></li>
+          <li><a href="#custom-builder">Custom Cake Builder</a></li>
+          <li><a href="#signature-gallery">Artisanal Gallery</a></li>
+          <li><a href="#atelier-location">Kitchen &amp; Maps</a></li>
         </ul>
       </nav>
 
       <div class="nav-actions">
-        <button id="btn-nav-kitchen" class="btn btn-kitchen-toggle">
-          <span>👀 Kitchen Ops View</span>
+        <button id="btn-open-ops" class="btn btn-kitchen-view btn-sm">
+          <span>Kitchen Live Ops</span>
         </button>
-        <a href="#cake-builder" class="btn btn-primary btn-sm">
-          <span>Build Custom Cake</span>
+        <a href="#custom-builder" class="btn btn-bordeaux btn-sm">
+          <span>Order Cake</span>
         </a>
       </div>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="hero-section">
+  <section class="hero-wrapper">
     <div class="hero-grid">
-      <div class="hero-content">
-        <div class="eyebrow">Atelier de Pâtisserie • Chennai</div>
-        <h1>Luxury Artisanal Cakes &amp; Miniature Couture</h1>
-        <p class="hero-description">
-          Automated custom tier, flavor, and rush-hour checkout for <strong>Your Huckleberry (@huckleberry.inn)</strong>. Instant transparent quotes, 100% eggless recipes, and 1-tap WhatsApp kitchen slot reservations in Thousand Lights &amp; Nungambakkam.
+      <div class="hero-text">
+        <div class="section-label">Atelier de Haute Pâtisserie</div>
+        <h1>
+          Luxury cakes made for <em>sweet moments.</em>
+        </h1>
+        <p class="hero-quote">
+          “Made to be admired. Made to be savoured slowly.”
+        </p>
+        <p class="hero-subtext">
+          Automated custom tier, flavor, and rush-hour checkout for <strong>Your Huckleberry</strong>. Handcrafted in Thousand Lights and delivered fresh across Nungambakkam, Alwarpet, and greater Chennai.
         </p>
 
-        <div class="hero-highlights">
-          <div class="hero-chip">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-            <span>Shafee Mohammed Rd, Chennai 600006</span>
+        <div class="hero-meta-row">
+          <div class="meta-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Shafee Mohammed Road, Chennai</span>
           </div>
-          <div class="hero-chip">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-            <span>Signature Miniature Couture Series</span>
+          <div class="meta-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <span>Instant Transparent Pricing</span>
           </div>
-          <div class="hero-chip">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg>
-            <span>Zero DM Lag • Instant Lock</span>
+          <div class="meta-pill">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Zero DM Lag • Slot Locked</span>
           </div>
         </div>
 
-        <div class="hero-actions">
-          <a href="#cake-builder" class="btn btn-gold">
-            <span>✨ Start Custom Cake Builder</span>
+        <div class="hero-cta-group">
+          <a href="#custom-builder" class="btn btn-bordeaux">
+            <span>Build Your Cake</span>
           </a>
-          <a href="#signature-menu" class="btn btn-outline">
-            <span>Explore Menu &amp; Minis</span>
+          <a href="#mini-couture" class="btn btn-outline">
+            <span>Explore Mini Couture</span>
           </a>
         </div>
       </div>
 
-      <!-- Hero Visual Showcase -->
-      <div class="hero-visual-card">
-        <div class="hero-image-wrap">
-          <img src="https://images.unsplash.com/photo-1535141192574-5d4897c13136?auto=format&fit=crop&w=900&q=80" alt="Signature Two-Tier Lambeth Cake from Huckleberry Inn" />
-          <div class="hero-badge-overlay">
+      <!-- Hero Visual Showcase Arch -->
+      <div class="hero-visual-arch">
+        <div class="arch-media-frame">
+          <img src="assets/images/moment-vintage-lambeth.jpg" alt="She's The Moment - Two-Tier Vintage Lambeth Cake by Your Huckleberry" />
+          <div class="arch-floating-seal">
+            <img src="assets/logo.jpg" alt="Huckleberry Brand Crest" />
+          </div>
+          <div class="arch-caption-card">
             <div>
-              <div class="title">The Vintage Lambeth 2-Tier</div>
-              <div class="sub">Lychee Rose &amp; Belgian Ganache • Eggless</div>
+              <div class="arch-caption-title">She’s The Moment</div>
+              <div class="arch-caption-sub">Two-Tier Vintage Lambeth • Lychee Rose</div>
             </div>
-            <a href="#cake-builder" class="btn btn-sm btn-gold">Customize</a>
+            <a href="#custom-builder" class="btn btn-sm btn-gold">Customize</a>
           </div>
-        </div>
-        <div class="floating-pill-stat">
-          <span>🍰 137+ Showcases on @huckleberry.inn</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Pitch Benchmark Proof Banner (Sree Ambaal Bakery Case Study) -->
-  <section class="proof-banner">
-    <div class="proof-container">
-      <div class="proof-text">
-        <div class="proof-icon-box">⚡</div>
+  <!-- Benchmark Proof Banner -->
+  <section class="cloud-kitchen-proof">
+    <div class="proof-inner">
+      <div class="proof-text-block">
+        <div class="proof-crest">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
         <div>
-          <div class="proof-headline">
-            Proven Cloud Kitchen Architecture by <span>A Generative Slice</span>
-          </div>
-          <div style="font-size: 0.82rem; color: rgba(255,255,255,0.78);">
-            Same engine that automated cake bookings for <strong>Sree Ambaal Bakery</strong>, eliminating lost DM inquiries.
+          <div class="proof-heading">Direct Cloud Kitchen Portal by A Generative Slice</div>
+          <div class="proof-description">
+            Engineered to automate custom cake bookings, eliminate buried DMs, and boost kitchen capacity.
           </div>
         </div>
       </div>
 
-      <div class="proof-stats">
-        <div class="stat-item">
-          <div class="stat-num">+45%</div>
-          <div class="stat-label">Direct Orders</div>
+      <div class="proof-metrics-list">
+        <div class="metric-unit">
+          <div class="metric-num">+45%</div>
+          <div class="metric-label">Direct Orders</div>
         </div>
-        <div class="stat-item">
-          <div class="stat-num">0</div>
-          <div class="stat-label">Lost DM Inquiries</div>
+        <div class="metric-unit">
+          <div class="metric-num">0</div>
+          <div class="metric-label">Lost DM Inquiries</div>
         </div>
-        <div class="stat-item">
-          <div class="stat-num">&lt; 60s</div>
-          <div class="stat-label">Instant Checkout</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-num">100%</div>
-          <div class="stat-label">Slot Accuracy</div>
+        <div class="metric-unit">
+          <div class="metric-num">&lt; 60s</div>
+          <div class="metric-label">Order to WhatsApp</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Main Custom Cake Tier & Flavor Builder -->
-  <section id="cake-builder" class="builder-section">
-    <div class="section-header">
-      <div class="eyebrow">Automated Cake Atelier</div>
-      <h2>Interactive Custom Cake Builder</h2>
+  <!-- The Mini Couture Collection Showcase -->
+  <section id="mini-couture" class="couture-section">
+    <div class="couture-container">
+      <div class="section-head">
+        <div class="section-label">Haute Pâtisserie</div>
+        <h2>The Mini Couture Collection</h2>
+        <p>
+          Where tiny cakes meet luxury indulgence. Handcrafted in individual acrylic cases with silk ribbons.
+        </p>
+
+        <div class="offer-ribbon-card">
+          <strong>Limited Atelier Offer</strong>
+          <span>Buy 3 mini cakes and receive a complimentary signature mini.</span>
+        </div>
+      </div>
+
+      <!-- Real Scraped Mini Couture Photos -->
+      <div class="couture-grid">
+        
+        <!-- Item 1: Full Collection -->
+        <article class="couture-item-card">
+          <div class="couture-card-img">
+            <img src="assets/images/mini-couture-collection.jpg" alt="The Mini Couture Collection by Huckleberry" loading="lazy" />
+            <span class="couture-tag-badge">Signature Collection</span>
+          </div>
+          <div class="couture-card-body">
+            <h3 class="couture-card-title">Mini Couture Quad Box</h3>
+            <p class="couture-card-quote">“Made to be admired. Made to be savoured slowly.”</p>
+            <div class="couture-card-footer">
+              <span class="couture-price">₹1,200</span>
+              <button class="btn btn-sm btn-outline btn-quick-select" data-tier="mini-couture">Select Box</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 2: Pink Ballgown -->
+        <article class="couture-item-card">
+          <div class="couture-card-img">
+            <img src="assets/images/mini-pink-ballgown.jpg" alt="The Pink Ruffled Ballgown Mini Cake" loading="lazy" />
+            <span class="couture-tag-badge">Victorian Ruffle</span>
+          </div>
+          <div class="couture-card-body">
+            <h3 class="couture-card-title">The Pink Ballgown</h3>
+            <p class="couture-card-quote">“Every swirl, pearl and ribbon is placed with care to turn moments into memories.”</p>
+            <div class="couture-card-footer">
+              <span class="couture-price">₹350</span>
+              <button class="btn btn-sm btn-outline btn-quick-select" data-tier="mini-couture">Select Mini</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 3: White Chocolate Candle Bliss -->
+        <article class="couture-item-card">
+          <div class="couture-card-img">
+            <img src="assets/images/mini-white-candle.jpg" alt="White Chocolate Candle Bliss" loading="lazy" />
+            <span class="couture-tag-badge">Candle Bliss</span>
+          </div>
+          <div class="couture-card-body">
+            <h3 class="couture-card-title">Candle Bliss</h3>
+            <p class="couture-card-quote">“Sweetly minimal. Perfectly luxurious. Made to melt hearts.”</p>
+            <div class="couture-card-footer">
+              <span class="couture-price">₹350</span>
+              <button class="btn btn-sm btn-outline btn-quick-select" data-tier="mini-couture">Select Mini</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 4: Floral & Feminine -->
+        <article class="couture-item-card">
+          <div class="couture-card-img">
+            <img src="assets/images/mini-floral-rosette.jpg" alt="Floral & Feminine Rosette Mini" loading="lazy" />
+            <span class="couture-tag-badge">Rosette Spiral</span>
+          </div>
+          <div class="couture-card-body">
+            <h3 class="couture-card-title">Floral &amp; Feminine</h3>
+            <p class="couture-card-quote">“A bloom of buttercream beauty in every little bite.”</p>
+            <div class="couture-card-footer">
+              <span class="couture-price">₹350</span>
+              <button class="btn btn-sm btn-outline btn-quick-select" data-tier="mini-couture">Select Mini</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 5: Crafted With Love Arch -->
+        <article class="couture-item-card">
+          <div class="couture-card-img">
+            <img src="assets/images/mini-arch-bow.jpg" alt="Crafted With Love Bow Arch Cake" loading="lazy" />
+            <span class="couture-tag-badge">Arch Bow</span>
+          </div>
+          <div class="couture-card-body">
+            <h3 class="couture-card-title">Crafted With Love</h3>
+            <p class="couture-card-quote">“Soft textures. Delicate details. Irresistible flavors.”</p>
+            <div class="couture-card-footer">
+              <span class="couture-price">₹350</span>
+              <button class="btn btn-sm btn-outline btn-quick-select" data-tier="mini-couture">Select Mini</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 6: Drips of Happiness -->
+        <article class="couture-item-card">
+          <div class="couture-card-img">
+            <img src="assets/images/mini-strawberry-drip.jpg" alt="Drips of Happiness Two-Tier Mini" loading="lazy" />
+            <span class="couture-tag-badge">Strawberry Drip</span>
+          </div>
+          <div class="couture-card-body">
+            <h3 class="couture-card-title">Drips of Happiness</h3>
+            <p class="couture-card-quote">“Layers of joy, drips of indulgence. Made to melt your heart.”</p>
+            <div class="couture-card-footer">
+              <span class="couture-price">₹380</span>
+              <button class="btn btn-sm btn-outline btn-quick-select" data-tier="mini-couture">Select Mini</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 7: The Whimsical Lavender Belle -->
+        <article class="couture-item-card">
+          <div class="couture-card-img">
+            <img src="assets/images/mini-lavender-belle.jpg" alt="Whimsical Lavender Belle Mini" loading="lazy" />
+            <span class="couture-tag-badge">Lavender Belle</span>
+          </div>
+          <div class="couture-card-body">
+            <h3 class="couture-card-title">Lavender Belle</h3>
+            <p class="couture-card-quote">“Playful ruffles, silky ivory fondant, and pristine white satin bow.”</p>
+            <div class="couture-card-footer">
+              <span class="couture-price">₹350</span>
+              <button class="btn btn-sm btn-outline btn-quick-select" data-tier="mini-couture">Select Mini</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Item 8: Noir Bento 25 -->
+        <article class="couture-item-card">
+          <div class="couture-card-img">
+            <img src="assets/images/bento-noir-25.jpg" alt="25 But Make It Tiny Noir Bento Cake" loading="lazy" />
+            <span class="couture-tag-badge">Bento Noir</span>
+          </div>
+          <div class="couture-card-body">
+            <h3 class="couture-card-title">Noir Golden Bento</h3>
+            <p class="couture-card-quote">“25 but make it tiny. Velvet noir with hand-painted gold constellations.”</p>
+            <div class="couture-card-footer">
+              <span class="couture-price">₹850</span>
+              <button class="btn btn-sm btn-outline btn-quick-select" data-tier="bento-noir">Select Bento</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Custom Cake Tier & Architecture Builder -->
+  <section id="custom-builder" class="builder-section">
+    <div class="section-head">
+      <div class="section-label">Order Specification</div>
+      <h2>Interactive Cake Atelier</h2>
       <p>
-        Design your luxury centerpiece in seconds. Tiers, artisan flavors, piping finishes, and Chennai delivery slots calculated with live transparent pricing.
+        Design your centerpiece in moments. Tiers, artisan flavors, and Chennai delivery slots calculated with live transparent pricing.
       </p>
     </div>
 
     <div class="builder-layout">
-      <!-- Controls / Steps -->
-      <div class="builder-controls">
+      <!-- Steps Column -->
+      <div class="steps-stack">
         
-        <!-- Step 1: Select Tier & Size -->
-        <div class="step-card">
-          <div class="step-card-header">
-            <div class="step-number">1</div>
-            <div class="step-title">
-              <h3>Select Cake Size &amp; Architecture</h3>
-              <p>From individual Miniature Couture gift boxes to grand 3-tier milestone cakes.</p>
+        <!-- Step 1: Tier Architecture -->
+        <div class="stage-card">
+          <div class="stage-header">
+            <div class="stage-number">01</div>
+            <div class="stage-title">
+              <h3>Select Cake Architecture &amp; Scale</h3>
+              <p>From individual couture boxes to grand two-tier milestone centerpieces.</p>
             </div>
           </div>
-          <div id="tier-options-container" class="options-grid">
-            <!-- Rendered by app.js -->
+          <div id="tier-cards-container" class="cards-selection-grid">
+            <!-- Populated by app.js -->
           </div>
         </div>
 
-        <!-- Step 2: Sponge & Flavor Profile -->
-        <div class="step-card">
-          <div class="step-card-header">
-            <div class="step-number">2</div>
-            <div class="step-title">
-              <h3>Choose Signature Flavor Profile</h3>
-              <p>Hand-crafted sponge and fillings with French Callebaut chocolate and Persian rose infusions.</p>
+        <!-- Step 2: Flavor Profile -->
+        <div class="stage-card">
+          <div class="stage-header">
+            <div class="stage-number">02</div>
+            <div class="stage-title">
+              <h3>Choose Flavor Profile</h3>
+              <p>Sponge and filling pairings prepared with French chocolate and botanical infusions.</p>
             </div>
           </div>
-          <div id="flavor-options-container" class="options-grid">
-            <!-- Rendered by app.js -->
+          <div id="flavor-cards-container" class="cards-selection-grid">
+            <!-- Populated by app.js -->
           </div>
         </div>
 
-        <!-- Step 3: Artisanal Frosting & Finish Style -->
-        <div class="step-card">
-          <div class="step-card-header">
-            <div class="step-number">3</div>
-            <div class="step-title">
-              <h3>Select Decor &amp; Piping Aesthetics</h3>
-              <p>Victorian vintage Lambeth swags, modern textured palette knife, or 24K gold leaf dusting.</p>
+        <!-- Step 3: Artisanal Finish -->
+        <div class="stage-card">
+          <div class="stage-header">
+            <div class="stage-number">03</div>
+            <div class="stage-title">
+              <h3>Select Decor &amp; Piping Style</h3>
+              <p>Victorian vintage Lambeth swags, rosette spirals, or celestial gold lettering.</p>
             </div>
           </div>
-          <div id="finish-options-container" class="options-grid">
-            <!-- Rendered by app.js -->
+          <div id="finish-cards-container" class="cards-selection-grid">
+            <!-- Populated by app.js -->
           </div>
         </div>
 
-        <!-- Step 4: Dietary & Bespoke Customization -->
-        <div class="step-card">
-          <div class="step-card-header">
-            <div class="step-number">4</div>
-            <div class="step-title">
-              <h3>Dietary Preferences &amp; Inscription</h3>
-              <p>100% vegetarian/eggless options and bespoke custom piped plaques.</p>
+        <!-- Step 4: Dietary & Plaque -->
+        <div class="stage-card">
+          <div class="stage-header">
+            <div class="stage-number">04</div>
+            <div class="stage-title">
+              <h3>Dietary &amp; Hand-Piped Plaque</h3>
+              <p>Chennai celebration standards and personalized messages.</p>
             </div>
           </div>
 
-          <!-- Eggless Toggle -->
-          <div class="toggle-group">
-            <div class="toggle-info">
-              <div class="toggle-title">🌱 100% Eggless Recipe</div>
-              <div class="toggle-sub">Moist, tender crumb perfected for Chennai celebrations (No additional charge)</div>
+          <!-- Eggless Switch -->
+          <div class="dietary-row">
+            <div>
+              <div class="dietary-label">100% Eggless Recipe</div>
+              <div class="dietary-note">Moist, tender crumb prepared without egg (No extra charge)</div>
             </div>
-            <label class="switch">
-              <input type="checkbox" id="toggle-eggless" checked />
-              <span class="slider"></span>
+            <label class="pure-switch">
+              <input type="checkbox" id="chk-eggless" checked />
+              <span class="pure-slider"></span>
             </label>
           </div>
 
-          <!-- Custom Message -->
-          <div class="form-group" style="margin-top: 14px;">
-            <label for="input-custom-message">Hand-Piped Plaque Inscription / Message</label>
-            <input type="text" id="input-custom-message" class="form-control" value="Happy Birthday Sarah! ✨" placeholder="e.g. Happy 25th Sarah! / Celebrating 50 Years" maxlength="45" />
-          </div>
-
-          <!-- Luxury Add-ons -->
-          <div style="margin-top: 16px;">
-            <label style="font-size: 0.82rem; font-weight: 600; color: var(--c-berry-deep); display: block; margin-bottom: 8px;">
-              Luxury Finishing Touches
-            </label>
-            <div style="display: flex; flex-direction: column; gap: 8px;">
-              <label style="display: flex; align-items: center; gap: 10px; font-size: 0.86rem; cursor: pointer;">
-                <input type="checkbox" id="check-addon-plaque" checked />
-                <span>Handcrafted Acrylic Golden Name Plaque (+ ₹150)</span>
-              </label>
-              <label style="display: flex; align-items: center; gap: 10px; font-size: 0.86rem; cursor: pointer;">
-                <input type="checkbox" id="check-addon-candles" />
-                <span>Metallic Champagne Candle Set &amp; Golden Cake Knife (+ ₹200)</span>
-              </label>
-              <label style="display: flex; align-items: center; gap: 10px; font-size: 0.86rem; cursor: pointer;">
-                <input type="checkbox" id="check-addon-goldleaf" />
-                <span>24-Karat Edible Gold Leaf Cascade (+ ₹350)</span>
-              </label>
-            </div>
+          <!-- Plaque Inscription -->
+          <div class="clean-form-group" style="margin-top: 14px;">
+            <label for="txt-inscription">Hand-Piped Plaque Inscription</label>
+            <input type="text" id="txt-inscription" class="clean-input" value="Happy Celebration" placeholder="e.g. Happy 25th Sarah / Celebrating 50 Years" maxlength="45" />
           </div>
         </div>
 
-        <!-- Step 5: Event Date, Slot & Chennai Zone -->
-        <div class="step-card">
-          <div class="step-card-header">
-            <div class="step-number">5</div>
-            <div class="step-title">
-              <h3>Delivery Date &amp; Kitchen Slot</h3>
-              <p>Guarantees slot lock and prevents rush-hour delivery bottlenecks in Chennai.</p>
+        <!-- Step 5: Schedule & Chennai Zone -->
+        <div class="stage-card">
+          <div class="stage-header">
+            <div class="stage-number">05</div>
+            <div class="stage-title">
+              <h3>Date, Slot &amp; Delivery Zone</h3>
+              <p>Secures kitchen capacity and prevents delivery delays in Chennai traffic.</p>
             </div>
           </div>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label for="input-delivery-date">Celebration Date</label>
-              <input type="date" id="input-delivery-date" class="form-control" />
+          <div class="clean-form-row">
+            <div class="clean-form-group">
+              <label for="date-delivery">Celebration Date</label>
+              <input type="date" id="date-delivery" class="clean-input" />
             </div>
-            <div class="form-group">
-              <label for="select-delivery-slot">Rush-Hour Slot</label>
-              <select id="select-delivery-slot" class="form-control">
-                <option value="12:00 PM – 2:00 PM (Lunch Celebration)">12:00 PM – 2:00 PM (Lunch Slot)</option>
-                <option value="4:00 PM – 6:00 PM (Fresh Evening Batch)" selected>4:00 PM – 6:00 PM (Evening Batch)</option>
-                <option value="7:00 PM – 9:00 PM (Dinner &amp; Party Slot)">7:00 PM – 9:00 PM (Dinner Slot)</option>
+            <div class="clean-form-group">
+              <label for="slot-delivery">Kitchen Slot</label>
+              <select id="slot-delivery" class="clean-input">
+                <option value="12:00 PM – 2:00 PM (Lunch Slot)">12:00 PM – 2:00 PM (Lunch)</option>
+                <option value="4:00 PM – 6:00 PM (Evening Batch)" selected>4:00 PM – 6:00 PM (Fresh Evening)</option>
+                <option value="7:00 PM – 9:00 PM (Dinner &amp; Party)">7:00 PM – 9:00 PM (Dinner &amp; Party)</option>
               </select>
             </div>
           </div>
 
-          <div class="form-group">
-            <label for="delivery-zone-select">Delivery Zone / Kitchen Pickup</label>
-            <select id="delivery-zone-select" class="form-control">
-              <!-- Rendered by app.js -->
+          <div class="clean-form-group">
+            <label for="select-zone">Delivery Zone or Kitchen Pickup</label>
+            <select id="select-zone" class="clean-input">
+              <!-- Populated by app.js -->
             </select>
           </div>
         </div>
 
       </div>
 
-      <!-- Sticky Order Summary & Real-time Cake Visualizer -->
-      <aside class="order-summary-sidebar">
-        <!-- Live Dynamic Cake Visualizer -->
-        <div class="cake-visualizer-box">
-          <div id="cake-canvas">
-            <!-- Dynamic Layers rendered by app.js -->
+      <!-- Sticky Order Sidebar & Live Cake Visualizer -->
+      <aside class="order-sidebar-sticky">
+        <div class="canvas-preview-arch">
+          <div id="dynamic-cake-canvas">
+            <!-- Layers updated dynamically by app.js -->
           </div>
         </div>
 
-        <!-- Summary Spec & Price -->
-        <div class="summary-body">
-          <div class="summary-header-row">
-            <h4>Live Order Specification</h4>
-            <span class="rush-badge">⚡ Slot Available</span>
+        <div class="sidebar-details-wrap">
+          <div class="sidebar-header-row">
+            <h4>Order Specification</h4>
+            <span class="slot-ready-tag">Slot Open</span>
           </div>
 
-          <ul class="summary-spec-list">
+          <ul class="spec-data-list">
             <li>
-              <span>Architecture:</span>
-              <strong id="summary-tier">2-Tier Grand Milestone</strong>
+              <span>Architecture</span>
+              <strong id="spec-tier-text">Two-Tier Grand Milestone</strong>
             </li>
             <li>
-              <span>Flavor Profile:</span>
-              <strong id="summary-flavor">Persian Lychee Rose</strong>
+              <span>Flavor Profile</span>
+              <strong id="spec-flavor-text">Persian Lychee Rose</strong>
             </li>
             <li>
-              <span>Finish Style:</span>
-              <strong id="summary-finish">Vintage Lambeth Ruffle</strong>
+              <span>Piping Style</span>
+              <strong id="spec-finish-text">Vintage Lambeth Ruffle</strong>
             </li>
             <li>
-              <span>Dietary:</span>
-              <strong id="summary-dietary">100% Eggless</strong>
+              <span>Dietary</span>
+              <strong id="spec-dietary-text">100% Eggless</strong>
             </li>
             <li>
-              <span>Piped Plaque:</span>
-              <strong id="summary-message">"Happy Birthday Sarah!"</strong>
+              <span>Plaque</span>
+              <strong id="spec-plaque-text">"Happy Celebration"</strong>
             </li>
             <li>
-              <span>Location:</span>
-              <strong id="summary-delivery">Thousand Lights Kitchen</strong>
+              <span>Location</span>
+              <strong id="spec-zone-text">Thousand Lights Kitchen</strong>
             </li>
             <li>
-              <span>Slot:</span>
-              <strong id="summary-slot">Tomorrow | 4:00 PM – 6:00 PM</strong>
+              <span>Slot</span>
+              <strong id="spec-slot-text">Tomorrow • 4:00 PM – 6:00 PM</strong>
             </li>
           </ul>
 
-          <div class="price-divider"></div>
+          <div class="summary-divider"></div>
 
-          <div class="price-breakdown-row">
-            <span class="total-price-label">Estimated Total:</span>
-            <span id="total-amount" class="total-price-amount">₹4,400</span>
+          <div class="price-display-row">
+            <span class="price-display-label">Estimated Total</span>
+            <span id="label-total-price" class="price-display-amount">₹3,950</span>
           </div>
-          <div class="advance-note">
-            50% Advance to Lock Kitchen Slot: <strong id="advance-amount">₹2,200</strong>
+          <div class="advance-deposit-note">
+            50% Advance to Secure Baking Slot: <strong id="label-advance-price">₹1,975</strong>
           </div>
 
-          <!-- 1-Tap WhatsApp Kitchen Dispatch -->
-          <button id="btn-whatsapp-dispatch" class="btn btn-whatsapp-order">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.92-9.91-9.92zM12.04 20.16c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31c-.82-1.31-1.26-2.83-1.26-4.39 0-4.54 3.7-8.24 8.25-8.24 4.54 0 8.24 3.7 8.24 8.24 0 4.54-3.7 8.25-8.24 8.25zm4.52-6.18c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.12.17 1.78 2.71 4.3 3.8 2.53 1.08 2.53.72 2.99.68.46-.05 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.3z"/></svg>
-            <span>Lock Slot &amp; Dispatch to WhatsApp</span>
+          <!-- 1-Tap Clean WhatsApp Dispatch -->
+          <button id="btn-dispatch-whatsapp" class="btn btn-whatsapp-dispatch">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            <span>Lock Slot via WhatsApp</span>
           </button>
 
-          <div class="guarantee-microtext">
-            <span>🔒 Direct to Your Huckleberry Kitchen (+91 8511839668)</span>
+          <div class="kitchen-direct-guarantee">
+            Direct to Your Huckleberry Kitchen (+91 8511839668)
           </div>
         </div>
       </aside>
     </div>
   </section>
 
-  <!-- Signature Menu & Miniature Couture Showcase -->
-  <section id="signature-menu" class="showcase-section">
-    <div class="showcase-container">
-      <div class="section-header">
-        <div class="eyebrow">Huckleberry Collection</div>
-        <h2>Signature Creations &amp; Miniature Couture</h2>
+  <!-- Signature Menu & Photography Gallery -->
+  <section id="signature-gallery" style="padding: 80px 28px; background: #FFF; border-top: 1px solid var(--color-border);">
+    <div style="max-width: 1240px; margin: 0 auto;">
+      <div class="section-head">
+        <div class="section-label">Gallery of Work</div>
+        <h2>Signature Creations &amp; Specialties</h2>
         <p>
-          Featured designs from our Instagram atelier (@huckleberry.inn). Tap "Customize Design" to load any item directly into the custom tier builder.
+          Handcrafted centerpieces and gourmet tarts from our Shafee Mohammed Road atelier.
         </p>
       </div>
 
-      <!-- Filter Tabs -->
-      <div class="menu-filters">
-        <button class="filter-btn active" data-filter="all">All Specialties</button>
-        <button class="filter-btn" data-filter="miniature">Miniature Couture Series</button>
-        <button class="filter-btn" data-filter="custom-tiers">Custom Tiered Cakes</button>
-        <button class="filter-btn" data-filter="cheesecake">Basque Cheesecakes</button>
-        <button class="filter-btn" data-filter="savouries">Artisanal Savouries</button>
-      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px;">
+        
+        <!-- Showcase 1: Caramel Tart -->
+        <article style="background: var(--color-bg); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--color-border); box-shadow: var(--shadow-card);">
+          <div style="height: 280px; overflow: hidden;">
+            <img src="assets/images/caramel-chocolate-tart.jpg" alt="Caramel Chocolate Tart by Huckleberry" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" />
+          </div>
+          <div style="padding: 24px;">
+            <div class="classical-title">Valrhona Sablé</div>
+            <h3 style="font-size: 1.5rem; margin: 6px 0 10px; color: var(--color-bordeaux-dark);">Caramel Chocolate Tart</h3>
+            <p style="font-family: var(--font-editorial); font-style: italic; font-size: 1.05rem; color: var(--color-bordeaux); margin-bottom: 14px;">
+              “We don’t do guilt here. We do caramel, chocolate, and absolutely no self-control.”
+            </p>
+            <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 18px;">
+              Dark chocolate sablé crust filled with molten fleur de sel caramel and 70% Callebaut ganache, finished with edible 24K gold leaf.
+            </p>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--color-border); padding-top: 14px;">
+              <span style="font-family: var(--font-editorial); font-size: 1.3rem; font-weight: 600; color: var(--color-bordeaux);">₹320 / Slice</span>
+              <a href="https://wa.me/918511839668?text=Hello%20Huckleberry,%20I%20would%20like%20to%20order%20the%20Caramel%20Chocolate%20Tart!" target="_blank" rel="noopener" class="btn btn-sm btn-outline">Order via WhatsApp</a>
+            </div>
+          </div>
+        </article>
 
-      <!-- Gallery Grid -->
-      <div id="gallery-container" class="gallery-grid">
-        <!-- Rendered by app.js -->
+        <!-- Showcase 2: Love Letter Rosette Cake -->
+        <article style="background: var(--color-bg); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--color-border); box-shadow: var(--shadow-card);">
+          <div style="height: 280px; overflow: hidden;">
+            <img src="assets/images/love-letter-swirls.jpg" alt="Love Letter Rosette Cake by Huckleberry" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" />
+          </div>
+          <div style="padding: 24px;">
+            <div class="classical-title">Silky Buttercream</div>
+            <h3 style="font-size: 1.5rem; margin: 6px 0 10px; color: var(--color-bordeaux-dark);">The Love Letter Cake</h3>
+            <p style="font-family: var(--font-editorial); font-style: italic; font-size: 1.05rem; color: var(--color-bordeaux); margin-bottom: 14px;">
+              “Soft swirls, tiny roses and a cake that feels like a love letter.”
+            </p>
+            <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 18px;">
+              Hand-spun buttercream spiral topped with delicate pink rosettes and botanical foliage. Intimate 1.0 kg centerpiece.
+            </p>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--color-border); padding-top: 14px;">
+              <span style="font-family: var(--font-editorial); font-size: 1.3rem; font-weight: 600; color: var(--color-bordeaux);">₹1,850</span>
+              <button class="btn btn-sm btn-outline btn-quick-select" data-tier="tier-1">Customize This</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Showcase 3: She's The Moment Lambeth -->
+        <article style="background: var(--color-bg); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--color-border); box-shadow: var(--shadow-card);">
+          <div style="height: 280px; overflow: hidden;">
+            <img src="assets/images/moment-vintage-lambeth.jpg" alt="She's The Moment Lambeth Tier by Huckleberry" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy" />
+          </div>
+          <div style="padding: 24px;">
+            <div class="classical-title">Grand Milestone</div>
+            <h3 style="font-size: 1.5rem; margin: 6px 0 10px; color: var(--color-bordeaux-dark);">She’s The Moment</h3>
+            <p style="font-family: var(--font-editorial); font-style: italic; font-size: 1.05rem; color: var(--color-bordeaux); margin-bottom: 14px;">
+              “Every drop, scallop, and luster pearl hand-piped with Victorian precision.”
+            </p>
+            <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 18px;">
+              Architectural two-tier celebration cake with intricate Lambeth piping, cascaded blush roses, and luster pearls.
+            </p>
+            <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--color-border); padding-top: 14px;">
+              <span style="font-family: var(--font-editorial); font-size: 1.3rem; font-weight: 600; color: var(--color-bordeaux);">₹3,950</span>
+              <button class="btn btn-sm btn-outline btn-quick-select" data-tier="tier-2">Customize This</button>
+            </div>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>
 
-  <!-- Pitch Comparison Section: "Why Direct Portal vs Buried Instagram DMs" -->
-  <section id="dm-solution" class="comparison-section">
-    <div class="section-header">
-      <div class="eyebrow">The Business Pitch</div>
-      <h2>Why Automated Checkout Beats DM Ping-Pong</h2>
-      <p>
-        How this prototype solves the rush-hour bottleneck for Your Huckleberry, turning DM churn into guaranteed orders.
-      </p>
-    </div>
-
-    <div class="comparison-grid">
-      <!-- Old DM Way -->
-      <div class="comparison-col col-old-way">
-        <h3 class="comparison-title" style="color: #9B2C2C;">
-          <span>❌ The Instagram DM Bottleneck</span>
-        </h3>
-        <ul class="comparison-list">
-          <li>
-            <span>⏱️</span>
-            <div><strong>Endless DM Messaging:</strong> 12 to 18 back-and-forth messages just to finalize tiers, guest count, flavors, and eggless preferences.</div>
-          </li>
-          <li>
-            <span>📉</span>
-            <div><strong>Lost High-Ticket Leads:</strong> Weekend inquiries get buried under story replies; customers jump to other bakeries when quotes are delayed.</div>
-          </li>
-          <li>
-            <span>⚠️</span>
-            <div><strong>Rush-Hour Slot Conflicts:</strong> Double-booking delivery slots during peak Chennai traffic hours without live slot constraints.</div>
-          </li>
-          <li>
-            <span>💸</span>
-            <div><strong>Delayed Advance Payments:</strong> Waiting hours for customers to manually transfer deposits before baking begins.</div>
-          </li>
-        </ul>
-      </div>
-
-      <!-- New Portal Way -->
-      <div class="comparison-col col-new-way">
-        <h3 class="comparison-title" style="color: #22543D;">
-          <span>✨ Automated Cloud Kitchen Portal</span>
-        </h3>
-        <ul class="comparison-list">
-          <li>
-            <span>⚡</span>
-            <div><strong>Instant Tier &amp; Flavor Checkout:</strong> Customers select weight, flavor, and Lambeth piping with 100% price transparency under 60 seconds.</div>
-          </li>
-          <li>
-            <span>📈</span>
-            <div><strong>45% Direct Order Growth:</strong> Proven benchmark from Sree Ambaal Bakery, converting casual Instagram browsers into committed bookings.</div>
-          </li>
-          <li>
-            <span>📅</span>
-            <div><strong>Automated Chennai Slot Locking:</strong> Enforces daily custom cake kitchen capacity limits across Thousand Lights &amp; Nungambakkam.</div>
-          </li>
-          <li>
-            <span>📱</span>
-            <div><strong>1-Tap Clean WhatsApp Dispatch:</strong> Sends structured order tokens straight to kitchen WhatsApp with deposit amounts pre-calculated.</div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Location & Kitchen Info -->
-  <section id="location-info" style="padding: 60px 24px; background: #FFF; border-top: 1px solid var(--c-cream-border);">
-    <div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
-      <div>
-        <div class="eyebrow">Atelier Location</div>
-        <h2 style="font-size: 2.2rem; margin-bottom: 14px;">Baking in the Heart of Chennai</h2>
-        <p style="color: var(--c-text-muted); margin-bottom: 20px; font-size: 1rem;">
-          Our kitchen is centrally situated on Shafee Mohammed Road, enabling rapid temperature-controlled dispatches to Thousand Lights, Nungambakkam, Gopalapuram, Alwarpet, and beyond.
+  <!-- Atelier Location & 1-Click Google Maps Navigation -->
+  <section id="atelier-location" class="location-atelier-section">
+    <div class="location-inner">
+      <div class="location-info">
+        <div class="section-label">Kitchen Atelier</div>
+        <h2>Baking in Thousand Lights</h2>
+        <p>
+          Centrally located on Shafee Mohammed Road in Thousand Lights West, adjacent to Nungambakkam. Temperature-controlled dispatches ensure custom tiered cakes arrive in pristine condition across Chennai.
         </p>
-        <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.92rem;">
-          <div>📍 <strong>Address:</strong> Shafee Mohammed Road, Thousand Lights West, Nungambakkam, Chennai 600006</div>
-          <div>🕒 <strong>Kitchen Hours:</strong> 11:00 AM – 9:00 PM (Tuesday to Sunday)</div>
-          <div>📞 <strong>Direct Kitchen Contact:</strong> +91 8511839668</div>
-          <div>📸 <strong>Instagram:</strong> <a href="https://www.instagram.com/huckleberry.inn" target="_blank" rel="noopener" style="color: var(--c-berry-primary); font-weight: 600;">@huckleberry.inn</a></div>
+
+        <div class="address-details-box">
+          <div class="address-line-item">
+            <span class="address-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            <div>
+              <strong>Shafee Mohammed Road</strong><br>
+              Thousand Lights West, Nungambakkam, Chennai, Tamil Nadu 600006
+            </div>
+          </div>
+
+          <div class="address-line-item">
+            <span class="address-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </span>
+            <div>
+              <strong>Kitchen Hours:</strong> 11:00 AM – 9:00 PM, Tuesday to Sunday
+            </div>
+          </div>
+
+          <div class="address-line-item">
+            <span class="address-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </span>
+            <div>
+              <strong>Direct WhatsApp &amp; Inquiries:</strong> +91 8511839668
+            </div>
+          </div>
         </div>
-      </div>
-      <div style="background: var(--c-cream-bg); border-radius: var(--radius-lg); padding: 30px; border: 1px solid var(--c-cream-border); text-align: center;">
-        <img src="assets/logo.svg" alt="Huckleberry Inn Seal" style="height: 70px; margin-bottom: 16px;" />
-        <h3 style="font-size: 1.3rem; margin-bottom: 8px;">Order Lead Times</h3>
-        <p style="font-size: 0.88rem; color: var(--c-text-muted); margin-bottom: 18px;">
-          • Miniature Couture: Same-day / 4-hour express slots<br>
-          • 1-Tier Petite Celebrations: 24-hour advance reservation<br>
-          • 2-Tier &amp; 3-Tier Milestone Cakes: 48-hour structural curing
-        </p>
-        <a href="#cake-builder" class="btn btn-primary" style="width: 100%;">
-          Reserve Your Kitchen Slot Now ➔
+
+        <!-- 1-Click Google Maps Navigation -->
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Shafee+Mohammed+Road,+Thousand+Lights+West,+Nungambakkam,+Chennai+600006" target="_blank" rel="noopener" class="maps-nav-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          <span>Get Directions on Google Maps ↗</span>
         </a>
       </div>
+
+      <div class="location-visual-card">
+        <img src="assets/images/love-letter-swirls.jpg" alt="Artisanal Cakes from Your Huckleberry Chennai" />
+      </div>
     </div>
   </section>
+
+  <!-- Instagram Aesthetic Link Section -->
+  <section class="instagram-connection-section">
+    <div class="instagram-inner">
+      <a href="https://www.instagram.com/huckleberry.inn" target="_blank" rel="noopener" class="instagram-handle-badge">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        <span>@HUCKLEBERRY.INN</span>
+      </a>
+      <p class="instagram-quote">
+        “Luxury cakes made for sweet moments.”
+      </p>
+      <p class="instagram-caption-sub">
+        Follow our Instagram atelier for daily design showcases, seasonal collections, and behind-the-scenes pastry craft in Chennai.
+      </p>
+      <a href="https://www.instagram.com/huckleberry.inn" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
+        <span>View Instagram Atelier ↗</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Mobile Fixed Bottom Checkout Bar -->
+  <div class="mobile-bottom-bar">
+    <div class="mobile-bottom-inner">
+      <div class="mobile-bottom-info">
+        <span id="mobile-bar-tier" class="mobile-tier-name">Two-Tier Milestone</span>
+        <span id="mobile-bar-price" class="mobile-price-amount">₹3,950</span>
+      </div>
+      <button id="btn-mobile-whatsapp" class="btn btn-bordeaux btn-sm">
+        <span>Reserve on WhatsApp</span>
+      </button>
+    </div>
+  </div>
 
   <!-- Interactive Floating Kitchen Ops & DM Recovery Drawer -->
   <aside id="kitchen-ops-drawer" class="kitchen-ops-drawer">
     <div id="drawer-header" class="drawer-header">
-      <div class="drawer-title">
-        <span>👨‍🍳 Huckleberry Kitchen Ops Simulator</span>
-        <span style="font-size: 0.7rem; background: var(--c-gold-primary); color: #000; padding: 2px 6px; border-radius: 4px; font-weight: 700;">LIVE PREVIEW</span>
+      <div class="drawer-title-group">
+        <span>Kitchen Ingestion Pipeline</span>
+        <span class="drawer-tag">ACTIVE</span>
       </div>
       <span class="drawer-toggle-arrow">▲</span>
     </div>
 
-    <div class="drawer-content">
-      <div class="ops-metric-banner">
-        <div><strong>Active Ingestion Queue:</strong> 0 Lost Leads</div>
-        <button id="btn-simulate-order" class="btn btn-sm btn-gold" style="padding: 4px 10px; font-size: 0.72rem;">
-          + Simulate Incoming Order
+    <div class="drawer-body-content">
+      <div class="drawer-metric-line">
+        <span>Direct Ingestion Queue: <strong>0 Lost Leads</strong></span>
+        <button id="btn-add-mock-order" class="btn btn-sm btn-gold" style="padding: 2px 8px; font-size: 0.7rem;">
+          + Simulate Order
         </button>
       </div>
 
-      <div id="ops-orders-list">
+      <div id="feed-orders-container">
         <!-- Rendered by app.js -->
       </div>
     </div>
   </aside>
 
-  <!-- Order Confirmation Modal Dialog -->
-  <dialog id="order-confirmation-modal" class="order-modal">
-    <div class="modal-header">
-      <h3 style="color: #FFF; font-size: 1.4rem;">Booking Specification Locked! 🎂</h3>
-      <p style="font-size: 0.82rem; color: var(--c-gold-light);">Ready for 1-Tap Kitchen Dispatch</p>
-      <button id="btn-close-modal" class="modal-close-btn">&times;</button>
+  <!-- Order Specification Modal Dialog -->
+  <dialog id="order-modal-dialog" class="order-modal">
+    <div class="modal-header-box">
+      <h3 style="color: #FFF; font-family: var(--font-editorial); font-size: 1.6rem;">Order Specification Created</h3>
+      <p style="font-size: 0.78rem; color: var(--color-gold-light); letter-spacing: 0.05em;">READY FOR DIRECT KITCHEN DISPATCH</p>
+      <button id="btn-close-dialog" class="modal-close-button">&times;</button>
     </div>
-    <div class="modal-body">
-      <div class="order-token-banner">
-        <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--c-text-muted); margin-bottom: 4px;">
-          Generated Booking Token
+    <div class="modal-inner-content">
+      <div class="modal-token-banner">
+        <div style="font-size: 0.72rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 2px;">
+          Verified Booking Token
         </div>
-        <div id="modal-booking-token" class="token-code">#HK-9412</div>
-        <div id="modal-booking-amount" style="font-size: 0.88rem; font-weight: 600; color: var(--c-berry-deep); margin-top: 4px;">
-          ₹4,400 (Advance: ₹2,200)
+        <div id="dialog-token-id" class="modal-token-id">#HK-4912</div>
+        <div id="dialog-price-display" style="font-size: 0.95rem; font-weight: 600; color: var(--color-bordeaux); margin-top: 4px;">
+          ₹3,950 (Advance Deposit: ₹1,975)
         </div>
       </div>
 
-      <p style="font-size: 0.88rem; color: var(--c-text-muted); margin-bottom: 20px; line-height: 1.5; text-align: center;">
-        Your custom cake architecture, flavor profile, and delivery slot have been packaged into a verified specification. Tap below to launch WhatsApp and notify the pastry chef directly!
+      <p style="font-size: 0.88rem; color: var(--color-text-muted); text-align: center; line-height: 1.5; margin-bottom: 20px;">
+        Your custom architecture, flavor profile, and delivery slot have been packaged into a formal booking slip. Tap below to launch WhatsApp and secure your baking slot directly with the chef.
       </p>
 
-      <a id="modal-wa-link" href="#" target="_blank" class="btn btn-whatsapp-order" style="text-align: center; text-decoration: none;">
-        <span>Open in WhatsApp &amp; Confirm Booking ➔</span>
+      <a id="dialog-wa-cta" href="#" target="_blank" rel="noopener" class="btn btn-whatsapp-dispatch" style="text-decoration: none;">
+        <span>Dispatch Order to WhatsApp ➔</span>
       </a>
 
-      <div style="font-size: 0.72rem; color: var(--c-text-light); text-align: center; margin-top: 14px;">
-        Kitchen Dispatch Number: +91 8511839668 (Your Huckleberry, Chennai)
+      <div style="font-size: 0.72rem; color: var(--color-text-light); text-align: center; margin-top: 12px;">
+        Bakery Contact: +91 8511839668 (Shafee Mohammed Rd, Chennai)
       </div>
     </div>
   </dialog>
 
-  <!-- Footer -->
+  <!-- Site Footer -->
   <footer class="site-footer">
-    <div class="footer-container">
-      <div class="footer-grid">
+    <div class="footer-inner">
+      <div class="footer-columns">
         <div class="footer-brand">
-          <img src="assets/logo.svg" alt="Your Huckleberry" style="height: 48px; margin-bottom: 14px; filter: brightness(0) invert(1);" />
+          <h3>Your Huckleberry</h3>
           <p>
-            Artisanal custom patisserie and cloud kitchen atelier based in Thousand Lights / Nungambakkam, Chennai. Crafted for sweet celebrations and corporate events.
+            Luxury artisanal cakes and Miniature Couture patisserie based in Thousand Lights / Nungambakkam, Chennai.
           </p>
         </div>
 
-        <div class="footer-links">
-          <h4>Menu Navigation</h4>
-          <ul>
-            <li><a href="#cake-builder">Interactive Tier Builder</a></li>
-            <li><a href="#signature-menu">Miniature Couture Series</a></li>
-            <li><a href="#signature-menu">Burnt Basque Cheesecake</a></li>
-            <li><a href="#dm-solution">Cloud Kitchen Case Study</a></li>
+        <div>
+          <h4 class="footer-col-title">Atelier Menu</h4>
+          <ul class="footer-links-list">
+            <li><a href="#mini-couture">Mini Couture Collection</a></li>
+            <li><a href="#custom-builder">Custom Cake Builder</a></li>
+            <li><a href="#signature-gallery">Caramel Chocolate Tart</a></li>
+            <li><a href="#atelier-location">Thousand Lights Kitchen</a></li>
           </ul>
         </div>
 
-        <div class="footer-contact">
-          <h4>Kitchen &amp; Inquiries</h4>
-          <p>📍 Shafee Mohammed Road, Thousand Lights West, Chennai 600006</p>
-          <p>📱 WhatsApp: +91 8511839668</p>
-          <p>📸 Instagram: <a href="https://www.instagram.com/huckleberry.inn" target="_blank" rel="noopener" style="color: var(--c-gold-light);">@huckleberry.inn</a></p>
+        <div>
+          <h4 class="footer-col-title">Kitchen Contact</h4>
+          <p style="font-size: 0.85rem; color: rgba(255,255,255,0.75); margin-bottom: 8px;">
+            Shafee Mohammed Road, Thousand Lights West, Nungambakkam, Chennai 600006
+          </p>
+          <p style="font-size: 0.85rem; color: rgba(255,255,255,0.75); margin-bottom: 8px;">
+            WhatsApp: +91 8511839668
+          </p>
+          <p style="font-size: 0.85rem; color: rgba(255,255,255,0.75);">
+            Instagram: <a href="https://www.instagram.com/huckleberry.inn" target="_blank" rel="noopener" style="color: var(--color-gold-light);">@huckleberry.inn</a>
+          </p>
         </div>
       </div>
 
-      <div class="footer-bottom">
+      <div class="footer-legal-bar">
         <div>
           © 2026 Your Huckleberry (@huckleberry.inn). All rights reserved.
         </div>
-        <div class="agency-credit">
-          Prototype engineered by <a href="https://github.com/A-Generative-Slice" target="_blank" rel="noopener">A Generative Slice</a>
+        <div>
+          Prototype crafted by <a href="https://github.com/A-Generative-Slice" target="_blank" rel="noopener">A Generative Slice</a>
         </div>
       </div>
     </div>
