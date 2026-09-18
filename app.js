@@ -46,19 +46,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const dateInput = document.getElementById('date-delivery');
   const slotSelect = document.getElementById('slot-delivery');
 
-  // Modal & Drawer Elements
+  // Modal Elements
   const dispatchBtn = document.getElementById('btn-dispatch-whatsapp');
   const orderDialog = document.getElementById('order-modal-dialog');
   const closeDialogBtn = document.getElementById('btn-close-dialog');
   const dialogTokenId = document.getElementById('dialog-token-id');
   const dialogPriceDisplay = document.getElementById('dialog-price-display');
   const dialogWaCta = document.getElementById('dialog-wa-cta');
-
-  const kitchenDrawer = document.getElementById('kitchen-ops-drawer');
-  const drawerHeader = document.getElementById('drawer-header');
-  const openOpsBtn = document.getElementById('btn-open-ops');
-  const feedOrdersContainer = document.getElementById('feed-orders-container');
-  const addMockOrderBtn = document.getElementById('btn-add-mock-order');
 
   // Initialize Date Input
   if (dateInput) {
@@ -71,11 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!tierContainer) return;
     tierContainer.innerHTML = HUCKLEBERRY_DATA.tiers.map(tier => `
       <div class="select-card ${tier.id === state.tierId ? 'selected' : ''}" data-tier="${tier.id}">
-        ${tier.popular ? `<span class="select-card-badge">${tier.tag}</span>` : ''}
-        <div>
+        <div class="select-card-header">
           <div class="select-card-name">${tier.name}</div>
-          <div class="select-card-desc">${tier.description}</div>
+          ${tier.popular ? `<span class="select-card-badge">${tier.tag}</span>` : ''}
         </div>
+        <div class="select-card-desc">${tier.description}</div>
         <div class="select-card-meta">
           <span class="price-tag">₹${tier.basePrice.toLocaleString('en-IN')}</span>
           <span class="weight-tag">${tier.weightKg} • ${tier.servings}</span>
@@ -97,14 +91,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!flavorContainer) return;
     flavorContainer.innerHTML = HUCKLEBERRY_DATA.flavors.map(flavor => `
       <div class="select-card ${flavor.id === state.flavorId ? 'selected' : ''}" data-flavor="${flavor.id}">
-        ${flavor.badge ? `<span class="select-card-badge">${flavor.badge}</span>` : ''}
-        <div>
+        <div class="select-card-header">
           <div class="select-card-name">
             <span class="swatch-pip" style="background-color: ${flavor.colorHex}"></span>
             ${flavor.name}
           </div>
-          <div class="select-card-desc">${flavor.notes}</div>
+          ${flavor.badge ? `<span class="select-card-badge">${flavor.badge}</span>` : ''}
         </div>
+        <div class="select-card-desc">${flavor.notes}</div>
         <div class="select-card-meta">
           <span class="price-tag">${flavor.priceAdd > 0 ? `+ ₹${flavor.priceAdd}` : 'Included'}</span>
           <span class="weight-tag">Pastry Chef Recipe</span>
@@ -126,10 +120,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!finishContainer) return;
     finishContainer.innerHTML = HUCKLEBERRY_DATA.finishes.map(finish => `
       <div class="select-card ${finish.id === state.finishId ? 'selected' : ''}" data-finish="${finish.id}">
-        <div>
+        <div class="select-card-header">
           <div class="select-card-name">${finish.name}</div>
-          <div class="select-card-desc">${finish.desc}</div>
         </div>
+        <div class="select-card-desc">${finish.desc}</div>
         <div class="select-card-meta">
           <span class="price-tag">+ ₹${finish.priceAdd}</span>
           <span class="weight-tag">Hand-Piped</span>
@@ -294,7 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const message = 
 `🎂 *CUSTOM CAKE RESERVATION - YOUR HUCKLEBERRY*
-Shafee Mohammed Road, Thousand Lights, Chennai
+@huckleberry.inn • Shafee Mohammed Road, Chennai
 ----------------------------------------
 *Token:* #${token}
 *Architecture:* ${tier.name} (${tier.weightKg})
@@ -310,29 +304,18 @@ Shafee Mohammed Road, Thousand Lights, Chennai
 *Estimated Total:* ₹${total.toLocaleString('en-IN')}
 *Advance Deposit (50%):* ₹${advance.toLocaleString('en-IN')}
 ----------------------------------------
-_Dispatched via Your Huckleberry Direct Portal_
+_Dispatched via Your Huckleberry Direct Portal (@huckleberry.inn)_
 _Please confirm kitchen slot availability!_`;
 
     const encoded = encodeURIComponent(message);
-    const waLink = `https://wa.me/${HUCKLEBERRY_DATA.bakery.whatsappNumber}?text=${encoded}`;
+    const waNumber = (HUCKLEBERRY_DATA.brand && HUCKLEBERRY_DATA.brand.whatsappNumber) || (HUCKLEBERRY_DATA.bakery && HUCKLEBERRY_DATA.bakery.whatsappNumber) || '918511839668';
+    const waLink = `https://wa.me/${waNumber}?text=${encoded}`;
 
     if (dialogTokenId) dialogTokenId.textContent = `#${token}`;
     if (dialogPriceDisplay) dialogPriceDisplay.textContent = `₹${total.toLocaleString('en-IN')} (Advance Deposit: ₹${advance.toLocaleString('en-IN')})`;
     if (dialogWaCta) dialogWaCta.href = waLink;
 
     if (orderDialog) orderDialog.showModal();
-
-    // Add to kitchen queue
-    addFeedOrder({
-      id: token,
-      client: "Direct Portal Booking (Chennai)",
-      item: `${tier.name} (${tier.weightKg})`,
-      spec: `${flavor.name} • ${finish.name}`,
-      slot: `${state.deliveryDate} • ${state.deliverySlot.split(' ')[0]}`,
-      price: `₹${total.toLocaleString('en-IN')}`,
-      status: "Slot Requested",
-      time: "Just now"
-    });
   }
 
   if (dispatchBtn) dispatchBtn.addEventListener('click', triggerOrder);
@@ -340,63 +323,6 @@ _Please confirm kitchen slot availability!_`;
 
   if (closeDialogBtn && orderDialog) {
     closeDialogBtn.addEventListener('click', () => orderDialog.close());
-  }
-
-  // 9. Kitchen Drawer Simulator
-  function toggleOpsDrawer() {
-    if (!kitchenDrawer) return;
-    kitchenDrawer.classList.toggle('open');
-  }
-
-  if (drawerHeader) drawerHeader.addEventListener('click', toggleOpsDrawer);
-  if (openOpsBtn) openOpsBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (kitchenDrawer && !kitchenDrawer.classList.contains('open')) {
-      kitchenDrawer.classList.add('open');
-    }
-  });
-
-  function renderFeed() {
-    if (!feedOrdersContainer) return;
-    feedOrdersContainer.innerHTML = HUCKLEBERRY_DATA.liveOrders.map(ord => `
-      <div class="order-feed-card">
-        <div class="order-feed-top">
-          <span>#${ord.id}</span>
-          <span>${ord.time}</span>
-        </div>
-        <div class="order-feed-client">${ord.client}</div>
-        <div class="order-feed-desc">
-          <strong>${ord.item}</strong><br>
-          ${ord.spec} • ${ord.slot}
-        </div>
-        <div class="order-feed-footer">
-          <span class="order-status-badge">${ord.status}</span>
-          <span style="font-weight: 600; color: var(--color-bordeaux);">${ord.price}</span>
-        </div>
-      </div>
-    `).join('');
-  }
-
-  function addFeedOrder(ord) {
-    HUCKLEBERRY_DATA.liveOrders.unshift(ord);
-    renderFeed();
-  }
-
-  if (addMockOrderBtn) {
-    addMockOrderBtn.addEventListener('click', () => {
-      const mock = {
-        id: 'HK-' + Math.floor(2000 + Math.random() * 8000),
-        client: "Meera V., Nungambakkam",
-        item: "She’s The Moment (2.5 kg)",
-        spec: "Persian Lychee Rose • Vintage Lambeth",
-        slot: "Tomorrow, 5:00 PM Slot",
-        price: "₹3,950",
-        status: "Advance Confirmed",
-        time: "Just now"
-      };
-      addFeedOrder(mock);
-      alert('High-ticket custom order simulated! Notice how the order specification is automatically sized, priced, and routed to the kitchen queue.');
-    });
   }
 
   // Utilities
@@ -421,6 +347,5 @@ _Please confirm kitchen slot availability!_`;
   renderFlavors();
   renderFinishes();
   renderZones();
-  renderFeed();
   updateSummary();
 });

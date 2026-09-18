@@ -4,19 +4,26 @@
  */
 
 const HUCKLEBERRY_DATA = {
-  bakery: {
+  brand: {
     name: "Your Huckleberry",
     handle: "@huckleberry.inn",
-    tagline: "Luxury cakes made for sweet moments",
+    instagramUrl: "https://www.instagram.com/huckleberry.inn",
+    whatsappPhone: "+91 8511839668",
+    whatsappDisplay: "+91 8511839668",
+    tagline: "Luxury cakes made for sweet moments.",
+    address: "Shafee Mohammed Road, Nungambakkam, Chennai 600006",
+    mapsUrl: "https://www.google.com/maps/dir/?api=1&destination=Shafee+Mohammed+Road,+Thousand+Lights+West,+Nungambakkam,+Chennai+600006",
+    hours: "11:00 AM – 9:00 PM (Tuesday – Sunday)",
+    headlineProof: "Automated Cake Booking Engine for Your Huckleberry",
     quote: "Made to be admired. Made to be savoured slowly.",
     secondaryQuote: "Every swirl, pearl and ribbon is placed with care to turn moments into memories.",
-    address: "Shafee Mohammed Road, Thousand Lights West, Nungambakkam, Chennai 600006",
-    mapsUrl: "https://www.google.com/maps/dir/?api=1&destination=Shafee+Mohammed+Road,+Thousand+Lights+West,+Nungambakkam,+Chennai+600006",
     phone: "+91 8511839668",
     whatsappNumber: "918511839668",
-    instagramUrl: "https://www.instagram.com/huckleberry.inn",
-    hours: "11:00 AM – 9:00 PM, Tuesday to Sunday",
     specialOffer: "Buy 3 mini cakes and receive a complimentary signature mini. Available for a limited time."
+  },
+
+  get bakery() {
+    return this.brand;
   },
 
   // The 4 Core Architectural Form Factors
@@ -146,7 +153,7 @@ const HUCKLEBERRY_DATA = {
 
   // Chennai Delivery Zones
   deliveryZones: [
-    { zone: "Thousand Lights / Shafee Mohammed Rd (Kitchen Pickup)", pin: "600006", fee: 0 },
+    { zone: "Your Huckleberry Atelier / Shafee Mohammed Rd (Pickup)", pin: "600006", fee: 0 },
     { zone: "Nungambakkam & Wallace Gardens", pin: "600034", fee: 120 },
     { zone: "Alwarpet, Gopalapuram & T. Nagar", pin: "600018", fee: 150 },
     { zone: "Anna Nagar & Kilpauk", pin: "600040", fee: 200 },
