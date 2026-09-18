@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E5C158" />
+      <stop offset="50%" stop-color="#C59B27" />
+      <stop offset="100%" stop-color="#9E7611" />
+    </linearGradient>
+    <linearGradient id="berryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#54172B" />
+      <stop offset="100%" stop-color="#2D0A16" />
+    </linearGradient>
+  </defs>
+
+  <!-- Monogram Crest Icon -->
+  <g transform="translate(10, 10)">
+    <!-- Outer ornate badge -->
+    <circle cx="40" cy="40" r="38" fill="url(#berryGrad)" stroke="url(#goldGrad)" stroke-width="2" />
+    <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(229,193,88,0.3)" stroke-width="1" stroke-dasharray="3,2" />
+    
+    <!-- Stylized Botanical Berry & Whisk -->
+    <path d="M40 18 C33 22 28 30 28 40 C28 49 33 58 40 62 C47 58 52 49 52 40 C52 30 47 22 40 18 Z" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" />
+    <!-- Botanical Berry cluster -->
+    <circle cx="40" cy="33" r="3.5" fill="url(#goldGrad)" />
+    <circle cx="34" cy="41" r="3" fill="url(#goldGrad)" />
+    <circle cx="46" cy="41" r="3" fill="url(#goldGrad)" />
+    <circle cx="40" cy="48" r="2.5" fill="url(#goldGrad)" />
+    <!-- Leaf Sprigs -->
+    <path d="M37 28 C32 26 31 22 33 19 C36 21 38 25 37 28 Z" fill="url(#goldGrad)" />
+    <path d="M43 28 C48 26 49 22 47 19 C44 21 42 25 43 28 Z" fill="url(#goldGrad)" />
+    
+    <!-- Flourish -->
+    <path d="M26 62 Q40 68 54 62" fill="none" stroke="url(#goldGrad)" stroke-width="1.2" />
+  </g>
+
+  <!-- Typography -->
+  <g transform="translate(105, 0)">
+    <!-- Subtitle/Preamble -->
+    <text x="0" y="30" font-family="'Playfair Display', 'Cormorant Garamond', Georgia, serif" font-size="11" font-weight="600" letter-spacing="4" fill="#C59B27">
+      ATELIER DE PÂTISSERIE
+    </text>
+    
+    <!-- Brand Primary Name -->
+    <text x="0" y="60" font-family="'Playfair Display', 'Didot', 'Bodoni MT', Georgia, serif" font-size="28" font-weight="700" letter-spacing="1.5" fill="#2D0A16">
+      Your Huckleberry
+    </text>
+    
+    <!-- Tagline & Location Badge -->
+    <text x="0" y="80" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="500" letter-spacing="2.5" fill="#78656B">
+      THOUSAND LIGHTS • CHENNAI
+    </text>
+    
+    <!-- Decorative underline -->
+    <line x1="0" y1="88" x2="200" y2="88" stroke="url(#goldGrad)" stroke-width="1" opacity="0.6" />
+    <circle cx="100" cy="88" r="2" fill="#C59B27" />
+  </g>
+</svg>
