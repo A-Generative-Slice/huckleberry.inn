@@ -14,7 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
     customMessage: 'Happy Celebration',
     deliveryPin: '600006',
     deliveryDate: getTomorrowDateString(),
-    deliverySlot: '4:00 PM – 6:00 PM (Fresh Evening)'
+    deliverySlot: '4:00 PM – 6:00 PM (Fresh Evening)',
+    lastGeneratedSlip: ''
   };
 
   // DOM Elements
@@ -42,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Inputs
   const egglessCheck = document.getElementById('chk-eggless');
+  const egglessBadge = document.getElementById('eggless-badge');
   const inscriptionInput = document.getElementById('txt-inscription');
   const dateInput = document.getElementById('date-delivery');
   const slotSelect = document.getElementById('slot-delivery');
@@ -50,9 +52,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const dispatchBtn = document.getElementById('btn-dispatch-whatsapp');
   const orderDialog = document.getElementById('order-modal-dialog');
   const closeDialogBtn = document.getElementById('btn-close-dialog');
+  const copySlipBtn = document.getElementById('btn-copy-slip');
   const dialogTokenId = document.getElementById('dialog-token-id');
   const dialogPriceDisplay = document.getElementById('dialog-price-display');
   const dialogWaCta = document.getElementById('dialog-wa-cta');
+
+  // Quick-Look Elements
+  const qlModal = document.getElementById('quick-look-modal');
+  const qlCloseBtn = document.getElementById('btn-close-ql');
+  const qlTitle = document.getElementById('ql-title');
+  const qlBadge = document.getElementById('ql-badge');
+  const qlImg = document.getElementById('ql-img');
+  const qlQuote = document.getElementById('ql-quote');
+  const qlDesc = document.getElementById('ql-desc');
+  const qlPrice = document.getElementById('ql-price');
+  const qlCustomizeBtn = document.getElementById('btn-ql-customize');
+  let currentQlTier = 'mini-couture';
+
+  // Toast Container
+  const toastContainer = document.getElementById('toast-container');
+
+  // Mobile Nav Elements
+  const mobileNavToggle = document.getElementById('btn-mobile-nav');
+  const mobileNavDrawer = document.getElementById('mobile-nav-drawer');
 
   // Initialize Date Input
   if (dateInput) {
@@ -60,7 +82,103 @@ document.addEventListener('DOMContentLoaded', () => {
     dateInput.value = state.deliveryDate;
   }
 
-  // 1. Render Architectural Tiers
+  // 1. Toast Notification Utility
+  function showToast(message, icon = '✨') {
+    if (!toastContainer) return;
+    const toast = document.createElement('div');
+    toast.className = 'toast-pill';
+    toast.innerHTML = `<span>${icon}</span> <span>${escapeHtml(message)}</span>`;
+    toastContainer.appendChild(toast);
+    setTimeout(() => {
+      if (toast.parentNode) toast.parentNode.removeChild(toast);
+    }, 3000);
+  }
+
+  // 2. Mobile Navigation Toggle
+  if (mobileNavToggle && mobileNavDrawer) {
+    mobileNavToggle.addEventListener('click', () => {
+      const isOpen = mobileNavDrawer.classList.toggle('open');
+      mobileNavToggle.classList.toggle('open', isOpen);
+    });
+
+    mobileNavDrawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNavDrawer.classList.remove('open');
+        mobileNavToggle.classList.remove('open');
+      });
+    });
+  }
+
+  // 3. Category Filter Pills for Couture Collection
+  const coutureFilterBar = document.getElementById('couture-filter-bar');
+  const coutureCards = document.querySelectorAll('.couture-item-card');
+
+  if (coutureFilterBar && coutureCards.length > 0) {
+    coutureFilterBar.querySelectorAll('.filter-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        coutureFilterBar.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+
+        const filter = pill.dataset.filter;
+        coutureCards.forEach(card => {
+          const category = card.dataset.category;
+          if (filter === 'all' || category === filter) {
+            card.classList.remove('is-filtered-out');
+          } else {
+            card.classList.add('is-filtered-out');
+          }
+        });
+
+        showToast(`Filtered: ${pill.textContent.trim()}`);
+      });
+    });
+  }
+
+  // 4. Quick-Look Modal Handler
+  document.querySelectorAll('.btn-open-quicklook').forEach(cardImg => {
+    cardImg.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const title = cardImg.dataset.title || 'Artisanal Creation';
+      const price = cardImg.dataset.price || '₹350';
+      const img = cardImg.dataset.img || '';
+      const quote = cardImg.dataset.quote || '';
+      const desc = cardImg.dataset.desc || '';
+      const badge = cardImg.dataset.badge || 'Atelier Collection';
+      currentQlTier = cardImg.dataset.tier || 'mini-couture';
+
+      if (qlTitle) qlTitle.textContent = title;
+      if (qlPrice) qlPrice.textContent = price;
+      if (qlImg) qlImg.src = img;
+      if (qlQuote) qlQuote.textContent = quote ? `“${quote}”` : '';
+      if (qlDesc) qlDesc.textContent = desc;
+      if (qlBadge) qlBadge.textContent = badge;
+
+      if (qlModal) qlModal.showModal();
+    });
+  });
+
+  if (qlCloseBtn && qlModal) {
+    qlCloseBtn.addEventListener('click', () => qlModal.close());
+    qlModal.addEventListener('click', (e) => {
+      if (e.target === qlModal) qlModal.close();
+    });
+  }
+
+  if (qlCustomizeBtn) {
+    qlCustomizeBtn.addEventListener('click', () => {
+      if (qlModal) qlModal.close();
+      state.tierId = currentQlTier;
+      renderTiers();
+      updateSummary();
+      const builder = document.getElementById('custom-builder');
+      if (builder) {
+        builder.scrollIntoView({ behavior: 'smooth' });
+        showToast('Design loaded into Cake Atelier', '🎂');
+      }
+    });
+  }
+
+  // 5. Render Architectural Tiers
   function renderTiers() {
     if (!tierContainer) return;
     tierContainer.innerHTML = HUCKLEBERRY_DATA.tiers.map(tier => `
@@ -82,11 +200,12 @@ document.addEventListener('DOMContentLoaded', () => {
         state.tierId = card.dataset.tier;
         renderTiers();
         updateSummary();
+        showToast(`Scale selected: ${card.querySelector('.select-card-name').textContent}`, '🎂');
       });
     });
   }
 
-  // 2. Render Flavors
+  // 6. Render Flavors
   function renderFlavors() {
     if (!flavorContainer) return;
     flavorContainer.innerHTML = HUCKLEBERRY_DATA.flavors.map(flavor => `
@@ -111,11 +230,12 @@ document.addEventListener('DOMContentLoaded', () => {
         state.flavorId = card.dataset.flavor;
         renderFlavors();
         updateSummary();
+        showToast(`Flavor: ${card.querySelector('.select-card-name').textContent.trim()}`, '🍓');
       });
     });
   }
 
-  // 3. Render Finishes
+  // 7. Render Finishes
   function renderFinishes() {
     if (!finishContainer) return;
     finishContainer.innerHTML = HUCKLEBERRY_DATA.finishes.map(finish => `
@@ -136,11 +256,12 @@ document.addEventListener('DOMContentLoaded', () => {
         state.finishId = card.dataset.finish;
         renderFinishes();
         updateSummary();
+        showToast(`Decor: ${card.querySelector('.select-card-name').textContent}`, '✨');
       });
     });
   }
 
-  // 4. Render Delivery Zones
+  // 8. Render Delivery Zones
   function renderZones() {
     if (!zoneSelect) return;
     zoneSelect.innerHTML = HUCKLEBERRY_DATA.deliveryZones.map(z => `
@@ -155,21 +276,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 5. Quick Select buttons from Showcase cards
+  // 9. Quick Select buttons from Showcase cards
   document.querySelectorAll('.btn-quick-select').forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
       const tierTarget = btn.dataset.tier;
       if (tierTarget) {
         state.tierId = tierTarget;
         renderTiers();
         updateSummary();
         const builder = document.getElementById('custom-builder');
-        if (builder) builder.scrollIntoView({ behavior: 'smooth' });
+        if (builder) {
+          builder.scrollIntoView({ behavior: 'smooth' });
+          showToast('Loaded design into Cake Atelier', '🎂');
+        }
       }
     });
   });
 
-  // 6. Update Summary, Pricing and Dynamic Visualizer
+  // 10. Update Summary, Pricing and Dynamic Visualizer
   function updateSummary() {
     const tier = HUCKLEBERRY_DATA.tiers.find(t => t.id === state.tierId) || HUCKLEBERRY_DATA.tiers[0];
     const flavor = HUCKLEBERRY_DATA.flavors.find(f => f.id === state.flavorId) || HUCKLEBERRY_DATA.flavors[0];
@@ -203,38 +328,38 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!cakeCanvas) return;
     const frostingColor = flavor.frostingHex || '#FCECEF';
     const spongeColor = flavor.colorHex || '#EAC1C8';
-    const plaqueText = state.customMessage.slice(0, 26) || 'Your Huckleberry';
+    const plaqueText = state.customMessage.slice(0, 24) || 'Your Huckleberry';
 
     let markup = '';
 
     if (tier.id === 'mini-couture') {
       markup = `
-        <div class="canvas-cake-stand">
-          <div class="canvas-topper-pill">Mini Couture Box</div>
-          <div class="cake-tier-block tier-block-top" style="background: ${frostingColor}; border-top: 4px solid ${spongeColor}; width: 85px; height: 36px; border-radius: 4px;"></div>
-          <div class="cake-stand-pedestal" style="width: 140px; height: 7px;"></div>
+        <div class="canvas-cake-stand" title="Mini Couture Luxury Box">
+          <div class="canvas-topper-pill">Mini Couture Acrylic Set</div>
+          <div class="cake-tier-block tier-block-top" style="background: ${frostingColor}; border-top: 4px solid ${spongeColor}; width: 88px; height: 38px; border-radius: 4px;"></div>
+          <div class="cake-stand-pedestal" style="width: 145px; height: 8px;"></div>
         </div>
       `;
     } else if (tier.id === 'bento-noir') {
       markup = `
-        <div class="canvas-cake-stand">
+        <div class="canvas-cake-stand" title="Noir Velvet Bento Celebration">
           <div class="canvas-topper-pill">${escapeHtml(plaqueText)}</div>
-          <div class="cake-tier-block tier-block-base" style="background: #1C1819; border: 2px solid #C29557; width: 130px; height: 44px; border-radius: 6px;"></div>
-          <div class="cake-stand-pedestal" style="width: 170px;"></div>
+          <div class="cake-tier-block tier-block-base" style="background: #1C1819; border: 2px solid #C29557; width: 135px; height: 46px; border-radius: 6px;"></div>
+          <div class="cake-stand-pedestal" style="width: 175px;"></div>
         </div>
       `;
     } else if (tier.id === 'tier-1') {
       markup = `
-        <div class="canvas-cake-stand">
+        <div class="canvas-cake-stand" title="Single Tier Classic Celebration">
           <div class="canvas-topper-pill">${escapeHtml(plaqueText)}</div>
-          <div class="cake-tier-block tier-block-base" style="background: ${frostingColor}; border-top: 5px solid ${spongeColor}; width: 170px; height: 60px;"></div>
-          <div class="cake-stand-pedestal" style="width: 210px;"></div>
+          <div class="cake-tier-block tier-block-base" style="background: ${frostingColor}; border-top: 5px solid ${spongeColor}; width: 175px; height: 62px;"></div>
+          <div class="cake-stand-pedestal" style="width: 215px;"></div>
         </div>
       `;
     } else {
-      // Two-Tier
+      // Two-Tier Milestone
       markup = `
-        <div class="canvas-cake-stand">
+        <div class="canvas-cake-stand" title="Two-Tier Grand Milestone Centerpiece">
           <div class="canvas-topper-pill">${escapeHtml(plaqueText)}</div>
           <div class="cake-tier-block tier-block-top" style="background: ${frostingColor}; border-top: 4px solid ${spongeColor};"></div>
           <div class="cake-tier-block tier-block-base" style="background: ${frostingColor}; border-top: 5px solid ${spongeColor};"></div>
@@ -246,11 +371,24 @@ document.addEventListener('DOMContentLoaded', () => {
     cakeCanvas.innerHTML = markup;
   }
 
-  // 7. Input Listeners
+  // Interactive Click on Canvas Stand
+  if (cakeCanvas) {
+    cakeCanvas.addEventListener('click', () => {
+      showToast('🍰 Centerpiece customized for your celebration!', '✨');
+    });
+  }
+
+  // 11. Input Listeners
   if (egglessCheck) {
     egglessCheck.addEventListener('change', (e) => {
       state.isEggless = e.target.checked;
+      if (egglessBadge) {
+        egglessBadge.textContent = state.isEggless ? '🌿 Pure Veg Active' : 'Standard Recipe';
+        egglessBadge.style.background = state.isEggless ? '#EAF7EF' : '#F5EFEB';
+        egglessBadge.style.color = state.isEggless ? '#1B7A43' : '#6B6264';
+      }
       updateSummary();
+      showToast(state.isEggless ? '🌿 100% Eggless recipe confirmed' : 'Standard recipe selected');
     });
   }
 
@@ -275,8 +413,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 8. Order Generator & WhatsApp Dispatch
-  function triggerOrder() {
+  // 12. Order Generator & WhatsApp Dispatch
+  function generateOrderSlip() {
     const tier = HUCKLEBERRY_DATA.tiers.find(t => t.id === state.tierId) || HUCKLEBERRY_DATA.tiers[0];
     const flavor = HUCKLEBERRY_DATA.flavors.find(f => f.id === state.flavorId) || HUCKLEBERRY_DATA.flavors[0];
     const finish = HUCKLEBERRY_DATA.finishes.find(f => f.id === state.finishId) || HUCKLEBERRY_DATA.finishes[0];
@@ -288,7 +426,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const message = 
 `🎂 *CUSTOM CAKE RESERVATION - YOUR HUCKLEBERRY*
-@huckleberry.inn • Shafee Mohammed Road, Chennai
+yourhuckleberry.in • Shafee Mohammed Road, Chennai
 ----------------------------------------
 *Token:* #${token}
 *Architecture:* ${tier.name} (${tier.weightKg})
@@ -307,8 +445,10 @@ document.addEventListener('DOMContentLoaded', () => {
 _Dispatched via yourhuckleberry.in (@huckleberry.inn)_
 _Please confirm kitchen slot availability!_`;
 
+    state.lastGeneratedSlip = message;
+
     const encoded = encodeURIComponent(message);
-    const waNumber = (HUCKLEBERRY_DATA.brand && HUCKLEBERRY_DATA.brand.whatsappNumber) || (HUCKLEBERRY_DATA.bakery && HUCKLEBERRY_DATA.bakery.whatsappNumber) || '918511839668';
+    const waNumber = (HUCKLEBERRY_DATA.brand && HUCKLEBERRY_DATA.brand.whatsappNumber) || '918511839668';
     const waLink = `https://wa.me/${waNumber}?text=${encoded}`;
 
     if (dialogTokenId) dialogTokenId.textContent = `#${token}`;
@@ -318,11 +458,28 @@ _Please confirm kitchen slot availability!_`;
     if (orderDialog) orderDialog.showModal();
   }
 
-  if (dispatchBtn) dispatchBtn.addEventListener('click', triggerOrder);
-  if (mobileWhatsAppBtn) mobileWhatsAppBtn.addEventListener('click', triggerOrder);
+  if (dispatchBtn) dispatchBtn.addEventListener('click', generateOrderSlip);
+  if (mobileWhatsAppBtn) mobileWhatsAppBtn.addEventListener('click', generateOrderSlip);
 
   if (closeDialogBtn && orderDialog) {
     closeDialogBtn.addEventListener('click', () => orderDialog.close());
+    orderDialog.addEventListener('click', (e) => {
+      if (e.target === orderDialog) orderDialog.close();
+    });
+  }
+
+  // 13. Copy Booking Slip to Clipboard
+  if (copySlipBtn) {
+    copySlipBtn.addEventListener('click', async () => {
+      try {
+        if (state.lastGeneratedSlip) {
+          await navigator.clipboard.writeText(state.lastGeneratedSlip);
+          showToast('📋 Booking details copied to clipboard!', '✅');
+        }
+      } catch (err) {
+        showToast('Booking token: ' + (dialogTokenId ? dialogTokenId.textContent : '#HK'), '📋');
+      }
+    });
   }
 
   // Utilities

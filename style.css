@@ -951,14 +951,22 @@ input:checked + .pure-slider:before {
 }
 
 .canvas-preview-arch {
-  background: linear-gradient(180deg, #FBF4F0 0%, #EFE4DC 100%);
-  padding: 24px 16px 16px;
+  background: linear-gradient(180deg, #FDF9F6 0%, #F5ECE4 100%);
+  padding: 28px 16px 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 180px;
+  min-height: 200px;
   border-bottom: 1px solid var(--color-border);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.canvas-preview-arch:hover {
+  background: linear-gradient(180deg, #FFFDFB 0%, #F8EFE8 100%);
 }
 
 .canvas-cake-stand {
@@ -966,55 +974,101 @@ input:checked + .pure-slider:before {
   flex-direction: column;
   align-items: center;
   position: relative;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.canvas-cake-stand:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.canvas-cake-stand:active {
+  transform: scale(0.97);
 }
 
 .cake-tier-block {
-  border-radius: 5px 5px 2px 2px;
-  transition: all 0.35s ease;
+  border-radius: 6px 6px 3px 3px;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
-  box-shadow: 0 4px 10px rgba(45, 10, 20, 0.1);
+  box-shadow: 0 6px 14px rgba(45, 10, 20, 0.12), inset 0 2px 4px rgba(255, 255, 255, 0.6);
   border: 1px solid rgba(0,0,0,0.06);
 }
 
+/* Scalloped Lambeth Lace Pipings */
+.cake-tier-block::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 4px;
+  right: 4px;
+  height: 4px;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.85) 2px, transparent 2.5px);
+  background-size: 8px 4px;
+  background-repeat: repeat-x;
+  pointer-events: none;
+}
+
 .tier-block-top {
-  width: 95px;
-  height: 34px;
-  margin-bottom: -3px;
+  width: 105px;
+  height: 38px;
+  margin-bottom: -4px;
   z-index: 3;
 }
 
 .tier-block-mid {
-  width: 140px;
-  height: 40px;
-  margin-bottom: -3px;
+  width: 145px;
+  height: 42px;
+  margin-bottom: -4px;
   z-index: 2;
 }
 
 .tier-block-base {
-  width: 180px;
-  height: 46px;
+  width: 185px;
+  height: 48px;
   z-index: 1;
 }
 
 .cake-stand-pedestal {
-  width: 210px;
-  height: 8px;
-  background: linear-gradient(90deg, #9E7438, #E0BC88, #9E7438);
-  border-radius: 4px;
-  margin-top: 2px;
+  width: 215px;
+  height: 10px;
+  background: linear-gradient(90deg, #8E652E 0%, #E5C396 35%, #F5DFC2 50%, #E5C396 65%, #8E652E 100%);
+  border-radius: 6px;
+  margin-top: 4px;
+  box-shadow: 0 4px 10px rgba(74, 20, 32, 0.15);
 }
 
+/* Shimmering Metallic Gold Inscription Plaque */
 .canvas-topper-pill {
   position: absolute;
-  top: -22px;
-  background: var(--color-bordeaux-dark);
+  top: -26px;
+  background: linear-gradient(135deg, #4A1420 0%, #2D0A14 100%);
   color: var(--color-gold-light);
-  font-family: var(--font-classical);
-  font-size: 0.58rem;
-  letter-spacing: 0.08em;
-  padding: 2px 8px;
+  font-family: var(--font-editorial);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  padding: 3px 12px;
   border-radius: var(--radius-full);
   white-space: nowrap;
+  border: 1px solid var(--color-gold);
+  box-shadow: 0 4px 12px rgba(45, 10, 20, 0.25);
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.canvas-topper-pill::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(229, 195, 150, 0.3), transparent);
+  animation: plaqueShimmer 3.5s infinite;
+}
+
+@keyframes plaqueShimmer {
+  0% { left: -100%; }
+  40% { left: 100%; }
+  100% { left: 100%; }
 }
 
 .sidebar-details-wrap {
@@ -1354,96 +1408,301 @@ input:checked + .pure-slider:before {
 /* ==========================================================================
    Mobile Fixed Bottom Checkout Bar
    ========================================================================== */
+/* ==========================================================================
+   Mobile Navigation Toggle & Slide Drawer
+   ========================================================================== */
+.mobile-nav-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 8px;
+  transition: var(--transition-smooth);
+}
+
+.mobile-nav-toggle .nav-bar {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--color-bordeaux-dark);
+  border-radius: 2px;
+  transition: var(--transition-smooth);
+}
+
+.mobile-nav-toggle.open .nav-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-nav-toggle.open .nav-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-nav-toggle.open .nav-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.mobile-nav-drawer {
+  max-height: 0;
+  overflow: hidden;
+  background: rgba(250, 247, 242, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--color-border);
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease;
+  padding: 0 20px;
+}
+
+.mobile-nav-drawer.open {
+  max-height: 340px;
+  padding: 16px 20px 22px;
+}
+
+.mobile-drawer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mobile-drawer-links a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: #FFF;
+  border: 1px solid var(--color-border);
+  color: var(--color-bordeaux-dark);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  transition: var(--transition-smooth);
+}
+
+.mobile-drawer-links a:hover,
+.mobile-drawer-links a:active {
+  background: var(--color-surface-rose);
+  border-color: var(--color-border-gold);
+  transform: translateX(4px);
+}
+
+.mobile-drawer-footer {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--color-border);
+  text-align: center;
+}
+
+.drawer-contact-pill {
+  font-size: 0.74rem;
+  color: var(--color-gold-deep);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Couture Category Filter Pills
+   ========================================================================== */
+.couture-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 18px auto 26px;
+  max-width: 680px;
+}
+
+.filter-pill {
+  background: #FFF;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-main);
+  padding: 7px 18px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  box-shadow: var(--shadow-subtle);
+  white-space: nowrap;
+}
+
+.filter-pill:hover {
+  border-color: var(--color-border-gold);
+  color: var(--color-bordeaux);
+  transform: translateY(-1px);
+}
+
+.filter-pill.active {
+  background: var(--color-bordeaux);
+  color: #FFF;
+  border-color: var(--color-bordeaux-dark);
+  box-shadow: 0 4px 14px rgba(74, 20, 32, 0.2);
+}
+
+.couture-item-card.is-filtered-out {
+  display: none !important;
+}
+
+.quick-look-hint {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  color: var(--color-bordeaux-dark);
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 12px rgba(45, 10, 20, 0.15);
+  opacity: 0;
+  transition: var(--transition-smooth);
+  pointer-events: none;
+}
+
+.couture-card-img:hover .quick-look-hint {
+  opacity: 1;
+}
+
+.btn-open-quicklook {
+  cursor: pointer;
+}
+
+/* Dietary Badge Pill */
+.eggless-badge-pill {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  background: #EAF7EF;
+  color: #1B7A43;
+  border: 1px solid #C4EED3;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  margin-left: 8px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* ==========================================================================
+   Mobile Fixed Bottom Checkout Bar (With Safe Area Insets)
+   ========================================================================== */
 .mobile-bottom-bar {
   display: none;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   border-top: 1px solid var(--color-border);
-  padding: 10px 18px;
-  z-index: 90;
-  box-shadow: 0 -4px 18px rgba(45, 10, 20, 0.08);
+  padding: 12px clamp(16px, 4vw, 24px) calc(12px + env(safe-area-inset-bottom, 12px));
+  z-index: 1000;
+  box-shadow: 0 -8px 24px rgba(45, 10, 20, 0.12);
 }
 
 .mobile-bottom-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  max-width: 540px;
+  gap: 14px;
+  max-width: 600px;
   margin: 0 auto;
 }
 
 .mobile-bottom-info {
   display: flex;
   flex-direction: column;
+  min-width: 0;
 }
 
 .mobile-tier-name {
-  font-size: 0.75rem;
+  font-size: 0.74rem;
   color: var(--color-text-muted);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 160px;
+  max-width: 170px;
 }
 
 .mobile-price-amount {
   font-family: var(--font-editorial);
-  font-size: 1.35rem;
+  font-size: 1.45rem;
   font-weight: 600;
   color: var(--color-bordeaux);
   line-height: 1.1;
 }
 
-
+#btn-mobile-whatsapp {
+  padding: 10px 18px;
+  white-space: nowrap;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
 
 /* ==========================================================================
-   Order Modal
+   Order Modal & Quick-Look Modal
    ========================================================================== */
 dialog.order-modal {
   margin: auto;
   border: none;
   border-radius: var(--radius-lg);
   padding: 0;
-  max-width: 440px;
-  width: 90%;
+  max-width: 460px;
+  width: calc(100% - 32px);
   background: #FFF;
-  box-shadow: 0 20px 50px rgba(45, 10, 20, 0.25);
+  box-shadow: 0 24px 60px rgba(45, 10, 20, 0.3);
+  overflow: hidden;
 }
 
 dialog.order-modal::backdrop {
-  background: rgba(30, 8, 14, 0.65);
-  backdrop-filter: blur(6px);
+  background: rgba(30, 8, 14, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .modal-header-box {
   background: var(--color-bordeaux-dark);
   color: #FFF;
-  padding: 20px;
+  padding: 22px 20px 18px;
   text-align: center;
   position: relative;
 }
 
 .modal-close-button {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  background: rgba(255, 255, 255, 0.15);
+  top: 14px;
+  right: 14px;
+  background: rgba(255, 255, 255, 0.18);
   border: none;
   color: #FFF;
-  width: 26px;
-  height: 26px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+}
+
+.modal-close-button:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .modal-inner-content {
-  padding: 22px;
+  padding: 22px 20px 24px;
 }
 
 .modal-token-banner {
@@ -1457,19 +1716,90 @@ dialog.order-modal::backdrop {
 
 .modal-token-id {
   font-family: var(--font-classical);
-  font-size: 1.3rem;
+  font-size: 1.35rem;
   letter-spacing: 0.08em;
   color: var(--color-bordeaux);
   font-weight: 600;
 }
 
+.modal-cta-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+/* Quick-Look Modal Details */
+.quick-look-dialog .ql-image-frame {
+  width: 100%;
+  height: 220px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 12px;
+  background: var(--color-surface-subtle);
+}
+
+.quick-look-dialog .ql-image-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ql-footer-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-border);
+  gap: 12px;
+}
+
+/* Floating Toast System */
+.toast-container {
+  position: fixed;
+  bottom: 84px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+  width: max-content;
+  max-width: 90vw;
+}
+
+.toast-pill {
+  background: var(--color-bordeaux-dark);
+  color: #FFF;
+  border: 1px solid var(--color-gold);
+  border-radius: var(--radius-full);
+  padding: 10px 20px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  box-shadow: 0 8px 24px rgba(45, 10, 20, 0.25);
+  animation: toastFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1), toastFadeOut 0.35s ease 2.6s forwards;
+  pointer-events: auto;
+  text-align: center;
+}
+
+@keyframes toastFadeIn {
+  from { opacity: 0; transform: translateY(12px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes toastFadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-8px); }
+}
+
 /* ==========================================================================
-   Footer
+   Site Footer
    ========================================================================== */
 .site-footer {
   background: var(--color-bordeaux-dark);
   color: var(--color-bg);
-  padding: 60px 24px 26px;
+  padding: 60px clamp(16px, 4.5vw, 32px) 28px;
   border-top: 1px solid rgba(194, 149, 87, 0.2);
 }
 
@@ -1496,12 +1826,14 @@ dialog.order-modal::backdrop {
   font-size: 0.84rem;
   color: rgba(255, 255, 255, 0.7);
   max-width: 320px;
+  line-height: 1.5;
 }
 
 .footer-col-title {
   font-family: var(--font-classical);
   font-size: 0.76rem;
   letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--color-gold-light);
   margin-bottom: 12px;
 }
@@ -1542,8 +1874,10 @@ dialog.order-modal::backdrop {
 }
 
 /* ==========================================================================
-   RESPONSIVE MEDIA QUERIES (Clean, Airy Mobile Design)
+   HIGH-PRECISION RESPONSIVE MEDIA QUERIES (Mobile & Desktop Perfection)
    ========================================================================== */
+
+/* Tablet & Smaller Laptops */
 @media (max-width: 1024px) {
   .hero-grid {
     grid-template-columns: 1fr;
@@ -1551,6 +1885,7 @@ dialog.order-modal::backdrop {
   }
   .builder-layout {
     grid-template-columns: 1fr;
+    gap: 28px;
   }
   .order-sidebar-sticky {
     position: static;
@@ -1559,238 +1894,423 @@ dialog.order-modal::backdrop {
     grid-template-columns: 1fr;
   }
   .footer-columns {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
   }
 }
 
+/* Mobile Devices (Max Width 768px) */
 @media (max-width: 768px) {
-  /* Navbar Mobile Perfection */
+  /* Prevent Text Edging Global Guard */
+  body {
+    overflow-x: hidden;
+    padding-bottom: calc(88px + env(safe-area-inset-bottom, 16px));
+  }
+
+  /* Sticky Top Bar & Navbar */
   .top-notice-bar {
     display: none;
   }
+
   .nav-menu {
     display: none;
   }
-  .btn-kitchen-view {
-    display: none; /* Hide cluttered button on mobile header */
-  }
-  .navbar-inner {
-    padding: 8px 16px;
-    min-height: 52px;
-  }
-  .brand-arch-logo {
-    height: 36px;
-  }
-  .brand-name {
-    font-size: 1.2rem;
-  }
-  .brand-locale {
-    display: none; /* Keep header single-line and ultra-clean on mobile */
+
+  .mobile-nav-toggle {
+    display: flex;
   }
 
-  /* Hero Mobile Typography & Layout */
+  .navbar-inner {
+    padding: 10px clamp(16px, 4vw, 24px);
+    min-height: 56px;
+  }
+
+  .brand-arch-logo {
+    height: 38px;
+  }
+
+  .brand-name {
+    font-size: 1.25rem;
+  }
+
+  .brand-locale {
+    display: none;
+  }
+
+  .btn-nav-cta {
+    padding: 6px 12px;
+    font-size: 0.76rem;
+  }
+
+  /* Hero Section Mobile Perfection */
   .hero-wrapper {
-    padding: 20px 16px 30px;
+    padding: 24px clamp(16px, 4.5vw, 24px) 36px;
   }
+
+  .hero-text {
+    text-align: center;
+  }
+
   .hero-title, .hero-text h1 {
-    font-size: 1.95rem;
-    line-height: 1.14;
-    margin: 8px 0 12px;
+    font-size: clamp(2rem, 7vw, 2.75rem);
+    line-height: 1.15;
+    margin: 8px 0 14px;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
+
   .hero-title span {
-    display: block;
+    display: inline;
   }
+
   .hero-title em {
-    display: block;
+    display: inline;
     font-style: italic;
     color: var(--color-gold-deep);
   }
+
   .hero-subtext {
-    font-size: 0.88rem;
-    line-height: 1.48;
-    margin-bottom: 14px;
+    font-size: 0.92rem;
+    line-height: 1.52;
+    margin: 0 auto 16px;
+    max-width: 100%;
   }
+
   .hero-meta-strip {
-    font-size: 0.72rem;
-    gap: 6px;
-    margin-bottom: 18px;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    gap: 6px 10px;
+    margin-bottom: 22px;
   }
+
+  .hero-meta-strip span:not(.sep) {
+    background: rgba(74, 20, 32, 0.04);
+    border: 1px solid var(--color-border);
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    font-size: 0.72rem;
+  }
+
+  .hero-meta-strip .sep {
+    display: none;
+  }
+
   .hero-cta-group {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     gap: 10px;
   }
+
   .hero-cta-group .btn {
-    flex: 1;
-    text-align: center;
-    padding: 10px 14px;
-    font-size: 0.8rem;
+    width: 100%;
+    min-height: 46px;
+    font-size: 0.88rem;
+    padding: 12px 18px;
   }
 
-  /* Hero Media Arch on Mobile */
+  /* Hero Media Arch */
   .arch-media-frame {
-    height: 280px;
+    height: 300px;
     max-width: 100%;
-    margin-top: 20px;
+    border-radius: 90px 90px 14px 14px;
+    margin-top: 14px;
   }
+
   .arch-floating-seal {
     display: none;
   }
+
   .arch-caption-card {
-    bottom: 10px;
-    left: 10px;
-    right: 10px;
-    padding: 8px 12px;
-  }
-  .arch-caption-title {
-    font-size: 1rem;
-  }
-  .arch-caption-sub {
-    font-size: 0.68rem;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    padding: 10px 14px;
   }
 
-  /* Proof Banner Mobile */
-  .cloud-kitchen-proof {
-    padding: 16px;
+  .arch-caption-title {
+    font-size: 1.05rem;
   }
+
+  .arch-caption-sub {
+    font-size: 0.7rem;
+  }
+
+  /* Cloud Kitchen Proof Banner */
+  .cloud-kitchen-proof {
+    padding: 20px clamp(16px, 4vw, 24px);
+  }
+
   .proof-inner {
     flex-direction: column;
     text-align: center;
-    gap: 14px;
+    gap: 16px;
   }
+
   .proof-text-block {
     flex-direction: column;
     gap: 8px;
   }
+
   .proof-metrics-list {
     width: 100%;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 8px;
   }
+
   .metric-num {
     font-size: 1.45rem;
   }
+
   .metric-label {
     font-size: 0.58rem;
   }
 
-  /* The Mini Couture Collection - Horizontal Swipe Carousel on Mobile */
+  /* Mini Couture Collection */
   .couture-section {
-    padding: 44px 16px 48px;
+    padding: 48px clamp(16px, 4.5vw, 24px) 52px;
   }
+
   .section-head {
     margin-bottom: 24px;
   }
+
   .section-head h2 {
-    font-size: 1.85rem;
+    font-size: clamp(1.85rem, 5.5vw, 2.3rem);
+    line-height: 1.15;
+    word-break: break-word;
   }
+
   .section-head p {
-    font-size: 0.85rem;
+    font-size: 0.88rem;
+    line-height: 1.48;
   }
+
   .offer-ribbon-card {
-    font-size: 0.72rem;
-    padding: 6px 14px;
+    font-size: 0.74rem;
+    padding: 8px 14px;
     flex-direction: column;
     gap: 4px;
     text-align: center;
     border-radius: var(--radius-md);
+    margin-top: 12px;
   }
+
+  .couture-filter-bar {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding: 4px 2px 10px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin-bottom: 16px;
+  }
+
+  .couture-filter-bar::-webkit-scrollbar {
+    display: none;
+  }
+
   .couture-grid {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    gap: 14px;
-    padding-bottom: 12px;
-    padding-left: 2px;
-    padding-right: 2px;
-  }
-  .couture-item-card {
-    flex: 0 0 240px;
-    scroll-snap-align: start;
-    border-radius: 90px 90px 12px 12px;
-  }
-  .couture-card-img {
-    height: 190px;
-  }
-  .couture-card-body {
-    padding: 14px 12px;
-  }
-  .couture-card-title {
-    font-size: 1.1rem;
-  }
-  .couture-card-quote {
-    font-size: 0.78rem;
-    margin-bottom: 10px;
+    gap: 16px;
+    padding: 8px 2px 20px;
+    margin: 0;
   }
 
-  /* Builder Section on Mobile */
-  .builder-section {
-    padding: 44px 16px;
+  .couture-item-card {
+    flex: 0 0 260px;
+    scroll-snap-align: center;
+    border-radius: 90px 90px 14px 14px;
   }
-  .stage-card {
+
+  .couture-card-img {
+    height: 200px;
+  }
+
+  .couture-card-body {
     padding: 16px 14px;
   }
+
+  .couture-card-title {
+    font-size: 1.15rem;
+  }
+
+  .couture-card-quote {
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+  }
+
+  /* Interactive Cake Atelier Section */
+  .builder-section {
+    padding: 48px clamp(16px, 4.5vw, 24px);
+  }
+
+  .stage-card {
+    padding: 18px 16px;
+    border-radius: 16px;
+  }
+
   .stage-header {
+    gap: 10px;
     margin-bottom: 14px;
     padding-bottom: 10px;
   }
-  .stage-title h3 {
-    font-size: 1.05rem;
+
+  .stage-number {
+    width: 26px;
+    height: 26px;
+    font-size: 0.7rem;
+    flex-shrink: 0;
   }
+
+  .stage-title h3 {
+    font-size: 1.1rem;
+    line-height: 1.25;
+  }
+
   .cards-selection-grid {
     grid-template-columns: 1fr;
     gap: 10px;
   }
+
   .select-card {
-    padding: 12px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    min-height: 82px;
   }
+
+  .select-card-header {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .select-card-name {
+    font-size: 1.05rem;
+    word-break: break-word;
+  }
+
   .clean-form-row {
     grid-template-columns: 1fr;
-    gap: 10px;
+    gap: 12px;
   }
 
-  /* Sidebar details on mobile */
+  .clean-input {
+    min-height: 48px;
+    font-size: 16px;
+    padding: 12px 14px;
+    border-radius: 8px;
+  }
+
+  .dietary-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+  }
+
+  .dietary-label {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .eggless-badge-pill {
+    margin-left: 0;
+  }
+
+  /* Sticky Order Sidebar on Mobile */
   .sidebar-details-wrap {
-    padding: 16px 14px;
-  }
-  .canvas-preview-arch {
-    min-height: 140px;
-    padding: 16px 12px;
+    padding: 18px 16px;
   }
 
-  /* Signature Gallery on Mobile */
+  .canvas-preview-arch {
+    min-height: 160px;
+    padding: 20px 14px;
+  }
+
+  .spec-data-list li {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .spec-data-list li strong {
+    max-width: 65%;
+    word-break: break-word;
+  }
+
+  /* Signature Gallery */
+  #signature-gallery {
+    padding: 50px clamp(16px, 4.5vw, 24px) !important;
+  }
+
   .signature-gallery-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 22px;
   }
+
   .gallery-card-img {
-    height: 220px;
+    height: 230px;
   }
+
   .gallery-card-body {
-    padding: 16px 14px;
+    padding: 18px 16px;
   }
 
-  /* Location Section on Mobile */
+  /* Location Section */
   .location-atelier-section {
-    padding: 44px 16px;
-  }
-  .location-info h2 {
-    font-size: 1.85rem;
-  }
-  .address-details-box {
-    padding: 16px 14px;
-  }
-  .location-visual-card img {
-    height: 240px;
+    padding: 48px clamp(16px, 4.5vw, 24px);
   }
 
-  /* Show Sticky Bottom Bar on Mobile */
+  .location-info h2 {
+    font-size: clamp(1.85rem, 5vw, 2.3rem);
+  }
+
+  .address-details-box {
+    padding: 18px 16px;
+  }
+
+  .location-visual-card img {
+    height: 250px;
+  }
+
+  /* Mobile Fixed Bottom Checkout Bar Active */
   .mobile-bottom-bar {
     display: block;
-    z-index: 1000;
   }
-  body {
-    padding-bottom: 74px;
+
+  .footer-columns {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+/* Small Screens (Max Width 400px - iPhone SE, small Androids) */
+@media (max-width: 400px) {
+  .hero-title, .hero-text h1 {
+    font-size: 1.85rem;
+  }
+  .couture-item-card {
+    flex: 0 0 240px;
+  }
+  .mobile-tier-name {
+    max-width: 120px;
+  }
+  .mobile-price-amount {
+    font-size: 1.25rem;
+  }
+  #btn-mobile-whatsapp {
+    padding: 9px 14px;
+    font-size: 0.8rem;
+  }
+  .metric-num {
+    font-size: 1.3rem;
   }
 }

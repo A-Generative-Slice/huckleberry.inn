@@ -87,9 +87,29 @@
       </nav>
 
       <div class="nav-actions">
-        <a href="#custom-builder" class="btn btn-bordeaux btn-sm">
+        <a href="#custom-builder" class="btn btn-bordeaux btn-sm btn-nav-cta">
           <span>Order ➔</span>
         </a>
+        <button id="btn-mobile-nav" class="mobile-nav-toggle" aria-label="Open Navigation Menu">
+          <span class="nav-bar"></span>
+          <span class="nav-bar"></span>
+          <span class="nav-bar"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Slide-Down Navigation Drawer -->
+    <div id="mobile-nav-drawer" class="mobile-nav-drawer">
+      <ul class="mobile-drawer-links">
+        <li><a href="#mini-couture" class="mobile-link"><span>🎀</span> The Mini Couture Collection</a></li>
+        <li><a href="#custom-builder" class="mobile-link"><span>🎂</span> Interactive Cake Atelier</a></li>
+        <li><a href="#signature-gallery" class="mobile-link"><span>✨</span> Artisanal Creations &amp; Tarts</a></li>
+        <li><a href="#atelier-location" class="mobile-link"><span>📍</span> Shafee Mohammed Rd Atelier</a></li>
+      </ul>
+      <div class="mobile-drawer-footer">
+        <div class="drawer-contact-pill">
+          <span>WhatsApp Kitchen: +91 8511839668</span>
+        </div>
       </div>
     </div>
   </header>
@@ -188,19 +208,28 @@
           <span>Buy 3 mini cakes and receive a complimentary signature mini.</span>
         </div>
 
-        <div class="classical-tag" style="margin-top: 14px; display: block; font-size: 0.65rem; color: var(--color-gold-deep);">
+        <!-- Interactive Category Filter Pills -->
+        <div class="couture-filter-bar" id="couture-filter-bar">
+          <button class="filter-pill active" data-filter="all">All Atelier Pieces</button>
+          <button class="filter-pill" data-filter="miniature">Petite Minis</button>
+          <button class="filter-pill" data-filter="signature">Signature Sets</button>
+          <button class="filter-pill" data-filter="bento">Bento Editions</button>
+        </div>
+
+        <div class="classical-tag mobile-swipe-hint" style="margin-top: 14px; display: block; font-size: 0.65rem; color: var(--color-gold-deep);">
           ← Swipe to explore the collection →
         </div>
       </div>
 
-      <!-- Real Scraped Mini Couture Photos (Horizontal Touch Carousel on Mobile) -->
-      <div class="couture-grid">
+      <!-- Real Scraped Mini Couture Photos (Horizontal Touch Carousel on Mobile / Clean Grid on Desktop) -->
+      <div class="couture-grid" id="couture-grid">
         
         <!-- Item 1: Full Collection -->
-        <article class="couture-item-card">
-          <div class="couture-card-img">
+        <article class="couture-item-card" data-category="signature">
+          <div class="couture-card-img btn-open-quicklook" data-title="Mini Couture Quad Box" data-price="₹1,200" data-img="assets/images/mini-couture-collection.jpg" data-quote="Made to be admired. Made to be savoured slowly." data-badge="Signature Collection" data-desc="Four individual designer cakes presented in luxury crystal-clear display boxes with satin silk ribbons. Perfect for luxury gifts and celebrations." data-tier="mini-couture">
             <img src="assets/images/mini-couture-collection.jpg" alt="The Mini Couture Collection by Huckleberry" loading="lazy" />
             <span class="couture-tag-badge">Signature Collection</span>
+            <span class="quick-look-hint">Quick View 🔍</span>
           </div>
           <div class="couture-card-body">
             <h3 class="couture-card-title">Mini Couture Quad Box</h3>
@@ -213,10 +242,11 @@
         </article>
 
         <!-- Item 2: Pink Ballgown -->
-        <article class="couture-item-card">
-          <div class="couture-card-img">
+        <article class="couture-item-card" data-category="miniature">
+          <div class="couture-card-img btn-open-quicklook" data-title="The Pink Ballgown" data-price="₹350" data-img="assets/images/mini-pink-ballgown.jpg" data-quote="Every swirl, pearl and ribbon is placed with care." data-badge="Victorian Ruffle" data-desc="Intricate Lambeth ruffled ballgown skirt design in muted blush pink, accented with edible luster pearls and white silk bow." data-tier="mini-couture">
             <img src="assets/images/mini-pink-ballgown.jpg" alt="The Pink Ruffled Ballgown Mini Cake" loading="lazy" />
             <span class="couture-tag-badge">Victorian Ruffle</span>
+            <span class="quick-look-hint">Quick View 🔍</span>
           </div>
           <div class="couture-card-body">
             <h3 class="couture-card-title">The Pink Ballgown</h3>
@@ -229,10 +259,11 @@
         </article>
 
         <!-- Item 3: White Chocolate Candle Bliss -->
-        <article class="couture-item-card">
-          <div class="couture-card-img">
+        <article class="couture-item-card" data-category="miniature">
+          <div class="couture-card-img btn-open-quicklook" data-title="Candle Bliss" data-price="₹350" data-img="assets/images/mini-white-candle.jpg" data-quote="Sweetly minimal. Perfectly luxurious. Made to melt hearts." data-badge="Candle Bliss" data-desc="Ivory white chocolate ganache drip with Madagascan vanilla bean mascarpone and romantic celebration candle." data-tier="mini-couture">
             <img src="assets/images/mini-white-candle.jpg" alt="White Chocolate Candle Bliss" loading="lazy" />
             <span class="couture-tag-badge">Candle Bliss</span>
+            <span class="quick-look-hint">Quick View 🔍</span>
           </div>
           <div class="couture-card-body">
             <h3 class="couture-card-title">Candle Bliss</h3>
@@ -245,10 +276,11 @@
         </article>
 
         <!-- Item 4: Floral & Feminine -->
-        <article class="couture-item-card">
-          <div class="couture-card-img">
+        <article class="couture-item-card" data-category="miniature">
+          <div class="couture-card-img btn-open-quicklook" data-title="Floral &amp; Feminine" data-price="₹350" data-img="assets/images/mini-floral-rosette.jpg" data-quote="A bloom of buttercream beauty in every little bite." data-badge="Rosette Spiral" data-desc="Delicate ombre rose petal buttercream rosettes with intricate lace stenciling and floral aroma." data-tier="mini-couture">
             <img src="assets/images/mini-floral-rosette.jpg" alt="Floral & Feminine Rosette Mini" loading="lazy" />
             <span class="couture-tag-badge">Rosette Spiral</span>
+            <span class="quick-look-hint">Quick View 🔍</span>
           </div>
           <div class="couture-card-body">
             <h3 class="couture-card-title">Floral &amp; Feminine</h3>
@@ -261,10 +293,11 @@
         </article>
 
         <!-- Item 5: Crafted With Love Arch -->
-        <article class="couture-item-card">
-          <div class="couture-card-img">
+        <article class="couture-item-card" data-category="miniature">
+          <div class="couture-card-img btn-open-quicklook" data-title="Crafted With Love" data-price="₹350" data-img="assets/images/mini-arch-bow.jpg" data-quote="Soft textures. Delicate details. Irresistible flavors." data-badge="Arch Bow" data-desc="Half-arch dome cake with piped ribbons, edible luster pearls, and soft velvet crumb." data-tier="mini-couture">
             <img src="assets/images/mini-arch-bow.jpg" alt="Crafted With Love Bow Arch Cake" loading="lazy" />
             <span class="couture-tag-badge">Arch Bow</span>
+            <span class="quick-look-hint">Quick View 🔍</span>
           </div>
           <div class="couture-card-body">
             <h3 class="couture-card-title">Crafted With Love</h3>
@@ -277,10 +310,11 @@
         </article>
 
         <!-- Item 6: Drips of Happiness -->
-        <article class="couture-item-card">
-          <div class="couture-card-img">
+        <article class="couture-item-card" data-category="miniature">
+          <div class="couture-card-img btn-open-quicklook" data-title="Drips of Happiness" data-price="₹380" data-img="assets/images/mini-strawberry-drip.jpg" data-quote="Layers of joy, drips of indulgence." data-badge="Strawberry Drip" data-desc="Two-tier miniature cake with artisanal strawberry compote glaze drip and fresh berry crown." data-tier="mini-couture">
             <img src="assets/images/mini-strawberry-drip.jpg" alt="Drips of Happiness Two-Tier Mini" loading="lazy" />
             <span class="couture-tag-badge">Strawberry Drip</span>
+            <span class="quick-look-hint">Quick View 🔍</span>
           </div>
           <div class="couture-card-body">
             <h3 class="couture-card-title">Drips of Happiness</h3>
@@ -293,10 +327,11 @@
         </article>
 
         <!-- Item 7: The Whimsical Lavender Belle -->
-        <article class="couture-item-card">
-          <div class="couture-card-img">
+        <article class="couture-item-card" data-category="miniature">
+          <div class="couture-card-img btn-open-quicklook" data-title="Lavender Belle" data-price="₹350" data-img="assets/images/mini-lavender-belle.jpg" data-quote="Playful ruffles with pristine white satin bow." data-badge="Lavender Belle" data-desc="Playful ruffled dome cake with white silk ribbon bow and subtle French lavender vanilla bean cream." data-tier="mini-couture">
             <img src="assets/images/mini-lavender-belle.jpg" alt="Whimsical Lavender Belle Mini" loading="lazy" />
             <span class="couture-tag-badge">Lavender Belle</span>
+            <span class="quick-look-hint">Quick View 🔍</span>
           </div>
           <div class="couture-card-body">
             <h3 class="couture-card-title">Lavender Belle</h3>
@@ -309,10 +344,11 @@
         </article>
 
         <!-- Item 8: Noir Bento 25 -->
-        <article class="couture-item-card">
-          <div class="couture-card-img">
+        <article class="couture-item-card" data-category="bento">
+          <div class="couture-card-img btn-open-quicklook" data-title="Noir Golden Bento" data-price="₹850" data-img="assets/images/bento-noir-25.jpg" data-quote="25 but make it tiny. Velvet noir with gold constellations." data-badge="Bento Noir" data-desc="Velvet midnight chocolate frosting with hand-painted 24K edible gold constellations and custom script lettering." data-tier="bento-noir">
             <img src="assets/images/bento-noir-25.jpg" alt="25 But Make It Tiny Noir Bento Cake" loading="lazy" />
             <span class="couture-tag-badge">Bento Noir</span>
+            <span class="quick-look-hint">Quick View 🔍</span>
           </div>
           <div class="couture-card-body">
             <h3 class="couture-card-title">Noir Golden Bento</h3>
@@ -397,10 +433,13 @@
           <!-- Eggless Switch -->
           <div class="dietary-row">
             <div>
-              <div class="dietary-label">100% Eggless Recipe</div>
-              <div class="dietary-note">Moist, tender crumb prepared without egg (No extra charge)</div>
+              <div class="dietary-label">
+                <span>100% Eggless Recipe</span>
+                <span id="eggless-badge" class="eggless-badge-pill">🌿 Pure Veg Active</span>
+              </div>
+              <div class="dietary-note">Moist, tender crumb prepared without egg (Chennai bakery standard, no extra charge)</div>
             </div>
-            <label class="pure-switch">
+            <label class="pure-switch" aria-label="Toggle 100% Eggless Recipe">
               <input type="checkbox" id="chk-eggless" checked />
               <span class="pure-slider"></span>
             </label>
@@ -692,15 +731,45 @@
         Your custom architecture, flavor profile, and delivery slot have been packaged into a formal booking slip. Tap below to launch WhatsApp and secure your baking slot directly with the chef.
       </p>
 
-      <a id="dialog-wa-cta" href="#" target="_blank" rel="noopener" class="btn btn-whatsapp-dispatch" style="text-decoration: none;">
-        <span>Dispatch Order to WhatsApp ➔</span>
-      </a>
+      <div class="modal-cta-stack">
+        <a id="dialog-wa-cta" href="#" target="_blank" rel="noopener" class="btn btn-whatsapp-dispatch" style="text-decoration: none;">
+          <span>Dispatch Order to WhatsApp ➔</span>
+        </a>
+        <button id="btn-copy-slip" type="button" class="btn btn-outline" style="width: 100%; padding: 10px 14px;">
+          <span>Copy Booking Details 📋</span>
+        </button>
+      </div>
 
       <div style="font-size: 0.7rem; color: var(--color-text-light); text-align: center; margin-top: 10px;">
         Bakery Contact: +91 8511839668 (Shafee Mohammed Rd, Chennai)
       </div>
     </div>
   </dialog>
+
+  <!-- Quick-Look Product Detail Modal Dialog -->
+  <dialog id="quick-look-modal" class="order-modal quick-look-dialog">
+    <div class="modal-header-box">
+      <h3 id="ql-title" style="color: #FFF; font-family: var(--font-editorial); font-size: 1.4rem;">Cake Detail</h3>
+      <span id="ql-badge" class="couture-tag-badge" style="position:static; transform:none; margin-top:4px; display:inline-block;">Atelier Creation</span>
+      <button id="btn-close-ql" class="modal-close-button">&times;</button>
+    </div>
+    <div class="modal-inner-content">
+      <div class="ql-image-frame">
+        <img id="ql-img" src="assets/images/mini-pink-ballgown.jpg" alt="Cake Preview" />
+      </div>
+      <p id="ql-quote" class="couture-card-quote" style="text-align: center; margin: 12px 0 6px; font-size: 0.95rem;"></p>
+      <p id="ql-desc" style="font-size: 0.82rem; color: var(--color-text-muted); text-align: center; line-height: 1.45; margin-bottom: 14px;"></p>
+      <div class="ql-footer-action">
+        <span id="ql-price" class="price-display-amount" style="font-size: 1.35rem;">₹350</span>
+        <button id="btn-ql-customize" type="button" class="btn btn-bordeaux">
+          <span>Build in Atelier ➔</span>
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Floating Toast Notification System -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
   <!-- Site Footer -->
   <footer class="site-footer">
