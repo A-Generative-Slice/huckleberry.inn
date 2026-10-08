@@ -19,6 +19,8 @@ const HUCKLEBERRY_DATA = {
     secondaryQuote: "Every swirl, pearl and ribbon is placed with care to turn moments into memories.",
     phone: "+91 8511839668",
     whatsappNumber: "918511839668",
+    websiteUrl: "https://yourhuckleberry.in",
+    websiteDisplay: "yourhuckleberry.in",
     specialOffer: "Buy 3 mini cakes and receive a complimentary signature mini. Available for a limited time."
   },
 

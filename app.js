@@ -304,7 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
 *Estimated Total:* ₹${total.toLocaleString('en-IN')}
 *Advance Deposit (50%):* ₹${advance.toLocaleString('en-IN')}
 ----------------------------------------
-_Dispatched via Your Huckleberry Direct Portal (@huckleberry.inn)_
+_Dispatched via yourhuckleberry.in (@huckleberry.inn)_
 _Please confirm kitchen slot availability!_`;
 
     const encoded = encodeURIComponent(message);

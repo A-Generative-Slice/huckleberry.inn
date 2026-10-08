@@ -2,14 +2,15 @@
 
 <div align="center">
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-GitHub_Pages-4A1420?style=for-the-badge&logo=github&logoColor=white)](https://a-generative-slice.github.io/huckleberry.inn/)
+[![Domain](https://img.shields.io/badge/Domain-yourhuckleberry.in-4A1420?style=for-the-badge&logo=googlechrome&logoColor=white)](https://yourhuckleberry.in/)
+[![Live Demo](https://img.shields.io/badge/Live_Site-GitHub_Pages-4A1420?style=for-the-badge&logo=github&logoColor=white)](https://yourhuckleberry.in/)
 [![Organization](https://img.shields.io/badge/Engineered_By-A_Generative_Slice-C29557?style=for-the-badge)](https://github.com/A-Generative-Slice)
 [![Location](https://img.shields.io/badge/Location-Thousand_Lights_%2F_Nungambakkam_Chennai-320C15?style=for-the-badge)](https://www.google.com/maps/dir/?api=1&destination=Shafee+Mohammed+Road,+Thousand+Lights+West,+Nungambakkam,+Chennai+600006)
 [![Instagram](https://img.shields.io/badge/Instagram-@huckleberry.inn-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/huckleberry.inn)
 
 **Ultra-Luxury, Minimalist Cloud Kitchen Portal & Custom Cake Builder engineered for Your Huckleberry (Shafee Mohammed Road, Thousand Lights West, Nungambakkam, Chennai).**
 
-[🌐 **Explore Live Prototype on GitHub Pages**](https://a-generative-slice.github.io/huckleberry.inn/)
+[🌐 **Explore Live Site at yourhuckleberry.in**](https://yourhuckleberry.in/)
 
 </div>
 
