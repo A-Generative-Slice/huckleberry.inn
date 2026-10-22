@@ -20,14 +20,14 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <link rel="icon" type="image/jpeg" href="assets/logo.jpg" />
-  <link rel="stylesheet" href="style.css?v=3.3.0" />
+  <link rel="stylesheet" href="style.css?v=4.5.0" />
 </head>
 <body>
   <!-- Top Announcement Bar -->
   <aside class="top-notice-bar" aria-label="Atelier Notice">
     <div class="top-notice-inner">
       <div class="live-indicator">
-        <span class="pulse-dot"></span>
+        
         <span>Shafee Mohammed Road Atelier, Chennai • 100% Pure Veg Eggless Pâtisserie</span>
       </div>
       <div class="top-notice-cta">
@@ -163,34 +163,36 @@
           </div>
         </div>
 
-        <!-- Payment & Pickup Advisory Card (Glassmorphic) -->
-        <div>
-          <div class="payment-qr-card" style="margin: 0; padding: 28px 24px;">
-            <div class="qr-card-header">
-              <span class="qr-step-chip">Complimentary Direct Pickup</span>
-              <div class="qr-advance-amount">Lock Your Pickup Slot</div>
-            </div>
-            <p style="font-size: 0.86rem; color: var(--color-text-muted); margin-bottom: 14px;">
-              Scan our official UPI QR code to deposit your 50% advance token and reserve dedicated baking capacity directly with our chef.
+        <!-- Atelier Collection Protocol & Climate Advisory -->
+        <div class="location-card" style="background: rgba(255,255,255,0.85); backdrop-filter: blur(20px); border: 1.5px solid rgba(212,175,55,0.35); border-radius: 20px; padding: 32px; box-shadow: 0 16px 40px -12px rgba(44,17,51,0.1);">
+          <div class="section-label-chip">Collection Etiquette</div>
+          <h2 style="font-family: var(--font-editorial); font-size: 1.75rem; color: var(--color-plum-royal); margin: 8px 0 16px;">Direct Pickup Protocol</h2>
+          
+          <div class="coord-block" style="margin-bottom: 18px;">
+            <div style="font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-gold-deep); font-weight: 700;">Scheduled Time Windows</div>
+            <p style="font-size: 0.95rem; color: var(--color-text-muted); margin-top: 4px;">
+              All direct pickups are calibrated to your requested baking slot to ensure the cake is retrieved directly from our temperature-controlled setting cold room.
             </p>
-            <div class="qr-image-wrapper">
-              <img src="assets/payment-qr.jpg" alt="Your Huckleberry UPI Payment QR" class="modal-qr-img" style="width: 175px;" />
-              <div class="qr-payee-info">
-                <span class="qr-payee-name">huckle berry</span>
-                <div class="qr-upi-pill">
-                  <span class="upi-id-code">eoteatop@okicici</span>
-                  <button type="button" class="btn-copy-upi" data-upi="eoteatop@okicici" title="Copy UPI ID">Copy</button>
-                </div>
-              </div>
-            </div>
-            <div class="qr-apps-row">
-              <span>GPay</span> • <span>PhonePe</span> • <span>Paytm</span> • <span>BHIM</span> • <span>iMobile</span>
-            </div>
-            <div style="margin-top: 14px;">
-              <a href="upi://pay?pa=eoteatop@okicici&pn=huckle%20berry&cu=INR" class="btn-upi-app-link">
-                <span>Pay via UPI App Directly</span>
-              </a>
-            </div>
+          </div>
+
+          <div class="coord-block" style="margin-bottom: 18px;">
+            <div style="font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-gold-deep); font-weight: 700;">Air-Conditioned Transit Advisory</div>
+            <p style="font-size: 0.95rem; color: var(--color-text-muted); margin-top: 4px;">
+              When picking up delicate multi-tiered or Lambeth piped cakes in Chennai, we strictly advise transporting the cake on a flat, level surface (such as the car footwell) with full vehicle air conditioning active.
+            </p>
+          </div>
+
+          <div class="coord-block" style="margin-bottom: 24px;">
+            <div style="font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-gold-deep); font-weight: 700;">Concierge Coordination</div>
+            <p style="font-size: 0.95rem; color: var(--color-text-muted); margin-top: 4px;">
+              Inform our kitchen 15 minutes before arrival at Shafee Mohammed Road via WhatsApp, and our concierge will have your secured presentation box prepared.
+            </p>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <a href="https://wa.me/918511839668" target="_blank" rel="noopener" class="btn btn-whatsapp-dispatch" style="text-decoration: none; text-align: center;">
+              <span>WhatsApp Atelier Kitchen (+91 8511839668)</span>
+            </a>
           </div>
         </div>
       </div>
@@ -247,7 +249,7 @@
     </div>
   </footer>
 
-  <script src="data.js?v=3.3.0"></script>
-  <script src="app.js?v=3.3.0"></script>
+  <script src="data.js?v=4.5.0"></script>
+  <script src="app.js?v=4.5.0"></script>
 </body>
 </html>
