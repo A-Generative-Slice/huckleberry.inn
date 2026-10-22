@@ -66,6 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const qlQuote = document.getElementById('ql-quote');
   const qlDesc = document.getElementById('ql-desc');
   const qlPrice = document.getElementById('ql-price');
+  const qlWeight = document.getElementById('ql-weight');
+  const qlAllergens = document.getElementById('ql-allergens');
+  const qlStorage = document.getElementById('ql-storage');
   const qlCustomizeBtn = document.getElementById('btn-ql-customize');
   let currentQlTier = 'mini-couture';
 
@@ -134,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 4. Quick-Look Modal Handler
+  // 4. Quick-Look Modal Handler (Theobroma transparency standards)
   document.querySelectorAll('.btn-open-quicklook').forEach(cardImg => {
     cardImg.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -144,6 +147,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const quote = cardImg.dataset.quote || '';
       const desc = cardImg.dataset.desc || '';
       const badge = cardImg.dataset.badge || 'Atelier Collection';
+      const weight = cardImg.dataset.weight || '[150g Petite Individual]';
+      const allergens = cardImg.dataset.allergens || 'Wheat (Gluten), Dairy (Milk)';
+      const storage = cardImg.dataset.storage || 'Keep chilled at 4°C–8°C';
       currentQlTier = cardImg.dataset.tier || 'mini-couture';
 
       if (qlTitle) qlTitle.textContent = title;
@@ -152,6 +158,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (qlQuote) qlQuote.textContent = quote ? `“${quote}”` : '';
       if (qlDesc) qlDesc.textContent = desc;
       if (qlBadge) qlBadge.textContent = badge;
+      if (qlWeight) qlWeight.textContent = weight;
+      if (qlAllergens) qlAllergens.textContent = allergens;
+      if (qlStorage) qlStorage.textContent = storage;
 
       if (qlModal) qlModal.showModal();
     });
@@ -178,19 +187,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 5. Render Architectural Tiers
+  // 5. Render Architectural Tiers (with FSSAI pure veg marker & explicit weight brackets)
   function renderTiers() {
     if (!tierContainer) return;
     tierContainer.innerHTML = HUCKLEBERRY_DATA.tiers.map(tier => `
       <div class="select-card ${tier.id === state.tierId ? 'selected' : ''}" data-tier="${tier.id}">
         <div class="select-card-header">
-          <div class="select-card-name">${tier.name}</div>
-          ${tier.popular ? `<span class="select-card-badge">${tier.tag}</span>` : ''}
+          <div class="select-card-name" style="display:flex; align-items:center; gap:6px;">
+            <span class="fssai-veg-marker" title="100% Eggless Pure Veg"></span>
+            <span>${tier.name}</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:6px;">
+            ${tier.weightGrams ? `<span class="weight-badge">${tier.weightGrams}</span>` : ''}
+            ${tier.popular ? `<span class="select-card-badge">${tier.tag}</span>` : ''}
+          </div>
         </div>
         <div class="select-card-desc">${tier.description}</div>
         <div class="select-card-meta">
           <span class="price-tag">₹${tier.basePrice.toLocaleString('en-IN')}</span>
-          <span class="weight-tag">${tier.weightKg} • ${tier.servings}</span>
+          <span class="weight-tag">${tier.weightKg} [${tier.weightGrams || ''}] • ${tier.servings}</span>
         </div>
       </div>
     `).join('');
@@ -200,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
         state.tierId = card.dataset.tier;
         renderTiers();
         updateSummary();
-        showToast(`Scale selected: ${card.querySelector('.select-card-name').textContent}`, '🎂');
+        showToast(`Scale selected: ${card.querySelector('.select-card-name span:last-child').textContent}`, '🎂');
       });
     });
   }
@@ -429,18 +444,19 @@ document.addEventListener('DOMContentLoaded', () => {
 yourhuckleberry.in • Shafee Mohammed Road, Chennai
 ----------------------------------------
 *Token:* #${token}
-*Architecture:* ${tier.name} (${tier.weightKg})
+*Architecture:* ${tier.name} (${tier.weightKg} [${tier.weightGrams || ''}])
 *Flavor Profile:* ${flavor.name}
 *Artisanal Piping:* ${finish.name}
-*Dietary:* ${state.isEggless ? '100% Eggless Recipe' : 'Standard Recipe'}
-*Plaque Message:* "${state.customMessage || 'Happy Celebration'}"
+*Dietary Standard:* ${state.isEggless ? '🌿 100% Pure Veg (Eggless Recipe)' : 'Standard Recipe'}
+*Plaque Inscription:* "${state.customMessage || 'Happy Celebration'}"
 ----------------------------------------
-*Zone:* ${zone.zone}
-*Date:* ${state.deliveryDate}
+*Delivery / Pickup:* ${zone.zone}
+*Celebration Date:* ${state.deliveryDate}
 *Kitchen Slot:* ${state.deliverySlot}
 ----------------------------------------
 *Estimated Total:* ₹${total.toLocaleString('en-IN')}
 *Advance Deposit (50%):* ₹${advance.toLocaleString('en-IN')}
+*Storage Guidance:* ${tier.storage || 'Keep chilled at 4°C–8°C'}
 ----------------------------------------
 _Dispatched via yourhuckleberry.in (@huckleberry.inn)_
 _Please confirm kitchen slot availability!_`;
@@ -481,6 +497,20 @@ _Please confirm kitchen slot availability!_`;
       }
     });
   }
+
+  // 14. FAQ Accordion Exclusive Expand (Theobroma trust pattern)
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    item.addEventListener('toggle', () => {
+      if (item.open) {
+        faqItems.forEach(other => {
+          if (other !== item && other.open) {
+            other.removeAttribute('open');
+          }
+        });
+      }
+    });
+  });
 
   // Utilities
   function getTomorrowDateString() {

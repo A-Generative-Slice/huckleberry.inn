@@ -33,12 +33,16 @@ const HUCKLEBERRY_DATA = {
     {
       id: "mini-couture",
       name: "Mini Couture Box",
-      tag: "Signature Series",
-      servings: "Individual or Gift Set",
+      tag: "Signature Quad Box",
+      servings: "Individual or Gift Set (4 Pieces)",
       weightKg: "0.6 kg",
+      weightGrams: "600g",
       basePrice: 1200,
       image: "assets/images/mini-couture-collection.jpg",
       description: "Individual designer cakes presented in luxury display boxes with satin silk ribbons.",
+      isEggless: true,
+      allergens: ["Wheat (Gluten)", "Dairy (Milk)", "Soy"],
+      storage: "Keep chilled at 4°C–8°C. Best enjoyed within 48 hours.",
       popular: true
     },
     {
@@ -47,9 +51,13 @@ const HUCKLEBERRY_DATA = {
       tag: "Bento Edition",
       servings: "2 to 4 guests",
       weightKg: "0.5 kg",
+      weightGrams: "500g",
       basePrice: 850,
       image: "assets/images/bento-noir-25.jpg",
       description: "Chic minimalist bento cake with custom golden metallic calligraphy and constellation stars.",
+      isEggless: true,
+      allergens: ["Wheat (Gluten)", "Dairy (Milk)", "Soy"],
+      storage: "Keep refrigerated. Rest 15 mins at room temperature before slicing.",
       popular: false
     },
     {
@@ -58,9 +66,13 @@ const HUCKLEBERRY_DATA = {
       tag: "Intimate Gatherings",
       servings: "6 to 8 guests",
       weightKg: "1.0 kg",
+      weightGrams: "1000g",
       basePrice: 1650,
       image: "assets/images/love-letter-swirls.jpg",
       description: "Silk buttercream spirals crowned with hand-piped rosettes and delicate foliage.",
+      isEggless: true,
+      allergens: ["Wheat (Gluten)", "Dairy (Milk)", "Soy"],
+      storage: "Keep refrigerated. Rest 15 mins at room temperature before cake-cutting.",
       popular: false
     },
     {
@@ -69,9 +81,13 @@ const HUCKLEBERRY_DATA = {
       tag: "Most Requested",
       servings: "18 to 24 guests",
       weightKg: "2.5 kg",
+      weightGrams: "2500g",
       basePrice: 3950,
       image: "assets/images/moment-vintage-lambeth.jpg",
       description: "Vintage Lambeth Victorian ruffles, draped garlands, blush buttercream roses and pearls.",
+      isEggless: true,
+      allergens: ["Wheat (Gluten)", "Dairy (Milk)", "Soy"],
+      storage: "Keep chilled in celebratory case. Bring to room temperature 20 mins prior to presentation.",
       popular: true
     }
   ],
@@ -163,14 +179,18 @@ const HUCKLEBERRY_DATA = {
     { zone: "OMR & Velachery", pin: "600096", fee: 300 }
   ],
 
-  // The 6 Signature Creations using the real photos
+  // The 8 Signature Creations with haute pâtisserie styling & Theobroma retail specs
   showcaseCreations: [
     {
       id: "showcase-moment",
       title: "She’s The Moment",
       subtitle: "Vintage Lambeth Celebration Tier",
       category: "tiered",
-      weight: "2.5 kg Two-Tier",
+      weight: "2.5 kg [2500g] Two-Tier",
+      weightGrams: "2500g",
+      isEggless: true,
+      allergens: ["Wheat (Gluten)", "Dairy (Milk)", "Soy"],
+      storage: "Keep refrigerated at 4°C–8°C. Bring to room temperature 20 mins prior to cake-cutting.",
       flavor: "Persian Lychee Rose & Raspberry",
       price: "₹3,950",
       image: "assets/images/moment-vintage-lambeth.jpg",
@@ -182,7 +202,11 @@ const HUCKLEBERRY_DATA = {
       title: "The Mini Couture Collection",
       subtitle: "Haute Pâtisserie in Miniature",
       category: "miniature",
-      weight: "Box of 4 Petite Cakes",
+      weight: "Quad Box [600g]",
+      weightGrams: "600g",
+      isEggless: true,
+      allergens: ["Wheat (Gluten)", "Dairy (Milk)", "Soy"],
+      storage: "Keep chilled in presentation case. Consume within 48 hours.",
       flavor: "Assorted Pastry Chef Creations",
       price: "₹1,200",
       image: "assets/images/mini-couture-collection.jpg",
@@ -194,7 +218,11 @@ const HUCKLEBERRY_DATA = {
       title: "The Pink Ruffled Ballgown",
       subtitle: "Miniature Couture Edition",
       category: "miniature",
-      weight: "Individual Petite",
+      weight: "Individual Petite [150g]",
+      weightGrams: "150g",
+      isEggless: true,
+      allergens: ["Wheat (Gluten)", "Dairy (Milk)"],
+      storage: "Keep refrigerated. Best enjoyed cold or slightly tempered.",
       flavor: "Raspberry Cream & Silk Buttercream",
       price: "₹350",
       image: "assets/images/mini-pink-ballgown.jpg",
@@ -206,7 +234,11 @@ const HUCKLEBERRY_DATA = {
       title: "The Love Letter Cake",
       subtitle: "Silky Buttercream & Rosettes",
       category: "tiered",
-      weight: "1.0 kg Single Tier",
+      weight: "1.0 kg [1000g] Single Tier",
+      weightGrams: "1000g",
+      isEggless: true,
+      allergens: ["Wheat (Gluten)", "Dairy (Milk)", "Soy"],
+      storage: "Keep refrigerated at 4°C–8°C. Best enjoyed within 48 hours.",
       flavor: "Sicilian Lemon & Rose Wild Berry",
       price: "₹1,850",
       image: "assets/images/love-letter-swirls.jpg",
@@ -218,7 +250,11 @@ const HUCKLEBERRY_DATA = {
       title: "Caramel Chocolate Tart",
       subtitle: "Valrhona Sablé & Molten Caramel",
       category: "specialty",
-      weight: "Gourmet Individual Slice",
+      weight: "Gourmet Individual Tart [180g]",
+      weightGrams: "180g",
+      isEggless: true,
+      allergens: ["Wheat (Gluten)", "Dairy (Milk)", "Soy"],
+      storage: "Keep chilled. Enjoy cool for optimal crispness of sablé pastry.",
       flavor: "70% Dark Ganache & Salted Caramel",
       price: "₹320",
       image: "assets/images/caramel-chocolate-tart.jpg",
@@ -230,7 +266,11 @@ const HUCKLEBERRY_DATA = {
       title: "Noir Gold Bento Cake",
       subtitle: "25 But Make It Tiny",
       category: "miniature",
-      weight: "0.5 kg Bento Box",
+      weight: "Bento Box [500g]",
+      weightGrams: "500g",
+      isEggless: true,
+      allergens: ["Wheat (Gluten)", "Dairy (Milk)", "Soy"],
+      storage: "Keep chilled. Rest 15 mins at room temperature for velvety ganache bloom.",
       flavor: "Belgian Noir Chocolate Fudge",
       price: "₹850",
       image: "assets/images/bento-noir-25.jpg",
@@ -242,7 +282,11 @@ const HUCKLEBERRY_DATA = {
       title: "White Chocolate Candle Bliss",
       subtitle: "Miniature Couture Edition",
       category: "miniature",
-      weight: "Individual Petite",
+      weight: "Individual Petite [150g]",
+      weightGrams: "150g",
+      isEggless: true,
+      allergens: ["Wheat (Gluten)", "Dairy (Milk)"],
+      storage: "Keep refrigerated until candle lighting moment.",
       flavor: "Ivory White Chocolate Drip",
       price: "₹350",
       image: "assets/images/mini-white-candle.jpg",
@@ -254,12 +298,44 @@ const HUCKLEBERRY_DATA = {
       title: "Floral & Feminine Rosette",
       subtitle: "Miniature Couture Edition",
       category: "miniature",
-      weight: "Individual Petite",
+      weight: "Individual Petite [150g]",
+      weightGrams: "150g",
+      isEggless: true,
+      allergens: ["Wheat (Gluten)", "Dairy (Milk)"],
+      storage: "Keep chilled at 4°C–8°C.",
       flavor: "Strawberry Vanilla Bean Chiffon",
       price: "₹350",
       image: "assets/images/mini-floral-rosette.jpg",
       quote: "A bloom of buttercream beauty in every little bite.",
       highlight: "Mini Couture"
+    }
+  ],
+
+  // Structured Consumer Trust FAQ Accordion (Theobroma best practice)
+  faqs: [
+    {
+      question: "Are all creations at Your Huckleberry 100% vegetarian / eggless?",
+      answer: "Yes, absolutely. Every creation at Your Huckleberry is handcrafted with a 100% pure eggless vegetarian recipe. We use premium French dairy, high-fat cultured butter, and Belgian couverture chocolate to ensure our sponge retains supreme moisture, velvety crumb, and rich mouthfeel without ever using egg."
+    },
+    {
+      question: "How far in advance should I place my cake order?",
+      answer: "For our Mini Couture boxes and signature slices, same-day and next-day pickup or dispatch are often available based on daily kitchen batches. For custom celebration tiers (Single Tier Classic and Two-Tier Grand Milestone), we recommend locking your slot 24 to 48 hours in advance to allow our pastry chefs ample time for delicate Lambeth piping and stabilization."
+    },
+    {
+      question: "How should I store and serve my cake in Chennai's climate?",
+      answer: "Chennai's tropical climate requires care with high-grade buttercream and ganache. Keep your cake refrigerated at 4°C–8°C immediately upon arrival. For the finest flavor bloom and silky texture, remove the cake from the refrigerator approximately 15–20 minutes before cutting and serving."
+    },
+    {
+      question: "What delivery options and service areas are available across Chennai?",
+      answer: "We offer direct temperature-controlled doorstep dispatches across Nungambakkam, Thousand Lights, Alwarpet, T. Nagar, Gopalapuram, Kilpauk, Anna Nagar, Adyar, Besant Nagar, ECR, and OMR. You are also welcome to schedule complimentary direct pickup at our Shafee Mohammed Road atelier."
+    },
+    {
+      question: "Why is a 50% advance deposit requested upon booking?",
+      answer: "Because every milestone cake is custom-baked from scratch to your specific architecture, flavor profile, and piped inscription, the 50% advance secures your date and kitchen capacity, guaranteeing dedicated oven time and fresh artisanal ingredient sourcing."
+    },
+    {
+      question: "Can I customize the color palette, piped plaque inscription, or dietary needs?",
+      answer: "Yes! Use our Interactive Cake Atelier to test flavor pairings and type your custom message. When your WhatsApp booking slip generates, you can chat directly with our chef to request custom tint matching, ribbon colors, or special dietary notes."
     }
   ],
 
