@@ -347,7 +347,7 @@ const HUCKLEBERRY_DATA = {
       tagline: "Portion Precision",
       desc: "Select scale from Mini Couture Quad [600g] to Two-Tier Milestone Centerpieces [2.5kg].",
       detail: "Eliminates portion ambiguity. Every scale is calibrated for intimate celebrations or 25-guest gatherings.",
-      icon: "📐"
+      icon: ""
     },
     {
       step: "02",
@@ -355,7 +355,7 @@ const HUCKLEBERRY_DATA = {
       tagline: "Ingredient Provenance",
       desc: "100% Eggless Genois sponge crafted with Belgian Callebaut & Persian Damascus rosewater.",
       detail: "Pure French cultured butter, Madagascar bourbon vanilla, and Guérande fleur de sel. Zero artificial shortcuts.",
-      icon: "🍓"
+      icon: ""
     },
     {
       step: "03",
@@ -363,7 +363,7 @@ const HUCKLEBERRY_DATA = {
       tagline: "Artisanal Haute Pâtisserie",
       desc: "Intricate Victorian Lambeth swags, heirloom luster pearls, and hand-piped plaque calligraphy.",
       detail: "Unrushed piping precision executed by specialized pastry chefs in our Nungambakkam kitchen.",
-      icon: "🎀"
+      icon: ""
     },
     {
       step: "04",
@@ -371,7 +371,7 @@ const HUCKLEBERRY_DATA = {
       tagline: "Real-Time Reservation",
       desc: "Instant booking slip generated for direct WhatsApp kitchen verification with token #HK-XXXX.",
       detail: "Guarantees dedicated oven time and scratch baking on your celebration morning.",
-      icon: "⚡"
+      icon: ""
     },
     {
       step: "05",
@@ -379,7 +379,7 @@ const HUCKLEBERRY_DATA = {
       tagline: "Zero-Melt Delivery",
       desc: "Specialized temperature-controlled delivery across Chennai or complimentary atelier pickup.",
       detail: "Delivered in reinforced crystal display cases with satin silk ribbons, ready to centerpiece your event.",
-      icon: "❄️"
+      icon: ""
     }
   ],
 

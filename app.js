@@ -5,9 +5,14 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Read URL search params (e.g. atelier.html?tier=mini-couture)
+  const urlParams = new URLSearchParams(window.location.search);
+  const requestedTier = urlParams.get('tier');
+  const validTier = requestedTier && HUCKLEBERRY_DATA.tiers.some(t => t.id === requestedTier) ? requestedTier : 'tier-2';
+
   // Application State
   const state = {
-    tierId: 'tier-2',
+    tierId: validTier,
     flavorId: 'lychee-rose',
     finishId: 'vintage-lambeth',
     isEggless: true,
@@ -86,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 1. Toast Notification Utility
-  function showToast(message, icon = '✨') {
+  function showToast(message, icon = '') {
     if (!toastContainer) return;
     const toast = document.createElement('div');
     toast.className = 'toast-pill';
@@ -176,13 +181,15 @@ document.addEventListener('DOMContentLoaded', () => {
   if (qlCustomizeBtn) {
     qlCustomizeBtn.addEventListener('click', () => {
       if (qlModal) qlModal.close();
-      state.tierId = currentQlTier;
-      renderTiers();
-      updateSummary();
       const builder = document.getElementById('custom-builder');
       if (builder) {
+        state.tierId = currentQlTier;
+        renderTiers();
+        updateSummary();
         builder.scrollIntoView({ behavior: 'smooth' });
-        showToast('Design loaded into Cake Atelier', '🎂');
+        showToast('Design loaded into Cake Atelier', '');
+      } else {
+        window.location.href = "atelier.html?tier=" + (currentQlTier || "mini-couture");
       }
     });
   }
@@ -215,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
         state.tierId = card.dataset.tier;
         renderTiers();
         updateSummary();
-        showToast(`Scale selected: ${card.querySelector('.select-card-name span:last-child').textContent}`, '🎂');
+        showToast(`Scale selected: ${card.querySelector('.select-card-name span:last-child').textContent}`, '');
       });
     });
   }
@@ -245,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
         state.flavorId = card.dataset.flavor;
         renderFlavors();
         updateSummary();
-        showToast(`Flavor: ${card.querySelector('.select-card-name').textContent.trim()}`, '🍓');
+        showToast(`Flavor: ${card.querySelector('.select-card-name').textContent.trim()}`, '');
       });
     });
   }
@@ -271,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
         state.finishId = card.dataset.finish;
         renderFinishes();
         updateSummary();
-        showToast(`Decor: ${card.querySelector('.select-card-name').textContent}`, '✨');
+        showToast(`Decor: ${card.querySelector('.select-card-name').textContent}`, '');
       });
     });
   }
@@ -297,13 +304,15 @@ document.addEventListener('DOMContentLoaded', () => {
       e.stopPropagation();
       const tierTarget = btn.dataset.tier;
       if (tierTarget) {
-        state.tierId = tierTarget;
-        renderTiers();
-        updateSummary();
         const builder = document.getElementById('custom-builder');
         if (builder) {
+          state.tierId = tierTarget;
+          renderTiers();
+          updateSummary();
           builder.scrollIntoView({ behavior: 'smooth' });
-          showToast('Loaded design into Cake Atelier', '🎂');
+          showToast('Loaded design into Cake Atelier', '');
+        } else {
+          window.location.href = "atelier.html?tier=" + tierTarget;
         }
       }
     });
@@ -389,7 +398,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Interactive Click on Canvas Stand
   if (cakeCanvas) {
     cakeCanvas.addEventListener('click', () => {
-      showToast('🍰 Centerpiece customized for your celebration!', '✨');
+      showToast(' Centerpiece customized for your celebration!', '');
     });
   }
 
@@ -398,12 +407,12 @@ document.addEventListener('DOMContentLoaded', () => {
     egglessCheck.addEventListener('change', (e) => {
       state.isEggless = e.target.checked;
       if (egglessBadge) {
-        egglessBadge.textContent = state.isEggless ? '🌿 Pure Veg Active' : 'Standard Recipe';
+        egglessBadge.textContent = state.isEggless ? ' Pure Veg Active' : 'Standard Recipe';
         egglessBadge.style.background = state.isEggless ? '#EAF7EF' : '#F5EFEB';
         egglessBadge.style.color = state.isEggless ? '#1B7A43' : '#6B6264';
       }
       updateSummary();
-      showToast(state.isEggless ? '🌿 100% Eggless recipe confirmed' : 'Standard recipe selected');
+      showToast(state.isEggless ? ' 100% Eggless recipe confirmed' : 'Standard recipe selected');
     });
   }
 
@@ -440,14 +449,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const token = 'HK-' + Math.floor(1000 + Math.random() * 9000);
 
     const message = 
-`🎂 *CUSTOM CAKE RESERVATION - YOUR HUCKLEBERRY*
+` *CUSTOM CAKE RESERVATION - YOUR HUCKLEBERRY*
 yourhuckleberry.in • Shafee Mohammed Road, Chennai
 ----------------------------------------
 *Token:* #${token}
 *Architecture:* ${tier.name} (${tier.weightKg} [${tier.weightGrams || ''}])
 *Flavor Profile:* ${flavor.name}
 *Artisanal Piping:* ${finish.name}
-*Dietary Standard:* ${state.isEggless ? '🌿 100% Pure Veg (Eggless Recipe)' : 'Standard Recipe'}
+*Dietary Standard:* ${state.isEggless ? ' 100% Pure Veg (Eggless Recipe)' : 'Standard Recipe'}
 *Plaque Inscription:* "${state.customMessage || 'Happy Celebration'}"
 ----------------------------------------
 *Delivery / Pickup:* ${zone.zone}
@@ -490,10 +499,10 @@ _Please confirm kitchen slot availability!_`;
       try {
         if (state.lastGeneratedSlip) {
           await navigator.clipboard.writeText(state.lastGeneratedSlip);
-          showToast('📋 Booking details copied to clipboard!', '✅');
+          showToast(' Booking details copied to clipboard!', '✅');
         }
       } catch (err) {
-        showToast('Booking token: ' + (dialogTokenId ? dialogTokenId.textContent : '#HK'), '📋');
+        showToast('Booking token: ' + (dialogTokenId ? dialogTokenId.textContent : '#HK'), '');
       }
     });
   }
@@ -552,7 +561,7 @@ _Please confirm kitchen slot availability!_`;
       const fullToken = raw.startsWith('HK-') ? raw : `HK-${raw}`;
       const found = HUCKLEBERRY_DATA.liveOrders.find(o => o.id === fullToken || o.id === raw);
       if (found) {
-        showToast(`Token #${found.id}: ${found.status} (${found.stagePercent}%)`, '🎂');
+        showToast(`Token #${found.id}: ${found.status} (${found.stagePercent}%)`, '');
         const card = document.querySelector(`.order-pipeline-card[data-token="${found.id}"]`);
         if (card) {
           card.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -564,7 +573,7 @@ _Please confirm kitchen slot availability!_`;
           }, 3500);
         }
       } else {
-        showToast(`Token #${fullToken} verified in kitchen queue (Baking & Prep)`, '✨');
+        showToast(`Token #${fullToken} verified in kitchen queue (Baking & Prep)`, '');
       }
     });
   }
