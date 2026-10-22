@@ -21,14 +21,18 @@ const HUCKLEBERRY_DATA = {
     whatsappNumber: "918511839668",
     websiteUrl: "https://yourhuckleberry.in",
     websiteDisplay: "yourhuckleberry.in",
-    specialOffer: "Buy 3 mini cakes and receive a complimentary signature mini. Available for a limited time."
+    specialOffer: "Buy 3 mini cakes and receive a complimentary signature mini. Available for a limited time.",
+    upiId: "eoteatop@okicici",
+    upiPayee: "huckle berry",
+    paymentQrUrl: "assets/payment-qr.jpg",
+    upiDeepLink: "upi://pay?pa=eoteatop@okicici&pn=huckle%20berry&cu=INR"
   },
 
   get bakery() {
     return this.brand;
   },
 
-  // The 4 Core Architectural Form Factors
+  // The 5 Core Architectural Form Factors
   tiers: [
     {
       id: "mini-couture",
@@ -38,7 +42,7 @@ const HUCKLEBERRY_DATA = {
       weightKg: "0.6 kg",
       weightGrams: "600g",
       basePrice: 1200,
-      image: "assets/images/mini-couture-collection.jpg",
+      image: "assets/images/tier-mini-couture.jpg",
       description: "Individual designer cakes presented in luxury display boxes with satin silk ribbons.",
       isEggless: true,
       allergens: ["Wheat (Gluten)", "Dairy (Milk)", "Soy"],
@@ -68,7 +72,7 @@ const HUCKLEBERRY_DATA = {
       weightKg: "1.0 kg",
       weightGrams: "1000g",
       basePrice: 1650,
-      image: "assets/images/love-letter-swirls.jpg",
+      image: "assets/images/tier-single-petite.jpg",
       description: "Silk buttercream spirals crowned with hand-piped rosettes and delicate foliage.",
       isEggless: true,
       allergens: ["Wheat (Gluten)", "Dairy (Milk)", "Soy"],
@@ -83,61 +87,91 @@ const HUCKLEBERRY_DATA = {
       weightKg: "2.5 kg",
       weightGrams: "2500g",
       basePrice: 3950,
-      image: "assets/images/moment-vintage-lambeth.jpg",
+      image: "assets/images/tier-two-tier-milestone.jpg",
       description: "Vintage Lambeth Victorian ruffles, draped garlands, blush buttercream roses and pearls.",
       isEggless: true,
       allergens: ["Wheat (Gluten)", "Dairy (Milk)", "Soy"],
       storage: "Keep chilled in celebratory case. Bring to room temperature 20 mins prior to presentation.",
       popular: true
+    },
+    {
+      id: "tier-3",
+      name: "Three-Tier Grand Couturier",
+      tag: "Royal Wedding Grandeur",
+      servings: "35 to 45 guests",
+      weightKg: "4.5 kg",
+      weightGrams: "4500g",
+      basePrice: 6500,
+      image: "assets/images/tier-three-tier-grand.jpg",
+      description: "Master-level Victorian Lambeth royal icing architecture with intricate baroque lace, wafer-paper florals, and 24K edible gold leaf.",
+      isEggless: true,
+      allergens: ["Wheat (Gluten)", "Dairy (Milk)", "Soy"],
+      storage: "Keep chilled in temperature-controlled display. Rest 25 mins prior to cutting.",
+      popular: false
     }
   ],
 
-  // Flavor profiles
+  // Flavor profiles with photography
   flavors: [
     {
       id: "lychee-rose",
-      name: "Persian Lychee Rose & Raspberry",
-      notes: "Persian rosewater infusion, wild raspberry coulis, poached lychee pieces",
+      name: "Persian Pistachio & Raspberry Rose",
+      notes: "Persian rosewater infusion, wild raspberry coulis, natural pistachio crumb",
       priceAdd: 200,
-      colorHex: "#EAC1C8",
+      colorHex: "#9CB081",
       frostingHex: "#FCECEF",
+      image: "assets/images/flavour-pistachio-raspberry.jpg",
       badge: "Signature"
     },
     {
       id: "belgian-truffle",
       name: "Belgian Dark Chocolate Truffle",
-      notes: "70% Callebaut dark ganache, valrhona cocoa sponge, espresso liqueur soak",
+      notes: "70% Callebaut dark ganache, Valrhona cocoa sponge, crunchy praline feuilletine",
       priceAdd: 0,
       colorHex: "#2E1B17",
       frostingHex: "#452620",
+      image: "assets/images/flavour-belgian-truffle.jpg",
       badge: "Classic"
     },
     {
       id: "salted-caramel",
-      name: "Salted Caramel Chocolate Sablé",
-      notes: "Molten fleur de sel caramel with roasted cocoa bean crunch",
+      name: "Valrhona Noir & Salted Caramel",
+      notes: "Decadent dark chocolate layers with molten golden fleur de sel caramel center",
       priceAdd: 250,
       colorHex: "#A87038",
       frostingHex: "#EBD0AC",
+      image: "assets/images/flavour-valrhona-noir.jpg",
       badge: "Chef's Special"
     },
     {
       id: "white-choc-candle",
-      name: "White Chocolate Candle Vanilla",
-      notes: "Ivory white chocolate ganache drips with Madagascan vanilla bean mascarpone",
+      name: "Madagascar Vanilla Bean & Strawberries",
+      notes: "Real vanilla bean caviar sponge with whipped Chantilly and sliced ruby strawberries",
       priceAdd: 150,
       colorHex: "#EAD69A",
       frostingHex: "#FFF9E6",
-      badge: ""
+      image: "assets/images/flavour-vanilla-chantilly.jpg",
+      badge: "Artisanal"
     },
     {
       id: "sicilian-lemon",
-      name: "Sicilian Lemon Wild Berry",
-      notes: "Zesty citrus curd, simmered forest berries, elderflower scented sponge",
+      name: "Wild Blueberry & Meyer Lemon Curd",
+      notes: "Zesty lemon sponge with vivid simmered wild blueberry compote and mascarpone frosting",
       priceAdd: 150,
-      colorHex: "#E2C866",
+      colorHex: "#5B4468",
       frostingHex: "#FFFBEB",
-      badge: ""
+      image: "assets/images/flavour-blueberry-lemon.jpg",
+      badge: "Fresh"
+    },
+    {
+      id: "biscoff-hazelnut",
+      name: "Lotus Biscoff & Roasted Hazelnut",
+      notes: "Spiced speculoos biscuit layers, caramelized Biscoff spread, and roasted Piedmont hazelnuts",
+      priceAdd: 220,
+      colorHex: "#C47C3E",
+      frostingHex: "#F7E6D0",
+      image: "assets/images/flavour-biscoff-hazelnut.jpg",
+      badge: "Gourmet"
     }
   ],
 
@@ -343,46 +377,50 @@ const HUCKLEBERRY_DATA = {
   pipelineStages: [
     {
       step: "01",
-      name: "Scale & Architecture Curation",
-      tagline: "Portion Precision",
-      desc: "Select scale from Mini Couture Quad [600g] to Two-Tier Milestone Centerpieces [2.5kg].",
-      detail: "Eliminates portion ambiguity. Every scale is calibrated for intimate celebrations or 25-guest gatherings.",
-      icon: ""
+      name: "Bespoke Consultation & Architecture Curation",
+      tagline: "Portion Precision & Sketches",
+      desc: "Select scale from Mini Couture Quad [600g] to Three-Tier Grand Couturier [4.5kg]. Sketch review and Pantone tint matching.",
+      detail: "Eliminates portion ambiguity. Every scale is calibrated for intimate celebrations or 45-guest royal gatherings.",
+      image: "assets/images/pipeline-step1-consult.jpg",
+      icon: "01"
     },
     {
       step: "02",
-      name: "Flavour & Botanical Infusion",
+      name: "Flavour & Pure Veg Eggless Haute Baking",
       tagline: "Ingredient Provenance",
-      desc: "100% Eggless Genois sponge crafted with Belgian Callebaut & Persian Damascus rosewater.",
-      detail: "Pure French cultured butter, Madagascar bourbon vanilla, and Guérande fleur de sel. Zero artificial shortcuts.",
-      icon: ""
+      desc: "100% Eggless Genois sponge crafted with Belgian Callebaut, Madagascar vanilla beans, and French cultured butter.",
+      detail: "Clean-label ingredients. Strictly zero gelatine, zero egg wash, and zero artificial stabilizers.",
+      image: "assets/images/caramel-chocolate-slice.jpg",
+      icon: "02"
     },
     {
       step: "03",
-      name: "Atelier Lambeth Hand-Piping",
+      name: "Atelier Lambeth Hand-Piping & Pearls",
       tagline: "Artisanal Haute Pâtisserie",
       desc: "Intricate Victorian Lambeth swags, heirloom luster pearls, and hand-piped plaque calligraphy.",
       detail: "Unrushed piping precision executed by specialized pastry chefs in our Nungambakkam kitchen.",
-      icon: ""
+      image: "assets/images/atelier-kitchen-craft.jpg",
+      icon: "03"
     },
     {
       step: "04",
-      name: "50% Token & Oven Slot Lock",
-      tagline: "Real-Time Reservation",
-      desc: "Instant booking slip generated for direct WhatsApp kitchen verification with token #HK-XXXX.",
-      detail: "Guarantees dedicated oven time and scratch baking on your celebration morning.",
-      icon: ""
+      name: "50% Token Deposit & UPI QR Reservation",
+      tagline: "Real-Time Slot Lock",
+      desc: "Instant booking slip generated for direct WhatsApp kitchen verification with token #HK-XXXX and instant UPI QR scan.",
+      detail: "Guarantees dedicated oven time and scratch baking on your celebration morning. UPI ID: eoteatop@okicici",
+      image: "assets/payment-qr.jpg",
+      icon: "04"
     },
     {
       step: "05",
-      name: "Cold-Chain Dispatch or Pickup",
+      name: "Cold-Chain Dispatch & Thermal Transit",
       tagline: "Zero-Melt Delivery",
       desc: "Specialized temperature-controlled delivery across Chennai or complimentary atelier pickup.",
-      detail: "Delivered in reinforced crystal display cases with satin silk ribbons, ready to centerpiece your event.",
-      icon: ""
+      detail: "Delivered in reinforced display cases with satin silk ribbons, ready to centerpiece your event.",
+      image: "assets/images/tier-mini-couture.jpg",
+      icon: "05"
     }
   ],
-
   // Live order queue simulation (Theobroma & cloud kitchen operational transparency)
   liveOrders: [
     {
