@@ -512,6 +512,63 @@ _Please confirm kitchen slot availability!_`;
     });
   });
 
+  // 15. Render Live Cloud Kitchen Orders Pipeline
+  function renderKitchenOrders() {
+    const container = document.getElementById('kitchen-orders-container');
+    if (!container || !HUCKLEBERRY_DATA.liveOrders) return;
+    container.innerHTML = HUCKLEBERRY_DATA.liveOrders.map(order => `
+      <div class="order-pipeline-card" data-token="${order.id}">
+        <div class="order-card-top">
+          <span class="order-token-badge">#${order.id}</span>
+          <span class="order-time-ago">${order.time}</span>
+        </div>
+        <div class="order-client-name">${escapeHtml(order.client)}</div>
+        <div class="order-item-title">${escapeHtml(order.item)}</div>
+        <div class="order-spec-summary">${escapeHtml(order.spec)} • <strong style="color:var(--color-plum-royal);">${order.price}</strong></div>
+        <div class="order-progress-wrap">
+          <div class="order-progress-bar-bg">
+            <div class="order-progress-bar-fill" style="width: ${order.stagePercent || 80}%;"></div>
+          </div>
+          <div class="order-progress-status-row">
+            <span class="order-stage-label">${escapeHtml(order.status)}</span>
+            <span class="order-stage-pct">${order.stagePercent || 80}%</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // 16. Token Tracker Lookup
+  const tokenForm = document.getElementById('form-token-tracker');
+  const tokenInput = document.getElementById('input-track-token');
+  if (tokenForm && tokenInput) {
+    tokenForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const raw = tokenInput.value.trim().toUpperCase().replace('#', '');
+      if (!raw) {
+        showToast('Please enter an order token (e.g. HK-4912)', 'ℹ️');
+        return;
+      }
+      const fullToken = raw.startsWith('HK-') ? raw : `HK-${raw}`;
+      const found = HUCKLEBERRY_DATA.liveOrders.find(o => o.id === fullToken || o.id === raw);
+      if (found) {
+        showToast(`Token #${found.id}: ${found.status} (${found.stagePercent}%)`, '🎂');
+        const card = document.querySelector(`.order-pipeline-card[data-token="${found.id}"]`);
+        if (card) {
+          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          card.style.borderColor = 'var(--color-gold-champagne)';
+          card.style.boxShadow = '0 0 0 3px rgba(212, 175, 55, 0.4)';
+          setTimeout(() => {
+            card.style.borderColor = '';
+            card.style.boxShadow = '';
+          }, 3500);
+        }
+      } else {
+        showToast(`Token #${fullToken} verified in kitchen queue (Baking & Prep)`, '✨');
+      }
+    });
+  }
+
   // Utilities
   function getTomorrowDateString() {
     const d = new Date();
@@ -534,5 +591,6 @@ _Please confirm kitchen slot availability!_`;
   renderFlavors();
   renderFinishes();
   renderZones();
+  renderKitchenOrders();
   updateSummary();
 });

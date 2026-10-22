@@ -339,8 +339,63 @@ const HUCKLEBERRY_DATA = {
     }
   ],
 
-  // Live order queue simulation (for the pitch demo)
+  // The 5-Stage Business & Cloud Kitchen Creation Pipeline
+  pipelineStages: [
+    {
+      step: "01",
+      name: "Scale & Architecture Curation",
+      tagline: "Portion Precision",
+      desc: "Select scale from Mini Couture Quad [600g] to Two-Tier Milestone Centerpieces [2.5kg].",
+      detail: "Eliminates portion ambiguity. Every scale is calibrated for intimate celebrations or 25-guest gatherings.",
+      icon: "📐"
+    },
+    {
+      step: "02",
+      name: "Flavour & Botanical Infusion",
+      tagline: "Ingredient Provenance",
+      desc: "100% Eggless Genois sponge crafted with Belgian Callebaut & Persian Damascus rosewater.",
+      detail: "Pure French cultured butter, Madagascar bourbon vanilla, and Guérande fleur de sel. Zero artificial shortcuts.",
+      icon: "🍓"
+    },
+    {
+      step: "03",
+      name: "Atelier Lambeth Hand-Piping",
+      tagline: "Artisanal Haute Pâtisserie",
+      desc: "Intricate Victorian Lambeth swags, heirloom luster pearls, and hand-piped plaque calligraphy.",
+      detail: "Unrushed piping precision executed by specialized pastry chefs in our Nungambakkam kitchen.",
+      icon: "🎀"
+    },
+    {
+      step: "04",
+      name: "50% Token & Oven Slot Lock",
+      tagline: "Real-Time Reservation",
+      desc: "Instant booking slip generated for direct WhatsApp kitchen verification with token #HK-XXXX.",
+      detail: "Guarantees dedicated oven time and scratch baking on your celebration morning.",
+      icon: "⚡"
+    },
+    {
+      step: "05",
+      name: "Cold-Chain Dispatch or Pickup",
+      tagline: "Zero-Melt Delivery",
+      desc: "Specialized temperature-controlled delivery across Chennai or complimentary atelier pickup.",
+      detail: "Delivered in reinforced crystal display cases with satin silk ribbons, ready to centerpiece your event.",
+      icon: "❄️"
+    }
+  ],
+
+  // Live order queue simulation (Theobroma & cloud kitchen operational transparency)
   liveOrders: [
+    {
+      id: "HK-4914",
+      client: "Deepa S., Besant Nagar",
+      item: "She’s The Moment Lambeth (2.5 kg)",
+      spec: "Persian Lychee Rose • Vintage Lambeth • 100% Eggless",
+      slot: "Today, 5:30 PM Express Slot",
+      price: "₹3,950",
+      status: "Master Hand-Piping",
+      stagePercent: 85,
+      time: "4m ago"
+    },
     {
       id: "HK-4912",
       client: "Priyanka R., Nungambakkam",
@@ -348,8 +403,9 @@ const HUCKLEBERRY_DATA = {
       spec: "Persian Lychee Rose • Vintage Lambeth • Eggless",
       slot: "Tomorrow, 4:00 PM Slot",
       price: "₹4,300",
-      status: "Advance Confirmed",
-      time: "10m ago"
+      status: "Oven Baking & Chilling",
+      stagePercent: 55,
+      time: "14m ago"
     },
     {
       id: "HK-4911",
@@ -358,7 +414,8 @@ const HUCKLEBERRY_DATA = {
       spec: "Ballgown, Candle Bliss, Floral & Arch",
       slot: "Today, 6:00 PM Pickup",
       price: "₹1,200",
-      status: "Baking & Packaging",
+      status: "Presentation Packaging",
+      stagePercent: 95,
       time: "28m ago"
     },
     {
@@ -369,7 +426,19 @@ const HUCKLEBERRY_DATA = {
       slot: "Today, 7:30 PM Express",
       price: "₹1,280",
       status: "Ready for Dispatch",
+      stagePercent: 100,
       time: "55m ago"
+    },
+    {
+      id: "HK-4909",
+      client: "Vikram N., Anna Nagar",
+      item: "Noir Golden Bento Cake (0.5 kg)",
+      spec: "Belgian Noir Chocolate Fudge • Gold Calligraphy",
+      slot: "Today, 3:00 PM Slot",
+      price: "₹850",
+      status: "Cold-Chain Dispatched",
+      stagePercent: 100,
+      time: "1h ago"
     }
   ]
 };
