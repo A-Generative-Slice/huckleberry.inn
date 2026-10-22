@@ -5,15 +5,19 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Read URL search params (e.g. atelier.html?tier=mini-couture)
+  // Read URL search params (e.g. atelier.html?tier=mini-couture or atelier.html?flavor=salted-caramel)
   const urlParams = new URLSearchParams(window.location.search);
-  const requestedTier = urlParams.get("tier");
+  let requestedTier = urlParams.get("tier");
+  if (requestedTier === "tier-bento") requestedTier = "bento-noir";
   const validTier = requestedTier && HUCKLEBERRY_DATA.tiers.some(t => t.id === requestedTier) ? requestedTier : "tier-2";
+
+  const requestedFlavor = urlParams.get("flavor");
+  const validFlavor = requestedFlavor && HUCKLEBERRY_DATA.flavors.some(f => f.id === requestedFlavor) ? requestedFlavor : "lychee-rose";
 
   // Application State
   const state = {
     tierId: validTier,
-    flavorId: "lychee-rose",
+    flavorId: validFlavor,
     finishId: "vintage-lambeth",
     isEggless: true,
     customMessage: "Happy Celebration",
@@ -76,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const qlStorage = document.getElementById("ql-storage");
   const qlCustomizeBtn = document.getElementById("btn-ql-customize");
   let currentQlTier = "mini-couture";
+  let currentQlFlavor = "";
 
   // Toast Container
   const toastContainer = document.getElementById("toast-container");
@@ -140,28 +145,97 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 3. Category Filter Pills for Couture Collection
+  // 3. Category Filter & Live Search for Couture Collection
   const coutureFilterBar = document.getElementById("couture-filter-bar");
   const coutureCards = document.querySelectorAll(".couture-item-card");
+  const collectionSearchInput = document.getElementById("collection-search-input");
+  const btnClearSearch = document.getElementById("btn-clear-search");
+  const searchCounterChip = document.getElementById("search-counter-chip");
+  const activeFilterIndicator = document.getElementById("active-filter-indicator");
+  const searchEmptyState = document.getElementById("search-empty-state");
+  const btnResetFilters = document.getElementById("btn-reset-filters");
+
+  let activeCategory = "all";
+
+  function applyCollectionFilters() {
+    if (!coutureCards.length) return;
+    const query = collectionSearchInput ? collectionSearchInput.value.trim().toLowerCase() : "";
+    let visibleCount = 0;
+
+    coutureCards.forEach(card => {
+      const category = card.dataset.category || "";
+      const title = (card.dataset.title || "").toLowerCase();
+      const keywords = (card.dataset.keywords || "").toLowerCase();
+      const text = card.textContent.toLowerCase();
+
+      const matchesCategory = (activeCategory === "all" || category === activeCategory);
+      const matchesQuery = !query || title.includes(query) || keywords.includes(query) || text.includes(query);
+
+      if (matchesCategory && matchesQuery) {
+        card.classList.remove("is-filtered-out");
+        visibleCount++;
+      } else {
+        card.classList.add("is-filtered-out");
+      }
+    });
+
+    if (searchCounterChip) {
+      searchCounterChip.textContent = `Showing ${visibleCount} Creation${visibleCount === 1 ? "" : "s"}`;
+    }
+
+    if (btnClearSearch) {
+      btnClearSearch.style.display = query ? "block" : "none";
+    }
+
+    if (searchEmptyState) {
+      searchEmptyState.style.display = (visibleCount === 0) ? "block" : "none";
+    }
+  }
 
   if (coutureFilterBar && coutureCards.length > 0) {
     coutureFilterBar.querySelectorAll(".filter-pill").forEach(pill => {
       pill.addEventListener("click", () => {
         coutureFilterBar.querySelectorAll(".filter-pill").forEach(p => p.classList.remove("active"));
         pill.classList.add("active");
-
-        const filter = pill.dataset.filter;
-        coutureCards.forEach(card => {
-          const category = card.dataset.category;
-          if (filter === "all" || category === filter) {
-            card.classList.remove("is-filtered-out");
-          } else {
-            card.classList.add("is-filtered-out");
-          }
-        });
-
-        showToast(`Filtered: ${pill.textContent.trim()}`);
+        activeCategory = pill.dataset.filter || "all";
+        
+        if (activeFilterIndicator) {
+          activeFilterIndicator.textContent = `Category: ${pill.textContent.trim().replace(/\s*\(\d+\)/, "")}`;
+        }
+        applyCollectionFilters();
+        showToast(`Filtered: ${pill.textContent.trim().replace(/\s*\(\d+\)/, "")}`);
       });
+    });
+  }
+
+  if (collectionSearchInput) {
+    collectionSearchInput.addEventListener("input", () => {
+      applyCollectionFilters();
+    });
+  }
+
+  if (btnClearSearch && collectionSearchInput) {
+    btnClearSearch.addEventListener("click", () => {
+      collectionSearchInput.value = "";
+      applyCollectionFilters();
+      collectionSearchInput.focus();
+    });
+  }
+
+  if (btnResetFilters) {
+    btnResetFilters.addEventListener("click", () => {
+      if (collectionSearchInput) collectionSearchInput.value = "";
+      activeCategory = "all";
+      if (coutureFilterBar) {
+        coutureFilterBar.querySelectorAll(".filter-pill").forEach(p => {
+          p.classList.toggle("active", p.dataset.filter === "all");
+        });
+      }
+      if (activeFilterIndicator) {
+        activeFilterIndicator.textContent = "Category: All Atelier Pieces";
+      }
+      applyCollectionFilters();
+      showToast("Reset all search & category filters");
     });
   }
 
@@ -178,7 +252,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const weight = cardImg.dataset.weight || "[150g Petite Individual]";
       const allergens = cardImg.dataset.allergens || "Wheat (Gluten), Dairy (Milk)";
       const storage = cardImg.dataset.storage || "Keep chilled at 4°C–8°C";
-      currentQlTier = cardImg.dataset.tier || "mini-couture";
+      currentQlTier = cardImg.dataset.tier === "tier-bento" ? "bento-noir" : (cardImg.dataset.tier || "mini-couture");
+      currentQlFlavor = cardImg.dataset.flavor || "";
 
       if (qlTitle) qlTitle.textContent = title;
       if (qlPrice) qlPrice.textContent = price;
@@ -202,17 +277,23 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (qlCustomizeBtn) {
-    qlCustomizeBtn.addEventListener("click", () => {
+    qlCustomizeBtn.addEventListener("click", (e) => {
+      e.preventDefault();
       if (qlModal) qlModal.close();
       const builder = document.getElementById("custom-builder");
       if (builder) {
-        state.tierId = currentQlTier;
+        if (currentQlTier) state.tierId = currentQlTier;
+        if (currentQlFlavor) state.flavorId = currentQlFlavor;
         renderTiers();
+        renderFlavors();
         updateSummary();
         builder.scrollIntoView({ behavior: "smooth" });
         showToast("Design loaded into Cake Atelier", "🎂");
       } else {
-        window.location.href = "atelier.html?tier=" + (currentQlTier || "mini-couture");
+        const params = [];
+        if (currentQlTier) params.push("tier=" + encodeURIComponent(currentQlTier));
+        if (currentQlFlavor) params.push("flavor=" + encodeURIComponent(currentQlFlavor));
+        window.location.href = "atelier.html?" + params.join("&");
       }
     });
   }
@@ -331,19 +412,21 @@ document.addEventListener("DOMContentLoaded", () => {
   // 9. Quick Select buttons from Showcase cards
   document.querySelectorAll(".btn-quick-select").forEach(btn => {
     btn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const tierTarget = btn.dataset.tier;
-      if (tierTarget) {
-        const builder = document.getElementById("custom-builder");
-        if (builder) {
-          state.tierId = tierTarget;
-          renderTiers();
-          updateSummary();
-          builder.scrollIntoView({ behavior: "smooth" });
-          showToast("Loaded design into Cake Atelier", "🎂");
-        } else {
-          window.location.href = "atelier.html?tier=" + tierTarget;
-        }
+      let tierTarget = btn.dataset.tier;
+      if (tierTarget === "tier-bento") tierTarget = "bento-noir";
+      const flavorTarget = btn.dataset.flavor;
+      const builder = document.getElementById("custom-builder");
+
+      if (builder) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (tierTarget) state.tierId = tierTarget;
+        if (flavorTarget) state.flavorId = flavorTarget;
+        renderTiers();
+        renderFlavors();
+        updateSummary();
+        builder.scrollIntoView({ behavior: "smooth" });
+        showToast("Loaded selection into Cake Atelier", "🎂");
       }
     });
   });

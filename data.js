@@ -57,7 +57,7 @@ const HUCKLEBERRY_DATA = {
       weightKg: "0.5 kg",
       weightGrams: "500g",
       basePrice: 850,
-      image: "assets/images/bento-noir-25.jpg",
+      image: "assets/images/bento-noir-clean.jpg",
       description: "Chic minimalist bento cake with custom golden metallic calligraphy and constellation stars.",
       isEggless: true,
       allergens: ["Wheat (Gluten)", "Dairy (Milk)", "Soy"],
@@ -227,7 +227,7 @@ const HUCKLEBERRY_DATA = {
       storage: "Keep refrigerated at 4°C–8°C. Bring to room temperature 20 mins prior to cake-cutting.",
       flavor: "Persian Lychee Rose & Raspberry",
       price: "₹3,950",
-      image: "assets/images/moment-vintage-lambeth.jpg",
+      image: "assets/images/tier-two-tier-milestone.jpg",
       quote: "Graceful Victorian garlands, hand-piped pink roses, and soft heirloom pearls.",
       highlight: "Instagram Showcase"
     },
@@ -275,7 +275,7 @@ const HUCKLEBERRY_DATA = {
       storage: "Keep refrigerated at 4°C–8°C. Best enjoyed within 48 hours.",
       flavor: "Sicilian Lemon & Rose Wild Berry",
       price: "₹1,850",
-      image: "assets/images/love-letter-swirls.jpg",
+      image: "assets/images/couture-lambeth-clean.jpg",
       quote: "Soft swirls, tiny roses and a cake that feels like a handwritten love letter.",
       highlight: "Best Seller"
     },
@@ -298,7 +298,7 @@ const HUCKLEBERRY_DATA = {
     {
       id: "showcase-bento-noir",
       title: "Noir Gold Bento Cake",
-      subtitle: "25 But Make It Tiny",
+      subtitle: "Velvet Noir Gold Edition",
       category: "miniature",
       weight: "Bento Box [500g]",
       weightGrams: "500g",
@@ -307,7 +307,7 @@ const HUCKLEBERRY_DATA = {
       storage: "Keep chilled. Rest 15 mins at room temperature for velvety ganache bloom.",
       flavor: "Belgian Noir Chocolate Fudge",
       price: "₹850",
-      image: "assets/images/bento-noir-25.jpg",
+      image: "assets/images/bento-noir-clean.jpg",
       quote: "Velvet midnight frosting with hand-painted golden constellations and custom lettering.",
       highlight: "Bento Edition"
     },
