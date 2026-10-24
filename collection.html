@@ -23,20 +23,7 @@
   <link rel="stylesheet" href="style.css?v=4.6.0" />
 </head>
 <body>
-  <!-- Top Announcement Bar -->
-  <aside class="top-notice-bar" aria-label="Atelier Notice">
-    <div class="top-notice-inner">
-      <div class="live-indicator">
-        <span>Shafee Mohammed Road Atelier, Chennai • 100% Pure Veg Eggless Pâtisserie</span>
-      </div>
-      <div class="top-notice-cta">
-        <span>Baking Slots Open • </span>
-        <a href="atelier.html">Design in Cake Atelier ➔</a>
-      </div>
-    </div>
-  </aside>
-
-  <!-- Main Navigation Bar -->
+<!-- Main Navigation Bar -->
   <header class="site-navbar">
     <div class="navbar-inner">
       <a href="index.html" class="brand-wrapper" aria-label="Your Huckleberry Home">
@@ -126,13 +113,14 @@
 
       <!-- Live Results Meta Bar -->
       <div class="search-meta-bar">
-        <span id="search-counter-chip" class="search-counter-chip">Showing 19 Creations</span>
+        <span id="search-counter-chip" class="search-counter-chip">Showing 34 Creations</span>
         <span id="active-filter-indicator" class="active-filter-indicator">Category: All Atelier Pieces</span>
       </div>
 
       <!-- Category Filter Pills -->
       <div class="couture-filter-bar" id="couture-filter-bar">
-        <button class="filter-pill active" data-filter="all">All Creations (19)</button>
+        <button class="filter-pill active" data-filter="all">All Creations (34)</button>
+        <button class="filter-pill" data-filter="everyday">Everyday Happiness (15) ✨</button>
         <button class="filter-pill" data-filter="miniature">Miniature Couture (8)</button>
         <button class="filter-pill" data-filter="tiered">Celebration Tiers (3)</button>
         <button class="filter-pill" data-filter="bento">Bento Editions (1)</button>
@@ -158,8 +146,463 @@
         </div>
       </div>
 
-      <!-- Grid of all 19 Categorized Creations -->
+      <!-- Grid of all 34 Categorized Creations -->
       <div class="couture-grid" id="couture-grid">
+
+        <!-- ==================== PROMO BANNER: GOURMET EVERYDAY HAPPINESS (10% OFF) ==================== -->
+        <div class="everyday-promo-card" data-category="everyday" style="grid-column: 1 / -1; background: linear-gradient(135deg, #FAF7F2 0%, #F5EFEB 100%); border: 1.5px solid rgba(194,149,87,0.35); border-radius: 16px; padding: 22px 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; box-shadow: 0 4px 20px -4px rgba(74,20,32,0.06); margin-bottom: 8px;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+              <span style="font-family: var(--font-accent); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-gold-deep); font-weight: 600;">Menu Flyer Special</span>
+              <span style="background: var(--color-plum-deep); color: #FFFFFF; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600; letter-spacing: 0.04em;">10% OFF ALL ORDERS</span>
+            </div>
+            <h2 style="font-family: var(--font-editorial); font-size: 1.5rem; color: var(--color-plum-deep); margin: 0 0 4px; font-weight: 500;">Gourmet Desserts for Everyday Happiness ♡</h2>
+            <p style="font-size: 0.86rem; color: var(--color-text-muted); margin: 0; max-width: 620px;">
+              Sweet moments for a sweeter you. Fresh daily bakes from our Thousand Lights / Nungambakkam scratch kitchen. Same great desserts, now at 10% sweeter direct pricing.
+            </p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+            <a href="https://wa.me/917338777927?text=Hello%20Your%20Huckleberry!%20I%20would%20like%20to%20order%20from%20the%20Everyday%20Dessert%20Menu%20(with%2010%25%20Off)." target="_blank" rel="noopener" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 6px;">
+              <span>WhatsApp Hotline: 7338777927</span> ➔
+            </a>
+          </div>
+        </div>
+
+        <!-- ==================== CATEGORY: GOURMET DESSERTS FOR EVERYDAY HAPPINESS (15 ITEMS) ==================== -->
+        <!-- Everyday Item: Ferrero Rocher Pastry -->
+        <article class="couture-item-card" data-category="everyday" data-title="Ferrero Rocher Pastry" data-keywords="ferrero rocher hazelnut chocolate pastry crunch praline everyday menu 10% off">
+          <div class="couture-card-img btn-open-quicklook" data-title="Ferrero Rocher Pastry" data-price="₹216" data-weight="[1 pc [160g]]" data-allergens="Wheat (Gluten), Dairy (Milk), Soy, Tree Nuts (Hazelnut)" data-storage="Keep refrigerated at 4°C–8°C. Best within 48 hours." data-img="assets/images/item-ferrero-rocher.jpg" data-quote="Layered gianduja hazelnut mousse, crispy praline wafer, and whole Ferrero Rocher." data-badge="10% OFF" data-desc="Decadent square-cut hazelnut pastry layered with 70% Callebaut dark ganache, crunchy wafer feuilletine, and roasted hazelnuts, crowned with an artisan Ferrero Rocher truffle orb." data-tier="everyday">
+            <img src="assets/images/item-ferrero-rocher.jpg" alt="Ferrero Rocher Pastry" loading="lazy" />
+            <span class="couture-tag-badge" style="background: var(--color-plum-deep); color: #FFFFFF;">10% OFF</span>
+            <span class="quick-look-hint">Quick View 🔍</span>
+          </div>
+          <div class="couture-card-body">
+            <div class="card-title-row">
+              <span class="fssai-veg-marker" title="100% Eggless Pure Veg"></span>
+              <h3 class="couture-card-title">Ferrero Rocher Pastry</h3>
+            </div>
+            <div class="card-weight-row">
+              <span class="weight-badge">[1 pc [160g]]</span>
+              <span style="font-size: 0.72rem; color: var(--color-gold-deep); font-weight: 600; background: rgba(194, 149, 87, 0.12); padding: 2px 6px; border-radius: 4px;">Flyer Promo</span>
+            </div>
+            <p class="couture-card-quote">“Layered gianduja hazelnut mousse, crispy praline wafer, and whole Ferrero Rocher.”</p>
+            <div class="couture-card-footer">
+              <div style="display: flex; flex-direction: column;">
+                <span class="couture-price">₹216</span>
+                <span style="font-size: 0.72rem; color: var(--color-text-muted); text-decoration: line-through;">₹240</span>
+              </div>
+              <a href="https://wa.me/918511839668?text=Hello%20Your%20Huckleberry%21%20I%20would%20like%20to%20order%3A%20Ferrero%20Rocher%20Pastry%20%281%20pc%20%5B160g%5D%29%20-%20Regular%20%E2%82%B9240%2C%20Special%2010%25%20Off%3A%20%E2%82%B9216.%20Please%20confirm%20availability%20and%20delivery%20slot." target="_blank" rel="noopener" class="btn btn-sm btn-primary" style="display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; font-size: 0.78rem;">
+                <span>WhatsApp Order</span> ➔
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Everyday Item: Classic Baked Cheesecake -->
+        <article class="couture-item-card" data-category="everyday" data-title="Classic Baked Cheesecake" data-keywords="cheesecake baked new york basque slice creamy everyday menu 10% off">
+          <div class="couture-card-img btn-open-quicklook" data-title="Classic Baked Cheesecake" data-price="₹198" data-weight="[1 pc [150g]]" data-allergens="Wheat (Gluten), Dairy (Milk)" data-storage="Keep chilled at 4°C–8°C. Rest 10 mins before enjoying." data-img="assets/images/item-cheesecake.jpg" data-quote="Caramelized golden top, dense velvety custard center, and buttery graham crust." data-badge="10% OFF" data-desc="Pure eggless New York style baked cheesecake crafted with rich Philadelphia cream cheese, Madagascar vanilla bean, and a slow-baked caramelized top." data-tier="everyday">
+            <img src="assets/images/item-cheesecake.jpg" alt="Classic Baked Cheesecake" loading="lazy" />
+            <span class="couture-tag-badge" style="background: var(--color-plum-deep); color: #FFFFFF;">10% OFF</span>
+            <span class="quick-look-hint">Quick View 🔍</span>
+          </div>
+          <div class="couture-card-body">
+            <div class="card-title-row">
+              <span class="fssai-veg-marker" title="100% Eggless Pure Veg"></span>
+              <h3 class="couture-card-title">Classic Baked Cheesecake</h3>
+            </div>
+            <div class="card-weight-row">
+              <span class="weight-badge">[1 pc [150g]]</span>
+              <span style="font-size: 0.72rem; color: var(--color-gold-deep); font-weight: 600; background: rgba(194, 149, 87, 0.12); padding: 2px 6px; border-radius: 4px;">Flyer Promo</span>
+            </div>
+            <p class="couture-card-quote">“Caramelized golden top, dense velvety custard center, and buttery graham crust.”</p>
+            <div class="couture-card-footer">
+              <div style="display: flex; flex-direction: column;">
+                <span class="couture-price">₹198</span>
+                <span style="font-size: 0.72rem; color: var(--color-text-muted); text-decoration: line-through;">₹220</span>
+              </div>
+              <a href="https://wa.me/918511839668?text=Hello%20Your%20Huckleberry%21%20I%20would%20like%20to%20order%3A%20Classic%20Baked%20Cheesecake%20%281%20pc%20%5B150g%5D%29%20-%20Regular%20%E2%82%B9220%2C%20Special%2010%25%20Off%3A%20%E2%82%B9198.%20Please%20confirm%20availability%20and%20delivery%20slot." target="_blank" rel="noopener" class="btn btn-sm btn-primary" style="display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; font-size: 0.78rem;">
+                <span>WhatsApp Order</span> ➔
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Everyday Item: Raspberry Layered Cake -->
+        <article class="couture-item-card" data-category="everyday" data-title="Raspberry Layered Cake" data-keywords="raspberry layered cake gateau fruit fresh coulis everyday menu 10% off">
+          <div class="couture-card-img btn-open-quicklook" data-title="Raspberry Layered Cake" data-price="₹180" data-weight="[1 pc [140g]]" data-allergens="Wheat (Gluten), Dairy (Milk), Tree Nuts (Almond)" data-storage="Keep refrigerated. Best enjoyed chilled." data-img="assets/images/item-raspberry-cake.jpg" data-quote="Vibrant ruby raspberry coulis, light almond sponge, and fresh wild berries." data-badge="10% OFF" data-desc="Artisan layered gateau featuring light vanilla almond genois sponge, tangy wild raspberry compote, whipped mascarpone cream, and fresh whole raspberries." data-tier="everyday">
+            <img src="assets/images/item-raspberry-cake.jpg" alt="Raspberry Layered Cake" loading="lazy" />
+            <span class="couture-tag-badge" style="background: var(--color-plum-deep); color: #FFFFFF;">10% OFF</span>
+            <span class="quick-look-hint">Quick View 🔍</span>
+          </div>
+          <div class="couture-card-body">
+            <div class="card-title-row">
+              <span class="fssai-veg-marker" title="100% Eggless Pure Veg"></span>
+              <h3 class="couture-card-title">Raspberry Layered Cake</h3>
+            </div>
+            <div class="card-weight-row">
+              <span class="weight-badge">[1 pc [140g]]</span>
+              <span style="font-size: 0.72rem; color: var(--color-gold-deep); font-weight: 600; background: rgba(194, 149, 87, 0.12); padding: 2px 6px; border-radius: 4px;">Flyer Promo</span>
+            </div>
+            <p class="couture-card-quote">“Vibrant ruby raspberry coulis, light almond sponge, and fresh wild berries.”</p>
+            <div class="couture-card-footer">
+              <div style="display: flex; flex-direction: column;">
+                <span class="couture-price">₹180</span>
+                <span style="font-size: 0.72rem; color: var(--color-text-muted); text-decoration: line-through;">₹200</span>
+              </div>
+              <a href="https://wa.me/918511839668?text=Hello%20Your%20Huckleberry%21%20I%20would%20like%20to%20order%3A%20Raspberry%20Layered%20Cake%20%281%20pc%20%5B140g%5D%29%20-%20Regular%20%E2%82%B9200%2C%20Special%2010%25%20Off%3A%20%E2%82%B9180.%20Please%20confirm%20availability%20and%20delivery%20slot." target="_blank" rel="noopener" class="btn btn-sm btn-primary" style="display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; font-size: 0.78rem;">
+                <span>WhatsApp Order</span> ➔
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Everyday Item: Crunch Parfait Tub -->
+        <article class="couture-item-card" data-category="everyday" data-title="Crunch Parfait Tub" data-keywords="crunch tub parfait mousse biscuit salted caramel everyday menu 10% off">
+          <div class="couture-card-img btn-open-quicklook" data-title="Crunch Parfait Tub" data-price="₹180" data-weight="[1 nos [200g]]" data-allergens="Wheat (Gluten), Dairy (Milk), Soy" data-storage="Keep chilled in airtight dessert tub. Ready to spoon-dive." data-img="assets/images/item-crunch-tub.jpg" data-quote="Layers of velvety chocolate mousse, butter biscuit crunch, and praline pearls." data-badge="10% OFF" data-desc="Crystal dessert tub loaded with alternating layers of whipped Belgian chocolate mousse, toasted sable crumble, salted caramel drizzle, and golden crunchy pearls." data-tier="everyday">
+            <img src="assets/images/item-crunch-tub.jpg" alt="Crunch Parfait Tub" loading="lazy" />
+            <span class="couture-tag-badge" style="background: var(--color-plum-deep); color: #FFFFFF;">10% OFF</span>
+            <span class="quick-look-hint">Quick View 🔍</span>
+          </div>
+          <div class="couture-card-body">
+            <div class="card-title-row">
+              <span class="fssai-veg-marker" title="100% Eggless Pure Veg"></span>
+              <h3 class="couture-card-title">Crunch Parfait Tub</h3>
+            </div>
+            <div class="card-weight-row">
+              <span class="weight-badge">[1 nos [200g]]</span>
+              <span style="font-size: 0.72rem; color: var(--color-gold-deep); font-weight: 600; background: rgba(194, 149, 87, 0.12); padding: 2px 6px; border-radius: 4px;">Flyer Promo</span>
+            </div>
+            <p class="couture-card-quote">“Layers of velvety chocolate mousse, butter biscuit crunch, and praline pearls.”</p>
+            <div class="couture-card-footer">
+              <div style="display: flex; flex-direction: column;">
+                <span class="couture-price">₹180</span>
+                <span style="font-size: 0.72rem; color: var(--color-text-muted); text-decoration: line-through;">₹200</span>
+              </div>
+              <a href="https://wa.me/918511839668?text=Hello%20Your%20Huckleberry%21%20I%20would%20like%20to%20order%3A%20Crunch%20Parfait%20Tub%20%281%20nos%20%5B200g%5D%29%20-%20Regular%20%E2%82%B9200%2C%20Special%2010%25%20Off%3A%20%E2%82%B9180.%20Please%20confirm%20availability%20and%20delivery%20slot." target="_blank" rel="noopener" class="btn btn-sm btn-primary" style="display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; font-size: 0.78rem;">
+                <span>WhatsApp Order</span> ➔
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Everyday Item: Milo Tres Leches Tub -->
+        <article class="couture-item-card" data-category="everyday" data-title="Milo Tres Leches Tub" data-keywords="milo tres leches milk cake tub malt chocolate everyday menu 10% off">
+          <div class="couture-card-img btn-open-quicklook" data-title="Milo Tres Leches Tub" data-price="₹162" data-weight="[1 nos [180g]]" data-allergens="Wheat (Gluten), Dairy (Milk), Malt (Barley)" data-storage="Serve ice-cold directly from refrigerator." data-img="assets/images/item-milo-tres-leches.jpg" data-quote="Slow-soaked malt milk sponge drenched in Milo cream and rich cocoa dust." data-badge="10% OFF" data-desc="Ultra-moist Mexican tres leches sponge soaked in creamy evaporated and condensed milk infused with malt chocolate Milo, topped with velvet cream and heavy Milo dusting." data-tier="everyday">
+            <img src="assets/images/item-milo-tres-leches.jpg" alt="Milo Tres Leches Tub" loading="lazy" />
+            <span class="couture-tag-badge" style="background: var(--color-plum-deep); color: #FFFFFF;">10% OFF</span>
+            <span class="quick-look-hint">Quick View 🔍</span>
+          </div>
+          <div class="couture-card-body">
+            <div class="card-title-row">
+              <span class="fssai-veg-marker" title="100% Eggless Pure Veg"></span>
+              <h3 class="couture-card-title">Milo Tres Leches Tub</h3>
+            </div>
+            <div class="card-weight-row">
+              <span class="weight-badge">[1 nos [180g]]</span>
+              <span style="font-size: 0.72rem; color: var(--color-gold-deep); font-weight: 600; background: rgba(194, 149, 87, 0.12); padding: 2px 6px; border-radius: 4px;">Flyer Promo</span>
+            </div>
+            <p class="couture-card-quote">“Slow-soaked malt milk sponge drenched in Milo cream and rich cocoa dust.”</p>
+            <div class="couture-card-footer">
+              <div style="display: flex; flex-direction: column;">
+                <span class="couture-price">₹162</span>
+                <span style="font-size: 0.72rem; color: var(--color-text-muted); text-decoration: line-through;">₹180</span>
+              </div>
+              <a href="https://wa.me/918511839668?text=Hello%20Your%20Huckleberry%21%20I%20would%20like%20to%20order%3A%20Milo%20Tres%20Leches%20Tub%20%281%20nos%20%5B180g%5D%29%20-%20Regular%20%E2%82%B9180%2C%20Special%2010%25%20Off%3A%20%E2%82%B9162.%20Please%20confirm%20availability%20and%20delivery%20slot." target="_blank" rel="noopener" class="btn btn-sm btn-primary" style="display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; font-size: 0.78rem;">
+                <span>WhatsApp Order</span> ➔
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Everyday Item: Swiss Roll Chocolate -->
+        <article class="couture-item-card" data-category="everyday" data-title="Swiss Roll Chocolate" data-keywords="swiss roll chocolate cocoa spiral chantilly cream everyday menu 10% off">
+          <div class="couture-card-img btn-open-quicklook" data-title="Swiss Roll Chocolate" data-price="₹108" data-weight="[1 pc [120g]]" data-allergens="Wheat (Gluten), Dairy (Milk), Soy" data-storage="Keep chilled. Consume within 48 hours." data-img="assets/images/item-swiss-roll-chocolate.jpg" data-quote="Soft dark cocoa roll with a spiral swirl of silky vanilla Chantilly cream." data-badge="10% OFF" data-desc="Tender dark chocolate chiffon cake tightly rolled around fresh whipped vanilla cream, glazed with dark chocolate ganache lines and cocoa crisp nibs." data-tier="everyday">
+            <img src="assets/images/item-swiss-roll-chocolate.jpg" alt="Swiss Roll Chocolate" loading="lazy" />
+            <span class="couture-tag-badge" style="background: var(--color-plum-deep); color: #FFFFFF;">10% OFF</span>
+            <span class="quick-look-hint">Quick View 🔍</span>
+          </div>
+          <div class="couture-card-body">
+            <div class="card-title-row">
+              <span class="fssai-veg-marker" title="100% Eggless Pure Veg"></span>
+              <h3 class="couture-card-title">Swiss Roll Chocolate</h3>
+            </div>
+            <div class="card-weight-row">
+              <span class="weight-badge">[1 pc [120g]]</span>
+              <span style="font-size: 0.72rem; color: var(--color-gold-deep); font-weight: 600; background: rgba(194, 149, 87, 0.12); padding: 2px 6px; border-radius: 4px;">Flyer Promo</span>
+            </div>
+            <p class="couture-card-quote">“Soft dark cocoa roll with a spiral swirl of silky vanilla Chantilly cream.”</p>
+            <div class="couture-card-footer">
+              <div style="display: flex; flex-direction: column;">
+                <span class="couture-price">₹108</span>
+                <span style="font-size: 0.72rem; color: var(--color-text-muted); text-decoration: line-through;">₹120</span>
+              </div>
+              <a href="https://wa.me/918511839668?text=Hello%20Your%20Huckleberry%21%20I%20would%20like%20to%20order%3A%20Swiss%20Roll%20Chocolate%20%281%20pc%20%5B120g%5D%29%20-%20Regular%20%E2%82%B9120%2C%20Special%2010%25%20Off%3A%20%E2%82%B9108.%20Please%20confirm%20availability%20and%20delivery%20slot." target="_blank" rel="noopener" class="btn btn-sm btn-primary" style="display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; font-size: 0.78rem;">
+                <span>WhatsApp Order</span> ➔
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Everyday Item: Swiss Roll Strawberry -->
+        <article class="couture-item-card" data-category="everyday" data-title="Swiss Roll Strawberry" data-keywords="swiss roll strawberry pink berry roll cream everyday menu 10% off">
+          <div class="couture-card-img btn-open-quicklook" data-title="Swiss Roll Strawberry" data-price="₹108" data-weight="[1 pc [120g]]" data-allergens="Wheat (Gluten), Dairy (Milk)" data-storage="Keep refrigerated at 4°C–8°C." data-img="assets/images/item-swiss-roll-strawberry.jpg" data-quote="Polka-dot pink strawberry roll with fresh whipped berry Chantilly cream." data-badge="10% OFF" data-desc="Delicate pink sponge patterned with natural strawberry puree, rolled with whipped strawberry cream and topped with fresh sliced strawberries and glaze." data-tier="everyday">
+            <img src="assets/images/item-swiss-roll-strawberry.jpg" alt="Swiss Roll Strawberry" loading="lazy" />
+            <span class="couture-tag-badge" style="background: var(--color-plum-deep); color: #FFFFFF;">10% OFF</span>
+            <span class="quick-look-hint">Quick View 🔍</span>
+          </div>
+          <div class="couture-card-body">
+            <div class="card-title-row">
+              <span class="fssai-veg-marker" title="100% Eggless Pure Veg"></span>
+              <h3 class="couture-card-title">Swiss Roll Strawberry</h3>
+            </div>
+            <div class="card-weight-row">
+              <span class="weight-badge">[1 pc [120g]]</span>
+              <span style="font-size: 0.72rem; color: var(--color-gold-deep); font-weight: 600; background: rgba(194, 149, 87, 0.12); padding: 2px 6px; border-radius: 4px;">Flyer Promo</span>
+            </div>
+            <p class="couture-card-quote">“Polka-dot pink strawberry roll with fresh whipped berry Chantilly cream.”</p>
+            <div class="couture-card-footer">
+              <div style="display: flex; flex-direction: column;">
+                <span class="couture-price">₹108</span>
+                <span style="font-size: 0.72rem; color: var(--color-text-muted); text-decoration: line-through;">₹120</span>
+              </div>
+              <a href="https://wa.me/918511839668?text=Hello%20Your%20Huckleberry%21%20I%20would%20like%20to%20order%3A%20Swiss%20Roll%20Strawberry%20%281%20pc%20%5B120g%5D%29%20-%20Regular%20%E2%82%B9120%2C%20Special%2010%25%20Off%3A%20%E2%82%B9108.%20Please%20confirm%20availability%20and%20delivery%20slot." target="_blank" rel="noopener" class="btn btn-sm btn-primary" style="display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; font-size: 0.78rem;">
+                <span>WhatsApp Order</span> ➔
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Everyday Item: Molten Chocolate Lava Cake -->
+        <article class="couture-item-card" data-category="everyday" data-title="Molten Chocolate Lava Cake" data-keywords="lava cake molten chocolate oozing warm cake everyday menu 10% off">
+          <div class="couture-card-img btn-open-quicklook" data-title="Molten Chocolate Lava Cake" data-price="₹63" data-weight="[1 nos [110g]]" data-allergens="Wheat (Gluten), Dairy (Milk), Soy" data-storage="Refrigerate. Microwave for 15–20 seconds before serving warm." data-img="assets/images/item-lava-cake.jpg" data-quote="Warm chocolate bundt cake with an oozing molten Belgian chocolate ganache river." data-badge="10% OFF" data-desc="Warm for 15 seconds in the microwave to release an irresistible, warm, flowing center of liquid dark chocolate ganache. Pure heaven for chocolate lovers." data-tier="everyday">
+            <img src="assets/images/item-lava-cake.jpg" alt="Molten Chocolate Lava Cake" loading="lazy" />
+            <span class="couture-tag-badge" style="background: var(--color-plum-deep); color: #FFFFFF;">10% OFF</span>
+            <span class="quick-look-hint">Quick View 🔍</span>
+          </div>
+          <div class="couture-card-body">
+            <div class="card-title-row">
+              <span class="fssai-veg-marker" title="100% Eggless Pure Veg"></span>
+              <h3 class="couture-card-title">Molten Chocolate Lava Cake</h3>
+            </div>
+            <div class="card-weight-row">
+              <span class="weight-badge">[1 nos [110g]]</span>
+              <span style="font-size: 0.72rem; color: var(--color-gold-deep); font-weight: 600; background: rgba(194, 149, 87, 0.12); padding: 2px 6px; border-radius: 4px;">Flyer Promo</span>
+            </div>
+            <p class="couture-card-quote">“Warm chocolate bundt cake with an oozing molten Belgian chocolate ganache river.”</p>
+            <div class="couture-card-footer">
+              <div style="display: flex; flex-direction: column;">
+                <span class="couture-price">₹63</span>
+                <span style="font-size: 0.72rem; color: var(--color-text-muted); text-decoration: line-through;">₹70</span>
+              </div>
+              <a href="https://wa.me/918511839668?text=Hello%20Your%20Huckleberry%21%20I%20would%20like%20to%20order%3A%20Molten%20Chocolate%20Lava%20Cake%20%281%20nos%20%5B110g%5D%29%20-%20Regular%20%E2%82%B970%2C%20Special%2010%25%20Off%3A%20%E2%82%B963.%20Please%20confirm%20availability%20and%20delivery%20slot." target="_blank" rel="noopener" class="btn btn-sm btn-primary" style="display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; font-size: 0.78rem;">
+                <span>WhatsApp Order</span> ➔
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Everyday Item: London Caramel Gateau -->
+        <article class="couture-item-card" data-category="everyday" data-title="London Caramel Gateau" data-keywords="london caramel gateau sable dulce de leche ganache everyday menu 10% off">
+          <div class="couture-card-img btn-open-quicklook" data-title="London Caramel Gateau" data-price="₹198" data-weight="[1 pc [150g]]" data-allergens="Wheat (Gluten), Dairy (Milk), Soy" data-storage="Keep refrigerated. Rest 10 mins before enjoying." data-img="assets/images/item-london-caramel.jpg" data-quote="Buttery sable layers, rich dulce de leche caramel, and glossy mirror ganache." data-badge="10% OFF" data-desc="Luxurious London-style layered caramel gateau with crisp French butter sable, slow-cooked dulce de leche, and mirror-finish Valrhona dark chocolate glaze with chocolate pearls." data-tier="everyday">
+            <img src="assets/images/item-london-caramel.jpg" alt="London Caramel Gateau" loading="lazy" />
+            <span class="couture-tag-badge" style="background: var(--color-plum-deep); color: #FFFFFF;">10% OFF</span>
+            <span class="quick-look-hint">Quick View 🔍</span>
+          </div>
+          <div class="couture-card-body">
+            <div class="card-title-row">
+              <span class="fssai-veg-marker" title="100% Eggless Pure Veg"></span>
+              <h3 class="couture-card-title">London Caramel Gateau</h3>
+            </div>
+            <div class="card-weight-row">
+              <span class="weight-badge">[1 pc [150g]]</span>
+              <span style="font-size: 0.72rem; color: var(--color-gold-deep); font-weight: 600; background: rgba(194, 149, 87, 0.12); padding: 2px 6px; border-radius: 4px;">Flyer Promo</span>
+            </div>
+            <p class="couture-card-quote">“Buttery sable layers, rich dulce de leche caramel, and glossy mirror ganache.”</p>
+            <div class="couture-card-footer">
+              <div style="display: flex; flex-direction: column;">
+                <span class="couture-price">₹198</span>
+                <span style="font-size: 0.72rem; color: var(--color-text-muted); text-decoration: line-through;">₹220</span>
+              </div>
+              <a href="https://wa.me/918511839668?text=Hello%20Your%20Huckleberry%21%20I%20would%20like%20to%20order%3A%20London%20Caramel%20Gateau%20%281%20pc%20%5B150g%5D%29%20-%20Regular%20%E2%82%B9220%2C%20Special%2010%25%20Off%3A%20%E2%82%B9198.%20Please%20confirm%20availability%20and%20delivery%20slot." target="_blank" rel="noopener" class="btn btn-sm btn-primary" style="display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; font-size: 0.78rem;">
+                <span>WhatsApp Order</span> ➔
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Everyday Item: Brownie Tub Mini -->
+        <article class="couture-item-card" data-category="everyday" data-title="Brownie Tub Mini" data-keywords="brownie tub mini fudgy chocolate bites fudge everyday menu 10% off">
+          <div class="couture-card-img btn-open-quicklook" data-title="Brownie Tub Mini" data-price="₹198" data-weight="[1 nos [180g]]" data-allergens="Wheat (Gluten), Dairy (Milk), Soy" data-storage="Enjoy at room temperature or warm slightly for molten fudge bliss." data-img="assets/images/item-brownie-tub-mini.jpg" data-quote="Bite-sized fudgy dark brownie cubes smothered in rich chocolate fudge sauce." data-badge="10% OFF" data-desc="Heaped tub of moist, fudgy, crackly-crust dark chocolate brownie bites drenched in warm Belgian fudge sauce and sprinkled with dark chocolate chips." data-tier="everyday">
+            <img src="assets/images/item-brownie-tub-mini.jpg" alt="Brownie Tub Mini" loading="lazy" />
+            <span class="couture-tag-badge" style="background: var(--color-plum-deep); color: #FFFFFF;">10% OFF</span>
+            <span class="quick-look-hint">Quick View 🔍</span>
+          </div>
+          <div class="couture-card-body">
+            <div class="card-title-row">
+              <span class="fssai-veg-marker" title="100% Eggless Pure Veg"></span>
+              <h3 class="couture-card-title">Brownie Tub Mini</h3>
+            </div>
+            <div class="card-weight-row">
+              <span class="weight-badge">[1 nos [180g]]</span>
+              <span style="font-size: 0.72rem; color: var(--color-gold-deep); font-weight: 600; background: rgba(194, 149, 87, 0.12); padding: 2px 6px; border-radius: 4px;">Flyer Promo</span>
+            </div>
+            <p class="couture-card-quote">“Bite-sized fudgy dark brownie cubes smothered in rich chocolate fudge sauce.”</p>
+            <div class="couture-card-footer">
+              <div style="display: flex; flex-direction: column;">
+                <span class="couture-price">₹198</span>
+                <span style="font-size: 0.72rem; color: var(--color-text-muted); text-decoration: line-through;">₹220</span>
+              </div>
+              <a href="https://wa.me/918511839668?text=Hello%20Your%20Huckleberry%21%20I%20would%20like%20to%20order%3A%20Brownie%20Tub%20Mini%20%281%20nos%20%5B180g%5D%29%20-%20Regular%20%E2%82%B9220%2C%20Special%2010%25%20Off%3A%20%E2%82%B9198.%20Please%20confirm%20availability%20and%20delivery%20slot." target="_blank" rel="noopener" class="btn btn-sm btn-primary" style="display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; font-size: 0.78rem;">
+                <span>WhatsApp Order</span> ➔
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Everyday Item: Brownie Tub Big (Sharing) -->
+        <article class="couture-item-card" data-category="everyday" data-title="Brownie Tub Big (Sharing)" data-keywords="brownie tub big sharing walnuts hazelnuts chocolate fudge party everyday menu 10% off">
+          <div class="couture-card-img btn-open-quicklook" data-title="Brownie Tub Big (Sharing)" data-price="₹495" data-weight="[1 nos [450g]]" data-allergens="Wheat (Gluten), Dairy (Milk), Soy, Tree Nuts (Walnut, Hazelnut)" data-storage="Keep sealed at room temperature or refrigerated." data-img="assets/images/item-brownie-tub-big.jpg" data-quote="Abundant sharing tub of fudgy brownies, roasted nuts, and chocolate ganache." data-badge="10% OFF" data-desc="The ultimate party dessert tub loaded with over 450g of rich dark chocolate fudge brownies, toasted walnuts and hazelnuts, and double chocolate drizzle." data-tier="everyday">
+            <img src="assets/images/item-brownie-tub-big.jpg" alt="Brownie Tub Big (Sharing)" loading="lazy" />
+            <span class="couture-tag-badge" style="background: var(--color-plum-deep); color: #FFFFFF;">10% OFF</span>
+            <span class="quick-look-hint">Quick View 🔍</span>
+          </div>
+          <div class="couture-card-body">
+            <div class="card-title-row">
+              <span class="fssai-veg-marker" title="100% Eggless Pure Veg"></span>
+              <h3 class="couture-card-title">Brownie Tub Big (Sharing)</h3>
+            </div>
+            <div class="card-weight-row">
+              <span class="weight-badge">[1 nos [450g]]</span>
+              <span style="font-size: 0.72rem; color: var(--color-gold-deep); font-weight: 600; background: rgba(194, 149, 87, 0.12); padding: 2px 6px; border-radius: 4px;">Flyer Promo</span>
+            </div>
+            <p class="couture-card-quote">“Abundant sharing tub of fudgy brownies, roasted nuts, and chocolate ganache.”</p>
+            <div class="couture-card-footer">
+              <div style="display: flex; flex-direction: column;">
+                <span class="couture-price">₹495</span>
+                <span style="font-size: 0.72rem; color: var(--color-text-muted); text-decoration: line-through;">₹550</span>
+              </div>
+              <a href="https://wa.me/918511839668?text=Hello%20Your%20Huckleberry%21%20I%20would%20like%20to%20order%3A%20Brownie%20Tub%20Big%20%28Sharing%29%20%281%20nos%20%5B450g%5D%29%20-%20Regular%20%E2%82%B9550%2C%20Special%2010%25%20Off%3A%20%E2%82%B9495.%20Please%20confirm%20availability%20and%20delivery%20slot." target="_blank" rel="noopener" class="btn btn-sm btn-primary" style="display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; font-size: 0.78rem;">
+                <span>WhatsApp Order</span> ➔
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Everyday Item: Dark Chocolate Cupcake -->
+        <article class="couture-item-card" data-category="everyday" data-title="Dark Chocolate Cupcake" data-keywords="cupcake chocolate fudge buttercream swirl sprinkles everyday menu 10% off">
+          <div class="couture-card-img btn-open-quicklook" data-title="Dark Chocolate Cupcake" data-price="₹58" data-weight="[1 pc [90g]]" data-allergens="Wheat (Gluten), Dairy (Milk), Soy" data-storage="Store at cool room temperature. Best fresh." data-img="assets/images/item-cupcake.jpg" data-quote="Velvety cocoa sponge crowned with a sky-high swirl of chocolate fudge buttercream." data-badge="10% OFF" data-desc="Classic dark cocoa cupcake in fluted paper casing, piped with an indulgent tower of whipped chocolate buttercream and delicate chocolate vermicelli." data-tier="everyday">
+            <img src="assets/images/item-cupcake.jpg" alt="Dark Chocolate Cupcake" loading="lazy" />
+            <span class="couture-tag-badge" style="background: var(--color-plum-deep); color: #FFFFFF;">10% OFF</span>
+            <span class="quick-look-hint">Quick View 🔍</span>
+          </div>
+          <div class="couture-card-body">
+            <div class="card-title-row">
+              <span class="fssai-veg-marker" title="100% Eggless Pure Veg"></span>
+              <h3 class="couture-card-title">Dark Chocolate Cupcake</h3>
+            </div>
+            <div class="card-weight-row">
+              <span class="weight-badge">[1 pc [90g]]</span>
+              <span style="font-size: 0.72rem; color: var(--color-gold-deep); font-weight: 600; background: rgba(194, 149, 87, 0.12); padding: 2px 6px; border-radius: 4px;">Flyer Promo</span>
+            </div>
+            <p class="couture-card-quote">“Velvety cocoa sponge crowned with a sky-high swirl of chocolate fudge buttercream.”</p>
+            <div class="couture-card-footer">
+              <div style="display: flex; flex-direction: column;">
+                <span class="couture-price">₹58</span>
+                <span style="font-size: 0.72rem; color: var(--color-text-muted); text-decoration: line-through;">₹65</span>
+              </div>
+              <a href="https://wa.me/918511839668?text=Hello%20Your%20Huckleberry%21%20I%20would%20like%20to%20order%3A%20Dark%20Chocolate%20Cupcake%20%281%20pc%20%5B90g%5D%29%20-%20Regular%20%E2%82%B965%2C%20Special%2010%25%20Off%3A%20%E2%82%B958.%20Please%20confirm%20availability%20and%20delivery%20slot." target="_blank" rel="noopener" class="btn btn-sm btn-primary" style="display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; font-size: 0.78rem;">
+                <span>WhatsApp Order</span> ➔
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Everyday Item: Gourmet Nutella Cookie -->
+        <article class="couture-item-card" data-category="everyday" data-title="Gourmet Nutella Cookie" data-keywords="nutella cookie giant levain chunky hazelnut chocolate chip everyday menu 10% off">
+          <div class="couture-card-img btn-open-quicklook" data-title="Gourmet Nutella Cookie" data-price="₹89" data-weight="[1 nos [110g]]" data-allergens="Wheat (Gluten), Dairy (Milk), Tree Nuts (Hazelnut), Soy" data-storage="Warm in oven or microwave for 10 seconds for gooey molten center." data-img="assets/images/item-nutella-cookie.jpg" data-quote="Chunky Levain-style artisan cookie with roasted hazelnuts and molten Nutella core." data-badge="10% OFF" data-desc="Thick, chewy, golden-brown cookie loaded with chocolate chips and roasted hazelnuts, baked with a gooey heart of pure Nutella that oozes when broken open." data-tier="everyday">
+            <img src="assets/images/item-nutella-cookie.jpg" alt="Gourmet Nutella Cookie" loading="lazy" />
+            <span class="couture-tag-badge" style="background: var(--color-plum-deep); color: #FFFFFF;">10% OFF</span>
+            <span class="quick-look-hint">Quick View 🔍</span>
+          </div>
+          <div class="couture-card-body">
+            <div class="card-title-row">
+              <span class="fssai-veg-marker" title="100% Eggless Pure Veg"></span>
+              <h3 class="couture-card-title">Gourmet Nutella Cookie</h3>
+            </div>
+            <div class="card-weight-row">
+              <span class="weight-badge">[1 nos [110g]]</span>
+              <span style="font-size: 0.72rem; color: var(--color-gold-deep); font-weight: 600; background: rgba(194, 149, 87, 0.12); padding: 2px 6px; border-radius: 4px;">Flyer Promo</span>
+            </div>
+            <p class="couture-card-quote">“Chunky Levain-style artisan cookie with roasted hazelnuts and molten Nutella core.”</p>
+            <div class="couture-card-footer">
+              <div style="display: flex; flex-direction: column;">
+                <span class="couture-price">₹89</span>
+                <span style="font-size: 0.72rem; color: var(--color-text-muted); text-decoration: line-through;">₹99</span>
+              </div>
+              <a href="https://wa.me/918511839668?text=Hello%20Your%20Huckleberry%21%20I%20would%20like%20to%20order%3A%20Gourmet%20Nutella%20Cookie%20%281%20nos%20%5B110g%5D%29%20-%20Regular%20%E2%82%B999%2C%20Special%2010%25%20Off%3A%20%E2%82%B989.%20Please%20confirm%20availability%20and%20delivery%20slot." target="_blank" rel="noopener" class="btn btn-sm btn-primary" style="display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; font-size: 0.78rem;">
+                <span>WhatsApp Order</span> ➔
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Everyday Item: Classic Italian Tiramisu Tub -->
+        <article class="couture-item-card" data-category="everyday" data-title="Classic Italian Tiramisu Tub" data-keywords="tiramisu tub italian mascarpone espresso savoiardi cocoa everyday menu 10% off">
+          <div class="couture-card-img btn-open-quicklook" data-title="Classic Italian Tiramisu Tub" data-price="₹225" data-weight="[1 nos [200g]]" data-allergens="Wheat (Gluten), Dairy (Milk), Coffee" data-storage="Keep chilled at 4°C. Serve cold." data-img="assets/images/item-tiramisu-tub.jpg" data-quote="Espresso-soaked savoiardi ladyfingers, whipped mascarpone cream, and Dutch cocoa." data-badge="10% OFF" data-desc="Authentic eggless Venetian recipe crafted with freshly pulled espresso-soaked biscuits, fluffy Italian mascarpone cream, and a rich velvet blanket of dark cocoa powder." data-tier="everyday">
+            <img src="assets/images/item-tiramisu-tub.jpg" alt="Classic Italian Tiramisu Tub" loading="lazy" />
+            <span class="couture-tag-badge" style="background: var(--color-plum-deep); color: #FFFFFF;">10% OFF</span>
+            <span class="quick-look-hint">Quick View 🔍</span>
+          </div>
+          <div class="couture-card-body">
+            <div class="card-title-row">
+              <span class="fssai-veg-marker" title="100% Eggless Pure Veg"></span>
+              <h3 class="couture-card-title">Classic Italian Tiramisu Tub</h3>
+            </div>
+            <div class="card-weight-row">
+              <span class="weight-badge">[1 nos [200g]]</span>
+              <span style="font-size: 0.72rem; color: var(--color-gold-deep); font-weight: 600; background: rgba(194, 149, 87, 0.12); padding: 2px 6px; border-radius: 4px;">Flyer Promo</span>
+            </div>
+            <p class="couture-card-quote">“Espresso-soaked savoiardi ladyfingers, whipped mascarpone cream, and Dutch cocoa.”</p>
+            <div class="couture-card-footer">
+              <div style="display: flex; flex-direction: column;">
+                <span class="couture-price">₹225</span>
+                <span style="font-size: 0.72rem; color: var(--color-text-muted); text-decoration: line-through;">₹250</span>
+              </div>
+              <a href="https://wa.me/918511839668?text=Hello%20Your%20Huckleberry%21%20I%20would%20like%20to%20order%3A%20Classic%20Italian%20Tiramisu%20Tub%20%281%20nos%20%5B200g%5D%29%20-%20Regular%20%E2%82%B9250%2C%20Special%2010%25%20Off%3A%20%E2%82%B9225.%20Please%20confirm%20availability%20and%20delivery%20slot." target="_blank" rel="noopener" class="btn btn-sm btn-primary" style="display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; font-size: 0.78rem;">
+                <span>WhatsApp Order</span> ➔
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Everyday Item: Vanilla Cake Pops Duo -->
+        <article class="couture-item-card" data-category="everyday" data-title="Vanilla Cake Pops Duo" data-keywords="cake pops vanilla duo pops pink white ribbon gift everyday menu 10% off">
+          <div class="couture-card-img btn-open-quicklook" data-title="Vanilla Cake Pops Duo" data-price="₹45" data-weight="[1 pc [Duo 80g]]" data-allergens="Wheat (Gluten), Dairy (Milk)" data-storage="Keep chilled in cool dry place." data-img="assets/images/item-cake-pops-vanilla.jpg" data-quote="Festive duo of pink and white glazed vanilla cake pops tied with satin ribbon." data-badge="10% OFF" data-desc="Two artisanal spherical vanilla sponge cake pops coated in glossy pastel raspberry and white chocolate candy shells with sprinkles, hand-tied with a lovely satin ribbon." data-tier="everyday">
+            <img src="assets/images/item-cake-pops-vanilla.jpg" alt="Vanilla Cake Pops Duo" loading="lazy" />
+            <span class="couture-tag-badge" style="background: var(--color-plum-deep); color: #FFFFFF;">10% OFF</span>
+            <span class="quick-look-hint">Quick View 🔍</span>
+          </div>
+          <div class="couture-card-body">
+            <div class="card-title-row">
+              <span class="fssai-veg-marker" title="100% Eggless Pure Veg"></span>
+              <h3 class="couture-card-title">Vanilla Cake Pops Duo</h3>
+            </div>
+            <div class="card-weight-row">
+              <span class="weight-badge">[1 pc [Duo 80g]]</span>
+              <span style="font-size: 0.72rem; color: var(--color-gold-deep); font-weight: 600; background: rgba(194, 149, 87, 0.12); padding: 2px 6px; border-radius: 4px;">Flyer Promo</span>
+            </div>
+            <p class="couture-card-quote">“Festive duo of pink and white glazed vanilla cake pops tied with satin ribbon.”</p>
+            <div class="couture-card-footer">
+              <div style="display: flex; flex-direction: column;">
+                <span class="couture-price">₹45</span>
+                <span style="font-size: 0.72rem; color: var(--color-text-muted); text-decoration: line-through;">₹50</span>
+              </div>
+              <a href="https://wa.me/918511839668?text=Hello%20Your%20Huckleberry%21%20I%20would%20like%20to%20order%3A%20Vanilla%20Cake%20Pops%20Duo%20%281%20pc%20%5BDuo%2080g%5D%29%20-%20Regular%20%E2%82%B950%2C%20Special%2010%25%20Off%3A%20%E2%82%B945.%20Please%20confirm%20availability%20and%20delivery%20slot." target="_blank" rel="noopener" class="btn btn-sm btn-primary" style="display: inline-flex; align-items: center; gap: 4px; padding: 6px 12px; font-size: 0.78rem;">
+                <span>WhatsApp Order</span> ➔
+              </a>
+            </div>
+          </div>
+        </article>
 
         <!-- ==================== CATEGORY: MINIATURE COUTURE (8 ITEMS) ==================== -->
         

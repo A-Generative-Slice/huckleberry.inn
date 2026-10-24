@@ -68,16 +68,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Quick-Look Elements
   const qlModal = document.getElementById("quick-look-modal");
-  const qlCloseBtn = document.getElementById("btn-close-ql");
-  const qlTitle = document.getElementById("ql-title");
-  const qlBadge = document.getElementById("ql-badge");
-  const qlImg = document.getElementById("ql-img");
-  const qlQuote = document.getElementById("ql-quote");
-  const qlDesc = document.getElementById("ql-desc");
-  const qlPrice = document.getElementById("ql-price");
-  const qlWeight = document.getElementById("ql-weight");
-  const qlAllergens = document.getElementById("ql-allergens");
-  const qlStorage = document.getElementById("ql-storage");
+  const qlCloseBtn = document.getElementById("btn-close-ql") || document.getElementById("btn-close-quicklook");
+  const qlTitle = document.getElementById("ql-title") || document.getElementById("ql-modal-title");
+  const qlBadge = document.getElementById("ql-badge") || document.getElementById("ql-modal-badge");
+  const qlImg = document.getElementById("ql-img") || document.getElementById("ql-modal-img");
+  const qlQuote = document.getElementById("ql-quote") || document.getElementById("ql-modal-quote");
+  const qlDesc = document.getElementById("ql-desc") || document.getElementById("ql-modal-desc");
+  const qlPrice = document.getElementById("ql-price") || document.getElementById("ql-modal-price");
+  const qlWeight = document.getElementById("ql-weight") || document.getElementById("ql-modal-weight");
+  const qlAllergens = document.getElementById("ql-allergens") || document.getElementById("ql-modal-allergens");
+  const qlStorage = document.getElementById("ql-storage") || document.getElementById("ql-modal-storage");
   const qlCustomizeBtn = document.getElementById("btn-ql-customize");
   let currentQlTier = "mini-couture";
   let currentQlFlavor = "";
@@ -183,6 +183,15 @@ document.addEventListener("DOMContentLoaded", () => {
       searchCounterChip.textContent = `Showing ${visibleCount} Creation${visibleCount === 1 ? "" : "s"}`;
     }
 
+    const promoCard = document.querySelector(".everyday-promo-card");
+    if (promoCard) {
+      if ((activeCategory === "all" || activeCategory === "everyday") && !query) {
+        promoCard.style.display = "flex";
+      } else {
+        promoCard.style.display = "none";
+      }
+    }
+
     if (btnClearSearch) {
       btnClearSearch.style.display = query ? "block" : "none";
     }
@@ -265,6 +274,21 @@ document.addEventListener("DOMContentLoaded", () => {
       if (qlAllergens) qlAllergens.textContent = allergens;
       if (qlStorage) qlStorage.textContent = storage;
 
+      if (qlCustomizeBtn) {
+        if (cardImg.dataset.tier === "everyday") {
+          qlCustomizeBtn.innerHTML = `<span>Order via WhatsApp (10% Off) ➔</span>`;
+          const msg = `Hello Your Huckleberry! I would like to order: ${title} (${weight}) at special 10% off: ${price}. Please confirm availability and slot.`;
+          qlCustomizeBtn.href = `https://wa.me/918511839668?text=${encodeURIComponent(msg)}`;
+          qlCustomizeBtn.target = "_blank";
+          qlCustomizeBtn.rel = "noopener";
+        } else {
+          qlCustomizeBtn.innerHTML = `<span>Configure in Atelier ➔</span>`;
+          qlCustomizeBtn.href = "atelier.html";
+          qlCustomizeBtn.removeAttribute("target");
+          qlCustomizeBtn.removeAttribute("rel");
+        }
+      }
+
       if (qlModal) qlModal.showModal();
     });
   });
@@ -278,6 +302,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (qlCustomizeBtn) {
     qlCustomizeBtn.addEventListener("click", (e) => {
+      if (currentQlTier === "everyday") {
+        if (qlModal) qlModal.close();
+        return; // Allows WhatsApp link to open directly
+      }
       e.preventDefault();
       if (qlModal) qlModal.close();
       const builder = document.getElementById("custom-builder");

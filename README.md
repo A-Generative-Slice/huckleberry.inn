@@ -98,6 +98,26 @@ python3 -m http.server 3000
 npx serve .
 ```
 
+### 7. Everyday Happiness Desserts Repertoire (15 Items • 10% Off)
+- **Menu Flyer Special**: 15 individually handcrafted everyday bakes from the Thousand Lights & Nungambakkam kitchen.
+- **100% Text-Free Photography**: Clean editorial food photography for all 15 items:
+  - *Ferrero Rocher Pastry* (1 pc • ₹216 / ₹240)
+  - *Classic Baked Cheesecake* (1 pc • ₹198 / ₹220)
+  - *Raspberry Layered Cake* (1 pc • ₹180 / ₹200)
+  - *Crunch Parfait Tub* (1 nos • ₹180 / ₹200)
+  - *Milo Tres Leches Tub* (1 nos • ₹162 / ₹180)
+  - *Swiss Roll Chocolate* (1 pc • ₹108 / ₹120)
+  - *Swiss Roll Strawberry* (1 pc • ₹108 / ₹120)
+  - *Molten Chocolate Lava Cake* (1 nos • ₹63 / ₹70)
+  - *London Caramel Gateau* (1 pc • ₹198 / ₹220)
+  - *Brownie Tub Mini* (1 nos • ₹198 / ₹220)
+  - *Brownie Tub Big Sharing* (1 nos • ₹495 / ₹550)
+  - *Dark Chocolate Cupcake* (1 pc • ₹58 / ₹65)
+  - *Gourmet Nutella Cookie* (1 nos • ₹89 / ₹99)
+  - *Classic Italian Tiramisu Tub* (1 nos • ₹225 / ₹250)
+  - *Vanilla Cake Pops Duo* (1 pc • ₹45 / ₹50)
+- **Minimalist Top Header**: Removed top head address announcement bar across all 7 pages for an ultra-clean, flush luxury Parisian layout.
+
 Visit `http://localhost:3000` in your web browser.
 
 ---
@@ -105,5 +125,6 @@ Visit `http://localhost:3000` in your web browser.
 ## 📄 License & Attribution
 
 - **Client Brand**: [Your Huckleberry (@huckleberry.inn)](https://www.instagram.com/huckleberry.inn) • Shafee Mohammed Road, Nungambakkam, Chennai.
+- **Everyday Kitchen Dispatch**: 13/5 Gulam Abbas Ali Khan 4th Street, Thousand Lights, Chennai.
 - **Engineered By**: [A Generative Slice](https://github.com/A-Generative-Slice)
 - **Copyright**: © 2026 A Generative Slice & Your Huckleberry. All rights reserved.
