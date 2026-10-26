@@ -56,21 +56,86 @@
       </div>
     </div>
 
-    <!-- Mobile Slide-Down Navigation Drawer (High-Quality Glassmorphism) -->
+    <!-- Modern Mobile Slide-Down Navigation Drawer & Backdrop -->
+    <div id="mobile-nav-backdrop" class="mobile-nav-backdrop" aria-hidden="true"></div>
     <div id="mobile-nav-drawer" class="mobile-nav-drawer" aria-hidden="true">
       <ul class="mobile-drawer-links">
-        <li><a href="index.html" class="mobile-link">Home</a></li>
-        <li><a href="collection.html" class="mobile-link">The Mini Couture Collection</a></li>
-        <li><a href="atelier.html" class="mobile-link active">Interactive Cake Atelier</a></li>
-        <li><a href="pipeline.html" class="mobile-link">Creation Pipeline &amp; Live Board</a></li>
-        <li><a href="gallery.html" class="mobile-link">Artisanal Specialties &amp; Tarts</a></li>
-        <li><a href="location.html" class="mobile-link">Shafee Mohammed Rd Atelier</a></li>
-        <li><a href="faq.html" class="mobile-link">Pâtisserie FAQ &amp; Guidance</a></li>
+        <li>
+          <a href="index.html" class="mobile-link">
+            <span class="nav-item-icon">🏠</span>
+            <div class="nav-item-content">
+              <span class="nav-item-title">Home</span>
+              <span class="nav-item-desc">Showcase &amp; Bestsellers</span>
+            </div>
+            <span class="nav-item-arrow">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="collection.html" class="mobile-link">
+            <span class="nav-item-icon">🍰</span>
+            <div class="nav-item-content">
+              <span class="nav-item-title">Cakes &amp; Desserts</span>
+              <span class="nav-item-desc">Complete Menu • 10% Off Specials</span>
+            </div>
+            <span class="nav-item-arrow">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="atelier.html" class="mobile-link active">
+            <span class="nav-item-icon">🎂</span>
+            <div class="nav-item-content">
+              <span class="nav-item-title">Custom Cake Builder</span>
+              <span class="nav-item-desc">Design Your Cake &amp; Instant Price</span>
+            </div>
+            <span class="nav-item-arrow">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="pipeline.html" class="mobile-link">
+            <span class="nav-item-icon">📦</span>
+            <div class="nav-item-content">
+              <span class="nav-item-title">Order Tracking</span>
+              <span class="nav-item-desc">Live Kitchen Baking &amp; Delivery</span>
+            </div>
+            <span class="nav-item-arrow">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="gallery.html" class="mobile-link">
+            <span class="nav-item-icon">🖼️</span>
+            <div class="nav-item-content">
+              <span class="nav-item-title">Cake Gallery</span>
+              <span class="nav-item-desc">Customer Photos &amp; Celebration Tiers</span>
+            </div>
+            <span class="nav-item-arrow">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="location.html" class="mobile-link">
+            <span class="nav-item-icon">📍</span>
+            <div class="nav-item-content">
+              <span class="nav-item-title">Store &amp; Pickup</span>
+              <span class="nav-item-desc">Nungambakkam Studio &amp; Directions</span>
+            </div>
+            <span class="nav-item-arrow">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="faq.html" class="mobile-link">
+            <span class="nav-item-icon">❓</span>
+            <div class="nav-item-content">
+              <span class="nav-item-title">FAQs &amp; Help</span>
+              <span class="nav-item-desc">100% Pure Veg Standard &amp; Delivery</span>
+            </div>
+            <span class="nav-item-arrow">→</span>
+          </a>
+        </li>
       </ul>
       <div class="mobile-drawer-footer">
-        <div class="drawer-contact-pill">
-          <span>WhatsApp Kitchen: +91 8511839668</span>
-        </div>
+        <a href="https://wa.me/918511839668" target="_blank" rel="noopener" class="drawer-whatsapp-btn">
+          <span class="wa-dot"></span>
+          <span>Chat on WhatsApp: +91 8511839668</span>
+        </a>
       </div>
     </div>
   </header>
@@ -115,13 +180,13 @@
       <!-- Step-by-Step Configuration Panels -->
       <div class="builder-controls">
         
-        <!-- Step 1: Architectural Scale & Tier Selection -->
+        <!-- Step 1: Cake Size Selection -->
         <div class="control-group">
           <div class="control-header">
             <span class="step-badge">1</span>
             <div>
-              <h2 class="control-title">Architectural Scale &amp; Form Factor</h2>
-              <p class="control-subtitle">Portion precision from individual mini boxes to three-tier grand wedding monuments</p>
+              <h2 class="control-title">Choose Cake Size</h2>
+              <p class="control-subtitle">Pick the perfect size for your celebration, from mini dessert boxes to grand celebration cakes</p>
             </div>
           </div>
           <div id="tier-cards-container" class="tier-select-grid">
@@ -129,13 +194,13 @@
           </div>
         </div>
 
-        <!-- Step 2: Artisan Flavor Profile -->
+        <!-- Step 2: Flavor Selection -->
         <div class="control-group">
           <div class="control-header">
             <span class="step-badge">2</span>
             <div>
-              <h2 class="control-title">Artisan Flavor Palette</h2>
-              <p class="control-subtitle">Hand-steeped botanicals, pure Belgian chocolate, and real Madagascar vanilla bean caviar</p>
+              <h2 class="control-title">Choose Cake Flavor</h2>
+              <p class="control-subtitle">100% pure vegetarian (eggless) recipes made with real Belgian chocolate and fresh ingredients</p>
             </div>
           </div>
           <div id="flavor-cards-container" class="flavor-select-grid">
@@ -143,13 +208,13 @@
           </div>
         </div>
 
-        <!-- Step 3: Pâtisserie Finish & Victorian Lambeth Piping -->
+        <!-- Step 3: Decoration Style -->
         <div class="control-group">
           <div class="control-header">
             <span class="step-badge">3</span>
             <div>
-              <h2 class="control-title">Hand-Piped Pâtisserie Finish</h2>
-              <p class="control-subtitle">Signature Victorian Lambeth drop-line swags, shell borders, and luster pearls</p>
+              <h2 class="control-title">Choose Cake Design Style</h2>
+              <p class="control-subtitle">Select your favorite decoration and hand-piped frosting style</p>
             </div>
           </div>
           <div id="finish-cards-container" class="finish-select-grid">
@@ -157,61 +222,72 @@
           </div>
         </div>
 
-        <!-- Step 4: Calligraphy Plaque & Dietary Notes -->
+        <!-- Step 4: Custom Message & Dietary Guarantee -->
         <div class="control-group">
           <div class="control-header">
             <span class="step-badge">4</span>
             <div>
-              <h2 class="control-title">Calligraphed Plaque &amp; Dietary Standard</h2>
-              <p class="control-subtitle">Hand-piped on a fondant disc or delicate chocolate wafer</p>
+              <h2 class="control-title">Message on Cake</h2>
+              <p class="control-subtitle">Custom name, birthday wish, or celebration text to be piped on your cake</p>
             </div>
           </div>
           <div class="form-row">
             <div class="form-field full-width">
-              <label for="txt-inscription">Piped Inscription (Max 26 characters)</label>
-              <input type="text" id="txt-inscription" placeholder="e.g. Happy 25th Milestone, Forever &amp; Always" maxlength="26" value="Happy Celebration" />
-              <span class="field-hint">Piped in cursive gold or rich chocolate royal icing by our pastry chef.</span>
+              <label for="txt-inscription">Text / Name on Cake (Max 26 letters)</label>
+              <input type="text" id="txt-inscription" placeholder="e.g. Happy Birthday Joe, Happy Anniversary" maxlength="26" value="Happy Celebration" />
+              <span class="field-hint">Hand-piped in golden or rich chocolate royal icing on your cake.</span>
             </div>
           </div>
-          <div class="dietary-toggle-wrap">
-            <label class="toggle-control" for="chk-eggless">
-              <input type="checkbox" id="chk-eggless" checked />
-              <span class="toggle-slider"></span>
-              <span class="toggle-label-text">100% Eggless Pure Veg Guarantee</span>
-            </label>
-            <span id="eggless-badge" class="eggless-active-badge">100% Pure Veg Active</span>
+          <div class="dietary-toggle-wrap eggless-guarantee-card">
+            <div class="eggless-guarantee-left">
+              <span class="fssai-veg-emblem-box" title="FSSAI 100% Pure Vegetarian">
+                <span class="fssai-veg-dot"></span>
+              </span>
+              <div class="eggless-guarantee-text">
+                <span class="eggless-guarantee-title">100% Pure Vegetarian &amp; Eggless</span>
+                <span class="eggless-guarantee-sub">Strictly eggless Parisian recipe standard • Belgian Callebaut chocolate &amp; French cultured butter</span>
+              </div>
+            </div>
+            <div class="eggless-verified-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Kitchen Certified</span>
+            </div>
+            <input type="checkbox" id="chk-eggless" checked style="display: none;" />
+            <span id="eggless-badge" style="display: none;">100% Pure Veg Active</span>
           </div>
         </div>
 
-        <!-- Step 5: Chennai Delivery Zone & Morning Baking Slot -->
+        <!-- Step 5: Delivery or Kitchen Pickup -->
         <div class="control-group">
           <div class="control-header">
             <span class="step-badge">5</span>
             <div>
-              <h2 class="control-title">Chennai Delivery Zone &amp; Oven Slot</h2>
-              <p class="control-subtitle">Temperature-controlled air-conditioned dispatch or complimentary atelier pickup</p>
+              <h2 class="control-title">Delivery or Kitchen Pickup</h2>
+              <p class="control-subtitle">Select your delivery location in Chennai and preferred delivery time</p>
             </div>
           </div>
           <div class="form-row two-col">
             <div class="form-field">
-              <label for="select-zone">Delivery Destination / Pickup</label>
+              <label for="select-zone">Delivery Location / Free Pickup</label>
               <select id="select-zone" class="form-select">
                 <!-- Populated dynamically by app.js -->
               </select>
             </div>
             <div class="form-field">
-              <label for="date-delivery">Celebration Date</label>
+              <label for="date-delivery">Delivery Date</label>
               <input type="date" id="date-delivery" class="form-select" />
             </div>
           </div>
           <div class="form-row">
             <div class="form-field full-width">
-              <label for="slot-delivery">Kitchen Baking &amp; Delivery Window</label>
+              <label for="slot-delivery">Preferred Time Slot</label>
               <select id="slot-delivery" class="form-select slot-select">
-                <option value="11:00 AM – 1:00 PM (Morning Fresh)">11:00 AM – 1:00 PM (Morning Fresh Dispatch)</option>
-                <option value="1:00 PM – 4:00 PM (Afternoon Tea)">1:00 PM – 4:00 PM (Afternoon Tea Dispatch)</option>
-                <option value="4:00 PM – 6:00 PM (Fresh Evening)" selected>4:00 PM – 6:00 PM (Fresh Evening Dispatch - Recommended)</option>
-                <option value="6:00 PM – 8:30 PM (Celebration Twilight)">6:00 PM – 8:30 PM (Celebration Twilight Dispatch)</option>
+                <option value="11:00 AM – 1:00 PM">Morning: 11:00 AM – 1:00 PM</option>
+                <option value="1:00 PM – 4:00 PM">Afternoon: 1:00 PM – 4:00 PM</option>
+                <option value="4:00 PM – 6:00 PM" selected>Evening: 4:00 PM – 6:00 PM (Most Popular)</option>
+                <option value="6:00 PM – 8:30 PM">Night: 6:00 PM – 8:30 PM</option>
               </select>
             </div>
           </div>

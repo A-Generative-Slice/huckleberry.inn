@@ -88,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Mobile Nav Elements
   const mobileNavToggle = document.getElementById("btn-mobile-nav");
   const mobileNavDrawer = document.getElementById("mobile-nav-drawer");
+  const mobileNavBackdrop = document.getElementById("mobile-nav-backdrop");
 
   // Initialize Date Input
   if (dateInput) {
@@ -107,20 +108,47 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 3200);
   }
 
-  // 2. Mobile Navigation Toggle with Outside-Click & Escape Dismiss
+  // 2. Mobile Navigation Toggle with Backdrop, Outside-Click & Escape Dismiss
+  function closeMobileNav() {
+    if (mobileNavDrawer) mobileNavDrawer.classList.remove("open");
+    if (mobileNavToggle) {
+      mobileNavToggle.classList.remove("open");
+      mobileNavToggle.setAttribute("aria-expanded", "false");
+    }
+    if (mobileNavBackdrop) mobileNavBackdrop.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+
+  function openMobileNav() {
+    if (mobileNavDrawer) mobileNavDrawer.classList.add("open");
+    if (mobileNavToggle) {
+      mobileNavToggle.classList.add("open");
+      mobileNavToggle.setAttribute("aria-expanded", "true");
+    }
+    if (mobileNavBackdrop) mobileNavBackdrop.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+
   if (mobileNavToggle && mobileNavDrawer) {
     mobileNavToggle.addEventListener("click", (e) => {
       e.stopPropagation();
-      const isOpen = mobileNavDrawer.classList.toggle("open");
-      mobileNavToggle.classList.toggle("open", isOpen);
-      mobileNavToggle.setAttribute("aria-expanded", String(isOpen));
+      const isOpen = mobileNavDrawer.classList.contains("open");
+      if (isOpen) {
+        closeMobileNav();
+      } else {
+        openMobileNav();
+      }
     });
+
+    if (mobileNavBackdrop) {
+      mobileNavBackdrop.addEventListener("click", () => {
+        closeMobileNav();
+      });
+    }
 
     mobileNavDrawer.querySelectorAll("a").forEach(link => {
       link.addEventListener("click", () => {
-        mobileNavDrawer.classList.remove("open");
-        mobileNavToggle.classList.remove("open");
-        mobileNavToggle.setAttribute("aria-expanded", "false");
+        closeMobileNav();
       });
     });
 
@@ -128,9 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("click", (e) => {
       if (mobileNavDrawer.classList.contains("open")) {
         if (!mobileNavDrawer.contains(e.target) && !mobileNavToggle.contains(e.target)) {
-          mobileNavDrawer.classList.remove("open");
-          mobileNavToggle.classList.remove("open");
-          mobileNavToggle.setAttribute("aria-expanded", "false");
+          closeMobileNav();
         }
       }
     });
@@ -138,9 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Escape key closes drawer
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && mobileNavDrawer.classList.contains("open")) {
-        mobileNavDrawer.classList.remove("open");
-        mobileNavToggle.classList.remove("open");
-        mobileNavToggle.setAttribute("aria-expanded", "false");
+        closeMobileNav();
       }
     });
   }
@@ -258,7 +282,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const quote = cardImg.dataset.quote || "";
       const desc = cardImg.dataset.desc || "";
       const badge = cardImg.dataset.badge || "Atelier Collection";
-      const weight = cardImg.dataset.weight || "[150g Petite Individual]";
+      const weight = cardImg.dataset.weight || "150g Individual";
       const allergens = cardImg.dataset.allergens || "Wheat (Gluten), Dairy (Milk)";
       const storage = cardImg.dataset.storage || "Keep chilled at 4°C–8°C";
       currentQlTier = cardImg.dataset.tier === "tier-bento" ? "bento-noir" : (cardImg.dataset.tier || "mini-couture");
@@ -427,7 +451,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!zoneSelect) return;
     zoneSelect.innerHTML = HUCKLEBERRY_DATA.deliveryZones.map(z => `
       <option value="${z.pin}" ${z.pin === state.deliveryPin ? "selected" : ""}>
-        ${z.zone} (${z.fee === 0 ? "Free Kitchen Pickup" : `+ ₹${z.fee} Delivery`})
+        ${z.zone} ${z.fee > 0 ? `(+₹${z.fee} Delivery)` : ""}
       </option>
     `).join("");
 
@@ -575,7 +599,7 @@ document.addEventListener("DOMContentLoaded", () => {
 yourhuckleberry.in • Shafee Mohammed Road, Chennai
 ----------------------------------------
 *Token:* #${token}
-*Architecture:* ${tier.name} (${tier.weightKg} [${tier.weightGrams || ""}])
+*Architecture:* ${tier.name} (${tier.weightKg} • ${tier.weightGrams || ""})
 *Flavor Profile:* ${flavor.name}
 *Artisanal Piping:* ${finish ? finish.name : "Vintage Lambeth"}
 *Dietary Standard:* ${state.isEggless ? "100% Pure Veg (Eggless Recipe)" : "Standard Recipe"}
