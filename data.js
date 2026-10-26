@@ -697,64 +697,6 @@ const HUCKLEBERRY_DATA = {
       image: "assets/images/tier-mini-couture.jpg",
       icon: "05"
     }
-  ],
-  // Live order queue simulation (Theobroma & cloud kitchen operational transparency)
-  liveOrders: [
-    {
-      id: "HK-4914",
-      client: "Deepa S., Besant Nagar",
-      item: "She’s The Moment Lambeth (2.5 kg)",
-      spec: "Persian Lychee Rose • Vintage Lambeth • 100% Eggless",
-      slot: "Today, 5:30 PM Express Slot",
-      price: "₹3,950",
-      status: "Master Hand-Piping",
-      stagePercent: 85,
-      time: "4m ago"
-    },
-    {
-      id: "HK-4912",
-      client: "Priyanka R., Nungambakkam",
-      item: "Two-Tier Grand Milestone (2.5 kg)",
-      spec: "Persian Lychee Rose • Vintage Lambeth • Eggless",
-      slot: "Tomorrow, 4:00 PM Slot",
-      price: "₹4,300",
-      status: "Oven Baking & Chilling",
-      stagePercent: 55,
-      time: "14m ago"
-    },
-    {
-      id: "HK-4911",
-      client: "Ananya M., Thousand Lights",
-      item: "Mini Couture Box (Set of 4)",
-      spec: "Ballgown, Candle Bliss, Floral & Arch",
-      slot: "Today, 6:00 PM Pickup",
-      price: "₹1,200",
-      status: "Presentation Packaging",
-      stagePercent: 95,
-      time: "28m ago"
-    },
-    {
-      id: "HK-4910",
-      client: "Siddharth K., Alwarpet",
-      item: "Caramel Chocolate Tarts (Box of 4)",
-      spec: "70% Dark Ganache & Salted Caramel Sablé",
-      slot: "Today, 7:30 PM Express",
-      price: "₹1,280",
-      status: "Ready for Dispatch",
-      stagePercent: 100,
-      time: "55m ago"
-    },
-    {
-      id: "HK-4909",
-      client: "Vikram N., Anna Nagar",
-      item: "Noir Golden Bento Cake (0.5 kg)",
-      spec: "Belgian Noir Chocolate Fudge • Gold Calligraphy",
-      slot: "Today, 3:00 PM Slot",
-      price: "₹850",
-      status: "Cold-Chain Dispatched",
-      stagePercent: 100,
-      time: "1h ago"
-    }
   ]
 };
 

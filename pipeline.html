@@ -257,34 +257,33 @@
       </div>
 
       <!-- Live Kitchen Operations Board -->
+      <!-- Kitchen Order Status & Token Verification -->
       <div class="kitchen-board-section">
         <div class="kitchen-board-header">
           <div>
-            <div class="section-label-chip">Live Cloud Kitchen Queue</div>
-            <h2 class="section-headline">Active Atelier Orders</h2>
-            <p class="section-subtext">Real-time status of bespoke milestones currently baking and piping in Chennai.</p>
+            <div class="section-label-chip">Order Concierge</div>
+            <h2 class="section-headline">Track Your Booking Token</h2>
+            <p class="section-subtext">Every confirmed reservation is assigned an official #HK-XXXX token. Enter your token below to check kitchen status.</p>
           </div>
           <div class="kitchen-board-stats">
-            <div class="stat-pill"> Kitchen Active</div>
-            <div class="stat-pill">6 Orders in Progress</div>
+            <div class="stat-pill">🟢 Kitchen Active</div>
+            <div class="stat-pill">Shafee Mohammed Rd</div>
           </div>
         </div>
 
         <!-- Token Tracker Input Form -->
         <div class="token-tracker-bar">
           <form id="form-token-tracker" class="token-tracker-form">
-            <label for="input-track-token" class="token-tracker-label">Track Booking Token:</label>
+            <label for="input-track-token" class="token-tracker-label">Enter Booking Token:</label>
             <div class="token-input-group">
               <input type="text" id="input-track-token" placeholder="e.g. HK-4912" maxlength="10" />
-              <button type="submit" class="btn btn-primary btn-sm"><span>Locate Order ➔</span></button>
+              <button type="submit" class="btn btn-primary btn-sm"><span>Check Status ➔</span></button>
             </div>
           </form>
         </div>
 
-        <!-- Dynamic Kitchen Orders Grid -->
-        <div id="kitchen-orders-container" class="kitchen-orders-grid">
-          <!-- Populated dynamically by app.js -->
-        </div>
+        <!-- Real-Time Token Verification Card (Populated when user submits token) -->
+        <div id="token-status-result" class="token-status-result" style="display: none; margin-top: 24px;"></div>
       </div>
 
     </div>

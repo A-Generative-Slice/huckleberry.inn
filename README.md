@@ -68,6 +68,14 @@ Derived from the visual archive and editorial brand identity of **@huckleberry.i
 5. **Bracket Removal Across Entire Site**:
    - Removed all distracting square brackets `[]` from weights and badges (e.g., converted `[1 pc [160g]]` to `1 pc • 160g`, and `Quad Box [600g]` to `Quad Box (600g)`).
 
+6. **Quick View Modal & Fake Content Removal**:
+   - Completely purged the redundant Quick View modal popup, buttons, and hints across the catalog. Tapping an everyday item directly initiates WhatsApp order checkout; tapping a cake navigates straight to the Atelier.
+   - Removed all mock/dummy order queues (`Deepa S.`, `Priyanka R.`) and cleared default prefilled cake inscriptions (`Happy Celebration` removed in favor of clean placeholder hints).
+
+7. **Direct Customer Details Collection**:
+   - Added structured customer contact fields in Step 5 of the Atelier: Customer Full Name, WhatsApp / Phone Number, and Complete Delivery Address / Landmark.
+   - Captured details are automatically formatted and encoded directly into the generated WhatsApp reservation slip and token, ensuring the kitchen receives complete fulfillment information upfront.
+
 ---
 
 ## 🍰 Signature Repertoire & Everyday Happiness Desserts

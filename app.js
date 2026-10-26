@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     flavorId: validFlavor,
     finishId: "vintage-lambeth",
     isEggless: true,
-    customMessage: "Happy Celebration",
+    customMessage: "",
     deliveryPin: "600006",
     deliveryDate: getTomorrowDateString(),
     deliverySlot: "4:00 PM – 6:00 PM (Fresh Evening)",
@@ -65,22 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const dialogTokenId = document.getElementById("dialog-token-id");
   const dialogPriceDisplay = document.getElementById("dialog-price-display");
   const dialogWaCta = document.getElementById("dialog-wa-cta");
-
-  // Quick-Look Elements
-  const qlModal = document.getElementById("quick-look-modal");
-  const qlCloseBtn = document.getElementById("btn-close-ql") || document.getElementById("btn-close-quicklook");
-  const qlTitle = document.getElementById("ql-title") || document.getElementById("ql-modal-title");
-  const qlBadge = document.getElementById("ql-badge") || document.getElementById("ql-modal-badge");
-  const qlImg = document.getElementById("ql-img") || document.getElementById("ql-modal-img");
-  const qlQuote = document.getElementById("ql-quote") || document.getElementById("ql-modal-quote");
-  const qlDesc = document.getElementById("ql-desc") || document.getElementById("ql-modal-desc");
-  const qlPrice = document.getElementById("ql-price") || document.getElementById("ql-modal-price");
-  const qlWeight = document.getElementById("ql-weight") || document.getElementById("ql-modal-weight");
-  const qlAllergens = document.getElementById("ql-allergens") || document.getElementById("ql-modal-allergens");
-  const qlStorage = document.getElementById("ql-storage") || document.getElementById("ql-modal-storage");
-  const qlCustomizeBtn = document.getElementById("btn-ql-customize");
-  let currentQlTier = "mini-couture";
-  let currentQlFlavor = "";
 
   // Toast Container
   const toastContainer = document.getElementById("toast-container");
@@ -272,83 +256,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 4. Quick-Look Modal Handler
-  document.querySelectorAll(".btn-open-quicklook").forEach(cardImg => {
-    cardImg.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const title = cardImg.dataset.title || "Artisanal Creation";
-      const price = cardImg.dataset.price || "₹350";
-      const img = cardImg.dataset.img || "";
-      const quote = cardImg.dataset.quote || "";
-      const desc = cardImg.dataset.desc || "";
-      const badge = cardImg.dataset.badge || "Atelier Collection";
-      const weight = cardImg.dataset.weight || "150g Individual";
-      const allergens = cardImg.dataset.allergens || "Wheat (Gluten), Dairy (Milk)";
-      const storage = cardImg.dataset.storage || "Keep chilled at 4°C–8°C";
-      currentQlTier = cardImg.dataset.tier === "tier-bento" ? "bento-noir" : (cardImg.dataset.tier || "mini-couture");
-      currentQlFlavor = cardImg.dataset.flavor || "";
-
-      if (qlTitle) qlTitle.textContent = title;
-      if (qlPrice) qlPrice.textContent = price;
-      if (qlImg) qlImg.src = img;
-      if (qlQuote) qlQuote.textContent = quote ? `“${quote}”` : "";
-      if (qlDesc) qlDesc.textContent = desc;
-      if (qlBadge) qlBadge.textContent = badge;
-      if (qlWeight) qlWeight.textContent = weight;
-      if (qlAllergens) qlAllergens.textContent = allergens;
-      if (qlStorage) qlStorage.textContent = storage;
-
-      if (qlCustomizeBtn) {
-        if (cardImg.dataset.tier === "everyday") {
-          qlCustomizeBtn.innerHTML = `<span>Order via WhatsApp (10% Off) ➔</span>`;
-          const msg = `Hello Your Huckleberry! I would like to order: ${title} (${weight}) at special 10% off: ${price}. Please confirm availability and slot.`;
-          qlCustomizeBtn.href = `https://wa.me/918511839668?text=${encodeURIComponent(msg)}`;
-          qlCustomizeBtn.target = "_blank";
-          qlCustomizeBtn.rel = "noopener";
-        } else {
-          qlCustomizeBtn.innerHTML = `<span>Configure in Atelier ➔</span>`;
-          qlCustomizeBtn.href = "atelier.html";
-          qlCustomizeBtn.removeAttribute("target");
-          qlCustomizeBtn.removeAttribute("rel");
+  // 4. Direct Card Click Navigation to Atelier or WhatsApp (Zero Modal Friction)
+  document.querySelectorAll(".couture-item-card").forEach(card => {
+    const cardImg = card.querySelector(".couture-card-img");
+    const quickSelectBtn = card.querySelector(".btn-quick-select");
+    const everydayBtn = card.querySelector(".btn-everyday-order");
+    
+    if (cardImg) {
+      cardImg.style.cursor = "pointer";
+      cardImg.addEventListener("click", () => {
+        if (everydayBtn) {
+          everydayBtn.click();
+        } else if (quickSelectBtn) {
+          quickSelectBtn.click();
         }
-      }
-
-      if (qlModal) qlModal.showModal();
-    });
+      });
+    }
   });
-
-  if (qlCloseBtn && qlModal) {
-    qlCloseBtn.addEventListener("click", () => qlModal.close());
-    qlModal.addEventListener("click", (e) => {
-      if (e.target === qlModal) qlModal.close();
-    });
-  }
-
-  if (qlCustomizeBtn) {
-    qlCustomizeBtn.addEventListener("click", (e) => {
-      if (currentQlTier === "everyday") {
-        if (qlModal) qlModal.close();
-        return; // Allows WhatsApp link to open directly
-      }
-      e.preventDefault();
-      if (qlModal) qlModal.close();
-      const builder = document.getElementById("custom-builder");
-      if (builder) {
-        if (currentQlTier) state.tierId = currentQlTier;
-        if (currentQlFlavor) state.flavorId = currentQlFlavor;
-        renderTiers();
-        renderFlavors();
-        updateSummary();
-        builder.scrollIntoView({ behavior: "smooth" });
-        showToast("Design loaded into Cake Atelier", "🎂");
-      } else {
-        const params = [];
-        if (currentQlTier) params.push("tier=" + encodeURIComponent(currentQlTier));
-        if (currentQlFlavor) params.push("flavor=" + encodeURIComponent(currentQlFlavor));
-        window.location.href = "atelier.html?" + params.join("&");
-      }
-    });
-  }
 
   // 5. Render Architectural Tiers (with Real Photo Thumbnails, Veg Marker & Weight)
   function renderTiers() {
@@ -594,20 +518,34 @@ document.addEventListener("DOMContentLoaded", () => {
     const advance = Math.round(total * 0.5);
     const token = "HK-" + Math.floor(1000 + Math.random() * 9000);
 
+    const custName = (document.getElementById("cust-name")?.value || "").trim();
+    const custPhone = (document.getElementById("cust-phone")?.value || "").trim();
+    const custAddress = (document.getElementById("cust-address")?.value || "").trim();
+
+    let customerBlock = "";
+    if (custName || custPhone || custAddress) {
+      customerBlock = 
+`*Customer Details:*
+• Name: ${custName || "Guest"}
+• Phone: ${custPhone || "Via WhatsApp"}
+${custAddress ? `• Delivery Address: ${custAddress}\n` : ""}----------------------------------------
+`;
+    }
+
     const message = 
 `*CUSTOM CAKE RESERVATION - YOUR HUCKLEBERRY*
 yourhuckleberry.in • Shafee Mohammed Road, Chennai
 ----------------------------------------
 *Token:* #${token}
-*Architecture:* ${tier.name} (${tier.weightKg} • ${tier.weightGrams || ""})
-*Flavor Profile:* ${flavor.name}
-*Artisanal Piping:* ${finish ? finish.name : "Vintage Lambeth"}
-*Dietary Standard:* ${state.isEggless ? "100% Pure Veg (Eggless Recipe)" : "Standard Recipe"}
-*Plaque Inscription:* "${state.customMessage || "Happy Celebration"}"
+*Cake Size:* ${tier.name} (${tier.weightKg} • ${tier.weightGrams || ""})
+*Flavor:* ${flavor.name}
+*Design Style:* ${finish ? finish.name : "Vintage Lambeth"}
+*Dietary:* ${state.isEggless ? "100% Pure Veg (Eggless Recipe)" : "Standard Recipe"}
+*Message on Cake:* "${state.customMessage || "None"}"
 ----------------------------------------
-*Delivery / Pickup:* ${zone.zone}
-*Celebration Date:* ${state.deliveryDate}
-*Kitchen Slot:* ${state.deliverySlot}
+${customerBlock}*Delivery / Pickup:* ${zone.zone}
+*Delivery Date:* ${state.deliveryDate}
+*Delivery Time Slot:* ${state.deliverySlot}
 ----------------------------------------
 *Estimated Total:* ₹${total.toLocaleString("en-IN")}
 *Advance Deposit (50%):* ₹${advance.toLocaleString("en-IN")}
@@ -739,59 +677,50 @@ _Please confirm kitchen slot availability!_`;
     });
   });
 
-  // 16. Render Live Cloud Kitchen Orders Pipeline
-  function renderKitchenOrders() {
-    const container = document.getElementById("kitchen-orders-container");
-    if (!container || !HUCKLEBERRY_DATA.liveOrders) return;
-    container.innerHTML = HUCKLEBERRY_DATA.liveOrders.map(order => `
-      <div class="order-pipeline-card" data-token="${order.id}">
-        <div class="order-card-top">
-          <span class="order-token-badge">#${order.id}</span>
-          <span class="order-time-ago">${order.time}</span>
-        </div>
-        <div class="order-client-name">${escapeHtml(order.client)}</div>
-        <div class="order-item-title">${escapeHtml(order.item)}</div>
-        <div class="order-spec-summary">${escapeHtml(order.spec)} • <strong style="color:var(--color-plum-royal);">${order.price}</strong></div>
-        <div class="order-progress-wrap">
-          <div class="order-progress-bar-bg">
-            <div class="order-progress-bar-fill" style="width: ${order.stagePercent || 80}%;"></div>
-          </div>
-          <div class="order-progress-status-row">
-            <span class="order-stage-label">${escapeHtml(order.status)}</span>
-            <span class="order-stage-pct">${order.stagePercent || 80}%</span>
-          </div>
-        </div>
-      </div>
-    `).join("");
-  }
-
-  // 17. Token Tracker Lookup
+  // 16. Token Tracker Lookup & Live Kitchen Concierge Check
   const tokenForm = document.getElementById("form-token-tracker");
   const tokenInput = document.getElementById("input-track-token");
+  const tokenResult = document.getElementById("token-status-result");
+
   if (tokenForm && tokenInput) {
     tokenForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const raw = tokenInput.value.trim().toUpperCase().replace("#", "");
       if (!raw) {
-        showToast("Please enter an order token (e.g. HK-4912)", "ℹ️");
+        showToast("Please enter your booking token (e.g. HK-4912)", "ℹ️");
         return;
       }
       const fullToken = raw.startsWith("HK-") ? raw : `HK-${raw}`;
-      const found = HUCKLEBERRY_DATA.liveOrders.find(o => o.id === fullToken || o.id === raw);
-      if (found) {
-        showToast(`Token #${found.id}: ${found.status} (${found.stagePercent}%)`, "✨");
-        const card = document.querySelector(`.order-pipeline-card[data-token="${found.id}"]`);
-        if (card) {
-          card.scrollIntoView({ behavior: "smooth", block: "center" });
-          card.style.borderColor = "var(--color-gold-champagne)";
-          card.style.boxShadow = "0 0 0 3px rgba(212, 175, 55, 0.4)";
-          setTimeout(() => {
-            card.style.borderColor = "";
-            card.style.boxShadow = "";
-          }, 3500);
-        }
-      } else {
-        showToast(`Token #${fullToken} verified in kitchen queue (Baking & Prep)`, "👨‍🍳");
+      showToast(`Token #${fullToken} located`, "✨");
+
+      if (tokenResult) {
+        tokenResult.style.display = "block";
+        const waMsg = `Hello Your Huckleberry! I would like to check the baking and dispatch status of my order token #${fullToken}.`;
+        tokenResult.innerHTML = `
+          <div class="order-pipeline-card" style="border: 2px solid var(--color-gold-deep); box-shadow: 0 10px 30px rgba(44, 17, 51, 0.12); padding: 22px;">
+            <div class="order-card-top" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span class="order-token-badge" style="font-size: 0.95rem; font-weight: 700; color: #FFFFFF; background: var(--color-plum-royal); padding: 4px 12px; border-radius: 20px;">#${escapeHtml(fullToken)}</span>
+              <span style="color: #2E7D32; font-weight: 700; font-size: 0.82rem; display: flex; align-items: center; gap: 5px;">
+                <span class="fssai-veg-marker"></span> 100% Eggless Pure Veg
+              </span>
+            </div>
+            <div style="font-family: var(--font-editorial); font-size: 1.25rem; color: var(--color-plum-royal); font-weight: 600; margin-bottom: 6px;">
+              Order Token Confirmed in Kitchen
+            </div>
+            <p style="font-size: 0.88rem; color: var(--color-text-muted); line-height: 1.5; margin-bottom: 16px;">
+              Your reservation is registered at our Shafee Mohammed Road atelier. For real-time oven progress and instant dispatch ETA, tap below to message our pastry chef.
+            </p>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+              <a href="https://wa.me/918511839668?text=${encodeURIComponent(waMsg)}" target="_blank" rel="noopener" class="btn btn-primary btn-sm" style="flex: 1; min-width: 200px; text-align: center;">
+                <span>Live Update via WhatsApp ➔</span>
+              </a>
+              <a href="tel:+918511839668" class="btn btn-secondary btn-sm" style="display: flex; align-items: center;">
+                <span>Call Kitchen</span>
+              </a>
+            </div>
+          </div>
+        `;
+        tokenResult.scrollIntoView({ behavior: "smooth", block: "nearest" });
       }
     });
   }
@@ -818,6 +747,5 @@ _Please confirm kitchen slot availability!_`;
   renderFlavors();
   renderFinishes();
   renderZones();
-  renderKitchenOrders();
   updateSummary();
 });
