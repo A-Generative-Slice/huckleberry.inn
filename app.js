@@ -200,6 +200,15 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
+    const festivePromoCard = document.querySelector(".festive-promo-card");
+    if (festivePromoCard) {
+      if ((activeCategory === "all" || activeCategory === "festive") && !query) {
+        festivePromoCard.style.display = "flex";
+      } else {
+        festivePromoCard.style.display = "none";
+      }
+    }
+
     if (btnClearSearch) {
       btnClearSearch.style.display = query ? "block" : "none";
     }
@@ -256,11 +265,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // Handle URL query parameter ?category=... or ?filter=...
+  if (coutureFilterBar && coutureCards.length > 0) {
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialCategory = urlParams.get("category") || urlParams.get("filter");
+    if (initialCategory) {
+      const targetPill = coutureFilterBar.querySelector(`.filter-pill[data-filter="${initialCategory}"]`);
+      if (targetPill) {
+        targetPill.click();
+      }
+    }
+  }
+
   // 4. Direct Card Click Navigation to Atelier or WhatsApp (Zero Modal Friction)
   document.querySelectorAll(".couture-item-card").forEach(card => {
     const cardImg = card.querySelector(".couture-card-img");
     const quickSelectBtn = card.querySelector(".btn-quick-select");
-    const everydayBtn = card.querySelector(".btn-everyday-order");
+    const everydayBtn = card.querySelector(".btn-everyday-order") || card.querySelector("a[href*='wa.me']");
     
     if (cardImg) {
       cardImg.style.cursor = "pointer";
