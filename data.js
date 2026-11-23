@@ -622,6 +622,74 @@ const HUCKLEBERRY_DATA = {
     }
   ],
 
+  // 2026 Christmas & New Year Corporate & Festive Hampers
+  festiveHampers: [
+    {
+      id: "hamper-plum-cake-tin",
+      title: "Traditional Christmas Plum Cake (Vintage Tin)",
+      subtitle: "Aged Spiced Fruit & Nut Plum Cake",
+      category: "festive",
+      weight: "500g / 1.0kg",
+      price: "₹650",
+      basePrice: 650,
+      image: "assets/images/love-letter-swirls.jpg",
+      quote: "Macerated spiced fruit, roasted cashews, candied citrus, and warm holiday aroma.",
+      desc: "Authentic holiday recipe loaded with black currants, raisins, candied peels, and warming winter spices. Presented in a collectible matte gold tin with holiday ribbon.",
+      isEggless: true,
+      allergens: ["Wheat (Gluten)", "Dairy (Milk)", "Tree Nuts"],
+      moq: "1 Box (Retail) / 10 Boxes (Corporate)",
+      highlight: "Christmas Classic"
+    },
+    {
+      id: "hamper-executive-corporate",
+      title: "Corporate Executive Celebration Hamper",
+      subtitle: "Grand Office & Client Festive Box",
+      category: "festive",
+      weight: "Curated 6-Item Luxury Box",
+      price: "₹1,450",
+      basePrice: 1450,
+      image: "assets/images/tier-mini-couture.jpg",
+      quote: "The definitive corporate holiday gifting hamper designed for Chennai's premier teams.",
+      desc: "Includes 1 Rich Plum Cake (350g), 2 Fudgy Belgian Chocolate Brownies, 4 Savory Herb Puff Crisps, 1 Artisanal Spiced Hot Chocolate Jar, and custom corporate greeting cards.",
+      isEggless: true,
+      allergens: ["Wheat (Gluten)", "Dairy (Milk)", "Tree Nuts"],
+      moq: "Minimum 10 Boxes for Corporate Discount",
+      highlight: "B2B Bestseller"
+    },
+    {
+      id: "hamper-mini-couture-trunk",
+      title: "Miniature Couture Luxe Gifting Set",
+      subtitle: "Four Individual Designer Cakes",
+      category: "festive",
+      weight: "Quad Box (600g)",
+      price: "₹1,200",
+      basePrice: 1200,
+      image: "assets/images/mini-couture-collection.jpg",
+      quote: "Bespoke miniature haute pâtisserie presented in crystal display cases.",
+      desc: "Four miniature couture cakes (Pink Ballgown, Ivory Candle Bliss, Rose Rosette, and Noir Star Petite) presented in clear individual display capsules with satin ribbon bows.",
+      isEggless: true,
+      allergens: ["Wheat (Gluten)", "Dairy (Milk)"],
+      moq: "1 Box (Retail) / 5 Boxes (Corporate)",
+      highlight: "Signature Luxury"
+    },
+    {
+      id: "hamper-office-party-platter",
+      title: "Office Celebration Savory & Sweet Platter",
+      subtitle: "Party Snack Platter (Serves 15–20)",
+      category: "festive",
+      weight: "Party Box (1.8kg)",
+      price: "₹2,200",
+      basePrice: 2200,
+      image: "assets/images/item-croissant-butter.jpg",
+      quote: "Flaky artisanal puffs and tea cake slices for office year-end parties.",
+      desc: "Generous party sharing box containing 15 flaky herb & paneer savory puffs, 10 Belgian brownie squares, and 10 sliced lemon tea cake bites. Zero mess, ready to serve.",
+      isEggless: true,
+      allergens: ["Wheat (Gluten)", "Dairy (Milk)"],
+      moq: "Pre-order 24h in advance",
+      highlight: "Office Party Essential"
+    }
+  ],
+
   // Structured Consumer Trust FAQ Accordion (Theobroma best practice)
   faqs: [
     {
