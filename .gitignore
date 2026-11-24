@@ -1,4 +1,29 @@
+# ==============================================================================
+# YOUR HUCKLEBERRY — SECURITY & ARTIFACT EXCLUSION RULES
+# Protects sensitive operational data on public GitHub Pages deployments
+# ==============================================================================
+
+# Private Environment & API Keys
+.env
+.env.*
+!.env.example
+secrets/
+private/
+credentials.json
+*.pem
+*.key
+*.p12
+
+# Customer PII, Leads & Export Logs (Never expose customer data publicly)
+customer_export_*.csv
+leads_private*.json
+*.sqlite3
+*.log
+
+# System & OS Files
 __pycache__/
 *.py[cod]
 .DS_Store
 Thumbs.db
+.idea/
+.vscode/

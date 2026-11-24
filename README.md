@@ -330,6 +330,20 @@ _Dispatched via yourhuckleberry.in (@huckleberry.inn)_
    - Removed fake simulated order queues (`Deepa S.`, `Priyanka R.`) and cleared default prefilled cake text (`Happy Celebration`).
 8. **Customer Contact Fields Added**:
    - Name, WhatsApp phone number, and street address fields added to Step 5 of the Atelier and encoded into the WhatsApp reservation slip.
+9. **December 2026 Festive & Corporate Hampers**:
+   - Integrated 4 high-ticket festive offerings into `data.js` and `collection.html`: Traditional Christmas Plum Cake (Vintage Tin), Corporate Executive Celebration Hamper, Mini Couture Luxe Trunk, and Artisanal Office Party Savory Platter.
+10. **Homepage December Festive Ribbon**:
+   - Added a prominent seasonal callout ribbon on `index.html` connecting directly to festive pre-orders.
+11. **Bespoke Voice Consultation Intake (`atelier.html`)**:
+   - Replaced automated 3D customizer drop-downs for grand wedding and milestone cakes with a dedicated Voice Call and In-Studio Appointment scheduling form.
+12. **Mandatory Payment Screenshot Upload Gate (`atelier.html` & `app.js`)**:
+   - Added a hard-locked file upload requirement for UPI payment proof before slots can be reserved, eliminating unpaid slot hogging.
+13. **Kitchen Operations Command Center (`admin.html`)**:
+   - Built a dedicated internal dashboard for Ridha and kitchen staff featuring a real-time order status pipeline, 1-click customer CSV export, 7:00 PM Zero-Waste Flash Window, and a manual payment audit lightbox.
+14. **3-Page Executive Proposal PDF**:
+   - Compiled a high-DPI executive commercial proposal and roadmap PDF at `assets/Your_Huckleberry_Commercial_Proposal_Dec2026.pdf`.
+15. **Repository Memory & Context (`PROJECT_MEMORY.md`)**:
+   - Added comprehensive operational memory file for full context retrieval upon cloning.
 
 ---
 
@@ -382,6 +396,22 @@ git commit -m "feat: your descriptive commit message"
 git push origin main
 ```
 GitHub Pages automatically deploys the updated site to [yourhuckleberry.in](https://yourhuckleberry.in/) in approximately 60 seconds.
+
+---
+
+## 10. Repository Memory & Public Repo Security Governance
+
+This repository is maintained as **Public** to enable free custom-domain GitHub Pages routing for `yourhuckleberry.in`. To ensure 100% operational confidentiality and protect sensitive client credentials, the following security architecture is enforced:
+
+1. **Complete Operational Memory ([`PROJECT_MEMORY.md`](PROJECT_MEMORY.md))**:
+   - Contains the unified context, client entity details, architectural decisions, and current execution roadmap so any developer or subagent cloning this repository is immediately up to date.
+2. **Zero Secrets in Git**:
+   - All passwords, private keys, API tokens, and credentials are strictly excluded via `.gitignore`.
+   - Automated workflows (e.g. GitHub Actions outreach) pull credentials exclusively from encrypted **GitHub Repository Secrets** (`Settings ➔ Secrets and variables ➔ Actions`).
+3. **Client PII & Export Exclusion**:
+   - Customer export CSVs and private corporate lead lists are gitignored by rule (`customer_export_*.csv`, `leads_private*.json`).
+4. **Data Segregation**:
+   - Sensitive business dossiers, contracts, and financial accounting reside in the private business dashboard (`/sdcard/antigravity/a-generative-slice-business-dashboard/clients/your-huckleberry/`) and are never pushed to public version control.
 
 ---
 
