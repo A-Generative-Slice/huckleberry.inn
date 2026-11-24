@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kitchen Admin & Order Operations | Your Huckleberry Chennai</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --brand-orange: #FF5C00;
+      --brand-orange-light: #FFF4ED;
+      --brand-dark: #0F172A;
+      --brand-slate: #334155;
+      --brand-border: #E2E8F0;
+      --brand-bg: #F8FAFC;
+      --brand-white: #FFFFFF;
+      --brand-green: #10B981;
+      --brand-amber: #F59E0B;
+      --brand-red: #EF4444;
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      background-color: var(--brand-bg);
+      color: var(--brand-dark);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    /* Top Header */
+    header.admin-header {
+      background: var(--brand-white);
+      border-bottom: 1px solid var(--brand-border);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .header-brand img {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+    .header-brand h1 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--brand-dark);
+    }
+    .header-brand span {
+      font-size: 0.75rem;
+      background: var(--brand-orange-light);
+      color: var(--brand-orange);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--brand-orange);
+      color: var(--brand-white);
+    }
+    .btn-primary:hover { background: #E05100; }
+    .btn-outline {
+      background: var(--brand-white);
+      border: 1px solid var(--brand-border);
+      color: var(--brand-slate);
+    }
+    .btn-outline:hover { background: #F1F5F9; }
+    .btn-success {
+      background: var(--brand-green);
+      color: var(--brand-white);
+    }
+
+    /* Container */
+    .admin-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 24px 20px;
+      width: 100%;
+      flex: 1;
+    }
+
+    /* Stats Overview */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: var(--brand-white);
+      border: 1px solid var(--brand-border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--brand-slate);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .stat-val {
+      font-family: var(--font-heading);
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: var(--brand-dark);
+    }
+    .stat-meta {
+      font-size: 0.75rem;
+      color: var(--brand-green);
+      font-weight: 600;
+    }
+
+    /* Tabs Bar */
+    .admin-tabs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--brand-border);
+      margin-bottom: 24px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .tab-btn {
+      padding: 10px 18px;
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 600;
+      background: none;
+      border: none;
+      color: var(--brand-slate);
+      border-bottom: 3px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      color: var(--brand-orange);
+      border-bottom-color: var(--brand-orange);
+    }
+
+    /* Tab Panes */
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+
+    /* Orders Section */
+    .orders-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .filter-group {
+      display: flex;
+      gap: 8px;
+    }
+    .filter-chip {
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      background: var(--brand-white);
+      border: 1px solid var(--brand-border);
+      color: var(--brand-slate);
+      cursor: pointer;
+    }
+    .filter-chip.active {
+      background: var(--brand-dark);
+      color: var(--brand-white);
+      border-color: var(--brand-dark);
+    }
+
+    /* Order Cards */
+    .order-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 16px;
+    }
+    .order-card {
+      background: var(--brand-white);
+      border: 1px solid var(--brand-border);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    .order-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    .order-id {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--brand-dark);
+    }
+    .order-time {
+      font-size: 0.75rem;
+      color: var(--brand-slate);
+    }
+    .badge-status {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-pending { background: #FEF3C7; color: #92400E; }
+    .badge-baking { background: #E0E7FF; color: #3730A3; }
+    .badge-delivery { background: #DBEAFE; color: #1E40AF; }
+    .badge-delivered { background: #D1FAE5; color: #065F46; }
+    .badge-payment { font-size: 0.72rem; font-weight: 600; padding: 2px 6px; border-radius: 4px; }
+    .badge-upi { background: #DCFCE7; color: #166534; }
+    .badge-cod { background: #FEE2E2; color: #991B1B; }
+
+    .order-customer {
+      background: #F8FAFC;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 0.82rem;
+    }
+    .order-items {
+      font-size: 0.85rem;
+      border-top: 1px dashed var(--brand-border);
+      border-bottom: 1px dashed var(--brand-border);
+      padding: 10px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .order-total-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .order-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .select-status {
+      flex: 1;
+      padding: 7px 10px;
+      border: 1px solid var(--brand-border);
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background: var(--brand-white);
+      color: var(--brand-dark);
+    }
+
+    /* Flash Sale Section */
+    .flash-box {
+      background: linear-gradient(135deg, #FFF7ED 0%, #FEF2F2 100%);
+      border: 1.5px solid var(--brand-orange);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .flash-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .flash-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .flash-title h2 {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      color: #7C2D12;
+      font-weight: 800;
+    }
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 26px;
+    }
+    .toggle-switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #CBD5E1; transition: .3s; border-radius: 34px;
+    }
+    .slider:before {
+      position: absolute; content: ""; height: 20px; width: 20px; left: 3px; bottom: 3px;
+      background-color: white; transition: .3s; border-radius: 50%;
+    }
+    input:checked + .slider { background-color: var(--brand-orange); }
+    input:checked + .slider:before { transform: translateX(24px); }
+
+    /* Tables */
+    .data-table-card {
+      background: var(--brand-white);
+      border: 1px solid var(--brand-border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    table.data-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.85rem;
+    }
+    table.data-table th {
+      background: #F8FAFC;
+      padding: 12px 16px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--brand-slate);
+      border-bottom: 1px solid var(--brand-border);
+    }
+    table.data-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--brand-border);
+      color: var(--brand-dark);
+    }
+    table.data-table tr:last-child td { border-bottom: none; }
+    table.data-table tr:hover td { background: #FAFAFA; }
+
+    /* Consultation photo thumbnails */
+    .photo-thumb {
+      width: 44px;
+      height: 44px;
+      border-radius: 6px;
+      object-fit: cover;
+      cursor: pointer;
+      border: 1px solid var(--brand-border);
+    }
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--brand-dark);
+      color: var(--brand-white);
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      display: none;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Admin Top Bar -->
+  <header class="admin-header">
+    <div class="header-brand">
+      <img src="assets/logo.jpg" alt="Your Huckleberry Logo" />
+      <div>
+        <h1>Your Huckleberry Operations</h1>
+        <span>Kitchen &amp; Order Command Center</span>
+      </div>
+    </div>
+    <div class="header-actions">
+      <a href="index.html" class="btn btn-outline" target="_blank">View Live Storefront ➔</a>
+      <button class="btn btn-primary" id="btn-refresh-orders">🔄 Refresh Data</button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="admin-container">
+
+    <!-- KPI Summary Row -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-label">Today's Orders</span>
+        <span class="stat-val" id="stat-order-count">12</span>
+        <span class="stat-meta">↑ 4 from yesterday</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Today's Revenue</span>
+        <span class="stat-val" id="stat-revenue">₹18,450</span>
+        <span class="stat-meta">82% Prepaid via UPI</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">In The Oven / Piping</span>
+        <span class="stat-val" style="color: var(--brand-orange);" id="stat-baking">4</span>
+        <span class="stat-meta">Shafee Mohammed Rd Kitchen</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Pending Consultations</span>
+        <span class="stat-val" style="color: var(--brand-amber);" id="stat-consultations">3</span>
+        <span class="stat-meta">Wedding &amp; Event Cakes</span>
+      </div>
+    </section>
+
+    <!-- Navigation Tabs -->
+    <nav class="admin-tabs" aria-label="Dashboard Tabs">
+      <button class="tab-btn active" data-tab="tab-orders">📦 Live Orders (12)</button>
+      <button class="tab-btn" data-tab="tab-flash">⚡ 7:00 PM Zero-Waste Flash</button>
+      <button class="tab-btn" data-tab="tab-consultations">🎂 Bespoke Consultations (3)</button>
+      <button class="tab-btn" data-tab="tab-customers">👥 Customer Directory &amp; CSV Export</button>
+    </nav>
+
+    <!-- ==================== TAB 1: LIVE ORDERS ==================== -->
+    <section id="tab-orders" class="tab-pane active">
+      <div class="orders-toolbar">
+        <div class="filter-group">
+          <button class="filter-chip active" data-filter="all">All Orders (12)</button>
+          <button class="filter-chip" data-filter="pending">Pending Payment (2)</button>
+          <button class="filter-chip" data-filter="baking">In Oven / Prep (4)</button>
+          <button class="filter-chip" data-filter="delivery">Out for Delivery (3)</button>
+          <button class="filter-chip" data-filter="delivered">Delivered (3)</button>
+        </div>
+        <button class="btn btn-outline" id="btn-export-orders">📥 Export Today's Orders</button>
+      </div>
+
+      <div class="order-grid" id="order-cards-container">
+        <!-- Rendered dynamically via JS below -->
+      </div>
+    </section>
+
+    <!-- ==================== TAB 2: ZERO-WASTE FLASH SALE ==================== -->
+    <section id="tab-flash" class="tab-pane">
+      <div class="flash-box">
+        <div class="flash-header">
+          <div class="flash-title">
+            <span style="font-size: 1.8rem;">⚡</span>
+            <div>
+              <h2>7:00 PM – 7:30 PM Zero-Waste Flash Window</h2>
+              <p style="font-size: 0.85rem; color: #9A3412;">Sell day-end scratch items at near-cost price. Dispatched for 8:00 PM – 9:00 PM central Chennai delivery. Eliminates food waste completely.</p>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 0.82rem; font-weight: 700; color: #7C2D12;">Enable Today's Window:</span>
+            <label class="toggle-switch">
+              <input type="checkbox" id="toggle-flash-active" checked />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap;">
+          <input type="text" id="flash-item-name" placeholder="Item Name (e.g., French Berry Tart)" style="flex: 2; min-width: 200px; padding: 10px 14px; border: 1px solid var(--brand-border); border-radius: 8px; font-size: 0.85rem;" />
+          <input type="number" id="flash-item-qty" placeholder="Qty (e.g., 3)" style="width: 100px; padding: 10px 14px; border: 1px solid var(--brand-border); border-radius: 8px; font-size: 0.85rem;" />
+          <input type="number" id="flash-item-price" placeholder="Flash Price (₹)" style="width: 140px; padding: 10px 14px; border: 1px solid var(--brand-border); border-radius: 8px; font-size: 0.85rem;" />
+          <button class="btn btn-primary" id="btn-add-flash-item">+ Add Surplus Item</button>
+        </div>
+      </div>
+
+      <div class="data-table-card">
+        <table class="data-table" id="flash-items-table">
+          <thead>
+            <tr>
+              <th>Item Name</th>
+              <th>Surplus Qty</th>
+              <th>Original Price</th>
+              <th>Flash Recovery Price</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>French Caramel Chocolate Tartlet</strong></td>
+              <td>3 boxes</td>
+              <td><span style="text-decoration: line-through; color: #94A3B8;">₹450</span></td>
+              <td><strong style="color: var(--brand-orange);">₹220</strong></td>
+              <td><span class="badge-status badge-pending">Active (Unlocks 7:00 PM)</span></td>
+              <td><button class="btn btn-outline" style="padding: 4px 8px; font-size: 0.72rem;">Remove</button></td>
+            </tr>
+            <tr>
+              <td><strong>Fudgy Walnut Brownie Tub Mini</strong></td>
+              <td>4 tubs</td>
+              <td><span style="text-decoration: line-through; color: #94A3B8;">₹300</span></td>
+              <td><strong style="color: var(--brand-orange);">₹150</strong></td>
+              <td><span class="badge-status badge-pending">Active (Unlocks 7:00 PM)</span></td>
+              <td><button class="btn btn-outline" style="padding: 4px 8px; font-size: 0.72rem;">Remove</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 3: BESPOKE CONSULTATIONS ==================== -->
+    <section id="tab-consultations" class="tab-pane">
+      <div class="orders-toolbar">
+        <h2 style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 700;">Wedding &amp; Grand Milestone Cake Consultations</h2>
+        <span style="font-size: 0.82rem; color: var(--brand-slate);">Replaces automated 3D customizer with personalized voice/in-person appointments</span>
+      </div>
+
+      <div class="data-table-card">
+        <table class="data-table" id="consultations-table">
+          <thead>
+            <tr>
+              <th>Client</th>
+              <th>Occasion &amp; Date</th>
+              <th>Guest Count</th>
+              <th>Flavors &amp; Aesthetic</th>
+              <th>Reference Photos</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <strong>Kavya Ramanathan</strong><br />
+                <span style="font-size: 0.75rem; color: var(--brand-slate);">+91 98401 22345 • kavya.r@gmail.com</span>
+              </td>
+              <td>
+                <strong>Wedding Reception</strong><br />
+                <span style="font-size: 0.75rem; color: var(--brand-orange);">Dec 18, 2026 (Taj Coromandel)</span>
+              </td>
+              <td>250 Guests (Three-Tier Grand)</td>
+              <td>Belgian Truffle &amp; Salted Caramel • Victorian Lambeth Pearl Swags</td>
+              <td>
+                <img src="assets/images/couture-lambeth-clean.jpg" class="photo-thumb" alt="Ref 1" title="Click to view full" />
+                <img src="assets/images/love-letter-swirls.jpg" class="photo-thumb" alt="Ref 2" />
+              </td>
+              <td><span class="badge-status badge-pending">Call Scheduled</span></td>
+              <td>
+                <a href="https://wa.me/919840122345?text=Hello%20Kavya%2C%20Chef%20Ridha%20from%20Your%20Huckleberry%20regarding%20your%20Wedding%20Cake%20Consultation." target="_blank" class="btn btn-success" style="padding: 6px 10px; font-size: 0.75rem;">WhatsApp Call</a>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Arun Kumar (Zoho Admin)</strong><br />
+                <span style="font-size: 0.75rem; color: var(--brand-slate);">+91 97910 88712 • arun.k@zoho.com</span>
+              </td>
+              <td>
+                <strong>Corporate Gala &amp; 100 Hampers</strong><br />
+                <span style="font-size: 0.75rem; color: var(--brand-orange);">Dec 22, 2026 (Estancia OMR)</span>
+              </td>
+              <td>100 Hampers</td>
+              <td>Traditional Plum Cakes &amp; Brownie Tins with Zoho branding</td>
+              <td>
+                <img src="assets/images/tier-mini-couture.jpg" class="photo-thumb" alt="Hamper Ref" />
+              </td>
+              <td><span class="badge-status badge-baking">Quote Sent</span></td>
+              <td>
+                <a href="https://wa.me/919791088712?text=Hello%20Arun%2C%20following%20up%20on%20Your%20Huckleberry%20corporate%20Christmas%20hamper%20quotation." target="_blank" class="btn btn-primary" style="padding: 6px 10px; font-size: 0.75rem;">Follow Up</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 4: CUSTOMER DIRECTORY & CSV EXPORT ==================== -->
+    <section id="tab-customers" class="tab-pane">
+      <div class="orders-toolbar">
+        <div>
+          <h2 style="font-family: var(--font-heading); font-size: 1.15rem; font-weight: 700;">Customer Directory &amp; Outreach Engine</h2>
+          <span style="font-size: 0.82rem; color: var(--brand-slate);">Export verified customer emails for GitHub Actions automated pitch and updates</span>
+        </div>
+        <button class="btn btn-primary" id="btn-export-customers-csv">📥 Export Customer Email List (CSV)</button>
+      </div>
+
+      <div class="data-table-card">
+        <table class="data-table" id="customers-table">
+          <thead>
+            <tr>
+              <th>Customer Name</th>
+              <th>Email Address</th>
+              <th>WhatsApp Number</th>
+              <th>Delivery Pincode</th>
+              <th>Total Orders</th>
+              <th>Lifetime Spend</th>
+              <th>Last Active</th>
+            </tr>
+          </thead>
+          <tbody id="customers-table-body">
+            <!-- Populated via JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="toast" id="admin-toast">Notification message</div>
+
+  <script>
+    // Mock State Data for Orders and Customers
+    const mockOrders = [
+      {
+        id: "HK-2026-104",
+        time: "10:15 AM Today",
+        customer: "Sneha Reddy (+91 98412 77890)",
+        address: "Flat 4B, Harrington Rd, Chetpet, Chennai 600031",
+        items: "Traditional Christmas Plum Cake (Vintage Tin 500g) x 2",
+        total: "₹1,300",
+        payment: "UPI Paid (IOB)",
+        paymentType: "upi",
+        status: "baking",
+        statusLabel: "In Oven / Prep"
+      },
+      {
+        id: "HK-2026-103",
+        time: "09:40 AM Today",
+        customer: "Vikram Sundaram (+91 97890 33412)",
+        address: "12 Poes Garden, Alwarpet, Chennai 600086",
+        items: "Mini Couture Luxe Trunk (4-Piece Set) x 1",
+        total: "₹1,200",
+        payment: "UPI Paid (IOB)",
+        paymentType: "upi",
+        status: "delivery",
+        statusLabel: "Out for Delivery"
+      },
+      {
+        id: "HK-2026-102",
+        time: "09:10 AM Today",
+        customer: "Priya Chandrasekar (+91 94440 12890)",
+        address: "7 TTK Road, Alwarpet, Chennai 600018",
+        items: "Ferrero Rocher Pastry x 2, London Caramel Gateau x 1",
+        total: "₹672",
+        payment: "Cash on Delivery (+₹50 COD Fee)",
+        paymentType: "cod",
+        status: "pending",
+        statusLabel: "Pending Prep"
+      },
+      {
+        id: "HK-2026-101",
+        time: "Yesterday, 07:15 PM",
+        customer: "Ananya Iyer (+91 98840 55123)",
+        address: "Wallace Garden, Nungambakkam, Chennai 600006",
+        items: "Zero-Waste Flash Tartlet Box x 2",
+        total: "₹440",
+        payment: "UPI Paid (IOB)",
+        paymentType: "upi",
+        status: "delivered",
+        statusLabel: "Delivered"
+      }
+    ];
+
+    const mockCustomers = [
+      { name: "Sneha Reddy", email: "sneha.reddy@gmail.com", phone: "+91 98412 77890", pincode: "600031", orders: 3, spend: "₹3,950", lastActive: "Today" },
+      { name: "Vikram Sundaram", email: "vikram.sundaram@tcs.com", phone: "+91 97890 33412", pincode: "600086", orders: 2, spend: "₹2,650", lastActive: "Today" },
+      { name: "Priya Chandrasekar", email: "priya.c@outlook.com", phone: "+91 94440 12890", pincode: "600018", orders: 1, spend: "₹672", lastActive: "Today" },
+      { name: "Ananya Iyer", email: "ananya.iyer@gmail.com", phone: "+91 98840 55123", pincode: "600006", orders: 5, spend: "₹6,200", lastActive: "Yesterday" },
+      { name: "Kavya Ramanathan", email: "kavya.r@gmail.com", phone: "+91 98401 22345", pincode: "600034", orders: 2, spend: "₹4,100", lastActive: "Nov 22, 2026" },
+      { name: "Arun Kumar (Zoho)", email: "arun.k@zoho.com", phone: "+91 97910 88712", pincode: "600096", orders: 1, spend: "₹1,450", lastActive: "Nov 21, 2026" }
+    ];
+
+    // Render Orders
+    function renderOrders(filter = "all") {
+      const container = document.getElementById("order-cards-container");
+      if (!container) return;
+      const filtered = (filter === "all") ? mockOrders : mockOrders.filter(o => o.status === filter);
+      
+      container.innerHTML = filtered.map(o => `
+        <article class="order-card">
+          <div class="order-header">
+            <div>
+              <span class="order-id">${o.id}</span>
+              <p class="order-time">${o.time}</p>
+            </div>
+            <span class="badge-status badge-${o.status}">${o.statusLabel}</span>
+          </div>
+          <div class="order-customer">
+            <strong>${o.customer}</strong><br />
+            <span style="color: #64748B; font-size: 0.78rem;">${o.address}</span>
+          </div>
+          <div class="order-items">
+            <span>${o.items}</span>
+          </div>
+          <div class="order-total-row">
+            <div>
+              <span class="badge-payment badge-${o.paymentType}">${o.payment}</span>
+            </div>
+            <span style="font-family: var(--font-heading); color: var(--brand-dark);">${o.total}</span>
+          </div>
+          <div class="order-actions">
+            <select class="select-status" onchange="updateOrderStatus('${o.id}', this.value)">
+              <option value="pending" ${o.status === 'pending' ? 'selected' : ''}>Pending Payment</option>
+              <option value="baking" ${o.status === 'baking' ? 'selected' : ''}>In Oven / Prep</option>
+              <option value="delivery" ${o.status === 'delivery' ? 'selected' : ''}>Out for Delivery</option>
+              <option value="delivered" ${o.status === 'delivered' ? 'selected' : ''}>Delivered</option>
+            </select>
+            <a href="https://wa.me/${o.customer.replace(/[^0-9]/g, '')}?text=Hello%2C%20Your%20Huckleberry%20update%20on%20order%20${o.id}%3A%20" target="_blank" class="btn btn-outline" style="padding: 6px 10px; font-size: 0.75rem;">WhatsApp</a>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    // Render Customers
+    function renderCustomers() {
+      const tbody = document.getElementById("customers-table-body");
+      if (!tbody) return;
+      tbody.innerHTML = mockCustomers.map(c => `
+        <tr>
+          <td><strong>${c.name}</strong></td>
+          <td>${c.email}</td>
+          <td>${c.phone}</td>
+          <td><span style="background: #F1F5F9; padding: 2px 6px; border-radius: 4px; font-weight: 600;">${c.pincode}</span></td>
+          <td>${c.orders} orders</td>
+          <td><strong>${c.spend}</strong></td>
+          <td style="color: #64748B;">${c.lastActive}</td>
+        </tr>
+      `).join("");
+    }
+
+    // Tab Navigation
+    document.querySelectorAll(".tab-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".tab-pane").forEach(p => p.classList.remove("active"));
+        btn.classList.add("active");
+        const target = btn.dataset.tab;
+        document.getElementById(target).classList.add("active");
+      });
+    });
+
+    // Filter Chips for Orders
+    document.querySelectorAll(".filter-chip").forEach(chip => {
+      chip.addEventListener("click", () => {
+        document.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
+        chip.classList.add("active");
+        renderOrders(chip.dataset.filter);
+      });
+    });
+
+    // Update Status Mock
+    window.updateOrderStatus = function(id, newStatus) {
+      const order = mockOrders.find(o => o.id === id);
+      if (order) {
+        order.status = newStatus;
+        const labels = { pending: "Pending Prep", baking: "In Oven / Prep", delivery: "Out for Delivery", delivered: "Delivered" };
+        order.statusLabel = labels[newStatus] || newStatus;
+        showToast(`Order ${id} updated to: ${order.statusLabel}`);
+      }
+    };
+
+    // CSV Export for Customers
+    document.getElementById("btn-export-customers-csv").addEventListener("click", () => {
+      let csvContent = "data:text/csv;charset=utf-8,Name,Email,Phone,Pincode,Orders,LifetimeSpend,LastActive\n";
+      mockCustomers.forEach(c => {
+        csvContent += `"${c.name}","${c.email}","${c.phone}","${c.pincode}","${c.orders}","${c.spend}","${c.lastActive}"\n`;
+      });
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", `your_huckleberry_customers_${new Date().toISOString().slice(0,10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast("Customer database exported to CSV successfully!");
+    });
+
+    // Toast Function
+    function showToast(msg) {
+      const toast = document.getElementById("admin-toast");
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.style.display = "block";
+      setTimeout(() => { toast.style.display = "none"; }, 3500);
+    }
+
+    // Initial Load
+    renderOrders();
+    renderCustomers();
+  </script>
+</body>
+</html>
