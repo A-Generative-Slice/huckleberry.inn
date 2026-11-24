@@ -639,6 +639,83 @@ _Please confirm kitchen slot availability!_`;
       dialogWaCta.innerHTML = `<span>Step 2: Dispatch Slip &amp; Screenshot to WhatsApp ➔</span>`;
     }
 
+    // Payment Screenshot Gate Logic
+    let currentPaymentProofBase64 = null;
+    const proofInput = document.getElementById("order-payment-proof");
+    const utrInput = document.getElementById("order-utr-number");
+    const previewContainer = document.getElementById("screenshot-preview-container");
+    const previewImg = document.getElementById("screenshot-preview-img");
+    const requiredMsg = document.getElementById("screenshot-required-msg");
+
+    if (proofInput) {
+      proofInput.value = "";
+      currentPaymentProofBase64 = null;
+      if (previewContainer) previewContainer.style.display = "none";
+      if (requiredMsg) requiredMsg.style.display = "none";
+
+      proofInput.onchange = function(e) {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(evt) {
+            currentPaymentProofBase64 = evt.target.result;
+            if (previewImg) previewImg.src = currentPaymentProofBase64;
+            if (previewContainer) previewContainer.style.display = "flex";
+            if (requiredMsg) requiredMsg.style.display = "none";
+            showToast("📸 Payment screenshot attached!");
+          };
+          reader.readAsDataURL(file);
+        }
+      };
+    }
+
+    if (dialogWaCta) {
+      dialogWaCta.onclick = function(e) {
+        if (!currentPaymentProofBase64) {
+          e.preventDefault();
+          if (requiredMsg) {
+            requiredMsg.style.display = "block";
+            requiredMsg.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          }
+          showToast("⚠️ Payment screenshot required to lock slot!");
+          return false;
+        }
+
+        // Save verified order to localStorage for live Kitchen Admin tracking
+        const utrVal = utrInput ? utrInput.value.trim() : "";
+        try {
+          const storedOrders = JSON.parse(localStorage.getItem("huckleberry_orders") || "[]");
+          storedOrders.unshift({
+            id: "#" + token,
+            time: "Just Now",
+            customer: `${custName || "Guest"} (${custPhone || "Via WhatsApp"})`,
+            address: custAddress || "Central Chennai Delivery",
+            items: `${tier.name} (${flavor.name}, ${finish.name})`,
+            total: `₹${total.toLocaleString("en-IN")}`,
+            advancePaid: `₹${advance.toLocaleString("en-IN")}`,
+            payment: "UPI Advance Paid (Pending Audit)",
+            paymentType: "upi",
+            status: "pending",
+            statusLabel: "Payment Audit Required",
+            screenshot: currentPaymentProofBase64,
+            utr: utrVal || "Provided via image",
+            rawPhone: custPhone || ""
+          });
+          localStorage.setItem("huckleberry_orders", JSON.stringify(storedOrders));
+        } catch (err) {
+          console.error("Local storage order save error", err);
+        }
+
+        // Append UTR / Screenshot confirmation to WhatsApp message
+        let updatedWaLink = waLink;
+        if (utrVal) {
+          updatedWaLink += encodeURIComponent(`\n*UPI Ref/UTR:* ${utrVal}`);
+        }
+        updatedWaLink += encodeURIComponent("\n*Screenshot:* Attached via web upload (ready for manual verification).");
+        dialogWaCta.href = updatedWaLink;
+      };
+    }
+
     if (orderDialog) orderDialog.showModal();
   }
 

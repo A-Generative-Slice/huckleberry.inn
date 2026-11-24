@@ -487,6 +487,32 @@
         </div>
       </div>
 
+      <!-- Mandatory Payment Screenshot Upload Box (Slot Gate) -->
+      <div id="modal-screenshot-gate" class="modal-screenshot-gate" style="background: #FFF7ED; border: 1.5px dashed #FF5C00; border-radius: 12px; padding: 16px; margin: 16px 0; text-align: left;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span style="font-size: 1.1rem;">📸</span>
+            <strong style="font-size: 0.88rem; color: #7C2D12;">Step 2: Attach Payment Screenshot (Mandatory)</strong>
+          </div>
+          <span style="font-size: 0.7rem; font-weight: 700; color: #FFFFFF; background: #C2410C; padding: 2px 6px; border-radius: 4px;">REQUIRED</span>
+        </div>
+        <p style="font-size: 0.78rem; color: #9A3412; margin-bottom: 10px; line-height: 1.4;">
+          Kitchen baking slots are confirmed strictly upon verified payment. Orders without an attached UPI transfer screenshot cannot be scheduled into the oven.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <label style="font-size: 0.75rem; font-weight: 600; color: #7C2D12;">Select Transfer Screenshot (GPay / PhonePe / Paytm):</label>
+          <input type="file" id="order-payment-proof" accept="image/*" required style="font-size: 0.8rem; padding: 8px; background: #FFFFFF; border: 1px solid #FED7AA; border-radius: 6px; width: 100%; cursor: pointer;" />
+          <input type="text" id="order-utr-number" placeholder="Enter UPI Reference / UTR Number (Optional)" style="font-size: 0.8rem; padding: 8px 12px; background: #FFFFFF; border: 1px solid #FED7AA; border-radius: 6px; width: 100%;" />
+        </div>
+        <div id="screenshot-preview-container" style="display: none; margin-top: 10px; align-items: center; gap: 10px; background: #FFFFFF; padding: 8px; border-radius: 6px; border: 1px solid #10B981;">
+          <img id="screenshot-preview-img" src="" alt="Screenshot Preview" style="width: 44px; height: 44px; object-fit: cover; border-radius: 4px;" />
+          <span style="font-size: 0.78rem; color: #047857; font-weight: 700;">✓ Payment Screenshot Attached</span>
+        </div>
+        <p id="screenshot-required-msg" style="display: none; color: #DC2626; font-size: 0.78rem; font-weight: 700; margin-top: 8px; background: #FEE2E2; padding: 6px 10px; border-radius: 6px;">
+          ⚠️ Action Required: Please attach your UPI payment screenshot to lock your baking slot.
+        </p>
+      </div>
+
       <p style="font-size: 0.84rem; color: var(--color-text-muted); text-align: center; line-height: 1.45; margin-bottom: 18px;">
         Your custom architecture, flavour profile, and delivery slot have been packaged into a formal booking slip. Complete the 50% advance token and dispatch your slip to WhatsApp to secure your baking slot directly with the chef.
       </p>

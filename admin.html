@@ -629,6 +629,25 @@
 
   </main>
 
+  <!-- Payment Proof Lightbox Modal for Manual Kitchen Audit -->
+  <dialog id="modal-proof-viewer" style="border: none; border-radius: 16px; padding: 24px; max-width: 500px; width: 90%; margin: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.25);">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+      <h3 style="font-family: var(--font-heading); font-size: 1.1rem; color: #0F172A;" id="proof-title">Manual Payment Audit</h3>
+      <button onclick="document.getElementById('modal-proof-viewer').close()" style="background: none; border: none; font-size: 1.4rem; cursor: pointer;">&times;</button>
+    </div>
+    <div style="text-align: center; background: #0F172A; border-radius: 10px; padding: 8px; margin-bottom: 14px;">
+      <img id="proof-full-img" src="" alt="Payment Screenshot Full" style="max-width: 100%; max-height: 400px; object-fit: contain; border-radius: 6px;" />
+    </div>
+    <div style="background: #F8FAFC; border-radius: 8px; padding: 10px 14px; margin-bottom: 16px; font-size: 0.82rem;">
+      <span style="color: #64748B;">Reported UTR / Reference:</span>
+      <strong id="proof-utr-display" style="color: #0F172A; margin-left: 6px;"></strong>
+    </div>
+    <div style="display: flex; gap: 10px;">
+      <button id="btn-proof-verify-action" class="btn btn-success" style="flex: 1; justify-content: center;">✓ Verify &amp; Start Baking</button>
+      <button onclick="document.getElementById('modal-proof-viewer').close()" class="btn btn-outline" style="flex: 1; justify-content: center;">Close</button>
+    </div>
+  </dialog>
+
   <div class="toast" id="admin-toast">Notification message</div>
 
   <script>
@@ -693,14 +712,48 @@
       { name: "Arun Kumar (Zoho)", email: "arun.k@zoho.com", phone: "+91 97910 88712", pincode: "600096", orders: 1, spend: "₹1,450", lastActive: "Nov 21, 2026" }
     ];
 
+    // Get all orders (merge local verified orders with mock)
+    function getAllOrders() {
+      try {
+        const local = JSON.parse(localStorage.getItem("huckleberry_orders") || "[]");
+        return [...local, ...mockOrders];
+      } catch (e) {
+        return mockOrders;
+      }
+    }
+
+    let activeAuditOrderId = null;
+    window.viewProof = function(src, orderId, utr) {
+      activeAuditOrderId = orderId;
+      const modal = document.getElementById("modal-proof-viewer");
+      const img = document.getElementById("proof-full-img");
+      const title = document.getElementById("proof-title");
+      const utrEl = document.getElementById("proof-utr-display");
+      if (modal && img) {
+        img.src = src;
+        title.textContent = `Manual Payment Audit - Order ${orderId}`;
+        utrEl.textContent = utr || "Not provided (Inspect screenshot above)";
+        modal.showModal();
+      }
+    };
+
+    document.getElementById("btn-proof-verify-action")?.addEventListener("click", () => {
+      if (activeAuditOrderId) {
+        updateOrderStatus(activeAuditOrderId, "baking");
+        document.getElementById("modal-proof-viewer")?.close();
+        showToast(`✓ Payment verified for ${activeAuditOrderId}! Order moved to In Oven / Prep.`);
+      }
+    });
+
     // Render Orders
     function renderOrders(filter = "all") {
       const container = document.getElementById("order-cards-container");
       if (!container) return;
-      const filtered = (filter === "all") ? mockOrders : mockOrders.filter(o => o.status === filter);
+      const all = getAllOrders();
+      const filtered = (filter === "all") ? all : all.filter(o => o.status === filter);
       
       container.innerHTML = filtered.map(o => `
-        <article class="order-card">
+        <article class="order-card" style="${o.screenshot && o.status === 'pending' ? 'border: 1.5px solid #FF5C00;' : ''}">
           <div class="order-header">
             <div>
               <span class="order-id">${o.id}</span>
@@ -721,14 +774,28 @@
             </div>
             <span style="font-family: var(--font-heading); color: var(--brand-dark);">${o.total}</span>
           </div>
+
+          ${o.screenshot ? `
+            <div style="background: #FFF7ED; border: 1px solid #FED7AA; border-radius: 8px; padding: 10px; display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <img src="${o.screenshot}" alt="Payment Proof" style="width: 44px; height: 44px; object-fit: cover; border-radius: 6px; cursor: pointer; border: 1px solid #FF5C00;" onclick="viewProof('${o.screenshot}', '${o.id}', '${o.utr || ""}')" />
+                <div>
+                  <span style="font-size: 0.75rem; font-weight: 700; color: #7C2D12;">📸 Payment Proof Attached</span><br />
+                  <span style="font-size: 0.72rem; color: #9A3412;">UTR: ${o.utr || "Inspect Image"}</span>
+                </div>
+              </div>
+              <button type="button" class="btn btn-outline" style="padding: 4px 8px; font-size: 0.72rem;" onclick="viewProof('${o.screenshot}', '${o.id}', '${o.utr || ""}')">Inspect</button>
+            </div>
+          ` : ""}
+
           <div class="order-actions">
             <select class="select-status" onchange="updateOrderStatus('${o.id}', this.value)">
-              <option value="pending" ${o.status === 'pending' ? 'selected' : ''}>Pending Payment</option>
+              <option value="pending" ${o.status === 'pending' ? 'selected' : ''}>Pending Payment / Audit</option>
               <option value="baking" ${o.status === 'baking' ? 'selected' : ''}>In Oven / Prep</option>
               <option value="delivery" ${o.status === 'delivery' ? 'selected' : ''}>Out for Delivery</option>
               <option value="delivered" ${o.status === 'delivered' ? 'selected' : ''}>Delivered</option>
             </select>
-            <a href="https://wa.me/${o.customer.replace(/[^0-9]/g, '')}?text=Hello%2C%20Your%20Huckleberry%20update%20on%20order%20${o.id}%3A%20" target="_blank" class="btn btn-outline" style="padding: 6px 10px; font-size: 0.75rem;">WhatsApp</a>
+            <a href="https://wa.me/${(o.rawPhone || o.customer).replace(/[^0-9]/g, '')}?text=Hello%2C%20Your%20Huckleberry%20kitchen%20update%20on%20order%20${o.id}%3A%20" target="_blank" class="btn btn-outline" style="padding: 6px 10px; font-size: 0.75rem;">WhatsApp</a>
           </div>
         </article>
       `).join("");
@@ -771,15 +838,29 @@
       });
     });
 
-    // Update Status Mock
+    // Update Status with LocalStorage Persistence
     window.updateOrderStatus = function(id, newStatus) {
+      const labels = { pending: "Pending Payment / Audit", baking: "In Oven / Prep", delivery: "Out for Delivery", delivered: "Delivered" };
+      
+      // Update in localStorage
+      try {
+        const stored = JSON.parse(localStorage.getItem("huckleberry_orders") || "[]");
+        const match = stored.find(o => o.id === id);
+        if (match) {
+          match.status = newStatus;
+          match.statusLabel = labels[newStatus] || newStatus;
+          localStorage.setItem("huckleberry_orders", JSON.stringify(stored));
+        }
+      } catch (e) {}
+
+      // Update in mockOrders if present
       const order = mockOrders.find(o => o.id === id);
       if (order) {
         order.status = newStatus;
-        const labels = { pending: "Pending Prep", baking: "In Oven / Prep", delivery: "Out for Delivery", delivered: "Delivered" };
         order.statusLabel = labels[newStatus] || newStatus;
-        showToast(`Order ${id} updated to: ${order.statusLabel}`);
       }
+      showToast(`Order ${id} updated to: ${labels[newStatus] || newStatus}`);
+      renderOrders();
     };
 
     // CSV Export for Customers
