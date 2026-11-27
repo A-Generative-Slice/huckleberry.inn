@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/jpeg" href="assets/logo.jpg" />
-  <link rel="stylesheet" href="style.css?v=5.2.0" />
+  <link rel="stylesheet" href="style.css?v=5.3.0" />
 </head>
 <body>
   <!-- Main Navigation Bar -->
@@ -93,10 +93,10 @@
       <div class="kitchen-board-header">
         <div>
           <h2 style="font-family: var(--font-editorial); font-size: 1.45rem; color: var(--color-plum-royal); margin-bottom: 4px;">Check Your Order Progress</h2>
-          <p style="font-size: 0.88rem; color: var(--color-text-muted);">No login required — just enter the token shown after checkout.</p>
+          <p style="font-size: 0.88rem; color: var(--color-text-muted);">No login needed. Just enter the token shown after checkout.</p>
         </div>
         <div class="kitchen-board-stats">
-          <div class="stat-pill">Kitchen Open • 11 AM – 9 PM</div>
+          <div class="stat-pill">Kitchen Open • 11 AM to 9 PM</div>
         </div>
       </div>
 
@@ -104,7 +104,7 @@
         <form id="form-token-tracker" class="token-tracker-form">
           <label for="input-track-token" class="token-tracker-label">Order Token:</label>
           <div class="token-input-group">
-            <input type="text" id="input-track-token" name="token" placeholder="e.g. HK-7K4M9P" maxlength="16" required />
+            <input type="text" id="input-track-token" name="token" placeholder="HK-7K4M9P" maxlength="16" required />
             <button type="submit" class="btn btn-primary btn-sm"><span>Check Status ➔</span></button>
           </div>
         </form>
@@ -115,12 +115,12 @@
   </section>
 
   <!-- Plain-English 4-Stage Kitchen Workflow Explanation -->
-  <section style="max-width: 1120px; margin: 0 auto 64px; padding: 0 24px;">
-    <div style="text-align: center; max-width: 620px; margin: 0 auto 28px;">
+  <section style="max-width: 1120px; margin: 0 auto 56px; padding: 0 16px;">
+    <div style="text-align: center; max-width: 620px; margin: 0 auto 24px;">
       <div class="section-label-chip">How Your Order Moves</div>
-      <h2 style="font-family: var(--font-editorial); font-size: 1.85rem; color: var(--color-plum-royal); margin: 8px 0 6px;">4 Simple Kitchen Stages</h2>
+      <h2 style="font-family: var(--font-editorial); font-size: 1.75rem; color: var(--color-plum-royal); margin: 8px 0 6px;">4 Simple Kitchen Stages</h2>
       <p style="font-size: 0.92rem; color: var(--color-text-muted);">
-        Every order in our Nungambakkam scratch kitchen follows four transparent steps so you always know what's happening.
+        Every order in our Nungambakkam kitchen follows four clear steps so you always know what is happening.
       </p>
     </div>
 
@@ -128,25 +128,25 @@
       <article class="simple-step-card" style="flex-direction: column;">
         <span class="simple-step-num">01</span>
         <h3>Payment Verified</h3>
-        <p>You scan our official UPI QR (<code>eoteatop@okicici</code>) and upload your screenshot. Our kitchen confirms the transfer and locks your slot immediately.</p>
+        <p>Scan our official UPI QR, <code>eoteatop@okicici</code>, and upload your screenshot. Our kitchen confirms the payment and locks your slot right away.</p>
       </article>
 
       <article class="simple-step-card" style="flex-direction: column;">
         <span class="simple-step-num">02</span>
-        <h3>Baked Fresh &amp; Hand-Piped</h3>
-        <p>100% Pure Veg Eggless sponge baked from scratch with Belgian Callebaut chocolate and French butter—never premixes or frozen stock.</p>
+        <h3>Baked Fresh &amp; Piped</h3>
+        <p>100% pure veg eggless sponge baked from scratch with Belgian chocolate and French butter. Never premixes or frozen stock.</p>
       </article>
 
       <article class="simple-step-card" style="flex-direction: column;">
         <span class="simple-step-num">03</span>
         <h3>Out for AC Delivery</h3>
-        <p>Packed inside temperature-protected ribboned boxes and dispatched via air-conditioned Chennai transit (or ready for free studio pickup).</p>
+        <p>Packed inside sturdy ribbon boxes and sent in an air-conditioned Chennai car, or kept ready for free studio pickup.</p>
       </article>
 
       <article class="simple-step-card" style="flex-direction: column;">
         <span class="simple-step-num">04</span>
         <h3>Delivered to Your Door</h3>
-        <p>Arrives chilled and centerpiece-ready. Keep refrigerated at 4°C–8°C and rest 15 minutes before slicing for peak flavor.</p>
+        <p>Arrives chilled and ready to serve. Keep refrigerated at 4°C to 8°C and let it sit out for 15 minutes before slicing.</p>
       </article>
     </div>
 
@@ -199,9 +199,9 @@
     </div>
   </footer>
 
-  <script src="firebase-config.js?v=5.2.0"></script>
-  <script type="module" src="firebase-service.js?v=5.2.0"></script>
-  <script src="data.js?v=5.2.0"></script>
-  <script src="app.js?v=5.2.0"></script>
+  <script src="firebase-config.js?v=5.3.0"></script>
+  <script type="module" src="firebase-service.js?v=5.3.0"></script>
+  <script src="data.js?v=5.3.0"></script>
+  <script src="app.js?v=5.3.0"></script>
 </body>
 </html>

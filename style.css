@@ -35,11 +35,12 @@
   --color-gold-deep: #805819;
   --color-gold-hairline: rgba(212, 175, 55, 0.38);
 
-  /* Spiced Terracotta (Festive & Evening Saver — Replaces clashing neon orange) */
+  /* Spiced Terracotta (Festive & Evening Saver) */
   --color-terracotta: #A83E1C;
   --color-terracotta-dark: #7A2B12;
   --color-terracotta-soft: #FDF4EF;
   --color-terracotta-border: rgba(168, 62, 28, 0.28);
+  --nav-height: 69px;
 
   /* Theobroma FSSAI Indian Vegetarian Green */
   --color-veg-green: #0E7A53;
@@ -96,8 +97,14 @@ body {
   color: var(--color-text-main);
   line-height: 1.6;
   font-size: 16px;
+  padding-top: var(--nav-height);
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
+}
+
+body.nav-open {
+  overflow: hidden;
+  touch-action: none;
 }
 
 :focus-visible {
@@ -339,20 +346,32 @@ h1, h2, h3, h4 {
    Main Navigation Bar (Glassmorphism & Parisian Precision)
    ========================================================================== */
 .site-navbar {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 100;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: var(--nav-height);
+  z-index: 1200;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--color-border);
-  transition: var(--transition-smooth);
+  transition: box-shadow 0.22s ease, background-color 0.22s ease;
+  display: flex;
+  align-items: center;
+}
+
+.site-navbar.scrolled {
+  box-shadow: 0 6px 24px rgba(36, 14, 43, 0.08);
+  background: rgba(255, 255, 255, 0.98);
 }
 
 .navbar-inner {
+  width: 100%;
   max-width: 1240px;
   margin: 0 auto;
-  padding: 12px 24px;
+  padding: 0 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -4136,64 +4155,93 @@ dialog.order-dialog::backdrop {
 }
 
 @media (max-width: 900px) {
+  :root {
+    --nav-height: 62px;
+  }
+
+  .navbar-inner {
+    padding: 0 14px;
+    gap: 10px;
+  }
+
+  .brand-arch-logo {
+    width: 38px;
+    height: 38px;
+  }
+
+  .brand-name {
+    font-size: 0.98rem;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  .brand-locale {
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
   .mobile-nav-backdrop {
     display: block;
     position: fixed;
-    top: 0;
+    top: var(--nav-height);
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(28, 10, 24, 0.6);
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
+    background: rgba(28, 10, 24, 0.48);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 998;
+    transition: opacity 0.22s ease, visibility 0.22s ease;
+    z-index: 1180;
   }
 
   .mobile-nav-backdrop.open {
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
   }
 
   .mobile-nav-drawer {
     display: block;
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: var(--nav-height);
     left: 0;
     right: 0;
-    max-height: 0;
-    overflow: hidden;
+    max-height: calc(100dvh - var(--nav-height));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
     opacity: 0;
-    transform: translateY(-8px);
-    background: #FFFFFF !important; /* Fully opaque: eliminates background text bleed-through */
-    border-bottom: 2px solid var(--color-gold-deep, #A0783D);
-    border-top: 1px solid rgba(160, 120, 61, 0.2);
-    box-shadow: 0 24px 50px rgba(36, 14, 43, 0.25);
-    border-bottom-left-radius: 24px;
-    border-bottom-right-radius: 24px;
-    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 1001;
+    visibility: hidden;
+    transform: translateY(-10px);
+    background: #FFFFFF !important;
+    border-bottom: 1.5px solid var(--color-border-gold);
+    box-shadow: 0 20px 44px rgba(36, 14, 43, 0.22);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    transition: opacity 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.24s cubic-bezier(0.22, 1, 0.36, 1),
+                visibility 0.22s ease;
+    z-index: 1190;
     pointer-events: none;
   }
 
   .mobile-nav-drawer.open {
-    max-height: 85vh;
-    overflow-y: auto;
     opacity: 1;
+    visibility: visible;
     transform: translateY(0);
     pointer-events: auto;
   }
 
   .mobile-drawer-links {
     list-style: none;
-    padding: 16px 16px 8px;
+    padding: 12px 14px 8px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     margin: 0;
   }
 
@@ -4207,82 +4255,85 @@ dialog.order-dialog::backdrop {
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 10px 14px;
-    background: #FAF7F2;
+    gap: 11px;
+    padding: 9px 12px;
+    background: #FAF8F5;
     border: 1px solid rgba(160, 120, 61, 0.16);
-    border-radius: 14px;
-    transition: all 0.22s ease;
+    border-radius: 12px;
+    transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.18s ease, border-color 0.18s ease;
+  }
+
+  .mobile-drawer-links a.mobile-link:active {
+    transform: scale(0.98);
   }
 
   .mobile-drawer-links a.mobile-link:hover,
   .mobile-drawer-links a.mobile-link.active {
     background: #FDF9F3;
-    border-color: var(--color-gold-deep, #A0783D);
-    box-shadow: 0 4px 14px rgba(160, 120, 61, 0.12);
-    transform: translateX(3px);
+    border-color: var(--color-gold-deep);
+    box-shadow: 0 3px 10px rgba(55, 26, 64, 0.07);
   }
 
   .nav-item-icon {
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-    border-radius: 10px;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    border-radius: 9px;
     background: #FFFFFF;
-    border: 1px solid rgba(160, 120, 61, 0.2);
+    border: 1px solid rgba(160, 120, 61, 0.18);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.1rem;
-    box-shadow: 0 2px 5px rgba(44, 17, 51, 0.05);
+    font-size: 0.96rem;
   }
 
   .nav-item-content {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 1px;
     flex: 1;
     text-align: left;
   }
 
   .nav-item-title {
-    font-size: 0.94rem;
+    font-size: 0.9rem;
     font-weight: 700;
-    color: var(--color-plum-royal, #201222);
+    color: var(--color-plum-royal);
     letter-spacing: -0.01em;
+    line-height: 1.25;
   }
 
   .mobile-link.active .nav-item-title {
-    color: var(--color-gold-deep, #A0783D);
+    color: var(--color-gold-deep);
   }
 
   .nav-item-desc {
     font-size: 0.72rem;
-    color: var(--color-text-muted, #725D68);
+    color: var(--color-text-muted);
     font-weight: 400;
     line-height: 1.25;
   }
 
   .nav-item-arrow {
-    font-size: 1.1rem;
-    color: rgba(160, 120, 61, 0.5);
+    font-size: 1rem;
+    color: rgba(128, 88, 25, 0.6);
     font-weight: 600;
-    transition: transform 0.2s ease, color 0.2s ease;
+    transition: transform 0.18s ease, color 0.18s ease;
   }
 
   .mobile-link:hover .nav-item-arrow,
   .mobile-link.active .nav-item-arrow {
-    color: var(--color-gold-deep, #A0783D);
+    color: var(--color-gold-deep);
     transform: translateX(3px);
   }
 
   .mobile-drawer-footer {
-    padding: 10px 16px 18px;
-    border-top: 1px solid rgba(160, 120, 61, 0.15);
+    padding: 10px 14px 14px;
+    border-top: 1px solid rgba(160, 120, 61, 0.14);
     margin-top: 4px;
     background: #FFFFFF;
-    border-bottom-left-radius: 24px;
-    border-bottom-right-radius: 24px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
   }
 
   .drawer-whatsapp-btn {
@@ -4290,29 +4341,31 @@ dialog.order-dialog::backdrop {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    padding: 12px 16px;
-    background: linear-gradient(135deg, #25D366 0%, #1EBE5D 100%);
+    padding: 11px 16px;
+    background: #178F4A;
     color: #FFFFFF !important;
     text-decoration: none;
-    font-size: 0.88rem;
+    font-size: 0.86rem;
     font-weight: 700;
     border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 14px rgba(23, 143, 74, 0.25);
+    transition: transform 0.16s ease, background-color 0.18s ease;
+  }
+
+  .drawer-whatsapp-btn:active {
+    transform: scale(0.975);
   }
 
   .drawer-whatsapp-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+    background: #12763C;
   }
 
   .wa-dot {
-    width: 8px;
-    height: 8px;
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
     background: #FFFFFF;
     display: inline-block;
-    box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
   }
 }
 
@@ -4880,15 +4933,434 @@ dialog.order-dialog::backdrop {
   color: var(--color-gold-deep);
 }
 
+/* ==========================================================================
+   Minimal, Smooth Tactile Button & Popup Micro-Interactions
+   ========================================================================== */
+.btn,
+.btn-terracotta,
+.btn-add-bag,
+.btn-open-bag,
+.filter-pill,
+.mobile-nav-toggle {
+  position: relative;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.16s cubic-bezier(0.22, 1, 0.36, 1),
+              background-color 0.2s ease,
+              border-color 0.2s ease,
+              box-shadow 0.2s ease,
+              color 0.2s ease;
+}
+
+.btn:active,
+.btn-terracotta:active,
+.btn-add-bag:active,
+.btn-open-bag:active,
+.filter-pill:active,
+.mobile-nav-toggle:active {
+  transform: scale(0.965);
+}
+
+.btn-tap-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.28);
+  transform: scale(0);
+  pointer-events: none;
+  animation: btnRipple 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.btn-secondary .btn-tap-ripple,
+.btn-add-bag .btn-tap-ripple,
+.filter-pill:not(.active) .btn-tap-ripple {
+  background: rgba(55, 26, 64, 0.12);
+}
+
+@keyframes btnRipple {
+  to {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+.btn-add-bag.added {
+  background: var(--color-veg-green);
+  color: #FFFFFF;
+  border-color: var(--color-veg-green);
+  animation: bagConfirmPop 0.26s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes bagConfirmPop {
+  0% { transform: scale(0.94); }
+  55% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.sticky-bag-bar.visible {
+  display: flex;
+  animation: bagSlideUp 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.sticky-bag-bar.bump {
+  animation: bagBump 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes bagSlideUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 14px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes bagBump {
+  0% { transform: translateX(-50%) scale(1); }
+  45% { transform: translateX(-50%) scale(1.03); }
+  100% { transform: translateX(-50%) scale(1); }
+}
+
+dialog.order-dialog[open] {
+  animation: dialogPopIn 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+dialog.order-dialog::backdrop {
+  animation: backdropFadeIn 0.2s ease;
+}
+
+@keyframes dialogPopIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes backdropFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.toast-pill.toast-leaving {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* ==========================================================================
+   Mobile UI Priority Optimization (Smooth, Clean, App-Like on 375px to 640px)
+   ========================================================================== */
+@media (max-width: 900px) {
+  .mobile-nav-toggle {
+    width: 42px;
+    height: 42px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border-radius: 10px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-gold);
+    box-shadow: 0 2px 8px rgba(55, 26, 64, 0.06);
+  }
+
+  .hero-wrapper {
+    padding: 24px 16px 28px;
+  }
+
+  .hero-grid {
+    gap: 24px;
+  }
+
+  .hero-media-wrapper,
+  .hero-visual-frame img {
+    max-height: 300px;
+  }
+
+  .page-hero-banner {
+    padding: 28px 16px 24px;
+  }
+
+  .page-hero-banner h1 {
+    font-size: clamp(1.85rem, 7vw, 2.4rem);
+  }
+
+  .page-hero-desc {
+    font-size: 0.94rem;
+    line-height: 1.55;
+  }
+
+  .toast-container {
+    top: calc(var(--nav-height) + 10px);
+    left: 12px;
+    right: 12px;
+    max-width: none;
+    align-items: center;
+  }
+
+  .toast-pill {
+    width: auto;
+    max-width: 100%;
+    font-size: 0.82rem;
+    padding: 9px 14px;
+    border-radius: 14px;
+    line-height: 1.35;
+  }
+}
+
 @media (max-width: 640px) {
+  .hero-text h1 {
+    font-size: clamp(1.95rem, 7.6vw, 2.45rem);
+    line-height: 1.14;
+    margin: 8px 0 12px;
+  }
+
+  .hero-subtext {
+    font-size: 0.94rem;
+    margin-bottom: 18px;
+  }
+
+  .hero-meta-strip {
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+
+  .hero-trust-pill {
+    font-size: 0.74rem;
+    padding: 5px 10px;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 46px;
+  }
+
+  .trust-pincode-strip,
+  .simple-steps-section {
+    padding: 0 16px;
+    margin-top: 18px;
+  }
+
   .trust-pincode-card {
     padding: 16px;
+    gap: 12px;
+    border-radius: 14px;
   }
+
+  .trust-rating-row {
+    font-size: 0.84rem;
+  }
+
+  .trust-subcopy {
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+
   .pincode-checker-form {
     width: 100%;
+    flex-wrap: nowrap;
   }
+
   .pincode-input {
     flex: 1;
+    min-width: 0;
     width: auto;
+    min-height: 44px;
+    font-size: 0.92rem;
+  }
+
+  .pincode-checker-form .btn {
+    min-height: 44px;
+    padding: 0 14px;
+    white-space: nowrap;
+  }
+
+  .simple-steps-grid {
+    gap: 10px;
+  }
+
+  .simple-step-card {
+    padding: 14px 16px;
+    gap: 12px;
+    border-radius: 14px;
+  }
+
+  .simple-step-num {
+    width: 28px;
+    height: 28px;
+    font-size: 0.78rem;
+  }
+
+  .simple-step-card h3 {
+    font-size: 1rem;
+  }
+
+  .simple-step-card p {
+    font-size: 0.83rem;
+  }
+
+  .festive-ribbon-bar {
+    padding: 18px 16px;
+  }
+
+  .festive-ribbon-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .festive-ribbon-actions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .festive-ribbon-actions a {
+    width: 100%;
+    justify-content: center;
+    min-height: 44px;
+  }
+
+  .trial-banner-wrap {
+    padding: 0 16px !important;
+  }
+
+  .trial-banner-card {
+    padding: 20px 18px !important;
+    border-radius: 16px !important;
+  }
+
+  .trial-banner-card .btn-open-trial-checkout {
+    width: 100%;
+    justify-content: center;
+    min-height: 46px;
+  }
+
+  /* Clean horizontal swipe strip for Collection filter pills on mobile */
+  .collection-search-section {
+    padding: 0 12px 16px;
+  }
+
+  .collection-search-container {
+    padding: 14px !important;
+    border-radius: 16px !important;
+  }
+
+  .couture-filter-bar {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    justify-content: flex-start !important;
+    gap: 8px !important;
+    padding-bottom: 6px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .couture-filter-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .couture-filter-bar .filter-pill {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding: 8px 14px;
+    font-size: 0.82rem;
+  }
+
+  .couture-section {
+    padding: 8px 14px 48px !important;
+  }
+
+  .couture-grid {
+    gap: 16px !important;
+  }
+
+  .couture-card-footer {
+    gap: 8px;
+    flex-wrap: nowrap;
+  }
+
+  .card-action-group {
+    gap: 6px;
+  }
+
+  .btn-add-bag {
+    padding: 8px 11px;
+    min-height: 38px;
+  }
+
+  .couture-card-footer .btn {
+    padding: 8px 12px;
+    min-height: 38px;
+    font-size: 0.8rem;
+  }
+
+  .sticky-bag-bar {
+    bottom: max(12px, env(safe-area-inset-bottom));
+    width: calc(100% - 24px);
+    padding: 11px 14px;
+    border-radius: 14px;
+  }
+
+  .btn-open-bag {
+    padding: 10px 14px;
+    font-size: 0.82rem;
+  }
+
+  dialog.order-dialog {
+    width: calc(100% - 16px) !important;
+    max-width: none !important;
+    max-height: 92dvh !important;
+    border-radius: 18px !important;
+  }
+
+  .modal-inner-content {
+    padding: 14px 16px 20px !important;
+  }
+
+  .checkout-step-pill {
+    font-size: 0.68rem;
+    padding: 6px 4px;
+  }
+
+  .showcase-section,
+  .flavours-section,
+  .story-section {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .btn-terracotta,
+  .btn-add-bag,
+  .btn-open-bag,
+  .filter-pill,
+  .mobile-nav-toggle,
+  .mobile-nav-drawer,
+  .mobile-nav-backdrop,
+  dialog.order-dialog[open],
+  .sticky-bag-bar.visible,
+  .sticky-bag-bar.bump,
+  .btn-add-bag.added {
+    animation: none !important;
+    transition: none !important;
+  }
+  .btn-tap-ripple {
+    display: none !important;
   }
 }

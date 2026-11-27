@@ -13,7 +13,7 @@ const HUCKLEBERRY_DATA = {
     tagline: "Luxury cakes made for sweet moments.",
     address: "Shafee Mohammed Road, Nungambakkam, Chennai 600006",
     mapsUrl: "https://www.google.com/maps/dir/?api=1&destination=Shafee+Mohammed+Road,+Thousand+Lights+West,+Nungambakkam,+Chennai+600006",
-    hours: "11:00 AM – 9:00 PM (Tuesday – Sunday)",
+    hours: "11:00 AM  to  9:00 PM (Tuesday  to  Sunday)",
     headlineProof: "Automated Cake Booking Engine for Your Huckleberry",
     quote: "Made to be admired. Made to be savoured slowly.",
     secondaryQuote: "Every swirl, pearl and ribbon is placed with care to turn moments into memories.",
@@ -49,7 +49,7 @@ const HUCKLEBERRY_DATA = {
       description: "Individual designer cakes presented in luxury display boxes with satin silk ribbons.",
       isEggless: true,
       allergens: ["Wheat (Gluten)", "Dairy (Milk)", "Soy"],
-      storage: "Keep chilled at 4°C–8°C. Best enjoyed within 48 hours.",
+      storage: "Keep chilled at 4°C to 8°C. Best enjoyed within 48 hours.",
       popular: true
     },
     {
@@ -85,7 +85,7 @@ const HUCKLEBERRY_DATA = {
     {
       id: "tier-2",
       name: "Two-Tier Cake",
-      tag: "Most Popular (18–24 guests)",
+      tag: "Most Popular (18 to 24 guests)",
       servings: "18 to 24 guests",
       weightKg: "2.5 kg",
       weightGrams: "2500g",
@@ -100,7 +100,7 @@ const HUCKLEBERRY_DATA = {
     {
       id: "tier-3",
       name: "Three-Tier Grand Cake",
-      tag: "Grand Wedding (35–45 guests)",
+      tag: "Grand Wedding (35 to 45 guests)",
       servings: "35 to 45 guests",
       weightKg: "4.5 kg",
       weightGrams: "4500g",
@@ -227,7 +227,7 @@ const HUCKLEBERRY_DATA = {
       weightGrams: "2500g",
       isEggless: true,
       allergens: ["Wheat (Gluten)", "Dairy (Milk)", "Soy"],
-      storage: "Keep refrigerated at 4°C–8°C. Bring to room temperature 20 mins prior to cake-cutting.",
+      storage: "Keep refrigerated at 4°C to 8°C. Bring to room temperature 20 mins prior to cake-cutting.",
       flavor: "Persian Lychee Rose & Raspberry",
       price: "₹3,950",
       image: "assets/images/tier-two-tier-milestone.jpg",
@@ -239,7 +239,7 @@ const HUCKLEBERRY_DATA = {
       title: "The Mini Couture Collection",
       subtitle: "Haute Pâtisserie in Miniature",
       category: "miniature",
-      weight: "Quad Box (600g)",
+      weight: "Box of 4 • 600g",
       weightGrams: "600g",
       isEggless: true,
       allergens: ["Wheat (Gluten)", "Dairy (Milk)", "Soy"],
@@ -275,7 +275,7 @@ const HUCKLEBERRY_DATA = {
       weightGrams: "1000g",
       isEggless: true,
       allergens: ["Wheat (Gluten)", "Dairy (Milk)", "Soy"],
-      storage: "Keep refrigerated at 4°C–8°C. Best enjoyed within 48 hours.",
+      storage: "Keep refrigerated at 4°C to 8°C. Best enjoyed within 48 hours.",
       flavor: "Sicilian Lemon & Rose Wild Berry",
       price: "₹1,850",
       image: "assets/images/couture-lambeth-clean.jpg",
@@ -339,7 +339,7 @@ const HUCKLEBERRY_DATA = {
       weightGrams: "150g",
       isEggless: true,
       allergens: ["Wheat (Gluten)", "Dairy (Milk)"],
-      storage: "Keep chilled at 4°C–8°C.",
+      storage: "Keep chilled at 4°C to 8°C.",
       flavor: "Strawberry Vanilla Bean Chiffon",
       price: "₹350",
       image: "assets/images/mini-floral-rosette.jpg",
@@ -365,7 +365,7 @@ const HUCKLEBERRY_DATA = {
       desc: "Decadent square-cut hazelnut pastry layered with 70% Callebaut dark ganache, crunchy wafer feuilletine, and roasted hazelnuts, crowned with an artisan Ferrero Rocher truffle orb.",
       isEggless: true,
       allergens: ["Wheat (Gluten)", "Dairy (Milk)", "Soy", "Tree Nuts (Hazelnut)"],
-      storage: "Keep refrigerated at 4°C–8°C. Best enjoyed within 48 hours.",
+      storage: "Keep refrigerated at 4°C to 8°C. Best enjoyed within 48 hours.",
       highlight: "Chef's Signature"
     },
     {
@@ -383,7 +383,7 @@ const HUCKLEBERRY_DATA = {
       desc: "Pure eggless New York style baked cheesecake crafted with rich Philadelphia cream cheese, Madagascar vanilla bean, and a slow-baked caramelized top.",
       isEggless: true,
       allergens: ["Wheat (Gluten)", "Dairy (Milk)"],
-      storage: "Keep chilled at 4°C–8°C. Rest 10 mins at room temperature before savoring.",
+      storage: "Keep chilled at 4°C to 8°C. Rest 10 mins at room temperature before savoring.",
       highlight: "Bestseller"
     },
     {
@@ -473,7 +473,7 @@ const HUCKLEBERRY_DATA = {
       desc: "Delicate pink sponge patterned with natural strawberry puree, rolled with whipped strawberry cream and topped with fresh sliced strawberries and glaze.",
       isEggless: true,
       allergens: ["Wheat (Gluten)", "Dairy (Milk)"],
-      storage: "Keep refrigerated at 4°C–8°C.",
+      storage: "Keep refrigerated at 4°C to 8°C.",
       highlight: "Feminine Classic"
     },
     {
@@ -491,7 +491,7 @@ const HUCKLEBERRY_DATA = {
       desc: "Warm for 15 seconds in the microwave to release an irresistible, warm, flowing center of liquid dark chocolate ganache. Pure heaven for chocolate lovers.",
       isEggless: true,
       allergens: ["Wheat (Gluten)", "Dairy (Milk)", "Soy"],
-      storage: "Refrigerate. Microwave for 15–20 seconds before serving warm.",
+      storage: "Refrigerate. Microwave for 15 to 20 seconds before serving warm.",
       highlight: "Top Value"
     },
     {
@@ -532,7 +532,7 @@ const HUCKLEBERRY_DATA = {
     },
     {
       id: "dessert-brownie-tub-big",
-      name: "Brownie Tub Big (Sharing)",
+      name: "Large Sharing Brownie Tub",
       category: "everyday",
       subCategory: "tubs",
       portion: "1 nos",
@@ -661,7 +661,7 @@ const HUCKLEBERRY_DATA = {
       title: "Miniature Couture Luxe Gifting Set",
       subtitle: "Four Individual Designer Cakes",
       category: "festive",
-      weight: "Quad Box (600g)",
+      weight: "Box of 4 • 600g",
       price: "₹1,200",
       basePrice: 1200,
       image: "assets/images/mini-couture-collection.jpg",
@@ -675,7 +675,7 @@ const HUCKLEBERRY_DATA = {
     {
       id: "hamper-office-party-platter",
       title: "Office Celebration Savory & Sweet Platter",
-      subtitle: "Party Snack Platter (Serves 15–20)",
+      subtitle: "Party Snack Platter (Serves 15 to 20)",
       category: "festive",
       weight: "Party Box (1.8kg)",
       price: "₹2,200",
@@ -702,7 +702,7 @@ const HUCKLEBERRY_DATA = {
     },
     {
       question: "How should I store and serve my cake in Chennai's climate?",
-      answer: "Chennai's tropical climate requires care with high-grade buttercream and ganache. Keep your cake refrigerated at 4°C–8°C immediately upon arrival. For the finest flavor bloom and silky texture, remove the cake from the refrigerator approximately 15–20 minutes before cutting and serving."
+      answer: "Chennai's tropical climate requires care with high-grade buttercream and ganache. Keep your cake refrigerated at 4°C to 8°C immediately upon arrival. For the finest flavor bloom and silky texture, remove the cake from the refrigerator approximately 15 to 20 minutes before cutting and serving."
     },
     {
       question: "What delivery options and service areas are available across Chennai?",

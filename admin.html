@@ -427,7 +427,7 @@
         <div class="shift-steps">
           <div class="shift-step-box">
             <strong>1. Check Payment First</strong>
-            Open "1. Verify Payment" → tap <em>Inspect Proof</em> → verify money in GPay/IOB → tap <em>Money Received — Send to Oven</em>.
+            Open "1. Verify Payment" → tap <em>Inspect Proof</em> → verify money in GPay/IOB → tap <em>Money Received, Send to Oven</em>.
           </div>
           <div class="shift-step-box">
             <strong>2. Bake &amp; Print/Copy Slip</strong>
@@ -505,8 +505,8 @@
         <div class="flash-box">
           <div class="flash-header">
             <div class="flash-title">
-              <h2>7:00 PM – 7:30 PM Zero-Waste Evening Saver</h2>
-              <p style="font-size: 0.86rem; color: var(--muted);">Add leftover fresh pastries at closing. Flip the switch ON and nearby Chennai buyers can grab them immediately for 8:00–9:00 PM delivery.</p>
+              <h2>7:00 PM to 7:30 PM Evening Saver</h2>
+              <p style="font-size: 0.86rem; color: var(--muted);">Add leftover fresh pastries at closing. Flip the switch ON and nearby Chennai buyers can grab them right away for 8:00 to 9:00 PM delivery.</p>
             </div>
             <div style="display: flex; align-items: center; gap: 10px;">
               <span id="flash-status-label" style="font-size: 0.84rem; font-weight: 800; color: var(--terracotta);">Window OFF</span>
@@ -616,15 +616,15 @@
     </div>
     <div id="proof-meta-box" style="background: var(--bg); border-radius: 8px; padding: 10px 12px; margin-bottom: 14px; font-size: 0.84rem;"></div>
     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-      <button type="button" id="btn-proof-verify-action" class="btn btn-green" style="flex: 1;">✓ Money Received — Send to Oven</button>
+      <button type="button" id="btn-proof-verify-action" class="btn btn-green" style="flex: 1;">✓ Money Received, Send to Oven</button>
       <button type="button" id="btn-proof-close-footer" class="btn btn-outline" style="flex: 1;">Close</button>
     </div>
   </dialog>
 
   <div class="toast" id="admin-toast" role="status" aria-live="polite"></div>
 
-  <script src="firebase-config.js?v=5.2.0"></script>
-  <script type="module" src="firebase-service.js?v=5.2.0"></script>
+  <script src="firebase-config.js?v=5.3.0"></script>
+  <script type="module" src="firebase-service.js?v=5.3.0"></script>
   <script>
     (function () {
       let allOrders = [];
@@ -726,7 +726,7 @@
           return `<button type="button" class="btn btn-terracotta primary-next-action btn-inspect-proof" data-order-id="${escapeHtml(o.id)}">1. Inspect UPI Screenshot &amp; Approve ➔</button>`;
         }
         if (o.status === "baking") {
-          return `<button type="button" class="btn btn-plum primary-next-action btn-quick-advance" data-order-id="${escapeHtml(o.id)}" data-next="delivery">2. Done Baking — Mark Out for Delivery ➔</button>`;
+          return `<button type="button" class="btn btn-plum primary-next-action btn-quick-advance" data-order-id="${escapeHtml(o.id)}" data-next="delivery">2. Done Baking, Mark Out for Delivery ➔</button>`;
         }
         if (o.status === "delivery") {
           return `<button type="button" class="btn btn-green primary-next-action btn-quick-advance" data-order-id="${escapeHtml(o.id)}" data-next="delivered">3. Confirm Delivered ✓</button>`;
@@ -865,11 +865,11 @@
               </td>
               <td>
                 <strong>${escapeHtml(c.guestCount || "TBD")}</strong><br />
-                <span style="font-size:0.8rem; color:var(--muted);">${escapeHtml(c.notes || "—")}</span>
+                <span style="font-size:0.8rem; color:var(--muted);">${escapeHtml(c.notes || "No notes")}</span>
               </td>
               <td>
                 ${photos.length
-                  ? photos.map((p, idx) => `<img src="${escapeHtml(p)}" class="photo-thumb btn-view-consult-photo" data-title="${escapeHtml(c.name)} — Dream Ref ${idx + 1}" alt="Dream Cake Ref ${idx + 1}" />`).join("")
+                  ? photos.map((p, idx) => `<img src="${escapeHtml(p)}" class="photo-thumb btn-view-consult-photo" data-title="${escapeHtml(c.name)} • Ref Photo ${idx + 1}" alt="Dream Cake Ref ${idx + 1}" />`).join("")
                   : `<span style="font-size:0.78rem; color:var(--muted);">None attached</span>`}
               </td>
               <td>
@@ -926,10 +926,10 @@
             <td><strong>${escapeHtml(b.name)}</strong></td>
             <td>${escapeHtml(b.email)}</td>
             <td>${escapeHtml(b.phone)}</td>
-            <td>${escapeHtml(b.pincode || "—")}</td>
+            <td>${escapeHtml(b.pincode || "N/A")}</td>
             <td>${b.orders}</td>
             <td><strong>₹${b.spend.toLocaleString("en-IN")}</strong></td>
-            <td>${escapeHtml(Array.from(b.coupons).join(", ") || "—")}</td>
+            <td>${escapeHtml(Array.from(b.coupons).join(", ") || "None")}</td>
           </tr>
         `).join("");
       }
@@ -1004,7 +1004,7 @@
           const meta = document.getElementById("proof-meta-box");
           const verifyBtn = document.getElementById("btn-proof-verify-action");
 
-          title.textContent = `Payment Proof — #${order.id}`;
+          title.textContent = `Payment Proof: #${order.id}`;
           img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
           meta.innerHTML = `Loading UPI proof for <strong>${escapeHtml(order.customerName)}</strong>...`;
           verifyBtn.style.display = order.status === "pending" ? "inline-flex" : "none";
@@ -1044,7 +1044,7 @@
           const slip = `KITCHEN PREP TICKET #${o.id}\nDate & Slot: ${o.deliveryDate} • ${o.deliverySlot}\nItems: ${o.itemSummary}\n${o.inscription ? `Plaque: "${o.inscription}"\n` : ""}Buyer: ${o.customerName} (${o.customerPhone})\nDelivery: ${o.address} (PIN ${o.pincode})\nTotal: ₹${o.total} | Paid/Adv: ₹${o.advanceAmount}`;
           try {
             await navigator.clipboard.writeText(slip);
-            showToast(`Prep slip copied for #${o.id} — paste to kitchen WhatsApp group!`);
+            showToast(`Prep slip copied for #${o.id}. Paste into kitchen WhatsApp group.`);
           } catch (_) {
             showToast(`Order #${o.id}: ${o.itemSummary}`);
           }
@@ -1212,7 +1212,7 @@
         setTimeout(() => {
           if (!window.HuckleberryCloud) {
             const st = document.getElementById("loading-status-text");
-            if (st) st.textContent = "Slow connection — please refresh if this takes over 10 seconds.";
+            if (st) st.textContent = "Slow connection. Please refresh if this takes over 10 seconds.";
           }
         }, 6000);
       }

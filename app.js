@@ -1,5 +1,5 @@
 /**
- * Your Huckleberry (@huckleberry.inn) — Production Storefront, Multi-Item Order Bag,
+ * Your Huckleberry (@huckleberry.inn) Storefront, Multi-Item Order Bag,
  * Direct UPI Checkout & Live Cloud Kitchen Client
  * Shafee Mohammed Road, Thousand Lights / Nungambakkam, Chennai 600006
  */
@@ -42,9 +42,30 @@ document.addEventListener("DOMContentLoaded", () => {
     toast.innerHTML = `<span>${escapeHtml(icon)}</span> <span>${escapeHtml(message)}</span>`;
     toastContainer.appendChild(toast);
     setTimeout(() => {
-      if (toast.parentNode) toast.parentNode.removeChild(toast);
-    }, 3200);
+      toast.classList.add("toast-leaving");
+      setTimeout(() => {
+        if (toast.parentNode) toast.parentNode.removeChild(toast);
+      }, 220);
+    }, 2800);
   }
+
+  // Minimal, smooth tactile button press ripple (respects prefers-reduced-motion)
+  const reduceMotionQuery = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
+  document.addEventListener("pointerdown", (e) => {
+    if (reduceMotionQuery && reduceMotionQuery.matches) return;
+    const target = e.target.closest(".btn, .btn-terracotta, .btn-add-bag, .btn-open-bag, .filter-pill");
+    if (!target || target.disabled) return;
+    const rect = target.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height) * 0.9;
+    const ripple = document.createElement("span");
+    ripple.className = "btn-tap-ripple";
+    ripple.style.width = `${size}px`;
+    ripple.style.height = `${size}px`;
+    ripple.style.left = `${e.clientX - rect.left - size / 2}px`;
+    ripple.style.top = `${e.clientY - rect.top - size / 2}px`;
+    target.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 450);
+  });
 
   function getCloud() {
     return window.HuckleberryCloud || null;
@@ -81,11 +102,29 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ==========================================================================
-  // 1. Mobile Navigation Drawer (Accessible aria-hidden & aria-expanded)
+  // 1. Fixed Navbar Elevation & Viewport-Pinned Mobile Drawer
   // ==========================================================================
+  const siteNavbar = document.querySelector(".site-navbar");
   const mobileNavToggle = document.getElementById("btn-mobile-nav");
   const mobileNavDrawer = document.getElementById("mobile-nav-drawer");
   const mobileNavBackdrop = document.getElementById("mobile-nav-backdrop");
+
+  // Portal mobile drawer & backdrop directly onto document.body so navbar backdrop-filter
+  // never traps position:fixed descendants when the customer scrolls down the page.
+  if (mobileNavBackdrop && mobileNavBackdrop.parentElement !== document.body) {
+    document.body.appendChild(mobileNavBackdrop);
+  }
+  if (mobileNavDrawer && mobileNavDrawer.parentElement !== document.body) {
+    document.body.appendChild(mobileNavDrawer);
+  }
+
+  if (siteNavbar) {
+    const syncNavScrollState = () => {
+      siteNavbar.classList.toggle("scrolled", window.scrollY > 8);
+    };
+    window.addEventListener("scroll", syncNavScrollState, { passive: true });
+    syncNavScrollState();
+  }
 
   function closeMobileNav() {
     if (mobileNavDrawer) {
@@ -100,11 +139,13 @@ document.addEventListener("DOMContentLoaded", () => {
       mobileNavBackdrop.classList.remove("open");
       mobileNavBackdrop.setAttribute("aria-hidden", "true");
     }
+    document.body.classList.remove("nav-open");
     document.body.style.overflow = "";
   }
 
   function openMobileNav() {
     if (mobileNavDrawer) {
+      mobileNavDrawer.scrollTop = 0;
       mobileNavDrawer.classList.add("open");
       mobileNavDrawer.setAttribute("aria-hidden", "false");
     }
@@ -116,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
       mobileNavBackdrop.classList.add("open");
       mobileNavBackdrop.setAttribute("aria-hidden", "false");
     }
-    document.body.style.overflow = "hidden";
+    document.body.classList.add("nav-open");
   }
 
   if (mobileNavToggle && mobileNavDrawer) {
@@ -134,6 +175,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && mobileNavDrawer.classList.contains("open")) closeMobileNav();
+    });
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 900 && mobileNavDrawer.classList.contains("open")) closeMobileNav();
     });
   }
 
@@ -164,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function evaluateChennaiPincode(raw) {
     const pin = String(raw || "").replace(/\D/g, "").slice(0, 6);
     if (pin.length !== 6) {
-      return { ok: false, msg: "Please enter a valid 6-digit Chennai pincode (e.g. 600006, 600018, 600096)." };
+      return { ok: false, msg: "Please enter a valid 6-digit Chennai pincode, like 600006 or 600018." };
     }
     if (CHENNAI_ZONES_MAP[pin]) {
       const z = CHENNAI_ZONES_MAP[pin];
@@ -172,7 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ok: true,
         pin,
         zonePin: z.zonePin,
-        msg: `✓ Yes! AC Delivery available to ${z.area} (${pin}) — ₹${z.fee} delivery or Free Pickup at Nungambakkam.`
+        msg: `✓ Yes! We deliver to ${z.area}, ${pin}. Delivery is ₹${z.fee}, or choose free pickup at Nungambakkam.`
       };
     }
     if (pin.startsWith("600") || pin.startsWith("601") || pin.startsWith("602") || pin.startsWith("603")) {
@@ -180,12 +224,12 @@ document.addEventListener("DOMContentLoaded", () => {
         ok: true,
         pin,
         zonePin: "600096",
-        msg: `✓ Yes! Chennai AC Delivery available to ${pin} (₹300 outer zone) or Free Pickup at Shafee Mohammed Rd.`
+        msg: `✓ Yes! We deliver to ${pin} for ₹300, or choose free pickup at Shafee Mohammed Rd.`
       };
     }
     return {
       ok: false,
-      msg: `Sorry — we bake fresh & deliver strictly inside Chennai (600xxx–603xxx) so cakes arrive chilled and perfect.`
+      msg: `Sorry, we only deliver inside Chennai right now so every cake reaches you fresh and chilled.`
     };
   }
 
@@ -221,21 +265,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let orderBag = loadBag();
 
-  function saveBag() {
+  function saveBag(shouldBump = false) {
     try {
       sessionStorage.setItem("yh_order_bag", JSON.stringify(orderBag));
     } catch (_) {}
-    renderStickyBagBar();
+    renderStickyBagBar(shouldBump);
   }
 
-  function addToBag(item) {
+  function addToBag(item, triggerBtn) {
     const key = `${item.title}__${item.price}`;
     const existing = orderBag.find((x) => x.key === key);
     if (existing) {
       existing.qty = Math.min(50, existing.qty + (item.qty || 1));
     } else {
       if (orderBag.length >= 20) {
-        showToast("Bag limit reached (max 20 distinct items per order). Please checkout first.", "⚠️");
+        showToast("Bag limit is 20 different items per order. Please finish checkout first.", "⚠️");
         return;
       }
       orderBag.push({
@@ -246,8 +290,19 @@ document.addEventListener("DOMContentLoaded", () => {
         orderType: item.orderType || "everyday"
       });
     }
-    saveBag();
-    showToast(`Added "${item.title}" to your Order Bag`, "🛍️");
+    saveBag(true);
+    if (triggerBtn) {
+      const origText = triggerBtn.dataset.origLabel || "+ Bag";
+      triggerBtn.dataset.origLabel = origText;
+      triggerBtn.textContent = "✓ Added";
+      triggerBtn.classList.add("added");
+      clearTimeout(triggerBtn._addedTimer);
+      triggerBtn._addedTimer = setTimeout(() => {
+        triggerBtn.textContent = origText;
+        triggerBtn.classList.remove("added");
+      }, 900);
+    }
+    showToast(`Added ${item.title} to your bag`, "✓");
   }
 
   function ensureStickyBagBar() {
@@ -283,7 +338,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return bar;
   }
 
-  function renderStickyBagBar() {
+  function renderStickyBagBar(shouldBump = false) {
     const bar = ensureStickyBagBar();
     const totalItems = orderBag.reduce((s, i) => s + i.qty, 0);
     const subtotal = orderBag.reduce((s, i) => s + i.price * i.qty, 0);
@@ -291,8 +346,13 @@ document.addEventListener("DOMContentLoaded", () => {
       bar.classList.add("visible");
       bar.querySelector("#sticky-bag-count").textContent = `${totalItems} item${totalItems === 1 ? "" : "s"} in your bag`;
       bar.querySelector("#sticky-bag-total").textContent = `₹${subtotal.toLocaleString("en-IN")}`;
+      if (shouldBump) {
+        bar.classList.remove("bump");
+        void bar.offsetWidth;
+        bar.classList.add("bump");
+      }
     } else {
-      bar.classList.remove("visible");
+      bar.classList.remove("visible", "bump");
     }
   }
 
@@ -399,23 +459,23 @@ document.addEventListener("DOMContentLoaded", () => {
             <div>
               <label for="uc-slot" style="display:block; font-size:0.76rem; font-weight:600; margin-bottom:3px; color:var(--color-plum-royal);">Time Slot</label>
               <select id="uc-slot" name="deliverySlot" style="width:100%; padding:8px 10px; border:1px solid #D5C9BF; border-radius:8px; font-size:0.82rem; background:#FFF;">
-                <option value="11:00 AM – 1:00 PM">11:00 AM – 1:00 PM</option>
-                <option value="1:00 PM – 4:00 PM">1:00 PM – 4:00 PM</option>
-                <option value="4:00 PM – 6:00 PM" selected>4:00 PM – 6:00 PM</option>
-                <option value="6:00 PM – 8:30 PM">6:00 PM – 8:30 PM</option>
-                <option value="8:00 PM – 9:00 PM (Evening Saver)">8:00 PM – 9:00 PM (Evening Saver)</option>
+                <option value="11:00 AM to 1:00 PM">11:00 AM to 1:00 PM</option>
+                <option value="1:00 PM to 4:00 PM">1:00 PM to 4:00 PM</option>
+                <option value="4:00 PM to 6:00 PM" selected>4:00 PM to 6:00 PM</option>
+                <option value="6:00 PM to 8:30 PM">6:00 PM to 8:30 PM</option>
+                <option value="8:00 PM to 9:00 PM Evening Saver">8:00 PM to 9:00 PM Evening Saver</option>
               </select>
             </div>
           </div>
           <div style="margin-bottom:12px;">
-            <label for="uc-address" style="display:block; font-size:0.76rem; font-weight:600; margin-bottom:3px; color:var(--color-plum-royal);">Chennai Delivery Address (or type "Studio Pickup") *</label>
+            <label for="uc-address" style="display:block; font-size:0.76rem; font-weight:600; margin-bottom:3px; color:var(--color-plum-royal);">Delivery Address or Studio Pickup *</label>
             <input type="text" id="uc-address" name="address" placeholder="Door No., Street, Area, Landmark" required style="width:100%; padding:9px 10px; border:1px solid #D5C9BF; border-radius:8px; font-size:0.88rem;" />
           </div>
 
           <!-- Step 2: UPI QR Card -->
           <div class="modal-payment-qr-card" style="margin-bottom: 12px;">
             <div class="qr-card-header">
-              <span class="qr-step-chip">Step 2: Scan &amp; Pay Direct via UPI (₹0 Extra Fee)</span>
+              <span class="qr-step-chip">Step 2: Scan &amp; Pay Direct via UPI • Zero Extra Fee</span>
               <div id="uc-payable-amount" class="qr-advance-amount">Pay ₹0 via UPI</div>
               <div id="uc-total-breakdown" style="font-size:0.78rem; color:var(--color-text-muted); margin-top:2px;"></div>
             </div>
@@ -441,7 +501,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <span style="font-size:0.68rem; font-weight:700; color:#FFF; background:var(--color-terracotta); padding:2px 7px; border-radius:4px;">REQUIRED</span>
             </div>
             <input type="file" id="uc-proof-file" name="paymentProof" accept="image/*" style="width:100%; font-size:0.82rem; padding:7px; background:#FFF; border:1px solid var(--color-terracotta-border); border-radius:6px; margin-bottom:8px; cursor:pointer;" />
-            <input type="text" id="uc-utr" name="utr" placeholder="UPI Reference / UTR Number (Optional)" style="width:100%; font-size:0.82rem; padding:8px 10px; background:#FFF; border:1px solid var(--color-terracotta-border); border-radius:6px;" />
+            <input type="text" id="uc-utr" name="utr" placeholder="UPI Reference or UTR Number, optional" style="width:100%; font-size:0.82rem; padding:8px 10px; background:#FFF; border:1px solid var(--color-terracotta-border); border-radius:6px;" />
             <div id="uc-proof-preview" style="display:none; align-items:center; gap:10px; background:#FFF; padding:8px; border-radius:6px; border:1px solid var(--color-veg-green); margin-top:8px;">
               <img id="uc-proof-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Payment Screenshot Preview" style="width:42px; height:42px; object-fit:cover; border-radius:4px;" />
               <span id="uc-proof-status" style="font-size:0.8rem; color:var(--color-veg-green); font-weight:700;">✓ Screenshot Ready</span>
@@ -473,7 +533,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <span>Track Live Kitchen &amp; Delivery Status ➔</span>
             </a>
             <a id="uc-success-wa" href="#" target="_blank" rel="noopener" class="btn btn-secondary" style="text-decoration:none; width:100%; justify-content:center;">
-              <span>Send Copy on WhatsApp (Optional)</span>
+              <span>Send a Copy on WhatsApp</span>
             </a>
           </div>
         </div>
@@ -610,7 +670,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!name) return showErr(errBox, "Please enter your name.");
       if (digits.length < 10) return showErr(errBox, "Please enter a valid 10-digit WhatsApp number.");
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showErr(errBox, "Please enter a valid email address.");
-      if (!/^\d{6}$/.test(pincode) || !pincode.startsWith("60")) return showErr(errBox, "We deliver fresh strictly inside Chennai (600xxx–603xxx pincodes).");
+      if (!/^\d{6}$/.test(pincode) || !pincode.startsWith("60")) return showErr(errBox, "We currently deliver only inside Chennai pincodes starting with 60.");
       if (!address) return showErr(errBox, "Please enter your Chennai delivery address or type 'Studio Pickup'.");
       if (!uModalState.proofDataUrl) return showErr(errBox, "Step 3 Required: Please upload your GPay / PhonePe / Paytm payment screenshot to confirm your baking slot.");
 
@@ -659,13 +719,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const waMsg = [
-          `*CONFIRMED ORDER SLIP — YOUR HUCKLEBERRY*`,
+          `*CONFIRMED ORDER SLIP: YOUR HUCKLEBERRY*`,
           `Token: #${token}`,
           `Order: ${orderPayload.itemSummary}`,
           uModalState.couponCode ? `Offer: ${uModalState.couponCode}` : null,
           `Total: ₹${totals.total.toLocaleString("en-IN")} | Paid via UPI: ₹${totals.payableNow.toLocaleString("en-IN")}`,
           utr ? `UTR: ${utr}` : `Payment Screenshot: Uploaded on yourhuckleberry.in`,
-          `Buyer: ${name} (${phone} | ${email})`,
+          `Buyer: ${name}, ${phone}, ${email}`,
           `Delivery: ${address}, Chennai ${pincode}`,
           `Date & Slot: ${dateVal} • ${slotVal}`,
           `Track Live: https://yourhuckleberry.in/pipeline.html?token=${token}`
@@ -677,7 +737,7 @@ document.addEventListener("DOMContentLoaded", () => {
         dlg.querySelector("#uc-form-stage").style.display = "none";
         dlg.querySelector("#uc-success-stage").style.display = "block";
         dlg.querySelector("#uc-success-token").textContent = `#${token}`;
-        dlg.querySelector("#uc-success-summary").textContent = `${orderPayload.itemSummary} • Total ₹${totals.total.toLocaleString("en-IN")} (UPI ₹${totals.payableNow.toLocaleString("en-IN")})`;
+        dlg.querySelector("#uc-success-summary").textContent = `${orderPayload.itemSummary} • Total ₹${totals.total.toLocaleString("en-IN")} • UPI ₹${totals.payableNow.toLocaleString("en-IN")}`;
         dlg.querySelector("#uc-success-subtitle").textContent = cloudSaved
           ? hasEmailRelay
             ? "Your payment proof is live in Chef Ridha's Kitchen Command and a receipt is on its way to your email."
@@ -790,7 +850,7 @@ document.addEventListener("DOMContentLoaded", () => {
     dlg.querySelector("#uc-payable-amount").textContent = uModalState.requireFullPayment
       ? `Pay ₹${t.payableNow.toLocaleString("en-IN")} via UPI`
       : `Pay 50% Advance ₹${t.payableNow.toLocaleString("en-IN")} via UPI`;
-    dlg.querySelector("#uc-total-breakdown").textContent = `Order Total: ₹${t.total.toLocaleString("en-IN")}${t.fee > 0 ? ` (includes ₹${t.fee} Chennai AC delivery)` : " (Free Nungambakkam Studio Pickup)"}`;
+    dlg.querySelector("#uc-total-breakdown").textContent = `Order Total: ₹${t.total.toLocaleString("en-IN")}${t.fee > 0 ? ` • includes ₹${t.fee} Chennai AC delivery` : " • Free studio pickup"}`;
     dlg.querySelector("#uc-upi-deeplink").href = `upi://pay?pa=${encodeURIComponent(upi.upiId)}&pn=${encodeURIComponent(upi.payee)}&am=${t.payableNow}&cu=INR&tn=${encodeURIComponent("Your Huckleberry Order")}`;
   }
 
@@ -855,7 +915,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (uModalState.variants && uModalState.variants.length) {
         varWrap.style.display = "block";
         varSel.innerHTML = uModalState.variants
-          .map((v) => `<option value="${escapeHtml(v.label)}">${escapeHtml(v.label)} — ₹${Number(v.price).toLocaleString("en-IN")}</option>`)
+          .map((v) => `<option value="${escapeHtml(v.label)}">${escapeHtml(v.label)} • ₹${Number(v.price).toLocaleString("en-IN")}</option>`)
           .join("");
       } else {
         varWrap.style.display = "none";
@@ -872,11 +932,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (uModalState.orderType === "flash") {
       dEl.min = getTodayDateString();
       dEl.value = getTodayDateString();
-      sEl.value = "8:00 PM – 9:00 PM (Evening Saver)";
+      sEl.value = "8:00 PM to 9:00 PM Evening Saver";
     } else {
       dEl.min = getTodayDateString();
       dEl.value = getTomorrowDateString();
-      sEl.value = "4:00 PM – 6:00 PM";
+      sEl.value = "4:00 PM to 6:00 PM";
     }
 
     const cInput = dlg.querySelector("#uc-coupon-input");
@@ -885,7 +945,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (uModalState.couponCode === "TASTE39") {
       cMsg.style.display = "block";
       cMsg.style.color = "var(--color-veg-green)";
-      cMsg.textContent = "✓ Coupon TASTE39 applied! First-time Chennai buyer rate: ₹39 (1 per phone).";
+      cMsg.textContent = "✓ Coupon TASTE39 applied! First-time Chennai buyer rate is ₹39, limit 1 per phone.";
     } else {
       cMsg.style.display = "none";
     }
@@ -920,10 +980,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const promo = window.HUCKLEBERRY_CONFIG?.promo || {};
     openUniversalCheckout({
       orderType: "trial",
-      modalHeading: "₹39 Trial Cake Magnet (TASTE39)",
-      badge: "TASTE39 • FIRST-TIME CHENNAI BUYER",
-      title: promo.trialItemName || "Artisan Mini Taster Treat (100% Pure Veg)",
-      subtitle: promo.trialPickupNote || "Free Nungambakkam pickup or Chennai AC delivery • 1 per phone",
+      modalHeading: "₹39 First-Time Trial Treat",
+      badge: "COUPON TASTE39 • FIRST-TIME CHENNAI BUYER",
+      title: promo.trialItemName || "Artisan Mini Taster Treat",
+      subtitle: promo.trialPickupNote || "Free Nungambakkam pickup or Chennai AC delivery • Limit 1 per phone",
       price: promo.trialPrice || 39,
       originalPrice: promo.trialOriginalPrice || 120,
       requireFullPayment: true,
@@ -945,7 +1005,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ==========================================================================
-  // 5. Live 7:00–7:30 PM Zero-Waste Evening Saver (With Sold-Out Greying)
+  // 5. Live 7:00 to 7:30 PM Evening Saver (With Sold-Out Greying)
   // ==========================================================================
   const flashMount = document.getElementById("zero-waste-saver-mount");
   if (flashMount) {
@@ -960,7 +1020,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const end = 19 * 60 + 30;
       if (totalMins >= start && totalMins < end) return `LIVE NOW • Closes in ${end - totalMins} min`;
       const minsUntil = totalMins < start ? start - totalMins : 24 * 60 - totalMins + start;
-      return `Opens daily at 7:00 PM IST (in ${Math.floor(minsUntil / 60)}h ${minsUntil % 60}m)`;
+      return `Opens daily at 7:00 PM IST, in ${Math.floor(minsUntil / 60)}h ${minsUntil % 60}m`;
     }
 
     function renderFlashMount() {
@@ -971,14 +1031,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (isLiveNow) {
         flashMount.innerHTML = `
-          <div style="background: var(--color-terracotta-soft); border: 1.5px solid var(--color-terracotta); border-radius: 18px; padding: 24px;">
+          <div style="background: var(--color-terracotta-soft); border: 1.5px solid var(--color-terracotta); border-radius: 18px; padding: 22px;">
             <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-bottom:18px;">
               <div>
                 <div style="display:inline-flex; align-items:center; gap:6px; background:var(--color-terracotta); color:#FFF; font-size:0.72rem; font-weight:700; padding:3px 10px; border-radius:20px; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:6px;">
-                  LIVE NOW • 7:00–7:30 PM ZERO-WASTE EVENING SAVER
+                  LIVE NOW • 7:00 TO 7:30 PM EVENING SAVER
                 </div>
-                <h2 style="font-family:var(--font-editorial); font-size:1.5rem; color:var(--color-plum-royal); margin:0;">Fresh Closing-Hour Surplus at Near-Cost Price</h2>
-                <p style="font-size:0.88rem; color:var(--color-text-muted); margin:4px 0 0;">Baked fresh today in Nungambakkam. Order now for 8:00–9:00 PM Central Chennai delivery or studio pickup.</p>
+                <h2 style="font-family:var(--font-editorial); font-size:1.45rem; color:var(--color-plum-royal); margin:0;">Fresh Closing-Hour Treats at Near-Cost Price</h2>
+                <p style="font-size:0.88rem; color:var(--color-text-muted); margin:4px 0 0;">Baked fresh today in Nungambakkam. Order now for 8:00 to 9:00 PM Chennai delivery or free pickup.</p>
               </div>
               <span style="font-size:0.8rem; font-weight:700; color:var(--color-terracotta-dark); background:#FFFFFF; border:1px solid var(--color-terracotta-border); padding:6px 12px; border-radius:10px;">${escapeHtml(clockText)}</span>
             </div>
@@ -992,7 +1052,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <span style="font-size:0.72rem; font-weight:700; color:${soldOut ? "#574E5A" : "var(--color-veg-green)"}; background:${soldOut ? "#EFECE8" : "var(--color-veg-bg)"}; padding:2px 8px; border-radius:12px;">
                           ${soldOut ? "Sold Out Today" : `Only ${Number(item.qtyRemaining)} left`}
                         </span>
-                        <span style="font-size:0.72rem; font-weight:600; color:var(--color-terracotta);">8–9 PM Delivery</span>
+                        <span style="font-size:0.72rem; font-weight:600; color:var(--color-terracotta);">8 to 9 PM Delivery</span>
                       </div>
                       <h3 style="font-family:var(--font-editorial); font-size:1.12rem; color:var(--color-plum-royal); margin:0;">${escapeHtml(item.name)}</h3>
                     </div>
@@ -1011,20 +1071,20 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>`;
       } else {
         flashMount.innerHTML = `
-          <div style="background: var(--color-surface); border: 1px solid var(--color-border-gold); border-radius: 16px; padding: 22px 26px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; box-shadow: var(--shadow-subtle);">
+          <div style="background: var(--color-surface); border: 1px solid var(--color-border-gold); border-radius: 16px; padding: 20px 22px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; box-shadow: var(--shadow-subtle);">
             <div style="max-width:650px;">
               <div style="display:inline-flex; align-items:center; gap:6px; font-size:0.74rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--color-terracotta-dark); background:var(--color-terracotta-soft); border:1px solid var(--color-terracotta-border); padding:3px 10px; border-radius:6px; margin-bottom:6px;">
-                Zero-Waste Evening Saver • Daily 7:00 – 7:30 PM IST
+                Evening Saver • Daily 7:00 to 7:30 PM
               </div>
-              <h2 style="font-family:var(--font-editorial); font-size:1.38rem; color:var(--color-plum-royal); margin:0 0 4px;">Fresh Closing-Hour Pastries at Near-Cost Price</h2>
+              <h2 style="font-family:var(--font-editorial); font-size:1.35rem; color:var(--color-plum-royal); margin:0 0 4px;">Fresh Closing-Hour Pastries at Near-Cost Price</h2>
               <p style="font-size:0.88rem; color:var(--color-text-muted); margin:0; line-height:1.55;">
-                Whenever fresh scratch-baked pastries remain at closing, Chef Ridha lists them right here between <strong>7:00 PM and 7:30 PM</strong> for 8:00–9:00 PM Chennai delivery—zero food waste.
+                Whenever freshly baked pastries are left over at closing, Chef Ridha lists them right here between <strong>7:00 PM and 7:30 PM</strong> for 8:00 to 9:00 PM Chennai delivery so nothing goes to waste.
               </p>
             </div>
-            <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
+            <div style="display:flex; flex-direction:column; align-items:flex-start; gap:8px;">
               <span style="font-size:0.8rem; font-weight:700; color:var(--color-plum-royal); background:var(--color-surface-subtle); border:1px solid var(--color-border); padding:7px 12px; border-radius:10px;">${escapeHtml(clockText)}</span>
               <button type="button" class="btn btn-sm btn-open-trial-checkout" style="background:var(--color-plum-royal); color:#FAF8F5; padding:9px 16px; border-radius:8px; border:none; cursor:pointer; font-weight:600;">
-                Claim ₹39 Trial Treat (TASTE39) ➔
+                Try Our ₹39 Tasting Treat ➔
               </button>
             </div>
           </div>`;
@@ -1038,10 +1098,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!item || Number(item.qtyRemaining || 0) <= 0) return;
       openUniversalCheckout({
         orderType: "flash",
-        modalHeading: "Zero-Waste Evening Saver Checkout",
-        badge: "7:00–7:30 PM SAVER • 8–9 PM DELIVERY",
+        modalHeading: "Evening Saver Checkout",
+        badge: "7:00 TO 7:30 PM SAVER • 8 TO 9 PM DELIVERY",
         title: item.name,
-        subtitle: `Only ${item.qtyRemaining} left • 8:00–9:00 PM Central Chennai delivery or pickup`,
+        subtitle: `Only ${item.qtyRemaining} left • 8:00 to 9:00 PM Chennai delivery or pickup`,
         price: Number(item.flashPrice),
         originalPrice: Number(item.originalPrice),
         requireFullPayment: true,
@@ -1190,7 +1250,7 @@ document.addEventListener("DOMContentLoaded", () => {
             addBtn.setAttribute("aria-label", `Add ${title} to Order Bag`);
             addBtn.addEventListener("click", (ev) => {
               ev.stopPropagation();
-              addToBag({ title, price: priceNum, qty: 1, orderType: category === "festive" ? "festive" : "everyday" });
+              addToBag({ title, price: priceNum, qty: 1, orderType: category === "festive" ? "festive" : "everyday" }, addBtn);
             });
             group.appendChild(addBtn);
           }
@@ -1277,7 +1337,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const email = document.getElementById("consult-email")?.value.trim() || "";
       const eventDate = document.getElementById("consult-date")?.value || "";
       const guestCount = document.getElementById("consult-guests")?.value.trim() || "TBD";
-      const preferredCallSlot = document.getElementById("consult-call-slot")?.value || "Afternoon (2 PM – 5 PM)";
+      const preferredCallSlot = document.getElementById("consult-call-slot")?.value || "Afternoon, 2 PM to 5 PM";
       const notes = document.getElementById("consult-notes")?.value.trim() || "";
 
       if (btn) { btn.disabled = true; btn.textContent = "Scheduling Voice Call..."; }
@@ -1370,9 +1430,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!res.configured) {
         tokenResult.innerHTML = `
           <div class="order-pipeline-card" style="border: 1.5px solid var(--color-border-gold); padding: 22px;">
-            <div style="font-weight:700; color:var(--color-plum-royal); margin-bottom:8px;">Token #${escapeHtml(fullToken)} — WhatsApp Concierge Lookup</div>
-            <p style="font-size:0.88rem; color:var(--color-text-muted); margin-bottom:14px;">Tap below for an instant chef status update.</p>
-            <a href="${waHref}" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Check Status via WhatsApp ➔</a>
+            <div style="font-weight:700; color:var(--color-plum-royal); margin-bottom:8px;">Token #${escapeHtml(fullToken)} • WhatsApp Status Check</div>
+            <p style="font-size:0.88rem; color:var(--color-text-muted); margin-bottom:14px;">Tap below to ask our kitchen directly for a live update.</p>
+            <a href="${waHref}" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Check Status on WhatsApp ➔</a>
           </div>`;
         return;
       }
