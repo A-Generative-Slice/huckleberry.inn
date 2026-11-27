@@ -163,22 +163,34 @@ document.addEventListener("DOMContentLoaded", () => {
   // 1. Mobile Navigation Drawer
   // ==========================================================================
   function closeMobileNav() {
-    if (mobileNavDrawer) mobileNavDrawer.classList.remove("open");
+    if (mobileNavDrawer) {
+      mobileNavDrawer.classList.remove("open");
+      mobileNavDrawer.setAttribute("aria-hidden", "true");
+    }
     if (mobileNavToggle) {
       mobileNavToggle.classList.remove("open");
       mobileNavToggle.setAttribute("aria-expanded", "false");
     }
-    if (mobileNavBackdrop) mobileNavBackdrop.classList.remove("open");
+    if (mobileNavBackdrop) {
+      mobileNavBackdrop.classList.remove("open");
+      mobileNavBackdrop.setAttribute("aria-hidden", "true");
+    }
     document.body.style.overflow = "";
   }
 
   function openMobileNav() {
-    if (mobileNavDrawer) mobileNavDrawer.classList.add("open");
+    if (mobileNavDrawer) {
+      mobileNavDrawer.classList.add("open");
+      mobileNavDrawer.setAttribute("aria-hidden", "false");
+    }
     if (mobileNavToggle) {
       mobileNavToggle.classList.add("open");
       mobileNavToggle.setAttribute("aria-expanded", "true");
     }
-    if (mobileNavBackdrop) mobileNavBackdrop.classList.add("open");
+    if (mobileNavBackdrop) {
+      mobileNavBackdrop.classList.add("open");
+      mobileNavBackdrop.setAttribute("aria-hidden", "false");
+    }
     document.body.style.overflow = "hidden";
   }
 
@@ -336,7 +348,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <input type="file" id="uc-proof-file" accept="image/*" style="width:100%; font-size:0.8rem; padding:7px; background:#FFF; border:1px solid #FED7AA; border-radius:6px; margin-bottom:8px; cursor:pointer;" />
             <input type="text" id="uc-utr" placeholder="UPI Reference / UTR Number (Optional)" style="width:100%; font-size:0.8rem; padding:8px 10px; background:#FFF; border:1px solid #FED7AA; border-radius:6px;" />
             <div id="uc-proof-preview" style="display:none; align-items:center; gap:10px; background:#FFF; padding:8px; border-radius:6px; border:1px solid #10B981; margin-top:8px;">
-              <img id="uc-proof-img" src="" alt="Payment Screenshot Preview" style="width:42px; height:42px; object-fit:cover; border-radius:4px;" />
+              <img id="uc-proof-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Payment Screenshot Preview" style="width:42px; height:42px; object-fit:cover; border-radius:4px;" />
               <span id="uc-proof-status" style="font-size:0.78rem; color:#047857; font-weight:700;">✓ Screenshot Compressed &amp; Ready</span>
             </div>
           </div>
@@ -543,12 +555,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const waHref = `https://wa.me/${getPrimaryWhatsAppNumber()}?text=${encodeURIComponent(waMsg)}`;
 
+        const hasEmailRelay = Boolean((window.HUCKLEBERRY_CONFIG?.emailRelayUrl || "").trim());
         dlg.querySelector("#uc-form-stage").style.display = "none";
         dlg.querySelector("#uc-success-stage").style.display = "block";
         dlg.querySelector("#uc-success-token").textContent = `#${token}`;
         dlg.querySelector("#uc-success-summary").textContent = `${orderPayload.itemSummary} • Total ₹${totals.total.toLocaleString("en-IN")} (UPI ₹${totals.payableNow.toLocaleString("en-IN")})`;
         dlg.querySelector("#uc-success-subtitle").textContent = cloudSaved
-          ? "Your payment proof is live in Chef Ridha's Kitchen Command and a receipt is on its way to your email!"
+          ? hasEmailRelay
+            ? "Your payment proof is live in Chef Ridha's Kitchen Command and a receipt is on its way to your email!"
+            : "Your payment proof is live in Chef Ridha's Kitchen Command! Save your token below or tap WhatsApp for instant confirmation."
           : "Tap below to dispatch your order slip directly to Chef Ridha on WhatsApp.";
         dlg.querySelector("#uc-success-wa").href = waHref;
         dlg.querySelector("#uc-success-track").href = `pipeline.html?token=${encodeURIComponent(token)}`;
@@ -583,6 +598,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const chosen = uModalState.variants[sel.selectedIndex] || uModalState.variants[0];
       unitPrice = Number(chosen.price);
       itemTitle = `${uModalState.title} (${chosen.label})`;
+      const subEl = dlg.querySelector("#uc-item-sub");
+      if (subEl) subEl.textContent = `${chosen.label} • ${uModalState.baseQuote || "100% Pure Veg Eggless"}`;
     }
 
     const zSel = dlg.querySelector("#uc-zone");
@@ -621,6 +638,7 @@ document.addEventListener("DOMContentLoaded", () => {
       orderType: config.orderType || "everyday",
       title: config.title || "Atelier Creation",
       subtitle: config.subtitle || "100% Pure Veg Eggless • Nungambakkam Scratch Kitchen",
+      baseQuote: config.baseQuote || "100% Pure Veg Eggless • Nungambakkam Scratch Kitchen",
       badge: config.badge || "Direct Order",
       unitPrice: Number(config.price || 0),
       originalPrice: config.originalPrice ? Number(config.originalPrice) : null,
@@ -988,6 +1006,7 @@ document.addEventListener("DOMContentLoaded", () => {
           badge: category === "festive" ? "DECEMBER FESTIVE • 50% UPI ADVANCE" : "EVERYDAY MENU • 10% DIRECT OFF",
           title,
           subtitle: `${weight ? weight + " • " : ""}${quote || "100% Pure Veg Eggless"}`,
+          baseQuote: quote || "100% Pure Veg Eggless",
           price: priceNum,
           variants,
           requireFullPayment: false
@@ -1641,7 +1660,7 @@ yourhuckleberry.in • Shafee Mohammed Road, Chennai
         tokenResult.innerHTML = `
           <div class="order-pipeline-card" style="border: 1.5px solid #EF4444; padding: 22px;">
             <div style="font-weight:700; color:#B91C1C; margin-bottom:6px;">Token #${escapeHtml(fullToken)} Not Found</div>
-            <p style="font-size:0.86rem; color:var(--color-text-muted); margin-bottom:14px;">We couldn't find an active order matching <strong>#${escapeHtml(fullToken)}</strong>. Please double-check your confirmation email from <code>orders@yourhuckleberry.in</code> or contact our kitchen concierge.</p>
+            <p style="font-size:0.86rem; color:var(--color-text-muted); margin-bottom:14px;">We couldn't find an active order matching <strong>#${escapeHtml(fullToken)}</strong>. Please double-check your booking token from your order confirmation screen or WhatsApp slip, or contact our kitchen concierge.</p>
             <a href="${waHref}" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">Verify with Kitchen on WhatsApp ➔</a>
           </div>`;
         return;

@@ -532,12 +532,12 @@
           Kitchen baking slots are confirmed strictly upon verified payment. Orders without an attached UPI transfer screenshot cannot be scheduled into the oven.
         </p>
         <div style="display: flex; flex-direction: column; gap: 8px;">
-          <label style="font-size: 0.75rem; font-weight: 600; color: #7C2D12;">Select Transfer Screenshot (GPay / PhonePe / Paytm):</label>
+          <label for="order-payment-proof" style="font-size: 0.75rem; font-weight: 600; color: #7C2D12;">Select Transfer Screenshot (GPay / PhonePe / Paytm):</label>
           <input type="file" id="order-payment-proof" accept="image/*" required style="font-size: 0.8rem; padding: 8px; background: #FFFFFF; border: 1px solid #FED7AA; border-radius: 6px; width: 100%; cursor: pointer;" />
-          <input type="text" id="order-utr-number" placeholder="Enter UPI Reference / UTR Number (Optional)" style="font-size: 0.8rem; padding: 8px 12px; background: #FFFFFF; border: 1px solid #FED7AA; border-radius: 6px; width: 100%;" />
+          <input type="text" id="order-utr-number" name="utr" placeholder="Enter UPI Reference / UTR Number (Optional)" style="font-size: 0.8rem; padding: 8px 12px; background: #FFFFFF; border: 1px solid #FED7AA; border-radius: 6px; width: 100%;" />
         </div>
         <div id="screenshot-preview-container" style="display: none; margin-top: 10px; align-items: center; gap: 10px; background: #FFFFFF; padding: 8px; border-radius: 6px; border: 1px solid #10B981;">
-          <img id="screenshot-preview-img" src="" alt="Screenshot Preview" style="width: 44px; height: 44px; object-fit: cover; border-radius: 4px;" />
+          <img id="screenshot-preview-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Screenshot Preview" style="width: 44px; height: 44px; object-fit: cover; border-radius: 4px;" />
           <span style="font-size: 0.78rem; color: #047857; font-weight: 700;">✓ Payment Screenshot Attached</span>
         </div>
         <p id="screenshot-required-msg" style="display: none; color: #DC2626; font-size: 0.78rem; font-weight: 700; margin-top: 8px; background: #FEE2E2; padding: 6px 10px; border-radius: 6px;">
@@ -616,6 +616,6 @@
   <script src="firebase-config.js?v=5.0.0"></script>
   <script type="module" src="firebase-service.js?v=5.0.0"></script>
   <script src="data.js?v=5.0.0"></script>
-  <script src="app.js?v=5.0.0"></script>
+  <script src="app.js?v=5.0.1"></script>
 </body>
 </html>
