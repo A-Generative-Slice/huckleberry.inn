@@ -567,6 +567,15 @@
 </head>
 <body>
 
+  <!-- ==================== 0. INITIAL LOADING STATE ==================== -->
+  <section id="view-loading" class="gate-screen">
+    <div class="gate-card" style="text-align: center;">
+      <img src="assets/logo.jpg" alt="Your Huckleberry Logo" style="width: 56px; height: 56px; border-radius: 14px; border: 1.5px solid #D4AF37; margin-bottom: 14px;" />
+      <h1 style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--brand-plum); margin-bottom: 6px;">Your Huckleberry Kitchen</h1>
+      <p id="loading-status-text" style="font-size: 0.84rem; color: var(--brand-slate);">Connecting to Kitchen Cloud...</p>
+    </div>
+  </section>
+
   <!-- ==================== 1. FIREBASE NOT CONFIGURED STATE ==================== -->
   <section id="view-setup-required" class="gate-screen hidden">
     <div class="gate-card">
@@ -844,6 +853,7 @@
       let unsubs = [];
 
       const views = {
+        loading: document.getElementById("view-loading"),
         setup: document.getElementById("view-setup-required"),
         login: document.getElementById("view-login"),
         unauth: document.getElementById("view-unauthorized"),
@@ -1455,7 +1465,15 @@
       }
 
       if (window.HuckleberryCloud) boot();
-      else window.addEventListener("huckleberry:cloud-ready", boot, { once: true });
+      else {
+        window.addEventListener("huckleberry:cloud-ready", boot, { once: true });
+        setTimeout(() => {
+          if (!window.HuckleberryCloud) {
+            const st = document.getElementById("loading-status-text");
+            if (st) st.textContent = "Slow network detected — please refresh if this takes more than 10 seconds.";
+          }
+        }, 6000);
+      }
     })();
   </script>
 </body>

@@ -10,14 +10,14 @@
  */
 
 window.HUCKLEBERRY_CONFIG = {
-  // 1. Firebase Spark Free Tier Config (Replace placeholders with your real Firebase Project values)
+  // 1. Firebase Spark Free Tier Config (Live Project: your-huckleberry)
   firebase: {
-    apiKey: "YOUR_FIREBASE_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_FIREBASE_APP_ID"
+    apiKey: "AIzaSyD0vXnEDisD5ovP0qE23eyBHWzcINts2K8",
+    authDomain: "your-huckleberry.firebaseapp.com",
+    projectId: "your-huckleberry",
+    storageBucket: "your-huckleberry.firebasestorage.app",
+    messagingSenderId: "2837837279",
+    appId: "1:2837837279:web:847270393b19e9b42cc06a"
   },
 
   // 2. Cloudflare Worker Email Relay (Keeps RESEND_API_KEY 100% secret server-side)
