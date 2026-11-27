@@ -20,6 +20,15 @@ leads_private*.json
 *.sqlite3
 *.log
 
+# Internal Agency Docs, Client Decks & Worker Secrets (Never expose publicly)
+PROJECT_MEMORY.md
+*Commercial_Proposal*.pdf
+*Mobile_Deck*.pdf
+worker/.dev.vars
+.firebase/
+firebase-debug.log
+firestore-debug.log
+
 # System & OS Files
 __pycache__/
 *.py[cod]

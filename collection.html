@@ -11,16 +11,27 @@
   <meta property="og:description" content="Handcrafted celebration cakes, Miniature Couture, and French tarts in Chennai. 100% Pure Veg Eggless Haute Pâtisserie." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://yourhuckleberry.in/collection.html" />
-  <meta property="og:image" content="assets/images/hero-patisserie-showcase.jpg" />
+  <meta property="og:image" content="https://yourhuckleberry.in/assets/images/hero-patisserie-showcase.jpg" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Your Huckleberry December Festive & Gourmet Patisserie Collection",
+    "url": "https://yourhuckleberry.in/collection.html",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Traditional Christmas Plum Cake Tin (500g / 1kg)", "url": "https://yourhuckleberry.in/collection.html?category=festive" },
+      { "@type": "ListItem", "position": 2, "name": "Corporate Executive Celebration Hamper", "url": "https://yourhuckleberry.in/collection.html?category=festive" },
+      { "@type": "ListItem", "position": 3, "name": "Mini Couture Luxe Trunk (4-Piece Set)", "url": "https://yourhuckleberry.in/collection.html?category=festive" },
+      { "@type": "ListItem", "position": 4, "name": "Artisanal Office Party Snack & Savory Platter", "url": "https://yourhuckleberry.in/collection.html?category=festive" }
+    ]
+  }
+  </script>
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
   <link rel="icon" type="image/jpeg" href="assets/logo.jpg" />
-  <link rel="stylesheet" href="style.css?v=4.6.0" />
+  <link rel="stylesheet" href="style.css?v=5.0.0" />
 </head>
 <body>
 <!-- Main Navigation Bar -->
@@ -189,7 +200,7 @@
 
       <!-- Live Results Meta Bar -->
       <div class="search-meta-bar">
-        <span id="search-counter-chip" class="search-counter-chip">Showing 34 Creations</span>
+        <span id="search-counter-chip" class="search-counter-chip">Showing 38 Creations</span>
         <span id="active-filter-indicator" class="active-filter-indicator">Category: All Atelier Pieces</span>
       </div>
 
@@ -198,14 +209,20 @@
         <button class="filter-pill active" data-filter="all">All Items (38)</button>
         <button class="filter-pill" data-filter="festive" style="background: #FFF4E5; border-color: #FF5C00; color: #9A3412; font-weight: 700;">🎄 Festive Hampers (4)</button>
         <button class="filter-pill" data-filter="everyday">Everyday Desserts (15) • 10% Off</button>
-        <button class="filter-pill" data-filter="miniature">Mini Cakes (8)</button>
+        <button class="filter-pill" data-filter="miniature">Mini Cakes (7)</button>
         <button class="filter-pill" data-filter="tiered">Celebration Cakes (3)</button>
         <button class="filter-pill" data-filter="bento">Bento Cakes (1)</button>
         <button class="filter-pill" data-filter="tarts">Tarts &amp; Pies (2)</button>
         <button class="filter-pill" data-filter="flavour">Flavors (6)</button>
+        <button type="button" class="filter-pill btn-open-trial-checkout" style="background: #3E1929; border-color: #D4AF37; color: #F5DFC0; font-weight: 700;">✨ ₹39 Trial (TASTE39)</button>
       </div>
 
     </div>
+  </section>
+
+  <!-- Live 7:00 PM - 7:30 PM Zero-Waste Evening Saver Mount -->
+  <section style="max-width: 1240px; margin: 0 auto 24px; padding: 0 24px;">
+    <div id="zero-waste-saver-mount"></div>
   </section>
 
   <!-- Complete Categorized Collection Grid -->
@@ -1249,6 +1266,7 @@
             <li><a href="gallery.html">Artisanal Specialties</a></li>
             <li><a href="location.html">Shafee Mohammed Rd Atelier</a></li>
             <li><a href="faq.html">Pâtisserie Guidelines &amp; FAQs</a></li>
+            <li><a href="policies.html">Store Policies &amp; Privacy</a></li>
           </ul>
         </div>
         <div>
@@ -1258,6 +1276,9 @@
           </p>
           <p style="font-size: 0.82rem; color: rgba(255,255,255,0.75); margin-bottom: 6px;">
             WhatsApp Kitchen: +91 8511839668
+          </p>
+          <p style="font-size: 0.82rem; color: rgba(255,255,255,0.75); margin-bottom: 6px;">
+            Orders Email: orders@yourhuckleberry.in
           </p>
           <p style="font-size: 0.82rem; color: rgba(255,255,255,0.75);">
             Instagram: <a href="https://www.instagram.com/huckleberry.inn" target="_blank" rel="noopener" style="color: var(--color-gold-light);">@huckleberry.inn</a>
@@ -1275,7 +1296,9 @@
     </div>
   </footer>
 
-  <script src="data.js?v=4.6.0"></script>
-  <script src="app.js?v=4.6.0"></script>
+  <script src="firebase-config.js?v=5.0.0"></script>
+  <script type="module" src="firebase-service.js?v=5.0.0"></script>
+  <script src="data.js?v=5.0.0"></script>
+  <script src="app.js?v=5.0.0"></script>
 </body>
 </html>

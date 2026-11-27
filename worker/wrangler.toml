@@ -1,0 +1,13 @@
+name = "huckleberry-mail-relay"
+main = "email-relay.js"
+compatibility_date = "2026-11-01"
+
+[vars]
+ALLOWED_ORIGIN = "https://yourhuckleberry.in"
+ORDERS_FROM = "Your Huckleberry Orders <orders@yourhuckleberry.in>"
+AUTH_FROM = "Your Huckleberry Auth <auth@yourhuckleberry.in>"
+KITCHEN_ALERT_TO = "corporate@yourhuckleberry.in"
+
+# Add these secrets via Cloudflare Dashboard or `npx wrangler secret put <NAME>`:
+# - RESEND_API_KEY   (re_...)
+# - OTP_HMAC_SECRET  (any random 32+ char string)

@@ -11,16 +11,13 @@
   <meta property="og:description" content="Live bespoke cake studio. Real-time visualizer, transparent pricing, and instant WhatsApp booking slips." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://yourhuckleberry.in/atelier.html" />
-  <meta property="og:image" content="assets/images/hero-patisserie-showcase.jpg" />
+  <meta property="og:image" content="https://yourhuckleberry.in/assets/images/hero-patisserie-showcase.jpg" />
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
   <link rel="icon" type="image/jpeg" href="assets/logo.jpg" />
-  <link rel="stylesheet" href="style.css?v=4.6.0" />
+  <link rel="stylesheet" href="style.css?v=5.0.0" />
 </head>
 <body>
 <!-- Main Navigation Bar with Glassmorphic Frosted Elevation -->
@@ -37,6 +34,7 @@
         <ul class="nav-menu">
           <li><a href="index.html">Home</a></li>
           <li><a href="collection.html">Collection</a></li>
+          <li><a href="collection.html?category=festive" style="color: #FF5C00; font-weight: 600;">🎄 Hampers</a></li>
           <li><a href="atelier.html" class="active">Cake Atelier</a></li>
           <li><a href="pipeline.html">Creation Pipeline</a></li>
           <li><a href="gallery.html">Specialties</a></li>
@@ -68,6 +66,16 @@
               <span class="nav-item-desc">Showcase &amp; Bestsellers</span>
             </div>
             <span class="nav-item-arrow">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="collection.html?category=festive" class="mobile-link" style="background: rgba(255, 92, 0, 0.08); border-left: 3px solid #FF5C00;">
+            <span class="nav-item-icon">🎄</span>
+            <div class="nav-item-content">
+              <span class="nav-item-title" style="color: #C2410C; font-weight: 700;">Festive &amp; Corporate Hampers</span>
+              <span class="nav-item-desc">Plum Cakes &amp; Corporate Boxes (Pre-Order)</span>
+            </div>
+            <span class="nav-item-arrow" style="color: #FF5C00;">→</span>
           </a>
         </li>
         <li>
@@ -195,18 +203,32 @@
 
       <!-- Quick Consultation Request Card -->
       <div style="background: #FFFFFF; border: 1px solid #FED7AA; border-radius: 16px; padding: 24px; box-shadow: 0 4px 16px rgba(0,0,0,0.04);">
-        <h3 style="font-family: var(--font-heading); font-size: 1.1rem; color: #1E293B; margin-bottom: 14px; font-weight: 700;">Request Studio Call Back</h3>
-        <form id="form-consultation-quick" onsubmit="event.preventDefault(); alert('Consultation request sent directly to Chef Ridha! We will call you within 2 hours.');">
+        <h3 style="font-family: var(--font-heading); font-size: 1.1rem; color: #1E293B; margin-bottom: 14px; font-weight: 700;">Book a Direct 10-Minute Voice Call</h3>
+        <form id="form-consultation-quick">
           <div style="display: flex; flex-direction: column; gap: 10px;">
-            <input type="text" placeholder="Your Name" required style="padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem;" />
-            <input type="tel" placeholder="WhatsApp / Phone Number" required style="padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem;" />
-            <div style="display: flex; gap: 10px;">
-              <input type="date" required style="flex: 1; padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem; color: #475569;" />
-              <input type="text" placeholder="Guest Count (e.g. 150)" style="flex: 1; padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem;" />
+            <input type="text" id="consult-name" placeholder="Your Full Name *" required style="padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem;" />
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <input type="tel" id="consult-phone" placeholder="WhatsApp / Phone *" required style="flex: 1; min-width: 140px; padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem;" />
+              <input type="email" id="consult-email" placeholder="Email Address *" required style="flex: 1; min-width: 160px; padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem;" />
             </div>
-            <textarea placeholder="Describe your dream cake (e.g., 3-Tier Victorian Lambeth in pastel pink, Belgian truffle flavour, Taj Coromandel reception)" rows="2" style="padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem; resize: none;"></textarea>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <input type="date" id="consult-date" required aria-label="Event Date" style="flex: 1; min-width: 130px; padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem; color: #475569;" />
+              <input type="text" id="consult-guests" placeholder="Guest Count (e.g. 150)" required style="flex: 1; min-width: 130px; padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem;" />
+            </div>
+            <select id="consult-call-slot" aria-label="Preferred 10-Minute Voice Call Slot" style="padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem; background: #FFFFFF; color: #1E293B;">
+              <option value="Morning Call (11:00 AM – 1:00 PM)">Preferred 10-Min Call: Morning (11:00 AM – 1:00 PM)</option>
+              <option value="Afternoon Call (2:00 PM – 5:00 PM)" selected>Preferred 10-Min Call: Afternoon (2:00 PM – 5:00 PM)</option>
+              <option value="Evening Call (5:00 PM – 7:30 PM)">Preferred 10-Min Call: Evening (5:00 PM – 7:30 PM)</option>
+            </select>
+            <div style="background: #FFF7ED; border: 1px dashed #FDBA74; border-radius: 8px; padding: 10px 12px;">
+              <label for="consult-photos" style="display: block; font-size: 0.76rem; font-weight: 700; color: #9A3412; margin-bottom: 5px;">📸 Attach Dream Cake Reference Photos (Up to 3, Optional)</label>
+              <input type="file" id="consult-photos" accept="image/*" multiple style="font-size: 0.78rem; width: 100%; cursor: pointer;" />
+              <div id="consult-photo-previews" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px;"></div>
+            </div>
+            <textarea id="consult-notes" placeholder="Describe your dream cake (e.g., 3-Tier Victorian Lambeth in pastel pink, Belgian truffle flavour, Taj Coromandel reception)" rows="2" style="padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem; resize: none;"></textarea>
+            <div id="consult-submit-status" style="display: none; padding: 10px 12px; border-radius: 8px; font-size: 0.82rem; line-height: 1.5;"></div>
             <button type="submit" class="btn" style="background: #1E293B; color: #FFFFFF; font-weight: 600; padding: 11px; border-radius: 8px; border: none; cursor: pointer; margin-top: 4px;">
-              Request Consultation Call
+              Book 10-Min Voice Call with Chef Ridha
             </button>
           </div>
         </form>
@@ -334,12 +356,22 @@
           </div>
           <div class="form-row two-col">
             <div class="form-field">
-              <label for="cust-name">Your Full Name</label>
-              <input type="text" id="cust-name" placeholder="e.g. Priya Sundaram" />
+              <label for="cust-name">Your Full Name *</label>
+              <input type="text" id="cust-name" placeholder="e.g. Priya Sundaram" required />
             </div>
             <div class="form-field">
-              <label for="cust-phone">WhatsApp / Phone Number</label>
-              <input type="tel" id="cust-phone" placeholder="e.g. 98400 12345" />
+              <label for="cust-phone">WhatsApp / Phone Number *</label>
+              <input type="tel" id="cust-phone" placeholder="e.g. 98400 12345" required />
+            </div>
+          </div>
+          <div class="form-row two-col">
+            <div class="form-field">
+              <label for="cust-email">Email Address (For Receipt &amp; Tracking) *</label>
+              <input type="email" id="cust-email" placeholder="e.g. priya@example.com" required />
+            </div>
+            <div class="form-field">
+              <label for="cust-pincode">Chennai Pincode *</label>
+              <input type="text" id="cust-pincode" placeholder="e.g. 600006" maxlength="6" value="600006" required />
             </div>
           </div>
           <div class="form-row" id="cust-address-row">
@@ -519,7 +551,7 @@
 
       <div class="modal-cta-stack">
         <a id="dialog-wa-cta" href="#" target="_blank" rel="noopener" class="btn btn-whatsapp-dispatch" style="text-decoration: none;">
-          <span>Step 2: Dispatch Order to WhatsApp ➔</span>
+          <span>Step 3: Lock Baking Slot &amp; Send to Kitchen ➔</span>
         </a>
         <button id="btn-copy-slip" type="button" class="btn btn-secondary" style="width: 100%; padding: 10px 14px;">
           <span>Copy Booking Details 📋</span>
@@ -551,6 +583,7 @@
             <li><a href="gallery.html">Artisanal Specialties</a></li>
             <li><a href="location.html">Shafee Mohammed Rd Atelier</a></li>
             <li><a href="faq.html">Pâtisserie Guidelines &amp; FAQs</a></li>
+            <li><a href="policies.html">Store Policies &amp; Privacy</a></li>
           </ul>
         </div>
         <div>
@@ -560,6 +593,9 @@
           </p>
           <p style="font-size: 0.82rem; color: rgba(255,255,255,0.75); margin-bottom: 6px;">
             WhatsApp Kitchen: +91 8511839668
+          </p>
+          <p style="font-size: 0.82rem; color: rgba(255,255,255,0.75); margin-bottom: 6px;">
+            Orders Email: orders@yourhuckleberry.in
           </p>
           <p style="font-size: 0.82rem; color: rgba(255,255,255,0.75);">
             Instagram: <a href="https://www.instagram.com/huckleberry.inn" target="_blank" rel="noopener" style="color: var(--color-gold-light);">@huckleberry.inn</a>
@@ -577,7 +613,9 @@
     </div>
   </footer>
 
-  <script src="data.js?v=4.6.0"></script>
-  <script src="app.js?v=4.6.0"></script>
+  <script src="firebase-config.js?v=5.0.0"></script>
+  <script type="module" src="firebase-service.js?v=5.0.0"></script>
+  <script src="data.js?v=5.0.0"></script>
+  <script src="app.js?v=5.0.0"></script>
 </body>
 </html>

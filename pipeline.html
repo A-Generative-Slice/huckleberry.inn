@@ -11,16 +11,13 @@
   <meta property="og:description" content="Track your bespoke cake from scale curation and eggless baking to Victorian Lambeth hand-piping and cold-chain dispatch." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://yourhuckleberry.in/pipeline.html" />
-  <meta property="og:image" content="assets/images/atelier-kitchen-craft.jpg" />
+  <meta property="og:image" content="https://yourhuckleberry.in/assets/images/atelier-kitchen-craft.jpg" />
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
   <link rel="icon" type="image/jpeg" href="assets/logo.jpg" />
-  <link rel="stylesheet" href="style.css?v=4.6.0" />
+  <link rel="stylesheet" href="style.css?v=5.0.0" />
 </head>
 <body>
 <!-- Main Navigation Bar with Glassmorphic Frosted Elevation -->
@@ -37,6 +34,7 @@
         <ul class="nav-menu">
           <li><a href="index.html">Home</a></li>
           <li><a href="collection.html">Collection</a></li>
+          <li><a href="collection.html?category=festive" style="color: #FF5C00; font-weight: 600;">🎄 Hampers</a></li>
           <li><a href="atelier.html">Cake Atelier</a></li>
           <li><a href="pipeline.html" class="active">Creation Pipeline</a></li>
           <li><a href="gallery.html">Specialties</a></li>
@@ -68,6 +66,16 @@
               <span class="nav-item-desc">Showcase &amp; Bestsellers</span>
             </div>
             <span class="nav-item-arrow">→</span>
+          </a>
+        </li>
+        <li>
+          <a href="collection.html?category=festive" class="mobile-link" style="background: rgba(255, 92, 0, 0.08); border-left: 3px solid #FF5C00;">
+            <span class="nav-item-icon">🎄</span>
+            <div class="nav-item-content">
+              <span class="nav-item-title" style="color: #C2410C; font-weight: 700;">Festive &amp; Corporate Hampers</span>
+              <span class="nav-item-desc">Plum Cakes &amp; Corporate Boxes (Pre-Order)</span>
+            </div>
+            <span class="nav-item-arrow" style="color: #FF5C00;">→</span>
           </a>
         </li>
         <li>
@@ -276,7 +284,7 @@
           <form id="form-token-tracker" class="token-tracker-form">
             <label for="input-track-token" class="token-tracker-label">Enter Booking Token:</label>
             <div class="token-input-group">
-              <input type="text" id="input-track-token" placeholder="e.g. HK-4912" maxlength="10" />
+              <input type="text" id="input-track-token" placeholder="e.g. HK-7K4M9P" maxlength="16" />
               <button type="submit" class="btn btn-primary btn-sm"><span>Check Status ➔</span></button>
             </div>
           </form>
@@ -312,6 +320,7 @@
             <li><a href="gallery.html">Artisanal Specialties</a></li>
             <li><a href="location.html">Shafee Mohammed Rd Atelier</a></li>
             <li><a href="faq.html">Pâtisserie Guidelines &amp; FAQs</a></li>
+            <li><a href="policies.html">Store Policies &amp; Privacy</a></li>
           </ul>
         </div>
         <div>
@@ -321,6 +330,9 @@
           </p>
           <p style="font-size: 0.82rem; color: rgba(255,255,255,0.75); margin-bottom: 6px;">
             WhatsApp Kitchen: +91 8511839668
+          </p>
+          <p style="font-size: 0.82rem; color: rgba(255,255,255,0.75); margin-bottom: 6px;">
+            Orders Email: orders@yourhuckleberry.in
           </p>
           <p style="font-size: 0.82rem; color: rgba(255,255,255,0.75);">
             Instagram: <a href="https://www.instagram.com/huckleberry.inn" target="_blank" rel="noopener" style="color: var(--color-gold-light);">@huckleberry.inn</a>
@@ -338,7 +350,9 @@
     </div>
   </footer>
 
-  <script src="data.js?v=4.6.0"></script>
-  <script src="app.js?v=4.6.0"></script>
+  <script src="firebase-config.js?v=5.0.0"></script>
+  <script type="module" src="firebase-service.js?v=5.0.0"></script>
+  <script src="data.js?v=5.0.0"></script>
+  <script src="app.js?v=5.0.0"></script>
 </body>
 </html>

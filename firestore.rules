@@ -1,0 +1,603 @@
+rules_version = '2';
+
+// ===============================================================
+// Assumed Data Model — Your Huckleberry (yourhuckleberry.in)
+// ===============================================================
+//
+// Spark Free Tier architecture: Public Storefront + Authenticated Kitchen Admin.
+// Admin authority is derived exclusively from Firebase Auth UID membership in
+// the console/Admin-SDK-provisioned `admins/{uid}` allowlist collection.
+//
+// Collection: admins
+// Document ID: {uid} (Firebase Auth UID of whitelisted Kitchen Admin)
+// Access: Self `get` only (allows admin UI to verify allowlist status);
+//         all client `list`, `create`, `update`, `delete` are denied.
+//
+// Collection: orders (Private Full Order Records — contains PII)
+// Document ID: {orderId} (Token e.g. "HK-8K4M2P", 5–24 chars matching ^[A-Za-z0-9_-]{5,24}$)
+// Access: Public `create` only; Admin-only `read`, `update`, `delete`.
+// Fields (all 28 required on create; all except status/statusLabel/adminNotes/verifiedAt/updatedAt immutable):
+//   - id: string (required, immutable, == orderId, 5–24 chars)
+//   - orderType: string (required, immutable, in ['custom', 'festive', 'everyday', 'trial', 'flash'])
+//   - customerName: string (required, immutable, 1–120 chars)
+//   - customerEmail: string (required, immutable, 5–160 chars, valid email format)
+//   - customerPhone: string (required, immutable, 8–24 chars)
+//   - normalizedPhone: string (required, immutable, 10–15 digits)
+//   - address: string (required, immutable, 0–500 chars)
+//   - pincode: string (required, immutable, 0–12 chars)
+//   - items: list (required, immutable, size 1–20)
+//   - itemSummary: string (required, immutable, 1–300 chars)
+//   - subtotal: number (required, immutable, 0–500000)
+//   - discount: number (required, immutable, 0–500000)
+//   - couponCode: string (required, immutable, 0–30 chars)
+//   - total: number (required, immutable, 1–500000)
+//   - advanceAmount: number (required, immutable, 0–500000, <= total)
+//   - paymentMethod: string (required, immutable, in ['upi_advance', 'upi_full'])
+//   - utr: string (required, immutable, 0–64 chars)
+//   - hasProof: bool (required, immutable, must be true on create)
+//   - deliveryDate: string (required, immutable, 0–30 chars)
+//   - deliverySlot: string (required, immutable, 0–80 chars)
+//   - inscription: string (required, immutable, 0–80 chars)
+//   - isEggless: bool (required, immutable)
+//   - flashItemId: string (required, immutable, 0–80 chars)
+//   - flashQty: int (required, immutable, 0–20)
+//   - status: string (required, == 'pending' on create; in ['pending', 'baking', 'delivery', 'delivered', 'cancelled'] on update)
+//   - statusLabel: string (required, == 'Payment Audit Required' on create; 1–60 chars on update)
+//   - adminNotes: string (optional on Admin update only, 0–500 chars)
+//   - verifiedAt: timestamp | null (optional on Admin update only)
+//   - createdAt: timestamp (required, immutable, == request.time on create)
+//   - updatedAt: timestamp (required, == request.time on create; timestamp on update)
+//
+// Collection: order_proofs (Isolated Compressed UPI Payment Screenshots)
+// Document ID: {orderId} (matches parent order token, 5–24 chars)
+// Access: Public `create` only; Admin-only `read`, `delete`; `update` denied (immutable audit evidence).
+// Fields:
+//   - orderId: string (required, == document ID, 5–24 chars)
+//   - proofDataUrl: string (required, 50–450000 chars, valid jpeg/jpg/png/webp base64 data URL)
+//   - utr: string (required, 0–64 chars)
+//   - createdAt: timestamp (required, == request.time on create)
+//
+// Collection: order_tracking (Sanitized Public Status Tracker — ZERO PII)
+// Document ID: {orderId} (matches order token, 5–24 chars)
+// Access: Public `get` & `create` only (NO public `list` to prevent scraping);
+//         Admin-only `list`, `update`, `delete`.
+// Fields:
+//   - token: string (required, immutable, == orderId, 5–24 chars)
+//   - itemSummary: string (required, immutable, 1–300 chars)
+//   - orderType: string (required, immutable, in ['custom', 'festive', 'everyday', 'trial', 'flash'])
+//   - deliveryDate: string (required, 0–30 chars)
+//   - deliverySlot: string (required, 0–80 chars)
+//   - status: string (required, == 'pending' on create; in ['pending', 'baking', 'delivery', 'delivered', 'cancelled'] on update)
+//   - statusLabel: string (required, == 'Payment Audit Required' on create; 1–60 chars on update)
+//   - createdAt: timestamp (required, immutable, == request.time on create)
+//   - updatedAt: timestamp (required, == request.time on create; timestamp on update)
+//
+// Collection: coupon_claims (1-Per-Phone Lock for TASTE39 Trial Coupon)
+// Document ID: {claimId} (format: TASTE39_<10-15 digits>, regex ^TASTE39_[0-9]{10,15}$)
+// Access: Public `create` only (atomic 1-per-phone enforcement without enumeration);
+//         Admin-only `read`, `delete`; `update` denied.
+// Fields:
+//   - coupon: string (required, == 'TASTE39')
+//   - orderId: string (required, 5–24 chars)
+//   - createdAt: timestamp (required, == request.time on create)
+//
+// Collection: consultations (Wedding & Grand Milestone Voice Call Requests — contains PII)
+// Document ID: {consultationId}
+// Access: Public `create` only; Admin-only `read`, `update`, `delete`.
+// Fields:
+//   - name: string (required, immutable, 1–120 chars)
+//   - phone: string (required, immutable, 8–24 chars)
+//   - email: string (required, immutable, 5–160 chars, valid email format)
+//   - eventDate: string (required, immutable, 4–30 chars)
+//   - guestCount: string (required, immutable, 1–40 chars)
+//   - preferredCallSlot: string (required, 1–80 chars)
+//   - notes: string (required, 0–1000 chars)
+//   - referencePhotos: list (required, immutable, 0–3 valid image data URLs or https/assets URLs)
+//   - status: string (required, == 'scheduled' on create; in ['scheduled', 'contacted', 'quoted', 'booked', 'archived'] on update)
+//   - adminNotes: string (optional on Admin update only, 0–500 chars)
+//   - createdAt: timestamp (required, immutable, == request.time on create)
+//   - updatedAt: timestamp (required, == request.time on create; timestamp on update)
+//
+// Collection: flash_config (7:00–7:30 PM Zero-Waste Saver Toggle & Schedule)
+// Document ID: {configId} (public `get` restricted exclusively to 'evening_saver')
+// Access: Public `get` only for 'evening_saver'; Admin-only `list`, `create`, `update`, `delete`.
+// Fields:
+//   - active: bool (required)
+//   - windowStart: string (optional, 0–10 chars)
+//   - windowEnd: string (optional, 0–10 chars)
+//   - deliveryWindow: string (optional, 0–60 chars)
+//   - note: string (optional, 0–300 chars)
+//   - updatedAt: timestamp (required)
+//
+// Collection: flash_items (7:00–7:30 PM Zero-Waste Surplus Pastries — Public Catalog)
+// Document ID: {itemId}
+// Access: Public `read` (`get`, `list`); Admin-only `create`, `update`, `delete`.
+// Fields:
+//   - name: string (required, 1–120 chars)
+//   - originalPrice: number (required, 1–500000)
+//   - flashPrice: number (required, 1–500000)
+//   - qtyRemaining: int (required, 0–500)
+//   - active: bool (required)
+//   - image: string (optional, 0–300 chars, empty or https:// or assets/ path)
+//   - createdAt: timestamp (optional, immutable once set)
+//   - updatedAt: timestamp (required)
+//
+// ===============================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+
+    // Check if the caller is signed in via Firebase Authentication
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Check if the authenticated caller matches a specific user ID
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Verify uid field matches caller on create (standard ownership guard)
+    function uidUnchanged() {
+      return !('uid' in request.resource.data) ||
+        (isAuthenticated() && request.resource.data.uid == request.auth.uid);
+    }
+
+    // Ensure uid field cannot be modified on update (standard ownership guard)
+    function uidNotModified() {
+      return !('uid' in request.resource.data) ||
+        request.resource.data.uid == resource.data.uid;
+    }
+
+    // Trusted RBAC check: Kitchen Admin allowlist provisioned exclusively via Console / Admin SDK
+    function isAdmin() {
+      return isAuthenticated() &&
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    // Validate that all required keys are present in the incoming document
+    function hasRequiredFields(fields) {
+      return request.resource.data.keys().hasAll(fields);
+    }
+
+    // Validate that the incoming document contains ONLY allowed keys (prevents schema pollution)
+    function hasOnlyAllowedFields(fields) {
+      return request.resource.data.keys().hasOnly(fields);
+    }
+
+    // Ensure immutable fields have not been added, removed, or modified during update
+    function areImmutableFieldsUnchanged(fields) {
+      return !request.resource.data.diff(resource.data).affectedKeys().hasAny(fields);
+    }
+
+    // Validate string value and inclusive length bounds
+    function isValidString(val, minLen, maxLen) {
+      return val is string &&
+        val.size() >= minLen &&
+        val.size() <= maxLen;
+    }
+
+    // Validate optional string field (if present, must be a bounded string)
+    function isValidOptionalString(data, field, minLen, maxLen) {
+      return !(field in data) || isValidString(data[field], minLen, maxLen);
+    }
+
+    // Validate numeric value (int or float) within inclusive finite bounds
+    function isValidNumberRange(val, minVal, maxVal) {
+      return val is number &&
+        val >= minVal &&
+        val <= maxVal;
+    }
+
+    // Validate strict integer value within inclusive bounds
+    function isValidIntRange(val, minVal, maxVal) {
+      return val is int &&
+        val >= minVal &&
+        val <= maxVal;
+    }
+
+    // Validate email format with bounded length evaluated BEFORE regex
+    function isValidEmail(email) {
+      return isValidString(email, 5, 160) &&
+        email.matches('^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$');
+    }
+
+    // Validate normalized digits-only phone number (10–15 digits)
+    function isValidNormalizedPhone(phone) {
+      return isValidString(phone, 10, 15) &&
+        phone.matches('^[0-9]{10,15}$');
+    }
+
+    // Validate order token / document ID format (5–24 safe token chars)
+    function isValidOrderId(id) {
+      return isValidString(id, 5, 24) &&
+        id.matches('^[A-Za-z0-9_-]{5,24}$');
+    }
+
+    // Validate allowed orderType enum
+    function isValidOrderType(orderType) {
+      return orderType in ['custom', 'festive', 'everyday', 'trial', 'flash'];
+    }
+
+    // Validate allowed order status enum
+    function isValidOrderStatus(status) {
+      return status in ['pending', 'baking', 'delivery', 'delivered', 'cancelled'];
+    }
+
+    // Validate allowed consultation status enum
+    function isValidConsultationStatus(status) {
+      return status in ['scheduled', 'contacted', 'quoted', 'booked', 'archived'];
+    }
+
+    // Validate compressed image data URL without regex on large payloads (prevents evaluation limits & SVG XSS)
+    function isValidImageDataUrl(val, maxBytes) {
+      return val is string &&
+        val.size() >= 50 &&
+        val.size() <= maxBytes &&
+        (
+          val[0:23] == 'data:image/jpeg;base64,' ||
+          val[0:22] == 'data:image/jpg;base64,' ||
+          val[0:22] == 'data:image/png;base64,' ||
+          val[0:23] == 'data:image/webp;base64,'
+        );
+    }
+
+    // Validate a consultation reference photo entry (base64 image data URL, https URL, or local assets path)
+    function isValidReferencePhoto(val) {
+      return val is string && (
+        isValidImageDataUrl(val, 450000) ||
+        (val.size() >= 10 && val.size() <= 500 && val[0:8] == 'https://') ||
+        (val.size() >= 8 && val.size() <= 200 && val[0:7] == 'assets/')
+      );
+    }
+
+    // Deep inspection of consultations.referencePhotos list (0–3 bounded items)
+    function isValidReferencePhotosList(photos) {
+      return photos is list &&
+        photos.size() <= 3 &&
+        (photos.size() < 1 || isValidReferencePhoto(photos[0])) &&
+        (photos.size() < 2 || isValidReferencePhoto(photos[1])) &&
+        (photos.size() < 3 || isValidReferencePhoto(photos[2]));
+    }
+
+    // Validate flash item image URL/path (empty string, https://, or relative assets/ path)
+    function isValidFlashImage(val) {
+      return val is string &&
+        val.size() <= 300 &&
+        (
+          val.size() == 0 ||
+          (val.size() >= 8 && val[0:8] == 'https://') ||
+          (val.size() >= 7 && val[0:7] == 'assets/') ||
+          (val.size() >= 8 && val[0:8] == '/assets/') ||
+          (val.size() >= 9 && val[0:9] == './assets/')
+        );
+    }
+
+    // ===============================================================
+    // Domain Validators (Called in BOTH create and update rules)
+    // ===============================================================
+
+    function orderRequiredFields() {
+      return [
+        'id', 'orderType', 'customerName', 'customerEmail', 'customerPhone',
+        'normalizedPhone', 'address', 'pincode', 'items', 'itemSummary',
+        'subtotal', 'discount', 'couponCode', 'total', 'advanceAmount',
+        'paymentMethod', 'utr', 'hasProof', 'deliveryDate', 'deliverySlot',
+        'inscription', 'isEggless', 'flashItemId', 'flashQty',
+        'status', 'statusLabel', 'createdAt', 'updatedAt'
+      ];
+    }
+
+    function orderUpdateAllowedFields() {
+      return [
+        'id', 'orderType', 'customerName', 'customerEmail', 'customerPhone',
+        'normalizedPhone', 'address', 'pincode', 'items', 'itemSummary',
+        'subtotal', 'discount', 'couponCode', 'total', 'advanceAmount',
+        'paymentMethod', 'utr', 'hasProof', 'deliveryDate', 'deliverySlot',
+        'inscription', 'isEggless', 'flashItemId', 'flashQty',
+        'status', 'statusLabel', 'adminNotes', 'verifiedAt', 'createdAt', 'updatedAt'
+      ];
+    }
+
+    // Shared core schema validator for orders/{orderId} (used on both create & update)
+    function isValidOrderCore(data, orderId) {
+      return hasRequiredFields(orderRequiredFields()) &&
+        isValidOrderId(orderId) &&
+        data.id == orderId &&
+        isValidOrderType(data.orderType) &&
+        isValidString(data.customerName, 1, 120) &&
+        isValidEmail(data.customerEmail) &&
+        isValidString(data.customerPhone, 8, 24) &&
+        isValidNormalizedPhone(data.normalizedPhone) &&
+        isValidString(data.address, 0, 500) &&
+        isValidString(data.pincode, 0, 12) &&
+        data.items is list && data.items.size() >= 1 && data.items.size() <= 20 &&
+        isValidString(data.itemSummary, 1, 300) &&
+        isValidNumberRange(data.subtotal, 0, 500000) &&
+        isValidNumberRange(data.discount, 0, 500000) &&
+        isValidString(data.couponCode, 0, 30) &&
+        isValidNumberRange(data.total, 1, 500000) &&
+        isValidNumberRange(data.advanceAmount, 0, 500000) &&
+        data.advanceAmount <= data.total &&
+        data.paymentMethod in ['upi_advance', 'upi_full'] &&
+        isValidString(data.utr, 0, 64) &&
+        data.hasProof is bool &&
+        isValidString(data.deliveryDate, 0, 30) &&
+        isValidString(data.deliverySlot, 0, 80) &&
+        isValidString(data.inscription, 0, 80) &&
+        data.isEggless is bool &&
+        isValidString(data.flashItemId, 0, 80) &&
+        isValidIntRange(data.flashQty, 0, 20) &&
+        isValidOrderStatus(data.status) &&
+        isValidString(data.statusLabel, 1, 60) &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidOrderCreate(data, orderId) {
+      return hasOnlyAllowedFields(orderRequiredFields()) &&
+        isValidOrderCore(data, orderId) &&
+        data.hasProof == true &&
+        data.status == 'pending' &&
+        data.statusLabel == 'Payment Audit Required' &&
+        data.createdAt == request.time &&
+        data.updatedAt == request.time &&
+        // Atomic batch integrity: enforce mandatory screenshot proof doc in the same batch
+        existsAfter(/databases/$(database)/documents/order_proofs/$(orderId)) &&
+        // Atomic batch integrity: if TASTE39 coupon is used, require matching fresh 1-per-phone claim
+        (
+          data.couponCode.upper() != 'TASTE39' ||
+          (
+            existsAfter(/databases/$(database)/documents/coupon_claims/$('TASTE39_' + data.normalizedPhone)) &&
+            getAfter(/databases/$(database)/documents/coupon_claims/$('TASTE39_' + data.normalizedPhone)).data.orderId == orderId
+          )
+        );
+    }
+
+    function isValidOrderUpdate(data, prevData, orderId) {
+      return hasOnlyAllowedFields(orderUpdateAllowedFields()) &&
+        isValidOrderCore(data, orderId) &&
+        areImmutableFieldsUnchanged(['id', 'createdAt']) &&
+        data.diff(prevData).affectedKeys().hasOnly([
+          'status', 'statusLabel', 'adminNotes', 'verifiedAt', 'updatedAt'
+        ]) &&
+        isValidOptionalString(data, 'adminNotes', 0, 500) &&
+        (!('verifiedAt' in data) || data.verifiedAt == null || data.verifiedAt is timestamp);
+    }
+
+    // Validator for order_proofs/{orderId} (create only; immutable once created)
+    function isValidOrderProofCreate(data, orderId) {
+      let allowed = ['orderId', 'proofDataUrl', 'utr', 'createdAt'];
+      return hasOnlyAllowedFields(allowed) &&
+        hasRequiredFields(allowed) &&
+        isValidOrderId(orderId) &&
+        data.orderId == orderId &&
+        isValidImageDataUrl(data.proofDataUrl, 450000) &&
+        isValidString(data.utr, 0, 64) &&
+        data.createdAt == request.time &&
+        // Prevent orphaned 450KB screenshot dumps without a parent order
+        existsAfter(/databases/$(database)/documents/orders/$(orderId));
+    }
+
+    // Shared core schema validator for order_tracking/{orderId} (ZERO PII; used on both create & update)
+    function orderTrackingFields() {
+      return [
+        'token', 'itemSummary', 'orderType', 'deliveryDate', 'deliverySlot',
+        'status', 'statusLabel', 'createdAt', 'updatedAt'
+      ];
+    }
+
+    function isValidOrderTrackingCore(data, orderId) {
+      let fields = orderTrackingFields();
+      return hasOnlyAllowedFields(fields) &&
+        hasRequiredFields(fields) &&
+        isValidOrderId(orderId) &&
+        data.token == orderId &&
+        isValidString(data.itemSummary, 1, 300) &&
+        isValidOrderType(data.orderType) &&
+        isValidString(data.deliveryDate, 0, 30) &&
+        isValidString(data.deliverySlot, 0, 80) &&
+        isValidOrderStatus(data.status) &&
+        isValidString(data.statusLabel, 1, 60) &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidOrderTrackingCreate(data, orderId) {
+      return isValidOrderTrackingCore(data, orderId) &&
+        data.status == 'pending' &&
+        data.statusLabel == 'Payment Audit Required' &&
+        data.createdAt == request.time &&
+        data.updatedAt == request.time &&
+        // Prevent spoofed tracking tokens without a backing order
+        existsAfter(/databases/$(database)/documents/orders/$(orderId));
+    }
+
+    function isValidOrderTrackingUpdate(data, prevData, orderId) {
+      return isValidOrderTrackingCore(data, orderId) &&
+        areImmutableFieldsUnchanged(['token', 'orderType', 'itemSummary', 'createdAt']) &&
+        data.diff(prevData).affectedKeys().hasOnly([
+          'status', 'statusLabel', 'deliveryDate', 'deliverySlot', 'updatedAt'
+        ]);
+    }
+
+    // Validator for coupon_claims/{claimId} (create only; enforces 1-per-phone TASTE39)
+    function isValidCouponClaimCreate(data, claimId) {
+      let allowed = ['coupon', 'orderId', 'createdAt'];
+      return hasOnlyAllowedFields(allowed) &&
+        hasRequiredFields(allowed) &&
+        isValidString(claimId, 18, 23) &&
+        claimId.matches('^TASTE39_[0-9]{10,15}$') &&
+        data.coupon == 'TASTE39' &&
+        isValidOrderId(data.orderId) &&
+        data.createdAt == request.time &&
+        // Bind claim atomically to a backing order with matching TASTE39 coupon & phone
+        existsAfter(/databases/$(database)/documents/orders/$(data.orderId)) &&
+        getAfter(/databases/$(database)/documents/orders/$(data.orderId)).data.couponCode.upper() == 'TASTE39' &&
+        claimId == 'TASTE39_' + getAfter(/databases/$(database)/documents/orders/$(data.orderId)).data.normalizedPhone;
+    }
+
+    // Shared core schema validator for consultations/{consultationId} (used on both create & update)
+    function consultationRequiredFields() {
+      return [
+        'name', 'phone', 'email', 'eventDate', 'guestCount',
+        'preferredCallSlot', 'notes', 'referencePhotos',
+        'status', 'createdAt', 'updatedAt'
+      ];
+    }
+
+    function consultationUpdateAllowedFields() {
+      return [
+        'name', 'phone', 'email', 'eventDate', 'guestCount',
+        'preferredCallSlot', 'notes', 'referencePhotos',
+        'status', 'adminNotes', 'createdAt', 'updatedAt'
+      ];
+    }
+
+    function isValidConsultationCore(data) {
+      return hasRequiredFields(consultationRequiredFields()) &&
+        isValidString(data.name, 1, 120) &&
+        isValidString(data.phone, 8, 24) &&
+        isValidEmail(data.email) &&
+        isValidString(data.eventDate, 4, 30) &&
+        isValidString(data.guestCount, 1, 40) &&
+        isValidString(data.preferredCallSlot, 1, 80) &&
+        isValidString(data.notes, 0, 1000) &&
+        isValidReferencePhotosList(data.referencePhotos) &&
+        isValidConsultationStatus(data.status) &&
+        data.createdAt is timestamp &&
+        data.updatedAt is timestamp;
+    }
+
+    function isValidConsultationCreate(data) {
+      return hasOnlyAllowedFields(consultationRequiredFields()) &&
+        isValidConsultationCore(data) &&
+        data.status == 'scheduled' &&
+        data.createdAt == request.time &&
+        data.updatedAt == request.time;
+    }
+
+    function isValidConsultationUpdate(data, prevData) {
+      return hasOnlyAllowedFields(consultationUpdateAllowedFields()) &&
+        isValidConsultationCore(data) &&
+        areImmutableFieldsUnchanged([
+          'name', 'phone', 'email', 'eventDate', 'guestCount', 'referencePhotos', 'createdAt'
+        ]) &&
+        data.diff(prevData).affectedKeys().hasOnly([
+          'status', 'preferredCallSlot', 'notes', 'adminNotes', 'updatedAt'
+        ]) &&
+        isValidOptionalString(data, 'adminNotes', 0, 500);
+    }
+
+    // Validator for flash_config/{configId} (used on both Admin create & update)
+    function isValidFlashConfig(data) {
+      let allowed = ['active', 'windowStart', 'windowEnd', 'deliveryWindow', 'note', 'updatedAt'];
+      return hasOnlyAllowedFields(allowed) &&
+        hasRequiredFields(['active', 'updatedAt']) &&
+        data.active is bool &&
+        isValidOptionalString(data, 'windowStart', 0, 10) &&
+        isValidOptionalString(data, 'windowEnd', 0, 10) &&
+        isValidOptionalString(data, 'deliveryWindow', 0, 60) &&
+        isValidOptionalString(data, 'note', 0, 300) &&
+        data.updatedAt is timestamp;
+    }
+
+    // Validator for flash_items/{itemId} (used on both Admin create & update)
+    function isValidFlashItem(data) {
+      let allowed = [
+        'name', 'originalPrice', 'flashPrice', 'qtyRemaining',
+        'active', 'image', 'createdAt', 'updatedAt'
+      ];
+      return hasOnlyAllowedFields(allowed) &&
+        hasRequiredFields(['name', 'originalPrice', 'flashPrice', 'qtyRemaining', 'active', 'updatedAt']) &&
+        isValidString(data.name, 1, 120) &&
+        isValidNumberRange(data.originalPrice, 1, 500000) &&
+        isValidNumberRange(data.flashPrice, 1, 500000) &&
+        isValidIntRange(data.qtyRemaining, 0, 500) &&
+        data.active is bool &&
+        (!('image' in data) || isValidFlashImage(data.image)) &&
+        (!('createdAt' in data) || data.createdAt is timestamp) &&
+        data.updatedAt is timestamp;
+    }
+
+    // ===============================================================
+    // Collection Rules
+    // ===============================================================
+
+    // 0. Kitchen Admin Allowlist (provisioned exclusively via Firebase Console / Admin SDK)
+    match /admins/{uid} {
+      allow get: if isOwner(uid);
+      allow list: if false;
+      allow create, update, delete: if false;
+    }
+
+    // 1. Private Full Orders (contains customer PII; public checkout create, Admin-only operations)
+    match /orders/{orderId} {
+      allow read: if isAdmin();
+      allow create: if isValidOrderCreate(request.resource.data, orderId);
+      allow update: if isAdmin() && isValidOrderUpdate(request.resource.data, resource.data, orderId);
+      allow delete: if isAdmin();
+    }
+
+    // 2. Isolated UPI Payment Screenshot Proofs (public create with order, immutable audit record)
+    match /order_proofs/{orderId} {
+      allow read: if isAdmin();
+      allow create: if isValidOrderProofCreate(request.resource.data, orderId);
+      allow update: if false;
+      allow delete: if isAdmin();
+    }
+
+    // 3. Sanitized Public Order Tracker (ZERO PII; public `get` by exact token ONLY, NO public `list`)
+    match /order_tracking/{orderId} {
+      allow get: if true;
+      allow list: if isAdmin();
+      allow create: if isValidOrderTrackingCreate(request.resource.data, orderId);
+      allow update: if isAdmin() && isValidOrderTrackingUpdate(request.resource.data, resource.data, orderId);
+      allow delete: if isAdmin();
+    }
+
+    // 4. Atomic 1-Per-Phone Trial Coupon Claims (public create only; prevents enumeration & replay)
+    match /coupon_claims/{claimId} {
+      allow read: if isAdmin();
+      allow create: if isValidCouponClaimCreate(request.resource.data, claimId);
+      allow update: if false;
+      allow delete: if isAdmin();
+    }
+
+    // 5. Wedding & Grand Milestone Consultation Requests (contains PII; public create, Admin-only ops)
+    match /consultations/{consultationId} {
+      allow read: if isAdmin();
+      allow create: if isValidConsultationCreate(request.resource.data);
+      allow update: if isAdmin() && isValidConsultationUpdate(request.resource.data, resource.data);
+      allow delete: if isAdmin();
+    }
+
+    // 6. Zero-Waste Evening Saver Flash Config (public `get` restricted to 'evening_saver' only)
+    match /flash_config/{configId} {
+      allow get: if configId == 'evening_saver' || isAdmin();
+      allow list: if isAdmin();
+      allow create: if isAdmin() && isValidFlashConfig(request.resource.data);
+      allow update: if isAdmin() && isValidFlashConfig(request.resource.data);
+      allow delete: if isAdmin();
+    }
+
+    // 7. Zero-Waste Surplus Flash Items (public storefront catalog; Admin-only inventory management)
+    match /flash_items/{itemId} {
+      allow read: if true;
+      allow create: if isAdmin() && isValidFlashItem(request.resource.data);
+      allow update: if isAdmin() &&
+        isValidFlashItem(request.resource.data) &&
+        (!('createdAt' in resource.data) || areImmutableFieldsUnchanged(['createdAt']));
+      allow delete: if isAdmin();
+    }
+
+    // 8. Catch-All Default Deny (blocks all unmatched collections & nested subcollections)
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

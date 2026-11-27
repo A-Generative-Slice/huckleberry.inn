@@ -1,0 +1,29 @@
+# Your Huckleberry (yourhuckleberry.in) — Robots & AI Search Policy
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /worker/
+Disallow: /scripts/
+
+# Explicitly welcome AI search crawlers (ChatGPT, Gemini, Perplexity, Claude)
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /admin.html
+
+User-agent: GPTBot
+Allow: /
+Disallow: /admin.html
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin.html
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin.html
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin.html
+
+Sitemap: https://yourhuckleberry.in/sitemap.xml

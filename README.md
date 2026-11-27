@@ -338,12 +338,12 @@ _Dispatched via yourhuckleberry.in (@huckleberry.inn)_
    - Replaced automated 3D customizer drop-downs for grand wedding and milestone cakes with a dedicated Voice Call and In-Studio Appointment scheduling form.
 12. **Mandatory Payment Screenshot Upload Gate (`atelier.html` & `app.js`)**:
    - Added a hard-locked file upload requirement for UPI payment proof before slots can be reserved, eliminating unpaid slot hogging.
-13. **Kitchen Operations Command Center (`admin.html`)**:
-   - Built a dedicated internal dashboard for Ridha and kitchen staff featuring a real-time order status pipeline, 1-click customer CSV export, 7:00 PM Zero-Waste Flash Window, and a manual payment audit lightbox.
-14. **3-Page Executive Proposal PDF**:
-   - Compiled a high-DPI executive commercial proposal and roadmap PDF at `assets/Your_Huckleberry_Commercial_Proposal_Dec2026.pdf`.
-15. **Repository Memory & Context (`PROJECT_MEMORY.md`)**:
-   - Added comprehensive operational memory file for full context retrieval upon cloning.
+13. **Secured Firebase Kitchen Operations Command Center (`admin.html`, `firebase-service.js`, `firestore.rules`)**:
+   - Upgraded `admin.html` to real-time Cloud Firestore with Firebase Auth login, `admins/{uid}` RBAC, XSS-safe rendering, mobile-first layout, live KPI calculation, payment screenshot lightbox verification, 7:00–7:30 PM Zero-Waste Evening Saver live toggle, Wedding Consultation photo inbox, and RFC-4180 CSV exports.
+14. **Universal UPI Checkout, `TASTE39` Trial Hook & Zero-Waste Storefront (`app.js`, `index.html`, `collection.html`)**:
+   - Unified Festive Hampers (with Plum Cake 500g/1kg picker), Everyday Desserts, ₹39 Trial Cake Magnet (`TASTE39` with atomic 1-per-phone Firestore claim lock), and 7:00–7:30 PM Zero-Waste Flash Deals into a direct UPI QR + compressed screenshot checkout flow.
+15. **Cloudflare Worker Email Relay (`worker/email-relay.js`) & Technical SEO/AI Pack (`robots.txt`, `sitemap.xml`, `llms.txt`, `policies.html`)**:
+   - Added zero-cost server-side Resend relay for `orders@`, `auth@`, and `corporate@yourhuckleberry.in`, complete JSON-LD structured data (`Bakery`, `ItemList`, `FAQPage`), Meta Pixel auto-loader, and store refund/privacy policy page.
 
 ---
 
@@ -399,19 +399,18 @@ GitHub Pages automatically deploys the updated site to [yourhuckleberry.in](http
 
 ---
 
-## 10. Repository Memory & Public Repo Security Governance
+## 10. Public Repo Security Governance
 
-This repository is maintained as **Public** to enable free custom-domain GitHub Pages routing for `yourhuckleberry.in`. To ensure 100% operational confidentiality and protect sensitive client credentials, the following security architecture is enforced:
+This repository is maintained as **Public** to enable custom-domain GitHub Pages routing for `yourhuckleberry.in`. To protect customer data and credentials:
 
-1. **Complete Operational Memory ([`PROJECT_MEMORY.md`](PROJECT_MEMORY.md))**:
-   - Contains the unified context, client entity details, architectural decisions, and current execution roadmap so any developer or subagent cloning this repository is immediately up to date.
-2. **Zero Secrets in Git**:
-   - All passwords, private keys, API tokens, and credentials are strictly excluded via `.gitignore`.
-   - Automated workflows (e.g. GitHub Actions outreach) pull credentials exclusively from encrypted **GitHub Repository Secrets** (`Settings ➔ Secrets and variables ➔ Actions`).
-3. **Client PII & Export Exclusion**:
-   - Customer export CSVs and private corporate lead lists are gitignored by rule (`customer_export_*.csv`, `leads_private*.json`).
-4. **Data Segregation**:
-   - Sensitive business dossiers, contracts, and financial accounting reside in the private business dashboard (`/sdcard/antigravity/a-generative-slice-business-dashboard/clients/your-huckleberry/`) and are never pushed to public version control.
+1. **Zero Secrets or Internal Dossiers in Git**:
+   - All passwords, private keys, API tokens, client decks, and commercial dossiers are strictly excluded via `.gitignore`.
+   - Server-side email credentials (`RESEND_API_KEY`, `OTP_HMAC_SECRET`) live exclusively as encrypted Cloudflare Worker Secrets (`worker/email-relay.js`), never in browser JavaScript.
+2. **Hardened Firestore Security Rules (`firestore.rules`)**:
+   - Customer PII (`orders`, `order_proofs`, `consultations`) is write-only for public checkout and strictly Admin-only (`admins/{uid}`) for reads, updates, and CSV exports.
+   - Public order tracking reads only sanitized zero-PII documents (`order_tracking/{token}`) with `list` disabled.
+3. **Client PII & Lead Exclusion**:
+   - Customer export CSVs and private corporate outreach lead lists are gitignored (`customer_export_*.csv`, `leads_private*.json`) and kept strictly outside this public repository.
 
 ---
 
