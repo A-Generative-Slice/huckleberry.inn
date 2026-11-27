@@ -714,7 +714,7 @@ const HUCKLEBERRY_DATA = {
     },
     {
       question: "Can I customize the color palette, piped plaque inscription, or dietary needs?",
-      answer: "Yes! Use our Interactive Cake Atelier to test flavor pairings and type your custom message. When your WhatsApp booking slip generates, you can chat directly with our chef to request custom tint matching, ribbon colors, or special dietary notes."
+      answer: "Yes! Book a quick 10-minute voice call with Chef Ridha on our Custom & Wedding Cakes page and attach up to 3 inspiration photos. Chef Ridha will personally finalize custom pastel tint matching, ribbon colors, inscriptions, or special allergen notes."
     }
   ],
 

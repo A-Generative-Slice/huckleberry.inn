@@ -33,8 +33,8 @@
 ## Important Pages
 - [Home](https://yourhuckleberry.in/): Overview, festive banner, ₹39 trial hook, and signature form factors
 - [Complete Collection](https://yourhuckleberry.in/collection.html): 38+ creations including Festive Hampers and Everyday Desserts
-- [Interactive Cake Atelier & Wedding Consultations](https://yourhuckleberry.in/atelier.html): Custom cake builder, instant pricing, UPI advance checkout, and Chef Ridha consultation booking
-- [Creation Pipeline & Order Tracker](https://yourhuckleberry.in/pipeline.html): 5-stage craft process and live `#HK-XXXXXX` order token tracker
+- [Custom & Wedding Cakes Consultation](https://yourhuckleberry.in/atelier.html): Book a direct 10-minute voice call with Chef Ridha with event date, guest count, and up to 3 dream cake photos
+- [Order Tracker & Kitchen Process](https://yourhuckleberry.in/pipeline.html): Live `#HK-XXXXXX` order token tracker and 4-stage Chennai kitchen progress guide
 - [Location & Chennai Delivery Zones](https://yourhuckleberry.in/location.html): Nungambakkam studio Google Maps directions and pincodes
 - [FAQs](https://yourhuckleberry.in/faq.html): Pure veg ingredients, Chennai heat storage guidance, and advance booking
 - [Store & Privacy Policies](https://yourhuckleberry.in/policies.html): 50% advance policy, rescheduling, refunds, and privacy

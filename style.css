@@ -28,22 +28,32 @@
   --color-bordeaux: #371A40;
   --color-bordeaux-soft: #522760;
 
-  /* 24K Antique Champagne Gold */
+  /* 24K Antique Champagne Gold (WCAG 2.2 AA tuned) */
   --color-gold: #C5A059;
   --color-gold-champagne: #D4AF37;
   --color-gold-light: #E5C396;
-  --color-gold-deep: #916828;
+  --color-gold-deep: #805819;
   --color-gold-hairline: rgba(212, 175, 55, 0.38);
 
-  /* Theobroma FSSAI Indian Vegetarian Green */
-  --color-veg-green: #0F8A5F;
-  --color-veg-bg: #EAF7EF;
-  --color-veg-border: rgba(15, 138, 95, 0.28);
+  /* Spiced Terracotta (Festive & Evening Saver — Replaces clashing neon orange) */
+  --color-terracotta: #A83E1C;
+  --color-terracotta-dark: #7A2B12;
+  --color-terracotta-soft: #FDF4EF;
+  --color-terracotta-border: rgba(168, 62, 28, 0.28);
 
-  /* Typography Colors */
+  /* Theobroma FSSAI Indian Vegetarian Green */
+  --color-veg-green: #0E7A53;
+  --color-veg-bg: #EAF7EF;
+  --color-veg-border: rgba(14, 122, 83, 0.28);
+
+  /* Error & Neutral Semantics */
+  --color-error: #B91C1C;
+  --color-error-bg: #FEF2F2;
+
+  /* Typography Colors (WCAG 2.2 AA/AAA Verified) */
   --color-text-main: #1D181F;
-  --color-text-muted: #625965;
-  --color-text-light: #8E8291;
+  --color-text-muted: #574E5A;
+  --color-text-light: #756A78;
 
   /* Borders & Dividers */
   --color-border: rgba(55, 26, 64, 0.08);
@@ -85,9 +95,14 @@ body {
   background-color: var(--color-bg);
   color: var(--color-text-main);
   line-height: 1.6;
-  font-size: 15px;
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
+}
+
+:focus-visible {
+  outline: 2.5px solid var(--color-plum-royal);
+  outline-offset: 2px;
 }
 
 /* ==========================================================================
@@ -2103,8 +2118,10 @@ h1, h2, h3, h4 {
    ========================================================================== */
 .toast-container {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
+  top: 86px;
+  right: 20px;
+  bottom: auto;
+  max-width: calc(100vw - 32px);
   z-index: 1000;
   display: flex;
   flex-direction: column;
@@ -2421,15 +2438,17 @@ h1, h2, h3, h4 {
 }
 
 .page-breadcrumb {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: center;
+  width: 100%;
   gap: 8px;
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   font-family: var(--font-classical);
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--color-text-light);
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .page-breadcrumb a {
@@ -4498,4 +4517,378 @@ dialog.order-dialog::backdrop {
   padding: 8px 16px;
   font-size: 0.82rem;
   font-weight: 600;
+}
+
+/* ==========================================================================
+   Production UX System (DESIGN.md): Pincode Checker, 3-Step Guides,
+   Unified Festive Surfaces, Multi-Item Order Bag Drawer & Sticky Mobile Bar
+   ========================================================================== */
+
+/* Calm Semantic Festive / Evening Surfaces (No Neon Orange Clash) */
+.festive-ribbon-bar {
+  background: var(--color-terracotta-soft);
+  border-top: 1px solid var(--color-terracotta-border);
+  border-bottom: 1px solid var(--color-terracotta-border);
+  padding: 18px 24px;
+}
+
+.festive-ribbon-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.btn-terracotta {
+  background: var(--color-terracotta);
+  color: #FFFFFF;
+  border: 1px solid var(--color-terracotta);
+  border-radius: var(--radius-full);
+  padding: 10px 20px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.btn-terracotta:hover {
+  background: var(--color-terracotta-dark);
+  border-color: var(--color-terracotta-dark);
+}
+
+/* Above-the-Fold Trust & Chennai Pincode Delivery Checker */
+.trust-pincode-strip {
+  max-width: 1200px;
+  margin: 24px auto 0;
+  padding: 0 24px;
+}
+
+.trust-pincode-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-gold);
+  border-radius: var(--radius-md);
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  box-shadow: var(--shadow-subtle);
+}
+
+.collection-search-container .trust-pincode-card {
+  background: var(--color-surface-subtle);
+  border: 1px solid rgba(194, 149, 87, 0.24);
+  box-shadow: none;
+}
+
+.trust-proof-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.trust-rating-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-plum-royal);
+}
+
+.trust-stars {
+  color: var(--color-gold-deep);
+  letter-spacing: 1px;
+}
+
+.trust-subcopy {
+  font-size: 0.84rem;
+  color: var(--color-text-muted);
+}
+
+.pincode-checker-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pincode-input {
+  width: 175px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: var(--color-text-main);
+  background: var(--color-bg);
+}
+
+.pincode-input:focus {
+  border-color: var(--color-plum-royal);
+  background: #FFFFFF;
+}
+
+.pincode-result-msg {
+  width: 100%;
+  font-size: 0.84rem;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  display: none;
+}
+
+.pincode-result-msg.ok {
+  display: block;
+  background: var(--color-veg-bg);
+  color: var(--color-veg-green);
+  border: 1px solid var(--color-veg-border);
+}
+
+.pincode-result-msg.warn {
+  display: block;
+  background: var(--color-error-bg);
+  color: var(--color-error);
+  border: 1px solid rgba(185, 28, 28, 0.25);
+}
+
+/* Beginner-Friendly 3-Step Ordering Guide */
+.simple-steps-section {
+  max-width: 1200px;
+  margin: 28px auto 0;
+  padding: 0 24px;
+}
+
+.simple-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 14px;
+}
+
+.simple-step-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.simple-step-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-plum-royal);
+  color: #FAF8F5;
+  font-family: var(--font-classical);
+  font-size: 0.82rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.simple-step-card h3 {
+  font-family: var(--font-editorial);
+  font-size: 1.08rem;
+  margin-bottom: 3px;
+  color: var(--color-plum-royal);
+}
+
+.simple-step-card p {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+/* Card Dual Action Group (Add to Bag + Quick Order) */
+.card-action-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-add-bag {
+  background: var(--color-surface-subtle);
+  color: var(--color-plum-royal);
+  border: 1px solid var(--color-border-gold);
+  border-radius: var(--radius-full);
+  padding: 7px 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: var(--transition-smooth);
+}
+
+.btn-add-bag:hover {
+  background: var(--color-plum-royal);
+  color: #FFFFFF;
+  border-color: var(--color-plum-royal);
+}
+
+/* Persistent Floating Order Bag Bar (Thumb-Reachable on Mobile) */
+.sticky-bag-bar {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(94%, 520px);
+  background: var(--color-plum-deep);
+  color: #FAF8F5;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-radius: 16px;
+  padding: 12px 16px;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  box-shadow: 0 16px 40px rgba(36, 14, 43, 0.34);
+  z-index: 950;
+}
+
+.sticky-bag-bar.visible {
+  display: flex;
+}
+
+.sticky-bag-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.sticky-bag-count {
+  font-size: 0.76rem;
+  color: var(--color-gold-light);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.sticky-bag-total {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.btn-open-bag {
+  background: var(--color-gold-champagne);
+  color: var(--color-plum-deep);
+  border: none;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-open-bag:hover {
+  background: var(--color-gold-light);
+}
+
+/* Checkout Modal 3-Step Visual Progress Header */
+.checkout-stepper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.checkout-step-pill {
+  text-align: center;
+  padding: 7px 6px;
+  border-radius: 8px;
+  font-size: 0.73rem;
+  font-weight: 700;
+  background: var(--color-surface-subtle);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+
+.checkout-step-pill.active {
+  background: var(--color-plum-royal);
+  color: #FAF8F5;
+  border-color: var(--color-plum-royal);
+}
+
+/* Out-of-Stock Greying for Zero-Waste Saver */
+.flash-card-soldout {
+  opacity: 0.56;
+  filter: grayscale(0.45);
+  pointer-events: none;
+}
+
+/* Bespoke Reference Guide Grid on Simplified atelier.html */
+.bespoke-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
+}
+
+.bespoke-guide-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-subtle);
+}
+
+.bespoke-guide-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.bespoke-guide-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.bespoke-guide-body h3 {
+  font-family: var(--font-editorial);
+  font-size: 1.15rem;
+  color: var(--color-plum-royal);
+}
+
+.bespoke-guide-meta {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+
+.bespoke-guide-price {
+  margin-top: auto;
+  padding-top: 8px;
+  font-weight: 700;
+  font-size: 0.94rem;
+  color: var(--color-gold-deep);
+}
+
+@media (max-width: 640px) {
+  .trust-pincode-card {
+    padding: 16px;
+  }
+  .pincode-checker-form {
+    width: 100%;
+  }
+  .pincode-input {
+    flex: 1;
+    width: auto;
+  }
 }

@@ -8,34 +8,45 @@
   <link rel="icon" type="image/jpeg" href="assets/logo.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --brand-orange: #FF5C00;
-      --brand-orange-light: #FFF4ED;
-      --brand-plum: #3E1929;
-      --brand-dark: #0F172A;
-      --brand-slate: #475569;
-      --brand-border: #E2E8F0;
-      --brand-bg: #F8FAFC;
-      --brand-white: #FFFFFF;
-      --brand-green: #10B981;
-      --brand-amber: #F59E0B;
-      --brand-red: #EF4444;
-      --font-heading: 'Montserrat', sans-serif;
-      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --plum: #371A40;
+      --plum-deep: #240E2B;
+      --terracotta: #A83E1C;
+      --terracotta-soft: #FDF4EF;
+      --terracotta-border: rgba(168, 62, 28, 0.28);
+      --gold: #805819;
+      --gold-border: rgba(212, 175, 55, 0.42);
+      --green: #0E7A53;
+      --green-soft: #EAF7EF;
+      --blue: #1D4ED8;
+      --blue-soft: #EFF6FF;
+      --red: #B91C1C;
+      --red-soft: #FEF2F2;
+      --bg: #FAF8F5;
+      --surface: #FFFFFF;
+      --surface-subtle: #F4EFE8;
+      --text: #1D181F;
+      --muted: #574E5A;
+      --border: rgba(55, 26, 64, 0.12);
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: var(--font-body);
-      background-color: var(--brand-bg);
-      color: var(--brand-dark);
-      line-height: 1.5;
+      font-family: var(--font-sans);
+      background-color: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.55;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
     }
+    :focus-visible { outline: 2.5px solid var(--plum); outline-offset: 2px; }
+    .hidden { display: none !important; }
 
     /* Auth Gate & Setup Screens */
     .gate-screen {
@@ -44,103 +55,45 @@
       align-items: center;
       justify-content: center;
       padding: 24px 16px;
-      background: linear-gradient(160deg, #FAF7F2 0%, #F1E8E2 100%);
+      background: linear-gradient(160deg, #FAF8F5 0%, #EFE8DF 100%);
     }
     .gate-card {
-      background: var(--brand-white);
-      border: 1px solid #E8DCD2;
+      background: var(--surface);
+      border: 1px solid var(--gold-border);
       border-radius: 20px;
       padding: 32px 26px;
       width: 100%;
       max-width: 440px;
-      box-shadow: 0 20px 50px -12px rgba(62, 25, 41, 0.14);
+      box-shadow: 0 20px 50px -12px rgba(55, 26, 64, 0.14);
     }
-    .gate-brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 22px;
-    }
-    .gate-brand img {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      object-fit: cover;
-      border: 1.5px solid #D4AF37;
-    }
-    .gate-brand h1 {
-      font-family: var(--font-heading);
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: var(--brand-plum);
-    }
-    .gate-brand p {
-      font-size: 0.78rem;
-      color: var(--brand-slate);
-    }
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-bottom: 14px;
-    }
-    .form-group label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--brand-dark);
-    }
+    .gate-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; }
+    .gate-brand img { width: 48px; height: 48px; border-radius: 12px; object-fit: cover; border: 1.5px solid #D4AF37; }
+    .gate-brand h1 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--plum); }
+    .gate-brand p { font-size: 0.82rem; color: var(--muted); }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+    .form-group label { font-size: 0.84rem; font-weight: 600; color: var(--plum); }
     .form-input {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1.5px solid var(--brand-border);
-      border-radius: 10px;
-      font-size: 0.92rem;
-      font-family: inherit;
-      background: var(--brand-white);
-      color: var(--brand-dark);
+      width: 100%; padding: 11px 14px; border: 1.5px solid #D6CCC2; border-radius: 10px;
+      font-size: 0.94rem; font-family: inherit; background: var(--surface); color: var(--text);
     }
-    .form-input:focus {
-      outline: none;
-      border-color: var(--brand-plum);
-      box-shadow: 0 0 0 3px rgba(62, 25, 41, 0.12);
-    }
+    .form-input:focus { outline: none; border-color: var(--plum); box-shadow: 0 0 0 3px rgba(55, 26, 64, 0.12); }
     .error-banner {
-      background: #FEF2F2;
-      border: 1px solid #FECACA;
-      color: #B91C1C;
-      font-size: 0.82rem;
-      font-weight: 600;
-      padding: 10px 12px;
-      border-radius: 8px;
-      margin-bottom: 14px;
-      display: none;
+      background: var(--red-soft); border: 1px solid #FECACA; color: var(--red);
+      font-size: 0.84rem; font-weight: 600; padding: 10px 12px; border-radius: 8px; margin-bottom: 14px; display: none;
     }
     .info-box {
-      background: #FFF7ED;
-      border: 1px solid #FED7AA;
-      border-radius: 10px;
-      padding: 14px;
-      font-size: 0.82rem;
-      color: #7C2D12;
-      line-height: 1.55;
-      margin-bottom: 16px;
+      background: var(--terracotta-soft); border: 1px solid var(--terracotta-border);
+      border-radius: 10px; padding: 14px; font-size: 0.86rem; color: #5C220F; line-height: 1.55; margin-bottom: 16px;
     }
     .code-pill {
-      display: inline-block;
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: 0.8rem;
-      background: #0F172A;
-      color: #F8FAFC;
-      padding: 6px 10px;
-      border-radius: 6px;
-      word-break: break-all;
-      margin: 6px 0;
+      display: inline-block; font-family: ui-monospace, monospace; font-size: 0.82rem;
+      background: var(--plum-deep); color: #FAF8F5; padding: 6px 10px; border-radius: 6px; word-break: break-all; margin: 6px 0;
     }
 
-    /* Top Header */
+    /* Header */
     header.admin-header {
-      background: var(--brand-white);
-      border-bottom: 1px solid var(--brand-border);
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
       padding: 12px 18px;
       display: flex;
       align-items: center;
@@ -150,505 +103,303 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
     }
-    .header-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .header-brand { display: flex; align-items: center; gap: 10px; }
+    .header-brand img { width: 40px; height: 40px; border-radius: 10px; object-fit: cover; border: 1px solid var(--gold-border); }
+    .header-brand h1 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--plum); line-height: 1.2; }
+    .sub-badge {
+      display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem;
+      background: var(--green-soft); color: var(--green); padding: 2px 9px; border-radius: 12px; font-weight: 700; margin-top: 2px;
     }
-    .header-brand img {
-      width: 38px;
-      height: 38px;
-      border-radius: 8px;
-      object-fit: cover;
-    }
-    .header-brand h1 {
-      font-family: var(--font-heading);
-      font-size: 1rem;
-      font-weight: 800;
-      color: var(--brand-plum);
-      line-height: 1.2;
-    }
-    .header-brand .sub-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 0.72rem;
-      background: #ECFDF5;
-      color: #065F46;
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-weight: 700;
-      margin-top: 2px;
-    }
-    .live-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #10B981;
-      display: inline-block;
-    }
-    .header-actions {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
+    .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); display: inline-block; }
+    .header-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+
+    /* Buttons */
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      font-family: var(--font-heading);
-      font-size: 0.8rem;
-      font-weight: 700;
-      padding: 10px 14px;
-      min-height: 40px;
-      border-radius: 9px;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.2s;
-      border: none;
-      white-space: nowrap;
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      font-family: var(--font-sans); font-size: 0.84rem; font-weight: 700;
+      padding: 10px 16px; min-height: 42px; border-radius: 10px; cursor: pointer;
+      text-decoration: none; border: none; white-space: nowrap; transition: background-color 0.2s, border-color 0.2s;
     }
-    .btn-primary { background: var(--brand-orange); color: var(--brand-white); }
-    .btn-primary:hover { background: #E05100; }
-    .btn-plum { background: var(--brand-plum); color: var(--brand-white); }
-    .btn-plum:hover { background: #2D111D; }
-    .btn-outline { background: var(--brand-white); border: 1px solid var(--brand-border); color: var(--brand-slate); }
-    .btn-outline:hover { background: #F1F5F9; }
-    .btn-success { background: var(--brand-green); color: var(--brand-white); }
-    .btn-success:hover { background: #059669; }
-    .btn-danger { background: #FEE2E2; color: #B91C1C; border: 1px solid #FECACA; }
-    .btn-sm { padding: 6px 11px; min-height: 34px; font-size: 0.75rem; }
+    .btn-plum { background: var(--plum); color: #FAF8F5; }
+    .btn-plum:hover { background: var(--plum-deep); }
+    .btn-terracotta { background: var(--terracotta); color: #FFFFFF; }
+    .btn-terracotta:hover { background: #8A3114; }
+    .btn-green { background: var(--green); color: #FFFFFF; }
+    .btn-green:hover { background: #0A6141; }
+    .btn-blue { background: var(--blue); color: #FFFFFF; }
+    .btn-blue:hover { background: #1E40AF; }
+    .btn-outline { background: var(--surface); border: 1px solid #D6CCC2; color: var(--plum); }
+    .btn-outline:hover { background: var(--surface-subtle); }
+    .btn-danger { background: var(--red-soft); color: var(--red); border: 1px solid #FECACA; }
+    .btn-sm { padding: 7px 12px; min-height: 36px; font-size: 0.78rem; }
 
     /* Container */
-    .admin-container {
-      max-width: 1300px;
-      margin: 0 auto;
-      padding: 18px 14px 48px;
-      width: 100%;
-      flex: 1;
-    }
+    .admin-container { max-width: 1280px; margin: 0 auto; padding: 18px 16px 56px; width: 100%; flex: 1; }
 
-    /* Stats Overview */
-    .stats-grid {
+    /* Collapsible Beginner Kitchen Shift Guide */
+    details.shift-guide {
+      background: var(--surface);
+      border: 1px solid var(--gold-border);
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 18px;
+    }
+    details.shift-guide summary {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--plum);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    details.shift-guide summary::-webkit-details-marker { display: none; }
+    .shift-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .shift-step-box {
+      background: var(--bg);
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    .shift-step-box strong { display: block; color: var(--plum); margin-bottom: 2px; }
+
+    /* 4-Station Visual Kitchen Pipeline Stepper */
+    .station-bar {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 12px;
-      margin-bottom: 20px;
+      gap: 10px;
+      margin-bottom: 18px;
     }
-    .stat-card {
-      background: var(--brand-white);
-      border: 1px solid var(--brand-border);
+    .station-btn {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
       border-radius: 12px;
-      padding: 14px 16px;
+      padding: 14px 14px;
+      text-align: left;
+      cursor: pointer;
       display: flex;
       flex-direction: column;
       gap: 4px;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+      transition: border-color 0.2s, background-color 0.2s;
     }
-    .stat-label {
-      font-size: 0.72rem;
-      color: var(--brand-slate);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-    .stat-val {
-      font-family: var(--font-heading);
-      font-size: 1.45rem;
-      font-weight: 800;
-      color: var(--brand-dark);
-    }
-    .stat-meta {
-      font-size: 0.73rem;
-      color: var(--brand-green);
-      font-weight: 600;
-    }
+    .station-btn:hover { border-color: var(--plum); }
+    .station-btn.active { border-color: var(--plum); background: #F5EFF7; }
+    .station-step-label { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+    .station-count { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; color: var(--plum); line-height: 1.1; }
+    .station-hint { font-size: 0.76rem; color: var(--muted); }
+    .station-btn[data-station="pending"] .station-count { color: var(--terracotta); }
+    .station-btn[data-station="baking"] .station-count { color: var(--plum); }
+    .station-btn[data-station="delivery"] .station-count { color: var(--blue); }
+    .station-btn[data-station="delivered"] .station-count { color: var(--green); }
 
-    /* Tabs Bar */
+    /* KPI Strip */
+    .kpi-strip {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px;
+    }
+    .kpi-pill {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      padding: 8px 14px; font-size: 0.84rem; color: var(--muted);
+    }
+    .kpi-pill strong { color: var(--plum); margin-left: 4px; }
+
+    /* Tabs */
     .admin-tabs {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      border-bottom: 1px solid var(--brand-border);
-      margin-bottom: 20px;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 2px;
+      display: flex; align-items: center; gap: 6px; border-bottom: 1px solid var(--border);
+      margin-bottom: 18px; overflow-x: auto; -webkit-overflow-scrolling: touch;
     }
     .tab-btn {
-      padding: 10px 14px;
-      font-family: var(--font-heading);
-      font-size: 0.82rem;
-      font-weight: 700;
-      background: none;
-      border: none;
-      color: var(--brand-slate);
-      border-bottom: 3px solid transparent;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: all 0.2s;
+      padding: 10px 16px; font-family: var(--font-sans); font-size: 0.86rem; font-weight: 700;
+      background: none; border: none; color: var(--muted); border-bottom: 3px solid transparent;
+      cursor: pointer; white-space: nowrap;
     }
-    .tab-btn.active {
-      color: var(--brand-orange);
-      border-bottom-color: var(--brand-orange);
-    }
-
+    .tab-btn.active { color: var(--plum); border-bottom-color: var(--plum); }
     .tab-pane { display: none; }
     .tab-pane.active { display: block; }
 
-    /* Orders Toolbar */
+    /* Toolbar */
     .orders-toolbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 16px;
-    }
-    .filter-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-    .filter-chip {
-      padding: 7px 12px;
-      border-radius: 20px;
-      font-size: 0.76rem;
-      font-weight: 700;
-      background: var(--brand-white);
-      border: 1px solid var(--brand-border);
-      color: var(--brand-slate);
-      cursor: pointer;
-    }
-    .filter-chip.active {
-      background: var(--brand-plum);
-      color: var(--brand-white);
-      border-color: var(--brand-plum);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 10px; margin-bottom: 14px;
     }
 
-    /* Mobile-Safe Order Cards Grid */
+    /* Mobile-Safe Kitchen Ticket Cards */
     .order-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(min(100%, 335px), 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 345px), 1fr));
       gap: 14px;
     }
     .order-card {
-      background: var(--brand-white);
-      border: 1px solid var(--brand-border);
-      border-radius: 14px;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 11px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+      padding: 16px; display: flex; flex-direction: column; gap: 11px;
+      box-shadow: 0 2px 10px rgba(55, 26, 64, 0.04);
     }
     .order-card.needs-audit {
-      border: 2px solid var(--brand-orange);
-      box-shadow: 0 6px 20px -6px rgba(255, 92, 0, 0.18);
+      border: 2px solid var(--terracotta);
+      box-shadow: 0 6px 20px -6px rgba(168, 62, 28, 0.2);
     }
-    .order-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 8px;
+    .slot-banner {
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      background: var(--surface-subtle); padding: 6px 10px; border-radius: 8px;
+      font-size: 0.78rem; font-weight: 700; color: var(--plum);
     }
-    .order-id {
-      font-family: var(--font-heading);
-      font-size: 0.95rem;
-      font-weight: 800;
-      color: var(--brand-dark);
-    }
+    .order-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+    .order-id { font-size: 0.98rem; font-weight: 800; color: var(--plum); }
     .order-type-chip {
-      display: inline-block;
-      font-size: 0.68rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      padding: 2px 6px;
-      border-radius: 4px;
-      background: #F1F5F9;
-      color: #334155;
-      margin-left: 6px;
+      display: inline-block; font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
+      padding: 2px 7px; border-radius: 5px; background: var(--surface-subtle); color: var(--plum); margin-left: 6px;
     }
-    .order-time { font-size: 0.74rem; color: var(--brand-slate); margin-top: 2px; }
+    .order-time { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
     .badge-status {
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 4px 8px;
-      border-radius: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      white-space: nowrap;
+      font-size: 0.7rem; font-weight: 700; padding: 4px 8px; border-radius: 6px;
+      text-transform: uppercase; letter-spacing: 0.03em; white-space: nowrap;
     }
     .badge-pending { background: #FEF3C7; color: #92400E; }
-    .badge-baking { background: #E0E7FF; color: #3730A3; }
-    .badge-delivery { background: #DBEAFE; color: #1E40AF; }
-    .badge-delivered { background: #D1FAE5; color: #065F46; }
-    .badge-cancelled { background: #FEE2E2; color: #991B1B; }
-    .badge-scheduled { background: #FEF3C7; color: #92400E; }
-    .badge-contacted { background: #DBEAFE; color: #1E40AF; }
-    .badge-quoted { background: #E0E7FF; color: #3730A3; }
-    .badge-booked { background: #D1FAE5; color: #065F46; }
-    .badge-archived { background: #F1F5F9; color: #475569; }
+    .badge-baking { background: #F3E8FF; color: var(--plum); }
+    .badge-delivery { background: var(--blue-soft); color: var(--blue); }
+    .badge-delivered { background: var(--green-soft); color: var(--green); }
+    .badge-cancelled { background: var(--red-soft); color: var(--red); }
 
-    .order-customer {
-      background: #F8FAFC;
-      border-radius: 8px;
-      padding: 10px 12px;
-      font-size: 0.82rem;
-      word-break: break-word;
-    }
+    .order-customer { background: var(--bg); border-radius: 8px; padding: 10px 12px; font-size: 0.84rem; word-break: break-word; }
     .order-items {
-      font-size: 0.84rem;
-      border-top: 1px dashed var(--brand-border);
-      border-bottom: 1px dashed var(--brand-border);
-      padding: 9px 0;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+      font-size: 0.88rem; border-top: 1px dashed var(--border); border-bottom: 1px dashed var(--border);
+      padding: 10px 0; display: flex; flex-direction: column; gap: 4px;
     }
-    .order-total-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      font-weight: 700;
-      font-size: 0.92rem;
-    }
-    .proof-strip {
-      background: #FFF7ED;
-      border: 1px solid #FED7AA;
-      border-radius: 10px;
-      padding: 10px 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .order-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
+    .order-total-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-weight: 700; font-size: 0.94rem; }
+
+    .primary-next-action { width: 100%; }
+    .secondary-actions-row {
+      display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
     }
     .select-status {
-      flex: 1;
-      min-width: 155px;
-      padding: 9px 10px;
-      border: 1px solid var(--brand-border);
-      border-radius: 8px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      background: var(--brand-white);
-      color: var(--brand-dark);
+      flex: 1; min-width: 135px; padding: 7px 9px; border: 1px solid #D6CCC2; border-radius: 8px;
+      font-size: 0.78rem; font-weight: 600; background: var(--surface); color: var(--text);
     }
 
     /* Flash Sale Section */
     .flash-box {
-      background: linear-gradient(135deg, #FFF7ED 0%, #FEF2F2 100%);
-      border: 1.5px solid var(--brand-orange);
-      border-radius: 16px;
-      padding: 18px;
-      margin-bottom: 18px;
+      background: var(--terracotta-soft); border: 1.5px solid var(--terracotta-border);
+      border-radius: 16px; padding: 20px; margin-bottom: 18px;
     }
-    .flash-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 14px;
-    }
-    .flash-title { display: flex; align-items: flex-start; gap: 10px; }
-    .flash-title h2 { font-family: var(--font-heading); font-size: 1.08rem; color: #7C2D12; font-weight: 800; }
-    .flash-form-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 10px;
-      margin-top: 12px;
-    }
+    .flash-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; margin-bottom: 14px; }
+    .flash-title h2 { font-family: var(--font-display); font-size: 1.25rem; color: var(--plum); }
+    .flash-form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 12px; }
     .toggle-switch { position: relative; display: inline-block; width: 52px; height: 28px; flex-shrink: 0; }
     .toggle-switch input { opacity: 0; width: 0; height: 0; }
-    .slider { position: absolute; cursor: pointer; inset: 0; background-color: #CBD5E1; transition: .25s; border-radius: 34px; }
-    .slider:before { position: absolute; content: ""; height: 22px; width: 22px; left: 3px; bottom: 3px; background-color: white; transition: .25s; border-radius: 50%; }
-    input:checked + .slider { background-color: var(--brand-orange); }
+    .slider { position: absolute; cursor: pointer; inset: 0; background-color: #CBD5E1; transition: .2s; border-radius: 34px; }
+    .slider:before { position: absolute; content: ""; height: 22px; width: 22px; left: 3px; bottom: 3px; background-color: white; transition: .2s; border-radius: 50%; }
+    input:checked + .slider { background-color: var(--terracotta); }
     input:checked + .slider:before { transform: translateX(24px); }
 
     /* Responsive Tables */
     .data-table-card {
-      background: var(--brand-white);
-      border: 1px solid var(--brand-border);
-      border-radius: 12px;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
     }
-    table.data-table {
-      width: 100%;
-      min-width: 680px;
-      border-collapse: collapse;
-      text-align: left;
-      font-size: 0.84rem;
-    }
+    table.data-table { width: 100%; min-width: 680px; border-collapse: collapse; text-align: left; font-size: 0.86rem; }
     table.data-table th {
-      background: #F8FAFC;
-      padding: 12px 14px;
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 0.76rem;
-      text-transform: uppercase;
-      color: var(--brand-slate);
-      border-bottom: 1px solid var(--brand-border);
+      background: var(--surface-subtle); padding: 12px 14px; font-weight: 700; font-size: 0.76rem;
+      text-transform: uppercase; color: var(--plum); border-bottom: 1px solid var(--border);
     }
-    table.data-table td {
-      padding: 12px 14px;
-      border-bottom: 1px solid var(--brand-border);
-      color: var(--brand-dark);
-      vertical-align: top;
-    }
+    table.data-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
     table.data-table tr:last-child td { border-bottom: none; }
-    .photo-thumb {
-      width: 46px;
-      height: 46px;
-      border-radius: 7px;
-      object-fit: cover;
-      cursor: pointer;
-      border: 1.5px solid var(--brand-border);
-      margin-right: 4px;
-    }
+    .photo-thumb { width: 46px; height: 46px; border-radius: 7px; object-fit: cover; cursor: pointer; border: 1.5px solid var(--border); margin-right: 4px; }
+
     .empty-state {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 44px 20px;
-      background: var(--brand-white);
-      border: 1px dashed #CBD5E1;
-      border-radius: 14px;
-      color: var(--brand-slate);
-      font-size: 0.9rem;
+      grid-column: 1 / -1; text-align: center; padding: 44px 20px; background: var(--surface);
+      border: 1px dashed #CBBFB4; border-radius: 14px; color: var(--muted); font-size: 0.92rem;
     }
 
     dialog.admin-modal {
-      border: none;
-      border-radius: 16px;
-      padding: 20px;
-      max-width: 520px;
-      width: 92%;
-      margin: auto;
-      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.28);
+      border: none; border-radius: 16px; padding: 20px; max-width: 520px; width: 92%;
+      margin: auto; box-shadow: 0 24px 50px rgba(36, 14, 43, 0.28);
     }
-    dialog.admin-modal::backdrop {
-      background: rgba(15, 23, 42, 0.65);
-      backdrop-filter: blur(3px);
-    }
+    dialog.admin-modal::backdrop { background: rgba(36, 14, 43, 0.62); }
 
     .toast {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--brand-dark);
-      color: var(--brand-white);
-      padding: 12px 20px;
-      border-radius: 10px;
-      font-size: 0.84rem;
-      font-weight: 600;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-      display: none;
-      z-index: 200;
-      max-width: 92vw;
-      text-align: center;
+      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+      background: var(--plum-deep); color: #FAF8F5; padding: 12px 20px; border-radius: 10px;
+      font-size: 0.86rem; font-weight: 600; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+      display: none; z-index: 200; max-width: 92vw; text-align: center;
     }
-
-    .hidden { display: none !important; }
   </style>
 </head>
 <body>
 
-  <!-- ==================== 0. INITIAL LOADING STATE ==================== -->
+  <!-- 0. Loading State -->
   <section id="view-loading" class="gate-screen">
     <div class="gate-card" style="text-align: center;">
       <img src="assets/logo.jpg" alt="Your Huckleberry Logo" style="width: 56px; height: 56px; border-radius: 14px; border: 1.5px solid #D4AF37; margin-bottom: 14px;" />
-      <h1 style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--brand-plum); margin-bottom: 6px;">Your Huckleberry Kitchen</h1>
-      <p id="loading-status-text" style="font-size: 0.84rem; color: var(--brand-slate);">Connecting to Kitchen Cloud...</p>
+      <h1 style="font-family: var(--font-display); font-size: 1.25rem; color: var(--plum); margin-bottom: 6px;">Your Huckleberry Kitchen</h1>
+      <p id="loading-status-text" style="font-size: 0.88rem; color: var(--muted);">Connecting to Kitchen Cloud...</p>
     </div>
   </section>
 
-  <!-- ==================== 1. FIREBASE NOT CONFIGURED STATE ==================== -->
+  <!-- 1. Setup Pending -->
   <section id="view-setup-required" class="gate-screen hidden">
     <div class="gate-card">
       <div class="gate-brand">
         <img src="assets/logo.jpg" alt="Your Huckleberry Logo" />
-        <div>
-          <h1>Kitchen Command Setup</h1>
-          <p>Firebase connection pending</p>
-        </div>
+        <div><h1>Kitchen Setup</h1><p>Firebase connection pending</p></div>
       </div>
-      <div class="info-box">
-        <strong>One-Time Activation Needed:</strong> Paste your Firebase Web App credentials into <code>firebase-config.js</code> and deploy <code>firestore.rules</code> to activate live real-time orders, payment screenshot auditing, 7:00 PM Zero-Waste Flash, and customer CSV exports.
-      </div>
-      <a href="index.html" class="btn btn-plum" style="width: 100%;">← Return to Live Storefront</a>
+      <div class="info-box">Paste your Firebase Web App credentials into <code>firebase-config.js</code> and deploy <code>firestore.rules</code> to activate live Kitchen Operations.</div>
+      <a href="index.html" class="btn btn-plum" style="width: 100%;">← Return to Storefront</a>
     </div>
   </section>
 
-  <!-- ==================== 2. ADMIN LOGIN GATE ==================== -->
+  <!-- 2. Login Gate -->
   <section id="view-login" class="gate-screen hidden">
     <div class="gate-card">
       <div class="gate-brand">
         <img src="assets/logo.jpg" alt="Your Huckleberry Logo" />
-        <div>
-          <h1>Your Huckleberry Kitchen</h1>
-          <p>Authorized Staff Sign In • Nungambakkam</p>
-        </div>
+        <div><h1>Your Huckleberry Kitchen</h1><p>Authorized Kitchen Staff Sign In</p></div>
       </div>
       <div id="login-error" class="error-banner" role="alert"></div>
       <form id="form-admin-login">
         <div class="form-group">
           <label for="admin-email">Kitchen Admin Email</label>
-          <input type="email" id="admin-email" class="form-input" placeholder="corporate@yourhuckleberry.in" autocomplete="username" required />
+          <input type="email" id="admin-email" name="email" class="form-input" placeholder="corporate@yourhuckleberry.in" autocomplete="username" required />
         </div>
         <div class="form-group">
           <label for="admin-password">Password</label>
-          <input type="password" id="admin-password" class="form-input" placeholder="Enter your password" autocomplete="current-password" required />
+          <input type="password" id="admin-password" name="password" class="form-input" placeholder="Enter your password" autocomplete="current-password" required />
         </div>
-        <button type="submit" id="btn-admin-signin" class="btn btn-plum" style="width: 100%; margin-top: 6px;">
-          Sign In to Kitchen Command ➔
-        </button>
+        <button type="submit" id="btn-admin-signin" class="btn btn-plum" style="width: 100%; margin-top: 6px;">Sign In to Kitchen Command ➔</button>
       </form>
-      <p style="font-size: 0.76rem; color: var(--brand-slate); text-align: center; margin-top: 16px;">
-        Protected by Firebase Authentication &amp; Firestore Security Rules.
-      </p>
+      <p style="font-size: 0.78rem; color: var(--muted); text-align: center; margin-top: 16px;">Secured with Firebase Auth &amp; Kitchen Admin Allowlist.</p>
     </div>
   </section>
 
-  <!-- ==================== 3. AUTHENTICATED BUT NOT IN ADMINS/{UID} ==================== -->
+  <!-- 3. Authenticated But Not Whitelisted -->
   <section id="view-unauthorized" class="gate-screen hidden">
     <div class="gate-card">
       <div class="gate-brand">
         <img src="assets/logo.jpg" alt="Your Huckleberry Logo" />
-        <div>
-          <h1>Admin Access Approval Needed</h1>
-          <p>Signed in as <span id="unauth-email"></span></p>
-        </div>
+        <div><h1>Admin Access Required</h1><p>Signed in as <span id="unauth-email"></span></p></div>
       </div>
       <div class="info-box">
-        Your Firebase account is authenticated, but not yet whitelisted in Firestore <code>admins/{UID}</code>.<br /><br />
-        <strong>10-Second Fix in Firebase Console:</strong><br />
-        Go to <em>Firestore Database → Start Collection →</em> Collection ID: <code>admins</code> → Document ID: paste your UID below → add field <code>role: "owner"</code>.
+        Add your User UID to Firestore collection <code>admins</code> (field <code>role: "owner"</code>):
         <div id="unauth-uid" class="code-pill"></div>
-        <button type="button" id="btn-copy-uid" class="btn btn-outline btn-sm" style="margin-top: 6px;">Copy My UID 📋</button>
+        <button type="button" id="btn-copy-uid" class="btn btn-outline btn-sm" style="margin-top: 6px;">Copy My UID</button>
       </div>
       <div style="display: flex; gap: 10px;">
-        <button type="button" id="btn-recheck-admin" class="btn btn-primary" style="flex: 1;">Recheck Access</button>
+        <button type="button" id="btn-recheck-admin" class="btn btn-plum" style="flex: 1;">Recheck Access</button>
         <button type="button" id="btn-unauth-signout" class="btn btn-outline" style="flex: 1;">Sign Out</button>
       </div>
     </div>
   </section>
 
-  <!-- ==================== 4. LIVE AUTHENTICATED KITCHEN COMMAND CENTER ==================== -->
+  <!-- 4. Live Kitchen Operations Command Center -->
   <div id="view-dashboard" class="hidden" style="display: flex; flex-direction: column; flex: 1;">
     <header class="admin-header">
       <div class="header-brand">
@@ -659,56 +410,89 @@
         </div>
       </div>
       <div class="header-actions">
-        <a href="index.html" class="btn btn-outline btn-sm" target="_blank" rel="noopener">Storefront ↗</a>
-        <button type="button" class="btn btn-outline btn-sm" id="btn-refresh-orders">🔄 Refresh</button>
+        <a href="index.html" class="btn btn-outline btn-sm" target="_blank" rel="noopener">View Website ↗</a>
+        <button type="button" class="btn btn-outline btn-sm" id="btn-refresh-orders">Refresh</button>
         <button type="button" class="btn btn-danger btn-sm" id="btn-admin-signout">Sign Out</button>
       </div>
     </header>
 
     <main class="admin-container">
-      <!-- Live KPI Summary Row -->
-      <section class="stats-grid" aria-label="Live Kitchen Metrics">
-        <div class="stat-card">
-          <span class="stat-label">Today's Orders</span>
-          <span class="stat-val" id="stat-order-count">0</span>
-          <span class="stat-meta" id="stat-order-meta">0 pending audit</span>
+
+      <!-- Beginner-Proof Daily Shift Guide for Kitchen Staff -->
+      <details class="shift-guide">
+        <summary>
+          <span>📋 Kitchen Team Daily Shift Guide (Tap to Expand)</span>
+          <span style="font-size: 0.78rem; color: var(--muted);">4 Simple Steps</span>
+        </summary>
+        <div class="shift-steps">
+          <div class="shift-step-box">
+            <strong>1. Check Payment First</strong>
+            Open "1. Verify Payment" → tap <em>Inspect Proof</em> → verify money in GPay/IOB → tap <em>Money Received — Send to Oven</em>.
+          </div>
+          <div class="shift-step-box">
+            <strong>2. Bake &amp; Print/Copy Slip</strong>
+            Inside "2. Bake &amp; Prep", tap <em>Copy Slip</em> for the baking table. When packed, tap <em>Mark Out for Delivery</em>.
+          </div>
+          <div class="shift-step-box">
+            <strong>3. Notify Customer</strong>
+            Tap <em>WhatsApp</em> on any card to send the customer an instant pre-typed update with their live tracking link.
+          </div>
+          <div class="shift-step-box">
+            <strong>4. 7:00 PM Zero-Waste</strong>
+            Before closing, open the <em>7 PM Zero-Waste</em> tab, add leftover items at cost price, and flip the switch ON.
+          </div>
         </div>
-        <div class="stat-card">
-          <span class="stat-label">Verified Revenue</span>
-          <span class="stat-val" id="stat-revenue">₹0</span>
-          <span class="stat-meta" id="stat-revenue-meta">Direct UPI • ₹0 fee</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-label">In Oven / Piping</span>
-          <span class="stat-val" style="color: var(--brand-orange);" id="stat-baking">0</span>
-          <span class="stat-meta">Shafee Mohammed Rd</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-label">Open Consultations</span>
-          <span class="stat-val" style="color: var(--brand-amber);" id="stat-consultations">0</span>
-          <span class="stat-meta">Wedding &amp; Grand Cakes</span>
-        </div>
+      </details>
+
+      <!-- Visual 4-Station Kitchen Workflow Stepper -->
+      <section class="station-bar" id="station-stepper" aria-label="Kitchen Workflow Stations">
+        <button type="button" class="station-btn active" data-station="all">
+          <span class="station-step-label">All Active Queue</span>
+          <span class="station-count" data-count="all">0</span>
+          <span class="station-hint">Tap to see all orders</span>
+        </button>
+        <button type="button" class="station-btn" data-station="pending">
+          <span class="station-step-label">Step 1 • Verify Payment</span>
+          <span class="station-count" data-count="pending">0</span>
+          <span class="station-hint">Check UPI screenshot first</span>
+        </button>
+        <button type="button" class="station-btn" data-station="baking">
+          <span class="station-step-label">Step 2 • Bake &amp; Prep</span>
+          <span class="station-count" data-count="baking">0</span>
+          <span class="station-hint">In oven / piping table</span>
+        </button>
+        <button type="button" class="station-btn" data-station="delivery">
+          <span class="station-step-label">Step 3 • Out for Delivery</span>
+          <span class="station-count" data-count="delivery">0</span>
+          <span class="station-hint">Packed in AC transit</span>
+        </button>
+        <button type="button" class="station-btn" data-station="delivered">
+          <span class="station-step-label">Step 4 • Delivered</span>
+          <span class="station-count" data-count="delivered">0</span>
+          <span class="station-hint">Completed orders</span>
+        </button>
       </section>
+
+      <!-- Compact Live Summary Pills -->
+      <div class="kpi-strip">
+        <div class="kpi-pill">Today's Orders: <strong id="stat-order-count">0</strong></div>
+        <div class="kpi-pill">Verified Revenue (₹0 Gateway Fee): <strong id="stat-revenue">₹0</strong></div>
+        <div class="kpi-pill">Open Wedding / Custom Calls: <strong id="stat-consultations">0</strong></div>
+      </div>
 
       <!-- Navigation Tabs -->
       <nav class="admin-tabs" aria-label="Dashboard Tabs">
-        <button type="button" class="tab-btn active" data-tab="tab-orders">📦 Live Orders (<span id="tab-count-orders">0</span>)</button>
-        <button type="button" class="tab-btn" data-tab="tab-flash">⚡ 7:00 PM Zero-Waste (<span id="tab-count-flash">0</span>)</button>
-        <button type="button" class="tab-btn" data-tab="tab-consultations">🎂 Voice Calls (<span id="tab-count-consultations">0</span>)</button>
+        <button type="button" class="tab-btn active" data-tab="tab-orders">📦 Kitchen Queue (<span id="tab-count-orders">0</span>)</button>
+        <button type="button" class="tab-btn" data-tab="tab-flash">⚡ 7 PM Zero-Waste (<span id="tab-count-flash">0</span>)</button>
+        <button type="button" class="tab-btn" data-tab="tab-consultations">📞 Custom Cake Calls (<span id="tab-count-consultations">0</span>)</button>
         <button type="button" class="tab-btn" data-tab="tab-customers">👥 Buyers CSV (<span id="tab-count-customers">0</span>)</button>
       </nav>
 
-      <!-- ==================== TAB 1: LIVE ORDERS ==================== -->
+      <!-- TAB 1: LIVE KITCHEN QUEUE -->
       <section id="tab-orders" class="tab-pane active">
         <div class="orders-toolbar">
-          <div class="filter-group" id="order-filter-group">
-            <button type="button" class="filter-chip active" data-filter="all">All (<span data-count="all">0</span>)</button>
-            <button type="button" class="filter-chip" data-filter="pending">Audit Needed (<span data-count="pending">0</span>)</button>
-            <button type="button" class="filter-chip" data-filter="baking">In Oven (<span data-count="baking">0</span>)</button>
-            <button type="button" class="filter-chip" data-filter="delivery">Out for Delivery (<span data-count="delivery">0</span>)</button>
-            <button type="button" class="filter-chip" data-filter="delivered">Delivered (<span data-count="delivered">0</span>)</button>
-          </div>
-          <button type="button" class="btn btn-outline btn-sm" id="btn-export-orders">📥 Export Orders CSV</button>
+          <h2 id="active-station-heading" style="font-family: var(--font-display); font-size: 1.2rem; color: var(--plum);">All Kitchen Orders</h2>
+          <button type="button" class="btn btn-outline btn-sm" id="btn-export-orders">Export Orders CSV</button>
         </div>
 
         <div class="order-grid" id="order-cards-container">
@@ -716,32 +500,29 @@
         </div>
       </section>
 
-      <!-- ==================== TAB 2: 7:00 PM ZERO-WASTE EVENING SAVER ==================== -->
+      <!-- TAB 2: 7:00 PM ZERO-WASTE EVENING SAVER -->
       <section id="tab-flash" class="tab-pane">
         <div class="flash-box">
           <div class="flash-header">
             <div class="flash-title">
-              <span style="font-size: 1.6rem;">⚡</span>
-              <div>
-                <h2>7:00 PM – 7:30 PM Zero-Waste Evening Saver</h2>
-                <p style="font-size: 0.82rem; color: #9A3412;">List closing-hour fresh surplus at cost price. Appears instantly on yourhuckleberry.in for 8:00–9:00 PM Chennai delivery.</p>
-              </div>
+              <h2>7:00 PM – 7:30 PM Zero-Waste Evening Saver</h2>
+              <p style="font-size: 0.86rem; color: var(--muted);">Add leftover fresh pastries at closing. Flip the switch ON and nearby Chennai buyers can grab them immediately for 8:00–9:00 PM delivery.</p>
             </div>
             <div style="display: flex; align-items: center; gap: 10px;">
-              <span id="flash-status-label" style="font-size: 0.8rem; font-weight: 800; color: #7C2D12;">Window OFF</span>
+              <span id="flash-status-label" style="font-size: 0.84rem; font-weight: 800; color: var(--terracotta);">Window OFF</span>
               <label class="toggle-switch" aria-label="Toggle Zero-Waste Evening Window">
-                <input type="checkbox" id="toggle-flash-active" />
+                <input type="checkbox" id="toggle-flash-active" name="flashActive" />
                 <span class="slider"></span>
               </label>
             </div>
           </div>
 
           <form id="form-add-flash-item" class="flash-form-row">
-            <input type="text" id="flash-item-name" class="form-input" placeholder="Surplus Item (e.g. Baked Cheesecake Slice)" required />
-            <input type="number" id="flash-item-original" class="form-input" placeholder="Regular Price ₹" min="1" required />
-            <input type="number" id="flash-item-price" class="form-input" placeholder="Saver Price ₹" min="1" required />
-            <input type="number" id="flash-item-qty" class="form-input" placeholder="Qty Left" min="1" max="500" required />
-            <button type="submit" class="btn btn-primary" id="btn-add-flash-item">+ List Surplus</button>
+            <input type="text" id="flash-item-name" name="itemName" class="form-input" placeholder="Surplus Item (e.g. Baked Cheesecake)" required />
+            <input type="number" id="flash-item-original" name="originalPrice" class="form-input" placeholder="Regular Price ₹" min="1" required />
+            <input type="number" id="flash-item-price" name="flashPrice" class="form-input" placeholder="Saver Price ₹" min="1" required />
+            <input type="number" id="flash-item-qty" name="qty" class="form-input" placeholder="Qty Left" min="1" max="500" required />
+            <button type="submit" class="btn btn-terracotta" id="btn-add-flash-item">+ Add Surplus</button>
           </form>
         </div>
 
@@ -751,25 +532,25 @@
               <tr>
                 <th>Surplus Item</th>
                 <th>Qty Left</th>
-                <th>Regular Price</th>
-                <th>Evening Saver Price</th>
+                <th>Regular</th>
+                <th>Saver Price</th>
                 <th>Status</th>
-                <th>Controls</th>
+                <th>Stock Controls</th>
               </tr>
             </thead>
             <tbody id="flash-items-tbody">
-              <tr><td colspan="6" style="text-align: center; color: var(--brand-slate);">No surplus items listed yet.</td></tr>
+              <tr><td colspan="6" style="text-align: center; color: var(--muted);">No surplus items listed yet.</td></tr>
             </tbody>
           </table>
         </div>
       </section>
 
-      <!-- ==================== TAB 3: BESPOKE VOICE CONSULTATIONS ==================== -->
+      <!-- TAB 3: CUSTOM & WEDDING VOICE CALLS -->
       <section id="tab-consultations" class="tab-pane">
         <div class="orders-toolbar">
           <div>
-            <h2 style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 800;">Wedding &amp; Grand Cake Voice Consultations</h2>
-            <p style="font-size: 0.8rem; color: var(--brand-slate);">Tap dream cake photos to inspect before your 10-minute call.</p>
+            <h2 style="font-family: var(--font-display); font-size: 1.2rem; color: var(--plum);">Custom &amp; Wedding Cake Voice Calls</h2>
+            <p style="font-size: 0.84rem; color: var(--muted);">Tap dream cake photos to view full-size before calling the client in their preferred 10-minute window.</p>
           </div>
         </div>
 
@@ -778,28 +559,28 @@
             <thead>
               <tr>
                 <th>Client</th>
-                <th>Event &amp; Call Slot</th>
-                <th>Guests &amp; Dream Notes</th>
+                <th>Event Date &amp; Call Slot</th>
+                <th>Guests &amp; Cake Notes</th>
                 <th>Dream Photos</th>
-                <th>Status</th>
+                <th>Call Status</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody id="consultations-tbody">
-              <tr><td colspan="6" style="text-align: center; color: var(--brand-slate);">No voice consultation requests yet.</td></tr>
+              <tr><td colspan="6" style="text-align: center; color: var(--muted);">No voice consultation requests yet.</td></tr>
             </tbody>
           </table>
         </div>
       </section>
 
-      <!-- ==================== TAB 4: VERIFIED BUYER DIRECTORY & CSV EXPORT ==================== -->
+      <!-- TAB 4: VERIFIED BUYERS CSV -->
       <section id="tab-customers" class="tab-pane">
         <div class="orders-toolbar">
           <div>
-            <h2 style="font-family: var(--font-heading); font-size: 1.05rem; font-weight: 800;">Verified Chennai Buyer List</h2>
-            <p style="font-size: 0.8rem; color: var(--brand-slate);">Auto-compiled from every real order &amp; consultation. 100% owned by Your Huckleberry.</p>
+            <h2 style="font-family: var(--font-display); font-size: 1.2rem; color: var(--plum);">Verified Chennai Buyer List</h2>
+            <p style="font-size: 0.84rem; color: var(--muted);">Auto-saved from every order &amp; consultation. 1-tap CSV download for repeat offers.</p>
           </div>
-          <button type="button" class="btn btn-primary btn-sm" id="btn-export-customers-csv">📥 Export Customer CSV</button>
+          <button type="button" class="btn btn-plum btn-sm" id="btn-export-customers-csv">Export Customer CSV</button>
         </div>
 
         <div class="data-table-card">
@@ -816,7 +597,7 @@
               </tr>
             </thead>
             <tbody id="customers-table-body">
-              <tr><td colspan="7" style="text-align: center; color: var(--brand-slate);">No verified buyers recorded yet.</td></tr>
+              <tr><td colspan="7" style="text-align: center; color: var(--muted);">Verified buyers will appear here automatically.</td></tr>
             </tbody>
           </table>
         </div>
@@ -824,26 +605,26 @@
     </main>
   </div>
 
-  <!-- Payment Proof & Photo Audit Lightbox Modal -->
+  <!-- Payment Proof & Dream Photo Inspection Lightbox -->
   <dialog id="modal-proof-viewer" class="admin-modal">
     <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px;">
-      <h3 style="font-family: var(--font-heading); font-size: 1rem; color: #0F172A;" id="proof-title">Payment Proof Audit</h3>
-      <button type="button" id="btn-close-proof-modal" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; line-height: 1;">&times;</button>
+      <h3 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--plum);" id="proof-title">Payment Proof Audit</h3>
+      <button type="button" id="btn-close-proof-modal" aria-label="Close" style="background: none; border: none; font-size: 1.6rem; cursor: pointer; line-height: 1; color: var(--plum);">&times;</button>
     </div>
-    <div style="text-align: center; background: #0F172A; border-radius: 10px; padding: 8px; margin-bottom: 12px; min-height: 180px; display: flex; align-items: center; justify-content: center;">
+    <div style="text-align: center; background: #1D181F; border-radius: 10px; padding: 8px; margin-bottom: 12px; min-height: 180px; display: flex; align-items: center; justify-content: center;">
       <img id="proof-full-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Uploaded Screenshot" style="max-width: 100%; max-height: 420px; object-fit: contain; border-radius: 6px;" />
     </div>
-    <div id="proof-meta-box" style="background: #F8FAFC; border-radius: 8px; padding: 10px 12px; margin-bottom: 14px; font-size: 0.82rem;"></div>
+    <div id="proof-meta-box" style="background: var(--bg); border-radius: 8px; padding: 10px 12px; margin-bottom: 14px; font-size: 0.84rem;"></div>
     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-      <button type="button" id="btn-proof-verify-action" class="btn btn-success" style="flex: 1;">✓ Verify &amp; Start Baking</button>
+      <button type="button" id="btn-proof-verify-action" class="btn btn-green" style="flex: 1;">✓ Money Received — Send to Oven</button>
       <button type="button" id="btn-proof-close-footer" class="btn btn-outline" style="flex: 1;">Close</button>
     </div>
   </dialog>
 
   <div class="toast" id="admin-toast" role="status" aria-live="polite"></div>
 
-  <script src="firebase-config.js?v=5.0.0"></script>
-  <script type="module" src="firebase-service.js?v=5.0.0"></script>
+  <script src="firebase-config.js?v=5.2.0"></script>
+  <script type="module" src="firebase-service.js?v=5.2.0"></script>
   <script>
     (function () {
       let allOrders = [];
@@ -852,6 +633,14 @@
       let currentFilter = "all";
       let activeAuditOrder = null;
       let unsubs = [];
+
+      const stationTitles = {
+        all: "All Kitchen Orders",
+        pending: "Step 1: Verify UPI Payment Screenshots",
+        baking: "Step 2: In Oven / Baking & Piping Table",
+        delivery: "Step 3: Packed & Out for Chennai Delivery",
+        delivered: "Step 4: Delivered Orders"
+      };
 
       const views = {
         loading: document.getElementById("view-loading"),
@@ -892,9 +681,7 @@
         if (!ts) return "Just now";
         const date = typeof ts.toDate === "function" ? ts.toDate() : new Date(ts);
         if (isNaN(date.getTime())) return "Just now";
-        return date.toLocaleString("en-IN", {
-          day: "numeric", month: "short", hour: "2-digit", minute: "2-digit"
-        });
+        return date.toLocaleString("en-IN", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
       }
 
       function isToday(ts) {
@@ -921,9 +708,7 @@
         const openConsults = allConsultations.filter((c) => c.status === "scheduled" || c.status === "contacted").length;
 
         document.getElementById("stat-order-count").textContent = String(todayOrders.length);
-        document.getElementById("stat-order-meta").textContent = `${pendingCount} awaiting payment audit`;
         document.getElementById("stat-revenue").textContent = `₹${verifiedRevenue.toLocaleString("en-IN")}`;
-        document.getElementById("stat-baking").textContent = String(bakingCount);
         document.getElementById("stat-consultations").textContent = String(openConsults);
 
         document.getElementById("tab-count-orders").textContent = String(allOrders.length);
@@ -931,72 +716,93 @@
         document.getElementById("tab-count-consultations").textContent = String(allConsultations.length);
 
         const counts = { all: allOrders.length, pending: pendingCount, baking: bakingCount, delivery: deliveryCount, delivered: deliveredCount };
-        document.querySelectorAll("#order-filter-group [data-count]").forEach((el) => {
+        document.querySelectorAll("#station-stepper [data-count]").forEach((el) => {
           el.textContent = String(counts[el.dataset.count] ?? 0);
         });
       }
 
+      function renderNextStepButton(o) {
+        if (o.status === "pending") {
+          return `<button type="button" class="btn btn-terracotta primary-next-action btn-inspect-proof" data-order-id="${escapeHtml(o.id)}">1. Inspect UPI Screenshot &amp; Approve ➔</button>`;
+        }
+        if (o.status === "baking") {
+          return `<button type="button" class="btn btn-plum primary-next-action btn-quick-advance" data-order-id="${escapeHtml(o.id)}" data-next="delivery">2. Done Baking — Mark Out for Delivery ➔</button>`;
+        }
+        if (o.status === "delivery") {
+          return `<button type="button" class="btn btn-green primary-next-action btn-quick-advance" data-order-id="${escapeHtml(o.id)}" data-next="delivered">3. Confirm Delivered ✓</button>`;
+        }
+        return `<button type="button" class="btn btn-outline btn-sm primary-next-action btn-inspect-proof" data-order-id="${escapeHtml(o.id)}">View Payment Proof</button>`;
+      }
+
       function renderOrders() {
         const container = document.getElementById("order-cards-container");
+        const heading = document.getElementById("active-station-heading");
+        if (heading) heading.textContent = stationTitles[currentFilter] || "Kitchen Orders";
         if (!container) return;
-        const filtered = currentFilter === "all" ? allOrders : allOrders.filter((o) => o.status === currentFilter);
 
+        const filtered = currentFilter === "all" ? allOrders : allOrders.filter((o) => o.status === currentFilter);
         if (!filtered.length) {
-          container.innerHTML = `<div class="empty-state">No orders in this stage yet. New paid orders from <strong>yourhuckleberry.in</strong> will appear here in real time.</div>`;
+          container.innerHTML = `<div class="empty-state">No orders in <strong>${escapeHtml(stationTitles[currentFilter] || "this station")}</strong> right now. New paid orders from <strong>yourhuckleberry.in</strong> appear here live.</div>`;
           return;
         }
 
         container.innerHTML = filtered.map((o) => {
           const digits = String(o.normalizedPhone || o.customerPhone || "").replace(/\D/g, "");
           const trackLink = `https://yourhuckleberry.in/pipeline.html?token=${encodeURIComponent(o.id)}`;
-          const waText = `Hello ${o.customerName || ""}, update from Your Huckleberry on Order #${o.id} (${o.statusLabel || o.status}). Track live: ${trackLink}`;
+          const stageMsg =
+            o.status === "baking" ? "Your payment is verified and your order is now baking fresh in our Nungambakkam kitchen!"
+            : o.status === "delivery" ? "Your Your Huckleberry order is packed and out for AC delivery!"
+            : o.status === "delivered" ? "Your Your Huckleberry order has been delivered. Enjoy every bite!"
+            : "We received your order slip and are checking your UPI transfer now.";
+          const waText = `Hello ${o.customerName || ""}, update on Your Huckleberry Order #${o.id}: ${stageMsg}\nTrack live: ${trackLink}`;
           const waHref = digits ? `https://wa.me/${digits}?text=${encodeURIComponent(waText)}` : "#";
 
           return `
             <article class="order-card ${o.status === "pending" ? "needs-audit" : ""}" data-order-id="${escapeHtml(o.id)}">
+              <div class="slot-banner">
+                <span>📅 ${escapeHtml(o.deliveryDate || "Today")} • ${escapeHtml(o.deliverySlot || "Standard Slot")}</span>
+                <span>PIN ${escapeHtml(o.pincode || "600006")}</span>
+              </div>
+
               <div class="order-header">
                 <div>
                   <span class="order-id">#${escapeHtml(o.id)}</span>
                   <span class="order-type-chip">${escapeHtml(o.orderType || "order")}</span>
-                  <p class="order-time">${escapeHtml(formatTimestamp(o.createdAt))}</p>
+                  <p class="order-time">Received ${escapeHtml(formatTimestamp(o.createdAt))}</p>
                 </div>
                 <span class="badge-status badge-${escapeHtml(o.status || "pending")}">${escapeHtml(o.statusLabel || o.status)}</span>
               </div>
+
+              <div class="order-items">
+                <strong style="color:var(--plum);">${escapeHtml(o.itemSummary)}</strong>
+                ${o.inscription ? `<span style="font-size:0.8rem; color:var(--terracotta);">Plaque Text: “${escapeHtml(o.inscription)}”</span>` : ""}
+                ${o.couponCode ? `<span style="font-size:0.76rem; font-weight:700; color:var(--green);">Offer Applied: ${escapeHtml(o.couponCode)}</span>` : ""}
+              </div>
+
               <div class="order-customer">
                 <strong>${escapeHtml(o.customerName)}</strong> • ${escapeHtml(o.customerPhone)}<br />
-                <span style="color:#475569; font-size:0.76rem;">${escapeHtml(o.customerEmail)}</span><br />
-                <span style="color:#64748B; font-size:0.76rem;">${escapeHtml(o.address || "Atelier Pickup")} ${o.pincode ? `• ${escapeHtml(o.pincode)}` : ""}</span>
+                <span style="color:var(--muted); font-size:0.78rem;">${escapeHtml(o.address || "Studio Pickup")}</span>
               </div>
-              <div class="order-items">
-                <strong>${escapeHtml(o.itemSummary)}</strong>
-                ${o.inscription ? `<span style="font-size:0.78rem; color:#7C2D12;">Plaque: “${escapeHtml(o.inscription)}”</span>` : ""}
-                <span style="font-size:0.76rem; color:#475569;">Slot: ${escapeHtml(o.deliveryDate || "TBD")} • ${escapeHtml(o.deliverySlot || "Standard")}</span>
-                ${o.couponCode ? `<span style="font-size:0.74rem; font-weight:700; color:#047857;">Coupon Applied: ${escapeHtml(o.couponCode)}</span>` : ""}
-              </div>
+
               <div class="order-total-row">
-                <span style="font-size:0.78rem; color:#166534; background:#DCFCE7; padding:3px 8px; border-radius:6px;">
-                  UPI Paid/Adv: ₹${Number(o.advanceAmount || 0).toLocaleString("en-IN")}
+                <span style="font-size:0.78rem; color:var(--green); background:var(--green-soft); padding:3px 9px; border-radius:6px;">
+                  UPI Paid/Adv: ₹${Number(o.advanceAmount || 0).toLocaleString("en-IN")} ${o.utr ? `• UTR ${escapeHtml(o.utr)}` : ""}
                 </span>
-                <span style="font-family:var(--font-heading);">Total: ₹${Number(o.total || 0).toLocaleString("en-IN")}</span>
+                <span>Total ₹${Number(o.total || 0).toLocaleString("en-IN")}</span>
               </div>
-              <div class="proof-strip">
-                <div>
-                  <div style="font-size:0.76rem; font-weight:700; color:#7C2D12;">📸 UPI Payment Proof Attached</div>
-                  <div style="font-size:0.72rem; color:#9A3412;">UTR: ${escapeHtml(o.utr || "Inspect screenshot")}</div>
-                </div>
-                <button type="button" class="btn btn-primary btn-sm btn-inspect-proof" data-order-id="${escapeHtml(o.id)}">
-                  ${o.status === "pending" ? "Inspect & Verify" : "View Proof"}
-                </button>
-              </div>
-              <div class="order-actions">
-                <select id="order-status-${escapeHtml(o.id)}" name="order-status" class="select-status order-status-select" data-order-id="${escapeHtml(o.id)}" aria-label="Order Status">
-                  <option value="pending" ${o.status === "pending" ? "selected" : ""}>Pending Payment / Audit</option>
-                  <option value="baking" ${o.status === "baking" ? "selected" : ""}>In Oven / Prep</option>
-                  <option value="delivery" ${o.status === "delivery" ? "selected" : ""}>Out for Delivery</option>
-                  <option value="delivered" ${o.status === "delivered" ? "selected" : ""}>Delivered</option>
-                  <option value="cancelled" ${o.status === "cancelled" ? "selected" : ""}>Cancelled</option>
+
+              ${renderNextStepButton(o)}
+
+              <div class="secondary-actions-row">
+                <button type="button" class="btn btn-outline btn-sm btn-copy-ticket" data-order-id="${escapeHtml(o.id)}">Copy Prep Slip</button>
+                <a href="${escapeHtml(waHref)}" target="_blank" rel="noopener" class="btn btn-outline btn-sm">WhatsApp Buyer</a>
+                <select id="order-status-${escapeHtml(o.id)}" name="order-status" class="select-status order-status-select" data-order-id="${escapeHtml(o.id)}" aria-label="Change order stage">
+                  <option value="pending" ${o.status === "pending" ? "selected" : ""}>1. Verify Payment</option>
+                  <option value="baking" ${o.status === "baking" ? "selected" : ""}>2. Bake &amp; Prep</option>
+                  <option value="delivery" ${o.status === "delivery" ? "selected" : ""}>3. Out for Delivery</option>
+                  <option value="delivered" ${o.status === "delivered" ? "selected" : ""}>4. Delivered</option>
+                  <option value="cancelled" ${o.status === "cancelled" ? "selected" : ""}>Cancel Order</option>
                 </select>
-                <a href="${escapeHtml(waHref)}" target="_blank" rel="noopener" class="btn btn-outline btn-sm">WhatsApp</a>
               </div>
             </article>
           `;
@@ -1010,21 +816,21 @@
         if (toggle) toggle.checked = Boolean(flashState.active);
         if (label) {
           label.textContent = flashState.active ? "Window LIVE ON SITE" : "Window OFF";
-          label.style.color = flashState.active ? "#047857" : "#7C2D12";
+          label.style.color = flashState.active ? "var(--green)" : "var(--terracotta)";
         }
         if (!tbody) return;
         const items = flashState.items || [];
         if (!items.length) {
-          tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--brand-slate);">No surplus items listed today. Add leftovers above between 6:45 PM – 7:30 PM.</td></tr>`;
+          tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--muted);">No surplus items listed today. Add leftovers above before 7:00 PM.</td></tr>`;
           return;
         }
         tbody.innerHTML = items.map((item) => `
           <tr>
             <td><strong>${escapeHtml(item.name)}</strong></td>
             <td><strong>${Number(item.qtyRemaining || 0)}</strong> left</td>
-            <td><span style="text-decoration:line-through; color:#94A3B8;">₹${Number(item.originalPrice || 0)}</span></td>
-            <td><strong style="color:var(--brand-orange);">₹${Number(item.flashPrice || 0)}</strong></td>
-            <td><span class="badge-status ${item.qtyRemaining > 0 && flashState.active ? "badge-delivered" : "badge-pending"}">${item.qtyRemaining > 0 ? (flashState.active ? "Live Now" : "Ready (Toggle ON)") : "Sold Out"}</span></td>
+            <td><span style="text-decoration:line-through; color:var(--muted);">₹${Number(item.originalPrice || 0)}</span></td>
+            <td><strong style="color:var(--terracotta);">₹${Number(item.flashPrice || 0)}</strong></td>
+            <td><span class="badge-status ${item.qtyRemaining > 0 && flashState.active ? "badge-delivered" : "badge-pending"}">${item.qtyRemaining > 0 ? (flashState.active ? "Live Now" : "Ready (Switch ON)") : "Sold Out"}</span></td>
             <td style="display:flex; gap:6px; flex-wrap:wrap;">
               <button type="button" class="btn btn-outline btn-sm btn-flash-qty" data-id="${escapeHtml(item.id)}" data-qty="${Math.max(0, Number(item.qtyRemaining || 0) - 1)}">-1</button>
               <button type="button" class="btn btn-outline btn-sm btn-flash-qty" data-id="${escapeHtml(item.id)}" data-qty="${Number(item.qtyRemaining || 0) + 1}">+1</button>
@@ -1038,45 +844,45 @@
         const tbody = document.getElementById("consultations-tbody");
         if (!tbody) return;
         if (!allConsultations.length) {
-          tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--brand-slate);">No wedding/milestone consultation requests yet.</td></tr>`;
+          tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--muted);">No custom or wedding cake call requests yet.</td></tr>`;
           return;
         }
         tbody.innerHTML = allConsultations.map((c) => {
           const digits = String(c.phone || "").replace(/\D/g, "");
           const waNum = digits.length === 10 ? "91" + digits : digits;
-          const waHref = `https://wa.me/${waNum}?text=${encodeURIComponent(`Hello ${c.name}, Chef Ridha from Your Huckleberry calling about your ${c.eventDate} bespoke cake consultation.`)}`;
+          const waHref = `https://wa.me/${waNum}?text=${encodeURIComponent(`Hello ${c.name}, Chef Ridha from Your Huckleberry calling about your ${c.eventDate} custom cake consultation.`)}`;
           const photos = Array.isArray(c.referencePhotos) ? c.referencePhotos : [];
           return `
             <tr>
               <td>
                 <strong>${escapeHtml(c.name)}</strong><br />
-                <span style="font-size:0.75rem; color:var(--brand-slate);">${escapeHtml(c.phone)}</span><br />
-                <span style="font-size:0.75rem; color:var(--brand-slate);">${escapeHtml(c.email)}</span>
+                <span style="font-size:0.78rem; color:var(--muted);">${escapeHtml(c.phone)}</span><br />
+                <span style="font-size:0.76rem; color:var(--muted);">${escapeHtml(c.email)}</span>
               </td>
               <td>
                 <strong>${escapeHtml(c.eventDate)}</strong><br />
-                <span style="font-size:0.76rem; color:var(--brand-orange); font-weight:600;">Call Slot: ${escapeHtml(c.preferredCallSlot || "Anytime")}</span>
+                <span style="font-size:0.78rem; color:var(--terracotta); font-weight:700;">${escapeHtml(c.preferredCallSlot || "Anytime")}</span>
               </td>
               <td>
-                <strong>${escapeHtml(c.guestCount || "TBD")} guests</strong><br />
-                <span style="font-size:0.78rem; color:var(--brand-slate);">${escapeHtml(c.notes || "—")}</span>
+                <strong>${escapeHtml(c.guestCount || "TBD")}</strong><br />
+                <span style="font-size:0.8rem; color:var(--muted);">${escapeHtml(c.notes || "—")}</span>
               </td>
               <td>
                 ${photos.length
                   ? photos.map((p, idx) => `<img src="${escapeHtml(p)}" class="photo-thumb btn-view-consult-photo" data-title="${escapeHtml(c.name)} — Dream Ref ${idx + 1}" alt="Dream Cake Ref ${idx + 1}" />`).join("")
-                  : `<span style="font-size:0.76rem; color:#94A3B8;">None attached</span>`}
+                  : `<span style="font-size:0.78rem; color:var(--muted);">None attached</span>`}
               </td>
               <td>
                 <select id="consult-status-${escapeHtml(c.id)}" name="consult-status" class="select-status consult-status-select" data-id="${escapeHtml(c.id)}" aria-label="Consultation Status" style="min-width:130px; padding:6px;">
                   <option value="scheduled" ${c.status === "scheduled" ? "selected" : ""}>Call Scheduled</option>
-                  <option value="contacted" ${c.status === "contacted" ? "selected" : ""}>Contacted</option>
+                  <option value="contacted" ${c.status === "contacted" ? "selected" : ""}>Called Client</option>
                   <option value="quoted" ${c.status === "quoted" ? "selected" : ""}>Quote Sent</option>
                   <option value="booked" ${c.status === "booked" ? "selected" : ""}>Booked</option>
                   <option value="archived" ${c.status === "archived" ? "selected" : ""}>Archived</option>
                 </select>
               </td>
               <td>
-                <a href="${escapeHtml(waHref)}" target="_blank" rel="noopener" class="btn btn-success btn-sm">WhatsApp Call</a>
+                <a href="${escapeHtml(waHref)}" target="_blank" rel="noopener" class="btn btn-green btn-sm">WhatsApp Call</a>
               </td>
             </tr>
           `;
@@ -1088,13 +894,8 @@
         allOrders.forEach((o) => {
           const key = (o.customerEmail || o.normalizedPhone || o.id).toLowerCase();
           const existing = map.get(key) || {
-            name: o.customerName || "Guest",
-            email: o.customerEmail || "",
-            phone: o.customerPhone || "",
-            pincode: o.pincode || "",
-            orders: 0,
-            spend: 0,
-            coupons: new Set()
+            name: o.customerName || "Guest", email: o.customerEmail || "", phone: o.customerPhone || "",
+            pincode: o.pincode || "", orders: 0, spend: 0, coupons: new Set()
           };
           existing.orders += 1;
           if (o.status !== "cancelled") existing.spend += Number(o.total || 0);
@@ -1105,15 +906,7 @@
         allConsultations.forEach((c) => {
           const key = (c.email || c.phone || c.id).toLowerCase();
           if (!map.has(key)) {
-            map.set(key, {
-              name: c.name || "Lead",
-              email: c.email || "",
-              phone: c.phone || "",
-              pincode: "Consultation",
-              orders: 0,
-              spend: 0,
-              coupons: new Set(["Consultation"])
-            });
+            map.set(key, { name: c.name || "Lead", email: c.email || "", phone: c.phone || "", pincode: "Custom Call", orders: 0, spend: 0, coupons: new Set(["Custom Cake Call"]) });
           }
         });
         return Array.from(map.values());
@@ -1125,7 +918,7 @@
         const tbody = document.getElementById("customers-table-body");
         if (!tbody) return;
         if (!buyers.length) {
-          tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:var(--brand-slate);">Verified Chennai buyers will appear here automatically as orders come in.</td></tr>`;
+          tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:var(--muted);">Verified Chennai buyers appear here automatically.</td></tr>`;
           return;
         }
         tbody.innerHTML = buyers.map((b) => `
@@ -1147,52 +940,34 @@
         const blob = new Blob([lines.join("\n")], { type: "text/csv;charset=utf-8;" });
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
-        a.href = url;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
+        a.href = url; a.download = filename;
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
         URL.revokeObjectURL(url);
+      }
+
+      async function moveOrderStatus(orderId, newStatus) {
+        const order = allOrders.find((o) => o.id === orderId);
+        const extra = {};
+        if (order && order.status === "pending" && newStatus === "baking") {
+          extra.markVerified = true;
+          if (order.orderType === "flash" && order.flashItemId) {
+            extra.decrementFlashItemId = order.flashItemId;
+            extra.decrementFlashQty = order.flashQty || 1;
+          }
+        }
+        await window.HuckleberryCloud.updateOrderStatus(orderId, newStatus, extra);
+        showToast(`Order #${orderId} moved to: ${window.HuckleberryCloud.ORDER_STATUS_LABELS[newStatus]}`);
       }
 
       function startLiveSubscriptions() {
         cleanupSubscriptions();
         const cloud = window.HuckleberryCloud;
-
-        unsubs.push(
-          cloud.subscribeOrders(
-            (orders) => {
-              allOrders = orders;
-              updateKPIs();
-              renderOrders();
-              renderCustomers();
-            },
-            (err) => showToast(`Orders sync error: ${err.code || err.message}`)
-          )
-        );
-
-        unsubs.push(
-          cloud.subscribeConsultations(
-            (list) => {
-              allConsultations = list;
-              updateKPIs();
-              renderConsultations();
-              renderCustomers();
-            },
-            (err) => showToast(`Consultations sync error: ${err.code || err.message}`)
-          )
-        );
-
-        unsubs.push(
-          cloud.subscribeFlashSale((state) => {
-            flashState = state;
-            updateKPIs();
-            renderFlashItems();
-          })
-        );
+        unsubs.push(cloud.subscribeOrders((orders) => { allOrders = orders; updateKPIs(); renderOrders(); renderCustomers(); }, (err) => showToast(`Orders sync error: ${err.code || err.message}`)));
+        unsubs.push(cloud.subscribeConsultations((list) => { allConsultations = list; updateKPIs(); renderConsultations(); renderCustomers(); }, (err) => showToast(`Consultations error: ${err.code || err.message}`)));
+        unsubs.push(cloud.subscribeFlashSale((state) => { flashState = state; updateKPIs(); renderFlashItems(); }));
       }
 
-      // Wire Dashboard UI Events
+      // Tabs
       document.querySelectorAll(".tab-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
           document.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("active"));
@@ -1202,90 +977,96 @@
         });
       });
 
-      document.querySelectorAll("#order-filter-group .filter-chip").forEach((chip) => {
-        chip.addEventListener("click", () => {
-          document.querySelectorAll("#order-filter-group .filter-chip").forEach((c) => c.classList.remove("active"));
-          chip.classList.add("active");
-          currentFilter = chip.dataset.filter;
+      // 4-Station Stepper Filter Clicks
+      document.querySelectorAll("#station-stepper .station-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll("#station-stepper .station-btn").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          currentFilter = btn.dataset.station;
+          // Switch to Kitchen Queue tab if on another tab
+          document.querySelectorAll(".tab-btn").forEach((b) => b.classList.toggle("active", b.dataset.tab === "tab-orders"));
+          document.querySelectorAll(".tab-pane").forEach((p) => p.classList.toggle("active", p.id === "tab-orders"));
           renderOrders();
         });
       });
 
-      // Delegated Orders Listeners (XSS-safe, no inline onclick)
+      // Order Ticket Actions (Delegated, XSS-safe)
       const orderContainer = document.getElementById("order-cards-container");
       orderContainer?.addEventListener("click", async (e) => {
-        const btn = e.target.closest(".btn-inspect-proof");
-        if (!btn) return;
-        const orderId = btn.dataset.orderId;
-        const order = allOrders.find((o) => o.id === orderId);
-        if (!order) return;
+        const inspectBtn = e.target.closest(".btn-inspect-proof");
+        if (inspectBtn) {
+          const order = allOrders.find((o) => o.id === inspectBtn.dataset.orderId);
+          if (!order) return;
+          activeAuditOrder = order;
+          const modal = document.getElementById("modal-proof-viewer");
+          const img = document.getElementById("proof-full-img");
+          const title = document.getElementById("proof-title");
+          const meta = document.getElementById("proof-meta-box");
+          const verifyBtn = document.getElementById("btn-proof-verify-action");
 
-        activeAuditOrder = order;
-        const modal = document.getElementById("modal-proof-viewer");
-        const img = document.getElementById("proof-full-img");
-        const title = document.getElementById("proof-title");
-        const meta = document.getElementById("proof-meta-box");
-        const verifyBtn = document.getElementById("btn-proof-verify-action");
+          title.textContent = `Payment Proof — #${order.id}`;
+          img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+          meta.innerHTML = `Loading UPI proof for <strong>${escapeHtml(order.customerName)}</strong>...`;
+          verifyBtn.style.display = order.status === "pending" ? "inline-flex" : "none";
+          modal.showModal();
 
-        title.textContent = `Payment Proof — #${order.id}`;
-        img.src = "";
-        meta.innerHTML = `Loading screenshot for <strong>${escapeHtml(order.customerName)}</strong>...`;
-        verifyBtn.style.display = order.status === "pending" ? "inline-flex" : "none";
-        modal.showModal();
-
-        try {
-          const proof = await window.HuckleberryCloud.getOrderProof(orderId);
-          if (proof && proof.proofDataUrl) {
-            img.src = proof.proofDataUrl;
-            meta.innerHTML = `
-              <div><strong>Customer:</strong> ${escapeHtml(order.customerName)} (${escapeHtml(order.customerPhone)})</div>
-              <div><strong>Amount:</strong> ₹${Number(order.advanceAmount || 0).toLocaleString("en-IN")} (Order Total ₹${Number(order.total || 0).toLocaleString("en-IN")})</div>
-              <div><strong>Reported UTR:</strong> ${escapeHtml(proof.utr || order.utr || "Check image above")}</div>
-            `;
-          } else {
-            meta.innerHTML = `<span style="color:#B91C1C;">No image document found for #${escapeHtml(order.id)}.</span>`;
+          try {
+            const proof = await window.HuckleberryCloud.getOrderProof(order.id);
+            if (proof && proof.proofDataUrl) {
+              img.src = proof.proofDataUrl;
+              meta.innerHTML = `
+                <div><strong>Buyer:</strong> ${escapeHtml(order.customerName)} (${escapeHtml(order.customerPhone)})</div>
+                <div><strong>Expected UPI:</strong> ₹${Number(order.advanceAmount || 0).toLocaleString("en-IN")} (Total ₹${Number(order.total || 0).toLocaleString("en-IN")})</div>
+                <div><strong>Reported UTR:</strong> ${escapeHtml(proof.utr || order.utr || "Verify screenshot above")}</div>`;
+            } else {
+              meta.innerHTML = `<span style="color:var(--red);">No screenshot found for #${escapeHtml(order.id)}.</span>`;
+            }
+          } catch (err) {
+            meta.innerHTML = `<span style="color:var(--red);">Failed to load proof: ${escapeHtml(err.message)}</span>`;
           }
-        } catch (err) {
-          meta.innerHTML = `<span style="color:#B91C1C;">Failed to fetch proof: ${escapeHtml(err.message)}</span>`;
+          return;
+        }
+
+        const advBtn = e.target.closest(".btn-quick-advance");
+        if (advBtn) {
+          try {
+            await moveOrderStatus(advBtn.dataset.orderId, advBtn.dataset.next);
+          } catch (err) {
+            showToast(`Could not advance order: ${err.message}`);
+          }
+          return;
+        }
+
+        const slipBtn = e.target.closest(".btn-copy-ticket");
+        if (slipBtn) {
+          const o = allOrders.find((x) => x.id === slipBtn.dataset.orderId);
+          if (!o) return;
+          const slip = `KITCHEN PREP TICKET #${o.id}\nDate & Slot: ${o.deliveryDate} • ${o.deliverySlot}\nItems: ${o.itemSummary}\n${o.inscription ? `Plaque: "${o.inscription}"\n` : ""}Buyer: ${o.customerName} (${o.customerPhone})\nDelivery: ${o.address} (PIN ${o.pincode})\nTotal: ₹${o.total} | Paid/Adv: ₹${o.advanceAmount}`;
+          try {
+            await navigator.clipboard.writeText(slip);
+            showToast(`Prep slip copied for #${o.id} — paste to kitchen WhatsApp group!`);
+          } catch (_) {
+            showToast(`Order #${o.id}: ${o.itemSummary}`);
+          }
         }
       });
 
       orderContainer?.addEventListener("change", async (e) => {
         const sel = e.target.closest(".order-status-select");
         if (!sel) return;
-        const orderId = sel.dataset.orderId;
-        const newStatus = sel.value;
-        const order = allOrders.find((o) => o.id === orderId);
         try {
-          const extra = {};
-          if (order && order.status === "pending" && newStatus === "baking") {
-            extra.markVerified = true;
-            if (order.orderType === "flash" && order.flashItemId) {
-              extra.decrementFlashItemId = order.flashItemId;
-              extra.decrementFlashQty = order.flashQty || 1;
-            }
-          }
-          await window.HuckleberryCloud.updateOrderStatus(orderId, newStatus, extra);
-          showToast(`Order #${orderId} updated to ${window.HuckleberryCloud.ORDER_STATUS_LABELS[newStatus]}`);
+          await moveOrderStatus(sel.dataset.orderId, sel.value);
         } catch (err) {
           showToast(`Update failed: ${err.message}`);
           renderOrders();
         }
       });
 
-      // Proof Modal Buttons
       document.getElementById("btn-proof-verify-action")?.addEventListener("click", async () => {
         if (!activeAuditOrder) return;
-        const order = activeAuditOrder;
         try {
-          const extra = { markVerified: true };
-          if (order.orderType === "flash" && order.flashItemId) {
-            extra.decrementFlashItemId = order.flashItemId;
-            extra.decrementFlashQty = order.flashQty || 1;
-          }
-          await window.HuckleberryCloud.updateOrderStatus(order.id, "baking", extra);
+          await moveOrderStatus(activeAuditOrder.id, "baking");
           document.getElementById("modal-proof-viewer")?.close();
-          showToast(`✓ Verified #${order.id}! Moved to In Oven / Prep.`);
         } catch (err) {
           showToast(`Verify failed: ${err.message}`);
         }
@@ -1295,11 +1076,11 @@
       document.getElementById("btn-close-proof-modal")?.addEventListener("click", closeProofModal);
       document.getElementById("btn-proof-close-footer")?.addEventListener("click", closeProofModal);
 
-      // Flash Sale Controls
+      // Flash Controls
       document.getElementById("toggle-flash-active")?.addEventListener("change", async (e) => {
         try {
           await window.HuckleberryCloud.setFlashConfig(e.target.checked);
-          showToast(e.target.checked ? "⚡ 7:00 PM Zero-Waste Window LIVE on storefront!" : "Zero-Waste Window turned OFF.");
+          showToast(e.target.checked ? "7 PM Zero-Waste Window is now LIVE on storefront!" : "7 PM Zero-Waste Window turned OFF.");
         } catch (err) {
           showToast(`Toggle failed: ${err.message}`);
           e.target.checked = !e.target.checked;
@@ -1308,14 +1089,15 @@
 
       document.getElementById("form-add-flash-item")?.addEventListener("submit", async (e) => {
         e.preventDefault();
-        const name = document.getElementById("flash-item-name").value.trim();
-        const originalPrice = document.getElementById("flash-item-original").value;
-        const flashPrice = document.getElementById("flash-item-price").value;
-        const qtyRemaining = document.getElementById("flash-item-qty").value;
         try {
-          await window.HuckleberryCloud.addFlashItem({ name, originalPrice, flashPrice, qtyRemaining });
+          await window.HuckleberryCloud.addFlashItem({
+            name: document.getElementById("flash-item-name").value.trim(),
+            originalPrice: document.getElementById("flash-item-original").value,
+            flashPrice: document.getElementById("flash-item-price").value,
+            qtyRemaining: document.getElementById("flash-item-qty").value
+          });
           e.target.reset();
-          showToast(`Added "${name}" to Evening Zero-Waste Saver!`);
+          showToast("Surplus item listed in Evening Zero-Waste Saver!");
         } catch (err) {
           showToast(`Failed to add item: ${err.message}`);
         }
@@ -1324,36 +1106,24 @@
       document.getElementById("flash-items-tbody")?.addEventListener("click", async (e) => {
         const qtyBtn = e.target.closest(".btn-flash-qty");
         if (qtyBtn) {
-          try {
-            await window.HuckleberryCloud.updateFlashItemQty(qtyBtn.dataset.id, Number(qtyBtn.dataset.qty));
-            showToast("Updated surplus quantity");
-          } catch (err) {
-            showToast(`Error: ${err.message}`);
-          }
+          try { await window.HuckleberryCloud.updateFlashItemQty(qtyBtn.dataset.id, Number(qtyBtn.dataset.qty)); showToast("Stock updated"); }
+          catch (err) { showToast(`Error: ${err.message}`); }
           return;
         }
         const remBtn = e.target.closest(".btn-flash-remove");
         if (remBtn) {
-          try {
-            await window.HuckleberryCloud.removeFlashItem(remBtn.dataset.id);
-            showToast("Removed surplus item");
-          } catch (err) {
-            showToast(`Error: ${err.message}`);
-          }
+          try { await window.HuckleberryCloud.removeFlashItem(remBtn.dataset.id); showToast("Item removed"); }
+          catch (err) { showToast(`Error: ${err.message}`); }
         }
       });
 
-      // Consultation Listeners
+      // Consultations
       const consultTbody = document.getElementById("consultations-tbody");
       consultTbody?.addEventListener("change", async (e) => {
         const sel = e.target.closest(".consult-status-select");
         if (!sel) return;
-        try {
-          await window.HuckleberryCloud.updateConsultationStatus(sel.dataset.id, sel.value);
-          showToast(`Consultation marked: ${sel.value}`);
-        } catch (err) {
-          showToast(`Error: ${err.message}`);
-        }
+        try { await window.HuckleberryCloud.updateConsultationStatus(sel.dataset.id, sel.value); showToast(`Call status updated: ${sel.value}`); }
+        catch (err) { showToast(`Error: ${err.message}`); }
       });
 
       consultTbody?.addEventListener("click", (e) => {
@@ -1362,23 +1132,19 @@
         const modal = document.getElementById("modal-proof-viewer");
         document.getElementById("proof-title").textContent = imgThumb.dataset.title || "Dream Cake Photo";
         document.getElementById("proof-full-img").src = imgThumb.src;
-        document.getElementById("proof-meta-box").textContent = "Customer dream cake inspiration photo.";
+        document.getElementById("proof-meta-box").textContent = "Client's dream cake inspiration photo.";
         document.getElementById("btn-proof-verify-action").style.display = "none";
         modal.showModal();
       });
 
-      // Refresh & CSV Exports
-      document.getElementById("btn-refresh-orders")?.addEventListener("click", () => {
-        startLiveSubscriptions();
-        showToast("Live cloud streams refreshed");
-      });
+      // Refresh & CSV
+      document.getElementById("btn-refresh-orders")?.addEventListener("click", () => { startLiveSubscriptions(); showToast("Kitchen live feed refreshed"); });
 
       document.getElementById("btn-export-orders")?.addEventListener("click", () => {
         if (!allOrders.length) return showToast("No orders to export yet.");
-        const dateStr = new Date().toISOString().slice(0, 10);
         downloadCsv(
-          `your_huckleberry_orders_${dateStr}.csv`,
-          ["Token", "Type", "Status", "Customer", "Email", "Phone", "Address", "Pincode", "Items", "Total", "AdvancePaid", "Coupon", "UTR", "DeliveryDate", "Slot"],
+          `your_huckleberry_orders_${new Date().toISOString().slice(0, 10)}.csv`,
+          ["Token", "Type", "Status", "Customer", "Email", "Phone", "Address", "Pincode", "Items", "Total", "PaidAdvance", "Coupon", "UTR", "DeliveryDate", "Slot"],
           allOrders.map((o) => [o.id, o.orderType, o.statusLabel, o.customerName, o.customerEmail, o.customerPhone, o.address, o.pincode, o.itemSummary, o.total, o.advanceAmount, o.couponCode, o.utr, o.deliveryDate, o.deliverySlot])
         );
         showToast("Orders CSV downloaded!");
@@ -1387,70 +1153,45 @@
       document.getElementById("btn-export-customers-csv")?.addEventListener("click", () => {
         const buyers = computeBuyers();
         if (!buyers.length) return showToast("No verified buyers to export yet.");
-        const dateStr = new Date().toISOString().slice(0, 10);
         downloadCsv(
-          `your_huckleberry_customers_${dateStr}.csv`,
+          `your_huckleberry_customers_${new Date().toISOString().slice(0, 10)}.csv`,
           ["Name", "Email", "WhatsApp", "Pincode", "TotalOrders", "TotalSpendINR", "OffersUsed"],
           buyers.map((b) => [b.name, b.email, b.phone, b.pincode, b.orders, b.spend, Array.from(b.coupons).join("; ")])
         );
-        showToast("Verified Chennai Customer CSV downloaded!");
+        showToast("Verified Chennai Buyers CSV downloaded!");
       });
 
-      // Auth Handlers
+      // Auth
       document.getElementById("form-admin-login")?.addEventListener("submit", async (e) => {
         e.preventDefault();
         const errBox = document.getElementById("login-error");
         const btn = document.getElementById("btn-admin-signin");
-        errBox.style.display = "none";
-        btn.disabled = true;
-        btn.textContent = "Signing in...";
+        errBox.style.display = "none"; btn.disabled = true; btn.textContent = "Signing in...";
         try {
-          await window.HuckleberryCloud.signInAdmin(
-            document.getElementById("admin-email").value,
-            document.getElementById("admin-password").value
-          );
+          await window.HuckleberryCloud.signInAdmin(document.getElementById("admin-email").value, document.getElementById("admin-password").value);
         } catch (err) {
           errBox.textContent = err.message || "Invalid email or password.";
           errBox.style.display = "block";
         } finally {
-          btn.disabled = false;
-          btn.textContent = "Sign In to Kitchen Command ➔";
+          btn.disabled = false; btn.textContent = "Sign In to Kitchen Command ➔";
         }
       });
 
-      const doSignOut = async () => {
-        cleanupSubscriptions();
-        await window.HuckleberryCloud.signOutAdmin();
-        showToast("Signed out safely");
-      };
+      const doSignOut = async () => { cleanupSubscriptions(); await window.HuckleberryCloud.signOutAdmin(); showToast("Signed out safely"); };
       document.getElementById("btn-admin-signout")?.addEventListener("click", doSignOut);
       document.getElementById("btn-unauth-signout")?.addEventListener("click", doSignOut);
 
       document.getElementById("btn-copy-uid")?.addEventListener("click", async () => {
-        const uid = document.getElementById("unauth-uid")?.textContent || "";
-        try {
-          await navigator.clipboard.writeText(uid);
-          showToast("UID copied! Paste as Document ID under collection 'admins'.");
-        } catch (_) {
-          showToast("Select and copy your UID manually.");
-        }
+        try { await navigator.clipboard.writeText(document.getElementById("unauth-uid")?.textContent || ""); showToast("UID copied!"); }
+        catch (_) { showToast("Select and copy your UID manually."); }
       });
-
       document.getElementById("btn-recheck-admin")?.addEventListener("click", () => window.location.reload());
 
-      // Bootstrap on Cloud Ready
       function boot() {
         const cloud = window.HuckleberryCloud;
-        if (!cloud || !cloud.isReady()) {
-          showView("setup");
-          return;
-        }
+        if (!cloud || !cloud.isReady()) { showView("setup"); return; }
         cloud.onAdminAuthChange(async (user) => {
-          if (!user) {
-            cleanupSubscriptions();
-            showView("login");
-            return;
-          }
+          if (!user) { cleanupSubscriptions(); showView("login"); return; }
           const isAdmin = await cloud.checkIsAdmin(user.uid);
           if (!isAdmin) {
             cleanupSubscriptions();
@@ -1459,7 +1200,7 @@
             showView("unauth");
             return;
           }
-          document.getElementById("admin-user-email").textContent = user.email || "Kitchen Owner";
+          document.getElementById("admin-user-email").textContent = user.email || "Kitchen Staff";
           showView("dashboard");
           startLiveSubscriptions();
         });
@@ -1471,7 +1212,7 @@
         setTimeout(() => {
           if (!window.HuckleberryCloud) {
             const st = document.getElementById("loading-status-text");
-            if (st) st.textContent = "Slow network detected — please refresh if this takes more than 10 seconds.";
+            if (st) st.textContent = "Slow connection — please refresh if this takes over 10 seconds.";
           }
         }, 6000);
       }

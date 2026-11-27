@@ -31,10 +31,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/jpeg" href="assets/logo.jpg" />
-  <link rel="stylesheet" href="style.css?v=5.0.0" />
+  <link rel="stylesheet" href="style.css?v=5.2.0" />
 </head>
 <body>
-<!-- Main Navigation Bar -->
+  <!-- Main Navigation Bar -->
   <header class="site-navbar">
     <div class="navbar-inner">
       <a href="index.html" class="brand-wrapper" aria-label="Your Huckleberry Home">
@@ -47,18 +47,18 @@
       <nav aria-label="Main Navigation">
         <ul class="nav-menu">
           <li><a href="index.html">Home</a></li>
-          <li><a href="collection.html" class="active">Collection</a></li>
-          <li><a href="collection.html?category=festive" style="color: #FF5C00; font-weight: 600;">🎄 Hampers</a></li>
-          <li><a href="atelier.html">Cake Atelier</a></li>
-          <li><a href="pipeline.html">Creation Pipeline</a></li>
-          <li><a href="gallery.html">Specialties</a></li>
-          <li><a href="location.html">Atelier &amp; Maps</a></li>
+          <li><a href="collection.html" class="active">Menu &amp; Order</a></li>
+          <li><a href="collection.html?category=festive" style="color: var(--color-terracotta); font-weight: 700;">Festive Hampers</a></li>
+          <li><a href="atelier.html">Custom Cakes</a></li>
+          <li><a href="pipeline.html">Track Order</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="location.html">Studio &amp; Maps</a></li>
           <li><a href="faq.html">FAQs</a></li>
         </ul>
       </nav>
       <div class="nav-actions">
-        <a href="atelier.html" class="btn btn-primary btn-sm btn-nav-cta">
-          <span>Cake Atelier ➔</span>
+        <a href="collection.html" class="btn btn-primary btn-sm btn-nav-cta">
+          <span>Order Menu ➔</span>
         </a>
         <button id="btn-mobile-nav" class="mobile-nav-toggle" aria-label="Open Navigation Menu" aria-expanded="false">
           <span class="nav-bar"></span>
@@ -68,90 +68,17 @@
       </div>
     </div>
 
-    <!-- Modern Mobile Slide-Down Navigation Drawer & Backdrop -->
     <div id="mobile-nav-backdrop" class="mobile-nav-backdrop" aria-hidden="true"></div>
     <div id="mobile-nav-drawer" class="mobile-nav-drawer" aria-hidden="true">
       <ul class="mobile-drawer-links">
-        <li>
-          <a href="index.html" class="mobile-link">
-            <span class="nav-item-icon">🏠</span>
-            <div class="nav-item-content">
-              <span class="nav-item-title">Home</span>
-              <span class="nav-item-desc">Showcase &amp; Bestsellers</span>
-            </div>
-            <span class="nav-item-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a href="collection.html?category=festive" class="mobile-link" style="background: rgba(255, 92, 0, 0.08); border-left: 3px solid #FF5C00;">
-            <span class="nav-item-icon">🎄</span>
-            <div class="nav-item-content">
-              <span class="nav-item-title" style="color: #C2410C; font-weight: 700;">Festive &amp; Corporate Hampers</span>
-              <span class="nav-item-desc">Plum Cakes &amp; Corporate Boxes (Pre-Order)</span>
-            </div>
-            <span class="nav-item-arrow" style="color: #FF5C00;">→</span>
-          </a>
-        </li>
-        <li>
-          <a href="collection.html" class="mobile-link active">
-            <span class="nav-item-icon">🍰</span>
-            <div class="nav-item-content">
-              <span class="nav-item-title">Cakes &amp; Desserts</span>
-              <span class="nav-item-desc">Complete Menu • 10% Off Specials</span>
-            </div>
-            <span class="nav-item-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a href="atelier.html" class="mobile-link">
-            <span class="nav-item-icon">🎂</span>
-            <div class="nav-item-content">
-              <span class="nav-item-title">Custom Cake Builder</span>
-              <span class="nav-item-desc">Design Your Cake &amp; Instant Price</span>
-            </div>
-            <span class="nav-item-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a href="pipeline.html" class="mobile-link">
-            <span class="nav-item-icon">📦</span>
-            <div class="nav-item-content">
-              <span class="nav-item-title">Order Tracking</span>
-              <span class="nav-item-desc">Live Kitchen Baking &amp; Delivery</span>
-            </div>
-            <span class="nav-item-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a href="gallery.html" class="mobile-link">
-            <span class="nav-item-icon">🖼️</span>
-            <div class="nav-item-content">
-              <span class="nav-item-title">Cake Gallery</span>
-              <span class="nav-item-desc">Customer Photos &amp; Celebration Tiers</span>
-            </div>
-            <span class="nav-item-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a href="location.html" class="mobile-link">
-            <span class="nav-item-icon">📍</span>
-            <div class="nav-item-content">
-              <span class="nav-item-title">Store &amp; Pickup</span>
-              <span class="nav-item-desc">Nungambakkam Studio &amp; Directions</span>
-            </div>
-            <span class="nav-item-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a href="faq.html" class="mobile-link">
-            <span class="nav-item-icon">❓</span>
-            <div class="nav-item-content">
-              <span class="nav-item-title">FAQs &amp; Help</span>
-              <span class="nav-item-desc">100% Pure Veg Standard &amp; Delivery</span>
-            </div>
-            <span class="nav-item-arrow">→</span>
-          </a>
-        </li>
+        <li><a href="index.html" class="mobile-link"><span class="nav-item-icon">🏠</span><div class="nav-item-content"><span class="nav-item-title">Home</span><span class="nav-item-desc">Overview &amp; Pincode Check</span></div><span class="nav-item-arrow">→</span></a></li>
+        <li><a href="collection.html?category=festive" class="mobile-link" style="background: var(--color-terracotta-soft); border-left: 3px solid var(--color-terracotta);"><span class="nav-item-icon">🎄</span><div class="nav-item-content"><span class="nav-item-title" style="color: var(--color-terracotta-dark); font-weight: 700;">Festive &amp; Corporate Hampers</span><span class="nav-item-desc">Plum Cakes &amp; Holiday Boxes</span></div><span class="nav-item-arrow" style="color: var(--color-terracotta);">→</span></a></li>
+        <li><a href="collection.html" class="mobile-link active"><span class="nav-item-icon">🍰</span><div class="nav-item-content"><span class="nav-item-title">Order Menu &amp; Desserts</span><span class="nav-item-desc">Ready-to-Order Cakes &amp; 10% Off Daily Menu</span></div><span class="nav-item-arrow">→</span></a></li>
+        <li><a href="atelier.html" class="mobile-link"><span class="nav-item-icon">📞</span><div class="nav-item-content"><span class="nav-item-title">Custom &amp; Wedding Cakes</span><span class="nav-item-desc">Book a 10-Min Call with Chef Ridha</span></div><span class="nav-item-arrow">→</span></a></li>
+        <li><a href="pipeline.html" class="mobile-link"><span class="nav-item-icon">📦</span><div class="nav-item-content"><span class="nav-item-title">Track Your Order</span><span class="nav-item-desc">Live Baking &amp; Delivery Progress</span></div><span class="nav-item-arrow">→</span></a></li>
+        <li><a href="gallery.html" class="mobile-link"><span class="nav-item-icon">🖼️</span><div class="nav-item-content"><span class="nav-item-title">Cake Gallery</span><span class="nav-item-desc">Past Creations &amp; Inspiration</span></div><span class="nav-item-arrow">→</span></a></li>
+        <li><a href="location.html" class="mobile-link"><span class="nav-item-icon">📍</span><div class="nav-item-content"><span class="nav-item-title">Studio &amp; Pickup</span><span class="nav-item-desc">Nungambakkam Location &amp; Map</span></div><span class="nav-item-arrow">→</span></a></li>
+        <li><a href="faq.html" class="mobile-link"><span class="nav-item-icon">❓</span><div class="nav-item-content"><span class="nav-item-title">FAQs &amp; Help</span><span class="nav-item-desc">100% Pure Veg Standards &amp; Delivery</span></div><span class="nav-item-arrow">→</span></a></li>
       </ul>
       <div class="mobile-drawer-footer">
         <a href="https://wa.me/918511839668" target="_blank" rel="noopener" class="drawer-whatsapp-btn">
@@ -184,10 +111,25 @@
     </div>
   </section>
 
-  <!-- Dedicated Search & Category Exploration Section -->
+  <!-- Dedicated Search, Pincode Check & Category Exploration Section -->
   <section class="collection-search-section">
     <div class="collection-search-container">
-      
+
+      <!-- Compact Chennai Pincode Delivery Checker -->
+      <div class="trust-pincode-card" style="margin-bottom: 18px; padding: 14px 18px;">
+        <div class="trust-proof-block">
+          <div class="trust-rating-row" style="font-size: 0.86rem;">
+            <span>Add multiple treats with <strong>+ Bag</strong> or tap <strong>Order Now</strong> for instant 3-step UPI booking.</span>
+          </div>
+        </div>
+        <form class="pincode-checker-form" aria-label="Check Chennai delivery pincode">
+          <label for="col-pincode-input" style="position:absolute; width:1px; height:1px; overflow:hidden;">Enter Chennai Pincode</label>
+          <input id="col-pincode-input" name="pincode" type="text" inputmode="numeric" maxlength="6" class="pincode-input" placeholder="Chennai PIN (600006)" required />
+          <button type="submit" class="btn btn-primary btn-sm">Check PIN</button>
+        </form>
+        <div class="pincode-result-msg" role="status" aria-live="polite"></div>
+      </div>
+
       <!-- Search Input Bar -->
       <div class="search-input-wrapper">
         <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -207,14 +149,14 @@
       <!-- Category Filter Pills -->
       <div class="couture-filter-bar" id="couture-filter-bar">
         <button class="filter-pill active" data-filter="all">All Items (38)</button>
-        <button class="filter-pill" data-filter="festive" style="background: #FFF4E5; border-color: #FF5C00; color: #9A3412; font-weight: 700;">🎄 Festive Hampers (4)</button>
+        <button class="filter-pill" data-filter="festive" style="background: var(--color-terracotta-soft); border-color: var(--color-terracotta); color: var(--color-terracotta-dark); font-weight: 700;">🎄 Festive Hampers (4)</button>
         <button class="filter-pill" data-filter="everyday">Everyday Desserts (15) • 10% Off</button>
         <button class="filter-pill" data-filter="miniature">Mini Cakes (7)</button>
-        <button class="filter-pill" data-filter="tiered">Celebration Cakes (3)</button>
+        <button class="filter-pill" data-filter="tiered">Custom Tiers (3)</button>
         <button class="filter-pill" data-filter="bento">Bento Cakes (1)</button>
         <button class="filter-pill" data-filter="tarts">Tarts &amp; Pies (2)</button>
         <button class="filter-pill" data-filter="flavour">Flavors (6)</button>
-        <button type="button" class="filter-pill btn-open-trial-checkout" style="background: #3E1929; border-color: #D4AF37; color: #F5DFC0; font-weight: 700;">✨ ₹39 Trial (TASTE39)</button>
+        <button type="button" class="filter-pill btn-open-trial-checkout" style="background: var(--color-plum-royal); border-color: var(--color-gold-champagne); color: #F5DFC0; font-weight: 700;">✨ ₹39 Trial (TASTE39)</button>
       </div>
 
     </div>
@@ -236,7 +178,7 @@
         <p class="empty-state-desc">We craft bespoke recipes and custom architectures upon request. Try searching for "Chocolate", "Pistachio", "Lambeth", or reset the filter.</p>
         <div class="empty-state-actions">
           <button id="btn-reset-filters" class="btn btn-secondary btn-sm">Reset All Filters</button>
-          <a href="atelier.html" class="btn btn-primary btn-sm">Build Custom Cake in Atelier ➔</a>
+          <a href="atelier.html" class="btn btn-primary btn-sm">Book Custom Cake Call ➔</a>
         </div>
       </div>
 
@@ -244,18 +186,18 @@
       <div class="couture-grid" id="couture-grid">
 
         <!-- ==================== PROMO BANNER: FESTIVE HAMPERS & PLUM CAKES ==================== -->
-        <div class="festive-promo-card" data-category="festive" style="grid-column: 1 / -1; background: linear-gradient(135deg, #FFF7ED 0%, #FEF2F2 100%); border: 1.5px solid #FF5C00; border-radius: 16px; padding: 22px 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; box-shadow: 0 4px 20px -4px rgba(255,92,0,0.12); margin-bottom: 8px;">
+        <div class="festive-promo-card" data-category="festive" style="grid-column: 1 / -1; background: var(--color-terracotta-soft); border: 1.5px solid var(--color-terracotta-border); border-radius: 16px; padding: 22px 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; box-shadow: var(--shadow-subtle); margin-bottom: 8px;">
           <div style="max-width: 600px;">
             <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
-              <span style="font-size: 1.25rem;">🎄</span>
-              <span style="font-size: 0.76rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #C2410C; background: rgba(255,92,0,0.12); padding: 3px 8px; border-radius: 6px;">December Corporate &amp; Festive Collection</span>
+              <span style="font-size: 1.15rem;">🎄</span>
+              <span style="font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-terracotta-dark); background: rgba(168,62,28,0.1); padding: 3px 9px; border-radius: 6px;">December Corporate &amp; Festive Collection</span>
             </div>
-            <h3 style="font-family: var(--font-heading); font-size: 1.25rem; color: #7C2D12; margin: 0 0 6px 0; font-weight: 700;">Artisanal Holiday Hampers &amp; Traditional Plum Cakes</h3>
-            <p style="font-size: 0.86rem; color: #9A3412; margin: 0; line-height: 1.5;">Handcrafted scratch-baked celebration hampers for Chennai companies, festive family dinners, and year-end client gifting. Custom branding available for bulk orders (MOQ 10 boxes).</p>
+            <h3 style="font-family: var(--font-editorial); font-size: 1.38rem; color: var(--color-plum-royal); margin: 0 0 6px; font-weight: 600;">Artisanal Holiday Hampers &amp; Traditional Plum Cakes</h3>
+            <p style="font-size: 0.88rem; color: var(--color-text-muted); margin: 0; line-height: 1.55;">Handcrafted scratch-baked celebration hampers for Chennai companies, festive family dinners, and year-end client gifting. Custom branding available for bulk orders (MOQ 10 boxes).</p>
           </div>
           <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-            <a href="https://wa.me/918511839668?text=Hello%20Your%20Huckleberry%21%20I%20am%20inquiring%20about%20Corporate%20Christmas%20%26%20New%20Year%20Hampers%20bulk%20orders%20for%20our%20company.%20Please%20share%20the%20corporate%20catalogue%20and%20pincode%20delivery%20details." target="_blank" rel="noopener" class="btn btn-sm" style="background: #FF5C00; color: #FFFFFF; font-weight: 600; padding: 10px 18px; border-radius: 8px; text-decoration: none; box-shadow: 0 2px 8px rgba(255,92,0,0.3);">
-              <span>Corporate Bulk Inquiry (WhatsApp)</span> ➔
+            <a href="https://wa.me/918511839668?text=Hello%20Your%20Huckleberry%21%20I%20am%20inquiring%20about%20Corporate%20Christmas%20%26%20New%20Year%20Hampers%20bulk%20orders%20for%20our%20company.%20Please%20share%20the%20corporate%20catalogue%20and%20pincode%20delivery%20details." target="_blank" rel="noopener" class="btn-terracotta">
+              <span>Corporate Bulk Inquiry (WhatsApp) ➔</span>
             </a>
           </div>
         </div>
@@ -265,7 +207,7 @@
         <article class="couture-item-card" data-category="festive" data-title="Traditional Christmas Plum Cake (Vintage Tin)" data-keywords="traditional christmas plum cake vintage tin fruit nut spices rum raisin festive holiday 500g 1kg">
           <div class="couture-card-img" data-title="Traditional Christmas Plum Cake (Vintage Tin)" data-price="₹650" data-weight="500g • Vintage Tin" data-allergens="Wheat (Gluten), Dairy (Milk), Tree Nuts" data-storage="Room temperature in airtight tin for up to 30 days." data-img="assets/images/love-letter-swirls.jpg" data-quote="Macerated spiced fruit, roasted cashews, candied citrus, and warm holiday aroma." data-badge="FESTIVE CLASSIC" data-desc="Authentic holiday recipe loaded with black currants, raisins, candied peels, and warming winter spices. Presented in a collectible matte gold tin with holiday ribbon." data-tier="festive">
             <img src="assets/images/love-letter-swirls.jpg" alt="Traditional Christmas Plum Cake in Vintage Tin" loading="lazy" />
-            <span class="couture-tag-badge" style="background: #C2410C; color: #FFFFFF;">FESTIVE CLASSIC</span>
+            <span class="couture-tag-badge" style="background: var(--color-terracotta); color: #FFFFFF;">FESTIVE CLASSIC</span>
           </div>
           <div class="couture-card-body">
             <div class="card-title-row">
@@ -274,7 +216,7 @@
             </div>
             <div class="card-weight-row">
               <span class="weight-badge">500g • Vintage Tin</span>
-              <span style="font-size: 0.72rem; color: #C2410C; font-weight: 600; background: rgba(255, 92, 0, 0.12); padding: 2px 6px; border-radius: 4px;">Aged Fruit &amp; Nuts</span>
+              <span style="font-size: 0.72rem; color: var(--color-terracotta-dark); font-weight: 600; background: var(--color-terracotta-soft); padding: 2px 6px; border-radius: 4px;">Aged Fruit &amp; Nuts</span>
             </div>
             <p class="couture-card-quote">“Macerated spiced fruit, roasted cashews, candied citrus, and warm holiday aroma.”</p>
             <div class="couture-card-footer">
@@ -832,7 +774,7 @@
             <p class="couture-card-quote">“Four individual designer cakes in luxury presentation packaging.”</p>
             <div class="couture-card-footer">
               <span class="couture-price">₹1,200</span>
-              <a href="atelier.html?tier=mini-couture" data-tier="mini-couture" class="btn btn-sm btn-secondary btn-quick-select">Build in Atelier</a>
+              <a href="#order" class="btn btn-sm btn-primary btn-quick-select">Order Now ➔</a>
             </div>
           </div>
         </article>
@@ -854,7 +796,7 @@
             <p class="couture-card-quote">“Sculpted pink Lambeth ruffles with delicate ivory sugar pearls.”</p>
             <div class="couture-card-footer">
               <span class="couture-price">₹350</span>
-              <a href="atelier.html?tier=mini-couture" data-tier="mini-couture" class="btn btn-sm btn-secondary btn-quick-select">Build in Atelier</a>
+              <a href="#order" class="btn btn-sm btn-primary btn-quick-select">Order Now ➔</a>
             </div>
           </div>
         </article>
@@ -876,7 +818,7 @@
             <p class="couture-card-quote">“Sweetly minimal, pure ivory buttercream with delicate drop-lines.”</p>
             <div class="couture-card-footer">
               <span class="couture-price">₹350</span>
-              <a href="atelier.html?tier=mini-couture" data-tier="mini-couture" class="btn btn-sm btn-secondary btn-quick-select">Build in Atelier</a>
+              <a href="#order" class="btn btn-sm btn-primary btn-quick-select">Order Now ➔</a>
             </div>
           </div>
         </article>
@@ -898,7 +840,7 @@
             <p class="couture-card-quote">“Sculpted architectural arches tied with ivory satin bow.”</p>
             <div class="couture-card-footer">
               <span class="couture-price">₹350</span>
-              <a href="atelier.html?tier=mini-couture" data-tier="mini-couture" class="btn btn-sm btn-secondary btn-quick-select">Build in Atelier</a>
+              <a href="#order" class="btn btn-sm btn-primary btn-quick-select">Order Now ➔</a>
             </div>
           </div>
         </article>
@@ -920,7 +862,7 @@
             <p class="couture-card-quote">“Natural pistachio sponge with hand-piped botanical rosettes.”</p>
             <div class="couture-card-footer">
               <span class="couture-price">₹380</span>
-              <a href="atelier.html?tier=mini-couture" data-tier="mini-couture" class="btn btn-sm btn-secondary btn-quick-select">Build in Atelier</a>
+              <a href="#order" class="btn btn-sm btn-primary btn-quick-select">Order Now ➔</a>
             </div>
           </div>
         </article>
@@ -942,7 +884,7 @@
             <p class="couture-card-quote">“Two-tier miniature cake with artisanal strawberry compote glaze drip.”</p>
             <div class="couture-card-footer">
               <span class="couture-price">₹380</span>
-              <a href="atelier.html?tier=mini-couture" data-tier="mini-couture" class="btn btn-sm btn-secondary btn-quick-select">Build in Atelier</a>
+              <a href="#order" class="btn btn-sm btn-primary btn-quick-select">Order Now ➔</a>
             </div>
           </div>
         </article>
@@ -964,7 +906,7 @@
             <p class="couture-card-quote">“Playful ruffles with pristine white satin bow.”</p>
             <div class="couture-card-footer">
               <span class="couture-price">₹350</span>
-              <a href="atelier.html?tier=mini-couture" data-tier="mini-couture" class="btn btn-sm btn-secondary btn-quick-select">Build in Atelier</a>
+              <a href="#order" class="btn btn-sm btn-primary btn-quick-select">Order Now ➔</a>
             </div>
           </div>
         </article>
@@ -986,7 +928,7 @@
             <p class="couture-card-quote">“Velvet midnight chocolate with 24K edible gold leaf constellations.”</p>
             <div class="couture-card-footer">
               <span class="couture-price">₹850</span>
-              <a href="atelier.html?tier=bento-noir" data-tier="bento-noir" class="btn btn-sm btn-secondary btn-quick-select">Build in Atelier</a>
+              <a href="#order" class="btn btn-sm btn-primary btn-quick-select">Order Now ➔</a>
             </div>
           </div>
         </article>
@@ -1010,7 +952,7 @@
             <p class="couture-card-quote">“Buttercream spirals with hand-piped rosettes, fresh raspberries, and gold leaf.”</p>
             <div class="couture-card-footer">
               <span class="couture-price">₹1,650</span>
-              <a href="atelier.html?tier=tier-1" data-tier="tier-1" class="btn btn-sm btn-secondary btn-quick-select">Build in Atelier</a>
+              <a href="atelier.html" class="btn btn-sm btn-secondary btn-quick-select">Book Chef Call ➔</a>
             </div>
           </div>
         </article>
@@ -1032,7 +974,7 @@
             <p class="couture-card-quote">“Vintage Victorian Lambeth ruffles, draped garlands, and heirloom luster pearls.”</p>
             <div class="couture-card-footer">
               <span class="couture-price">₹3,950</span>
-              <a href="atelier.html?tier=tier-2" data-tier="tier-2" class="btn btn-sm btn-primary btn-quick-select">Build in Atelier</a>
+              <a href="atelier.html" class="btn btn-sm btn-primary btn-quick-select">Book Chef Call ➔</a>
             </div>
           </div>
         </article>
@@ -1054,7 +996,7 @@
             <p class="couture-card-quote">“Master-level Lambeth royal icing architecture with intricate baroque lace.”</p>
             <div class="couture-card-footer">
               <span class="couture-price">₹6,500</span>
-              <a href="atelier.html?tier=tier-3" data-tier="tier-3" class="btn btn-sm btn-secondary btn-quick-select">Build in Atelier</a>
+              <a href="atelier.html" class="btn btn-sm btn-secondary btn-quick-select">Book Chef Call ➔</a>
             </div>
           </div>
         </article>
@@ -1078,7 +1020,7 @@
             <p class="couture-card-quote">“Buttery French sablé shell with molten salted caramel and dark ganache.”</p>
             <div class="couture-card-footer">
               <span class="couture-price">₹420</span>
-              <a href="atelier.html?flavor=salted-caramel" data-flavor="salted-caramel" class="btn btn-sm btn-secondary btn-quick-select">Order in Atelier</a>
+              <a href="#order" class="btn btn-sm btn-primary btn-quick-select">Order Now ➔</a>
             </div>
           </div>
         </article>
@@ -1100,7 +1042,7 @@
             <p class="couture-card-quote">“Dense dark chocolate mousse with crunchy hazelnut feuilletine crust.”</p>
             <div class="couture-card-footer">
               <span class="couture-price">₹280</span>
-              <a href="atelier.html?flavor=belgian-truffle" data-flavor="belgian-truffle" class="btn btn-sm btn-secondary btn-quick-select">Order in Atelier</a>
+              <a href="#order" class="btn btn-sm btn-primary btn-quick-select">Order Now ➔</a>
             </div>
           </div>
         </article>
@@ -1124,7 +1066,7 @@
             <p class="couture-card-quote">“70% Callebaut dark ganache with golden fleur de sel caramel.”</p>
             <div class="couture-card-footer">
               <span class="couture-price">Artisan Flavour</span>
-              <a href="atelier.html?flavor=salted-caramel" data-flavor="salted-caramel" class="btn btn-sm btn-secondary btn-quick-select">Select in Atelier</a>
+              <a href="atelier.html" class="btn btn-sm btn-secondary btn-quick-select">Book Chef Call ➔</a>
             </div>
           </div>
         </article>
@@ -1146,7 +1088,7 @@
             <p class="couture-card-quote">“Real pistachio sponge crumb, ruby raspberry gelée, and rose mascarpone.”</p>
             <div class="couture-card-footer">
               <span class="couture-price">Artisan Flavour</span>
-              <a href="atelier.html?flavor=lychee-rose" data-flavor="lychee-rose" class="btn btn-sm btn-secondary btn-quick-select">Select in Atelier</a>
+              <a href="atelier.html" class="btn btn-sm btn-secondary btn-quick-select">Book Chef Call ➔</a>
             </div>
           </div>
         </article>
@@ -1168,7 +1110,7 @@
             <p class="couture-card-quote">“Bourbon vanilla caviar sponge, airy Chantilly, and fresh strawberries.”</p>
             <div class="couture-card-footer">
               <span class="couture-price">Artisan Flavour</span>
-              <a href="atelier.html?flavor=white-choc-candle" data-flavor="white-choc-candle" class="btn btn-sm btn-secondary btn-quick-select">Select in Atelier</a>
+              <a href="atelier.html" class="btn btn-sm btn-secondary btn-quick-select">Book Chef Call ➔</a>
             </div>
           </div>
         </article>
@@ -1190,7 +1132,7 @@
             <p class="couture-card-quote">“Chocolate truffle mousse with mirror glaze and crunchy praline feuilletine.”</p>
             <div class="couture-card-footer">
               <span class="couture-price">Artisan Flavour</span>
-              <a href="atelier.html?flavor=belgian-truffle" data-flavor="belgian-truffle" class="btn btn-sm btn-secondary btn-quick-select">Select in Atelier</a>
+              <a href="atelier.html" class="btn btn-sm btn-secondary btn-quick-select">Book Chef Call ➔</a>
             </div>
           </div>
         </article>
@@ -1212,7 +1154,7 @@
             <p class="couture-card-quote">“Zesty lemon sponge with simmered wild blueberry compote and lemon curd.”</p>
             <div class="couture-card-footer">
               <span class="couture-price">Artisan Flavour</span>
-              <a href="atelier.html?flavor=sicilian-lemon" data-flavor="sicilian-lemon" class="btn btn-sm btn-secondary btn-quick-select">Select in Atelier</a>
+              <a href="atelier.html" class="btn btn-sm btn-secondary btn-quick-select">Book Chef Call ➔</a>
             </div>
           </div>
         </article>
@@ -1234,7 +1176,7 @@
             <p class="couture-card-quote">“Spiced speculoos crumb, caramelized Biscoff, and roasted Piedmont hazelnuts.”</p>
             <div class="couture-card-footer">
               <span class="couture-price">Artisan Flavour</span>
-              <a href="atelier.html?flavor=biscoff-hazelnut" data-flavor="biscoff-hazelnut" class="btn btn-sm btn-secondary btn-quick-select">Select in Atelier</a>
+              <a href="atelier.html" class="btn btn-sm btn-secondary btn-quick-select">Book Chef Call ➔</a>
             </div>
           </div>
         </article>
@@ -1260,27 +1202,27 @@
           <h4 class="footer-col-title">Atelier Menu</h4>
           <ul class="footer-links-list">
             <li><a href="index.html">Atelier Home</a></li>
-            <li><a href="collection.html">The Collection &amp; Search</a></li>
-            <li><a href="atelier.html">Interactive Cake Atelier</a></li>
-            <li><a href="pipeline.html">Creation Pipeline &amp; Live Board</a></li>
-            <li><a href="gallery.html">Artisanal Specialties</a></li>
-            <li><a href="location.html">Shafee Mohammed Rd Atelier</a></li>
-            <li><a href="faq.html">Pâtisserie Guidelines &amp; FAQs</a></li>
+            <li><a href="collection.html">Order Menu &amp; Hampers</a></li>
+            <li><a href="atelier.html">Custom &amp; Wedding Cakes</a></li>
+            <li><a href="pipeline.html">Track Your Order</a></li>
+            <li><a href="gallery.html">Cake Gallery</a></li>
+            <li><a href="location.html">Shafee Mohammed Rd Studio</a></li>
+            <li><a href="faq.html">FAQs</a></li>
             <li><a href="policies.html">Store Policies &amp; Privacy</a></li>
           </ul>
         </div>
         <div>
           <h4 class="footer-col-title">Kitchen Contact</h4>
-          <p style="font-size: 0.82rem; color: rgba(255,255,255,0.75); margin-bottom: 6px;">
+          <p style="font-size: 0.84rem; color: rgba(255,255,255,0.78); margin-bottom: 6px;">
             Shafee Mohammed Road, Nungambakkam, Chennai 600006
           </p>
-          <p style="font-size: 0.82rem; color: rgba(255,255,255,0.75); margin-bottom: 6px;">
+          <p style="font-size: 0.84rem; color: rgba(255,255,255,0.78); margin-bottom: 6px;">
             WhatsApp Kitchen: +91 8511839668
           </p>
-          <p style="font-size: 0.82rem; color: rgba(255,255,255,0.75); margin-bottom: 6px;">
+          <p style="font-size: 0.84rem; color: rgba(255,255,255,0.78); margin-bottom: 6px;">
             Orders Email: orders@yourhuckleberry.in
           </p>
-          <p style="font-size: 0.82rem; color: rgba(255,255,255,0.75);">
+          <p style="font-size: 0.84rem; color: rgba(255,255,255,0.78);">
             Instagram: <a href="https://www.instagram.com/huckleberry.inn" target="_blank" rel="noopener" style="color: var(--color-gold-light);">@huckleberry.inn</a>
           </p>
         </div>
@@ -1296,9 +1238,9 @@
     </div>
   </footer>
 
-  <script src="firebase-config.js?v=5.0.0"></script>
-  <script type="module" src="firebase-service.js?v=5.0.0"></script>
-  <script src="data.js?v=5.0.0"></script>
-  <script src="app.js?v=5.0.1"></script>
+  <script src="firebase-config.js?v=5.2.0"></script>
+  <script type="module" src="firebase-service.js?v=5.2.0"></script>
+  <script src="data.js?v=5.2.0"></script>
+  <script src="app.js?v=5.2.0"></script>
 </body>
 </html>

@@ -3,24 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Interactive Cake Atelier | Your Huckleberry (@huckleberry.inn) Chennai</title>
-  <meta name="description" content="Design your bespoke celebration cake with Your Huckleberry. Custom tiered architecture, French flavours, Victorian Lambeth piping, and 1-click WhatsApp booking in Chennai." />
+  <title>Custom &amp; Wedding Cakes Consultation | Your Huckleberry Chennai</title>
+  <meta name="description" content="Book a direct 10-minute voice consultation with Chef Ridha at Your Huckleberry Nungambakkam for custom birthday, anniversary, and tiered wedding cakes in Chennai. 100% Pure Veg Eggless." />
   <link rel="canonical" href="https://yourhuckleberry.in/atelier.html" />
-  <!-- Open Graph -->
-  <meta property="og:title" content="Interactive Cake Atelier | Your Huckleberry Chennai" />
-  <meta property="og:description" content="Live bespoke cake studio. Real-time visualizer, transparent pricing, and instant WhatsApp booking slips." />
+  <meta property="og:title" content="Custom &amp; Wedding Cakes | Your Huckleberry Chennai" />
+  <meta property="og:description" content="Share your date, guest count, and dream cake photos — speak directly with Chef Ridha for a personalized quote." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://yourhuckleberry.in/atelier.html" />
   <meta property="og:image" content="https://yourhuckleberry.in/assets/images/hero-patisserie-showcase.jpg" />
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/jpeg" href="assets/logo.jpg" />
-  <link rel="stylesheet" href="style.css?v=5.0.0" />
+  <link rel="stylesheet" href="style.css?v=5.2.0" />
 </head>
 <body>
-<!-- Main Navigation Bar with Glassmorphic Frosted Elevation -->
+  <!-- Main Navigation Bar -->
   <header class="site-navbar">
     <div class="navbar-inner">
       <a href="index.html" class="brand-wrapper" aria-label="Your Huckleberry Home">
@@ -33,18 +31,18 @@
       <nav aria-label="Main Navigation">
         <ul class="nav-menu">
           <li><a href="index.html">Home</a></li>
-          <li><a href="collection.html">Collection</a></li>
-          <li><a href="collection.html?category=festive" style="color: #FF5C00; font-weight: 600;">🎄 Hampers</a></li>
-          <li><a href="atelier.html" class="active">Cake Atelier</a></li>
-          <li><a href="pipeline.html">Creation Pipeline</a></li>
-          <li><a href="gallery.html">Specialties</a></li>
-          <li><a href="location.html">Atelier &amp; Maps</a></li>
+          <li><a href="collection.html">Menu &amp; Order</a></li>
+          <li><a href="collection.html?category=festive" style="color: var(--color-terracotta); font-weight: 700;">Festive Hampers</a></li>
+          <li><a href="atelier.html" class="active">Custom Cakes</a></li>
+          <li><a href="pipeline.html">Track Order</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="location.html">Studio &amp; Maps</a></li>
           <li><a href="faq.html">FAQs</a></li>
         </ul>
       </nav>
       <div class="nav-actions">
-        <a href="#custom-builder" class="btn btn-primary btn-sm btn-nav-cta">
-          <span>Lock Slot ➔</span>
+        <a href="collection.html" class="btn btn-primary btn-sm btn-nav-cta">
+          <span>Order Menu ➔</span>
         </a>
         <button id="btn-mobile-nav" class="mobile-nav-toggle" aria-label="Open Navigation Menu" aria-expanded="false">
           <span class="nav-bar"></span>
@@ -54,90 +52,17 @@
       </div>
     </div>
 
-    <!-- Modern Mobile Slide-Down Navigation Drawer & Backdrop -->
     <div id="mobile-nav-backdrop" class="mobile-nav-backdrop" aria-hidden="true"></div>
     <div id="mobile-nav-drawer" class="mobile-nav-drawer" aria-hidden="true">
       <ul class="mobile-drawer-links">
-        <li>
-          <a href="index.html" class="mobile-link">
-            <span class="nav-item-icon">🏠</span>
-            <div class="nav-item-content">
-              <span class="nav-item-title">Home</span>
-              <span class="nav-item-desc">Showcase &amp; Bestsellers</span>
-            </div>
-            <span class="nav-item-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a href="collection.html?category=festive" class="mobile-link" style="background: rgba(255, 92, 0, 0.08); border-left: 3px solid #FF5C00;">
-            <span class="nav-item-icon">🎄</span>
-            <div class="nav-item-content">
-              <span class="nav-item-title" style="color: #C2410C; font-weight: 700;">Festive &amp; Corporate Hampers</span>
-              <span class="nav-item-desc">Plum Cakes &amp; Corporate Boxes (Pre-Order)</span>
-            </div>
-            <span class="nav-item-arrow" style="color: #FF5C00;">→</span>
-          </a>
-        </li>
-        <li>
-          <a href="collection.html" class="mobile-link">
-            <span class="nav-item-icon">🍰</span>
-            <div class="nav-item-content">
-              <span class="nav-item-title">Cakes &amp; Desserts</span>
-              <span class="nav-item-desc">Complete Menu • 10% Off Specials</span>
-            </div>
-            <span class="nav-item-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a href="atelier.html" class="mobile-link active">
-            <span class="nav-item-icon">🎂</span>
-            <div class="nav-item-content">
-              <span class="nav-item-title">Custom Cake Builder</span>
-              <span class="nav-item-desc">Design Your Cake &amp; Instant Price</span>
-            </div>
-            <span class="nav-item-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a href="pipeline.html" class="mobile-link">
-            <span class="nav-item-icon">📦</span>
-            <div class="nav-item-content">
-              <span class="nav-item-title">Order Tracking</span>
-              <span class="nav-item-desc">Live Kitchen Baking &amp; Delivery</span>
-            </div>
-            <span class="nav-item-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a href="gallery.html" class="mobile-link">
-            <span class="nav-item-icon">🖼️</span>
-            <div class="nav-item-content">
-              <span class="nav-item-title">Cake Gallery</span>
-              <span class="nav-item-desc">Customer Photos &amp; Celebration Tiers</span>
-            </div>
-            <span class="nav-item-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a href="location.html" class="mobile-link">
-            <span class="nav-item-icon">📍</span>
-            <div class="nav-item-content">
-              <span class="nav-item-title">Store &amp; Pickup</span>
-              <span class="nav-item-desc">Nungambakkam Studio &amp; Directions</span>
-            </div>
-            <span class="nav-item-arrow">→</span>
-          </a>
-        </li>
-        <li>
-          <a href="faq.html" class="mobile-link">
-            <span class="nav-item-icon">❓</span>
-            <div class="nav-item-content">
-              <span class="nav-item-title">FAQs &amp; Help</span>
-              <span class="nav-item-desc">100% Pure Veg Standard &amp; Delivery</span>
-            </div>
-            <span class="nav-item-arrow">→</span>
-          </a>
-        </li>
+        <li><a href="index.html" class="mobile-link"><span class="nav-item-icon">🏠</span><div class="nav-item-content"><span class="nav-item-title">Home</span><span class="nav-item-desc">Overview &amp; Pincode Check</span></div><span class="nav-item-arrow">→</span></a></li>
+        <li><a href="collection.html?category=festive" class="mobile-link" style="background: var(--color-terracotta-soft); border-left: 3px solid var(--color-terracotta);"><span class="nav-item-icon">🎄</span><div class="nav-item-content"><span class="nav-item-title" style="color: var(--color-terracotta-dark); font-weight: 700;">Festive &amp; Corporate Hampers</span><span class="nav-item-desc">Plum Cakes &amp; Holiday Boxes</span></div><span class="nav-item-arrow" style="color: var(--color-terracotta);">→</span></a></li>
+        <li><a href="collection.html" class="mobile-link"><span class="nav-item-icon">🍰</span><div class="nav-item-content"><span class="nav-item-title">Order Menu &amp; Desserts</span><span class="nav-item-desc">Ready-to-Order Cakes &amp; 10% Off Daily Menu</span></div><span class="nav-item-arrow">→</span></a></li>
+        <li><a href="atelier.html" class="mobile-link active"><span class="nav-item-icon">📞</span><div class="nav-item-content"><span class="nav-item-title">Custom &amp; Wedding Cakes</span><span class="nav-item-desc">Book a 10-Min Call with Chef Ridha</span></div><span class="nav-item-arrow">→</span></a></li>
+        <li><a href="pipeline.html" class="mobile-link"><span class="nav-item-icon">📦</span><div class="nav-item-content"><span class="nav-item-title">Track Your Order</span><span class="nav-item-desc">Live Baking &amp; Delivery Progress</span></div><span class="nav-item-arrow">→</span></a></li>
+        <li><a href="gallery.html" class="mobile-link"><span class="nav-item-icon">🖼️</span><div class="nav-item-content"><span class="nav-item-title">Cake Gallery</span><span class="nav-item-desc">Past Creations &amp; Inspiration</span></div><span class="nav-item-arrow">→</span></a></li>
+        <li><a href="location.html" class="mobile-link"><span class="nav-item-icon">📍</span><div class="nav-item-content"><span class="nav-item-title">Studio &amp; Pickup</span><span class="nav-item-desc">Nungambakkam Location &amp; Map</span></div><span class="nav-item-arrow">→</span></a></li>
+        <li><a href="faq.html" class="mobile-link"><span class="nav-item-icon">❓</span><div class="nav-item-content"><span class="nav-item-title">FAQs &amp; Help</span><span class="nav-item-desc">100% Pure Veg Standards &amp; Delivery</span></div><span class="nav-item-arrow">→</span></a></li>
       </ul>
       <div class="mobile-drawer-footer">
         <a href="https://wa.me/918511839668" target="_blank" rel="noopener" class="drawer-whatsapp-btn">
@@ -153,81 +78,129 @@
     <div class="page-breadcrumb">
       <a href="index.html">Home</a>
       <span class="crumb-separator">/</span>
-      <span>Cake Atelier</span>
+      <span>Custom &amp; Wedding Cakes</span>
     </div>
-    <div class="section-label-chip">Order Specification Studio</div>
-    <h1>
-      <span>Interactive Cake</span> Atelier
-    </h1>
+    <div class="section-label-chip">Direct Chef Consultation • Zero Confusing Forms</div>
+    <h1><span>Custom &amp; Wedding</span> Cakes</h1>
     <p class="page-hero-desc">
-      Design your bespoke celebration centerpiece in moments. Tiers, artisan flavours, Victorian Lambeth piping, and Chennai delivery slots calculated with live transparent pricing.
+      Milestone cakes deserve a real conversation—not robotic dropdown menus. Share your event date, guest count, and inspiration photos below to book a quick 10-minute voice call directly with Chef Ridha.
     </p>
     <div class="page-hero-meta">
       <span class="hero-trust-pill"><span class="fssai-veg-marker"></span> 100% Eggless Pure Veg</span>
-      <span class="hero-trust-pill">Real-Time Visualizer</span>
-      <span class="hero-trust-pill">Zero Hidden Fees</span>
+      <span class="hero-trust-pill">Direct 10-Min Chef Call</span>
+      <span class="hero-trust-pill">Nungambakkam Studio</span>
     </div>
   </section>
 
-  <!-- Studio Craft Visual Showcase Banner -->
-  <section class="atelier-visual-strip" style="max-width: 1240px; margin: 0 auto; padding: 0 24px 32px;">
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-      <div style="border-radius: 18px; overflow: hidden; height: 240px; border: 1.5px solid rgba(212,175,55,0.3); box-shadow: 0 10px 24px rgba(44,17,51,0.08);">
-        <img src="assets/images/hero-patisserie-showcase.jpg" alt="Your Huckleberry Luxury Patisserie Display" style="width: 100%; height: 100%; object-fit: cover;" />
+  <!-- Simple 3-Step Process Strip -->
+  <section class="simple-steps-section" style="margin-top: 0; margin-bottom: 32px;">
+    <div class="simple-steps-grid">
+      <div class="simple-step-card">
+        <span class="simple-step-num">1</span>
+        <div>
+          <h3>Share Date &amp; Photos</h3>
+          <p>Fill out your event date, guest count, and up to 3 dream cake inspiration photos below.</p>
+        </div>
       </div>
-      <div style="border-radius: 18px; overflow: hidden; height: 240px; border: 1.5px solid rgba(212,175,55,0.3); box-shadow: 0 10px 24px rgba(44,17,51,0.08);">
-        <img src="assets/images/atelier-kitchen-craft.jpg" alt="Artisan Pastry Chef Hand Piping" style="width: 100%; height: 100%; object-fit: cover;" />
+      <div class="simple-step-card">
+        <span class="simple-step-num">2</span>
+        <div>
+          <h3>10-Min Voice Call</h3>
+          <p>Chef Ridha calls you in your chosen slot to finalize flavors, Victorian piping &amp; exact quote.</p>
+        </div>
+      </div>
+      <div class="simple-step-card">
+        <span class="simple-step-num">3</span>
+        <div>
+          <h3>Lock Your Baking Slot</h3>
+          <p>Confirm with a 50% UPI advance and track your cake live from oven to Chennai delivery.</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Bespoke Event & Wedding Cake Voice Consultation Booking -->
-  <section class="bespoke-consultation-section" style="max-width: 1240px; margin: 0 auto 36px; padding: 0 24px;">
-    <div style="background: linear-gradient(135deg, #FFF7ED 0%, #FEF2F2 100%); border: 1.5px solid #FF5C00; border-radius: 20px; padding: 32px 36px; box-shadow: 0 10px 30px -5px rgba(255,92,0,0.12); display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; align-items: center;">
+  <section class="bespoke-consultation-section" style="max-width: 1200px; margin: 0 auto 48px; padding: 0 24px;">
+    <div style="background: var(--color-surface); border: 1.5px solid var(--color-border-gold); border-radius: 20px; padding: 32px; box-shadow: var(--shadow-card); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 32px; align-items: start;">
       <div>
-        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
-          <span style="font-size: 1.25rem;">✨</span>
-          <span style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #C2410C; background: rgba(255,92,0,0.12); padding: 3px 8px; border-radius: 6px;">Haute Couture Bespoke Cakes</span>
-        </div>
-        <h2 style="font-family: var(--font-heading); font-size: 1.65rem; color: #7C2D12; margin: 0 0 10px 0; font-weight: 700;">Weddings, Receptions &amp; Grand Milestones</h2>
-        <p style="font-size: 0.92rem; color: #9A3412; margin: 0 0 18px 0; line-height: 1.6;">
-          Grand tiered celebration centerpieces require personal consultation, not automated drop-downs. Speak directly with Founder &amp; Creative Patissier <strong>Chef Ridha</strong> to curate bespoke Victorian Lambeth architecture, heirloom sugar florals, and custom flavor tastings.
+        <div class="section-label-chip" style="margin-bottom: 10px;">Weddings, Birthdays &amp; Milestones</div>
+        <h2 style="font-family: var(--font-editorial); font-size: 1.75rem; color: var(--color-plum-royal); margin: 0 0 12px; font-weight: 500;">Speak Directly With Chef Ridha</h2>
+        <p style="font-size: 0.94rem; color: var(--color-text-muted); margin: 0 0 20px; line-height: 1.65;">
+          Whether you are planning a 3-tier Victorian Lambeth wedding reception centerpiece, a pastel first-birthday cake, or 100 branded corporate hampers for your Chennai office—we tailor weight, flavors, and finish personally so there is zero guesswork.
         </p>
-        <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
-          <a href="https://wa.me/918511839668?text=Hello%20Chef%20Ridha%2C%20I%20would%20like%20to%20schedule%20a%20Bespoke%20Cake%20Consultation%20%28Voice%20Call%20%2F%20Studio%20Visit%29%20for%20our%20upcoming%20event." target="_blank" rel="noopener" class="btn btn-primary" style="background: #FF5C00; color: #FFFFFF; font-weight: 600; padding: 12px 24px; border-radius: 10px; text-decoration: none; box-shadow: 0 4px 14px rgba(255,92,0,0.3); display: inline-flex; align-items: center; gap: 8px;">
-            <span>📞 Schedule Voice Call with Chef Ridha</span> ➔
-          </a>
-          <span style="font-size: 0.8rem; color: #78350F; font-weight: 600;">Direct WhatsApp Audio / In-Studio Appointment</span>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 22px;">
+          <img src="assets/images/hero-patisserie-showcase.jpg" alt="Victorian Lambeth tiered celebration cake" style="width: 100%; height: 150px; object-fit: cover; border-radius: 12px; border: 1px solid var(--color-border);" />
+          <img src="assets/images/atelier-kitchen-craft.jpg" alt="Artisan hand-piping buttercream detail" style="width: 100%; height: 150px; object-fit: cover; border-radius: 12px; border: 1px solid var(--color-border);" />
         </div>
+
+        <div style="background: var(--color-surface-subtle); border-radius: 12px; padding: 14px 16px; margin-bottom: 18px; font-size: 0.86rem; color: var(--color-text-muted); line-height: 1.6;">
+          <strong style="color: var(--color-plum-royal);">Prefer instant WhatsApp chat?</strong><br />
+          Send your inspiration photo straight to our Nungambakkam kitchen concierge anytime between 11 AM – 9 PM.
+        </div>
+
+        <a href="https://wa.me/918511839668?text=Hello%20Chef%20Ridha%2C%20I%20would%20like%20to%20schedule%20a%2010-minute%20Custom%20Cake%20Voice%20Call%20for%20our%20upcoming%20celebration%20in%20Chennai." target="_blank" rel="noopener" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 8px;">
+          <span>WhatsApp Chef Directly (+91 85118 39668)</span> ➔
+        </a>
       </div>
 
-      <!-- Quick Consultation Request Card -->
-      <div style="background: #FFFFFF; border: 1px solid #FED7AA; border-radius: 16px; padding: 24px; box-shadow: 0 4px 16px rgba(0,0,0,0.04);">
-        <h3 style="font-family: var(--font-heading); font-size: 1.1rem; color: #1E293B; margin-bottom: 14px; font-weight: 700;">Book a Direct 10-Minute Voice Call</h3>
+      <!-- Direct 10-Min Voice Call Form (Live Firebase `consultations` Write) -->
+      <div style="background: var(--color-bg); border: 1px solid var(--color-border-gold); border-radius: 16px; padding: 24px;">
+        <h3 style="font-family: var(--font-editorial); font-size: 1.3rem; color: var(--color-plum-royal); margin-bottom: 4px;">Book Your 10-Minute Voice Call</h3>
+        <p style="font-size: 0.84rem; color: var(--color-text-muted); margin-bottom: 16px;">Your request goes straight into our kitchen calendar—zero waiting on Instagram DMs.</p>
+
         <form id="form-consultation-quick">
-          <div style="display: flex; flex-direction: column; gap: 10px;">
-            <input type="text" id="consult-name" placeholder="Your Full Name *" required style="padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem;" />
-            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-              <input type="tel" id="consult-phone" placeholder="WhatsApp / Phone *" required style="flex: 1; min-width: 140px; padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem;" />
-              <input type="email" id="consult-email" placeholder="Email Address *" required style="flex: 1; min-width: 160px; padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem;" />
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div>
+              <label for="consult-name" style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--color-plum-royal); margin-bottom: 4px;">Your Full Name *</label>
+              <input type="text" id="consult-name" name="name" placeholder="e.g. Kavya Ramanathan" required style="width: 100%; padding: 10px 12px; border: 1px solid #D5C9BF; border-radius: 8px; font-size: 0.9rem; background: #FFFFFF;" />
             </div>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-              <input type="date" id="consult-date" required aria-label="Event Date" style="flex: 1; min-width: 130px; padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem; color: #475569;" />
-              <input type="text" id="consult-guests" placeholder="Guest Count (e.g. 150)" required style="flex: 1; min-width: 130px; padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem;" />
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+              <div>
+                <label for="consult-phone" style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--color-plum-royal); margin-bottom: 4px;">WhatsApp / Phone *</label>
+                <input type="tel" id="consult-phone" name="phone" placeholder="10-digit mobile" required style="width: 100%; padding: 10px 12px; border: 1px solid #D5C9BF; border-radius: 8px; font-size: 0.9rem; background: #FFFFFF;" />
+              </div>
+              <div>
+                <label for="consult-email" style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--color-plum-royal); margin-bottom: 4px;">Email Address *</label>
+                <input type="email" id="consult-email" name="email" placeholder="you@example.com" required style="width: 100%; padding: 10px 12px; border: 1px solid #D5C9BF; border-radius: 8px; font-size: 0.9rem; background: #FFFFFF;" />
+              </div>
             </div>
-            <select id="consult-call-slot" aria-label="Preferred 10-Minute Voice Call Slot" style="padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem; background: #FFFFFF; color: #1E293B;">
-              <option value="Morning Call (11:00 AM – 1:00 PM)">Preferred 10-Min Call: Morning (11:00 AM – 1:00 PM)</option>
-              <option value="Afternoon Call (2:00 PM – 5:00 PM)" selected>Preferred 10-Min Call: Afternoon (2:00 PM – 5:00 PM)</option>
-              <option value="Evening Call (5:00 PM – 7:30 PM)">Preferred 10-Min Call: Evening (5:00 PM – 7:30 PM)</option>
-            </select>
-            <div style="background: #FFF7ED; border: 1px dashed #FDBA74; border-radius: 8px; padding: 10px 12px;">
-              <label for="consult-photos" style="display: block; font-size: 0.76rem; font-weight: 700; color: #9A3412; margin-bottom: 5px;">📸 Attach Dream Cake Reference Photos (Up to 3, Optional)</label>
-              <input type="file" id="consult-photos" accept="image/*" multiple style="font-size: 0.78rem; width: 100%; cursor: pointer;" />
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+              <div>
+                <label for="consult-date" style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--color-plum-royal); margin-bottom: 4px;">Celebration Date *</label>
+                <input type="date" id="consult-date" name="eventDate" required style="width: 100%; padding: 10px 12px; border: 1px solid #D5C9BF; border-radius: 8px; font-size: 0.9rem; background: #FFFFFF; color: var(--color-text-main);" />
+              </div>
+              <div>
+                <label for="consult-guests" style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--color-plum-royal); margin-bottom: 4px;">Expected Guests *</label>
+                <input type="text" id="consult-guests" name="guestCount" placeholder="e.g. 40 guests or 100 boxes" required style="width: 100%; padding: 10px 12px; border: 1px solid #D5C9BF; border-radius: 8px; font-size: 0.9rem; background: #FFFFFF;" />
+              </div>
+            </div>
+
+            <div>
+              <label for="consult-call-slot" style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--color-plum-royal); margin-bottom: 4px;">Preferred 10-Min Call Window *</label>
+              <select id="consult-call-slot" name="callSlot" style="width: 100%; padding: 10px 12px; border: 1px solid #D5C9BF; border-radius: 8px; font-size: 0.9rem; background: #FFFFFF; color: var(--color-text-main);">
+                <option value="Morning Call (11:00 AM – 1:00 PM)">Morning (11:00 AM – 1:00 PM)</option>
+                <option value="Afternoon Call (2:00 PM – 5:00 PM)" selected>Afternoon (2:00 PM – 5:00 PM)</option>
+                <option value="Evening Call (5:00 PM – 7:30 PM)">Evening (5:00 PM – 7:30 PM)</option>
+              </select>
+            </div>
+
+            <div style="background: var(--color-surface); border: 1.5px dashed var(--color-border-gold); border-radius: 10px; padding: 12px;">
+              <label for="consult-photos" style="display: block; font-size: 0.8rem; font-weight: 700; color: var(--color-plum-royal); margin-bottom: 6px;">Attach Dream Cake Reference Photos (Up to 3, Optional)</label>
+              <input type="file" id="consult-photos" name="referencePhotos" accept="image/*" multiple style="font-size: 0.82rem; width: 100%; cursor: pointer;" />
               <div id="consult-photo-previews" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px;"></div>
             </div>
-            <textarea id="consult-notes" placeholder="Describe your dream cake (e.g., 3-Tier Victorian Lambeth in pastel pink, Belgian truffle flavour, Taj Coromandel reception)" rows="2" style="padding: 10px 12px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 0.85rem; resize: none;"></textarea>
-            <div id="consult-submit-status" style="display: none; padding: 10px 12px; border-radius: 8px; font-size: 0.82rem; line-height: 1.5;"></div>
-            <button type="submit" class="btn" style="background: #1E293B; color: #FFFFFF; font-weight: 600; padding: 11px; border-radius: 8px; border: none; cursor: pointer; margin-top: 4px;">
+
+            <div>
+              <label for="consult-notes" style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--color-plum-royal); margin-bottom: 4px;">Cake Idea, Flavor Preference &amp; Venue (Optional)</label>
+              <textarea id="consult-notes" name="notes" placeholder="e.g. 2-Tier Victorian Lambeth in ivory & blush, Belgian chocolate truffle, Alwarpet delivery" rows="3" style="width: 100%; padding: 10px 12px; border: 1px solid #D5C9BF; border-radius: 8px; font-size: 0.9rem; background: #FFFFFF; resize: vertical;"></textarea>
+            </div>
+
+            <div id="consult-submit-status" style="display: none; padding: 12px; border-radius: 8px; font-size: 0.86rem; line-height: 1.5;"></div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 13px 18px; font-size: 0.92rem;">
               Book 10-Min Voice Call with Chef Ridha
             </button>
           </div>
@@ -236,331 +209,71 @@
     </div>
   </section>
 
-  <!-- Interactive Custom Cake Builder Studio -->
-  <section id="custom-builder" class="builder-section">
-    <div class="builder-layout">
+  <!-- Simple Read-Only Size & Starting Price Reference Guide -->
+  <section style="max-width: 1200px; margin: 0 auto 64px; padding: 0 24px;">
+    <div style="text-align: center; max-width: 640px; margin: 0 auto 28px;">
+      <div class="section-label-chip">Transparent Starting Guide</div>
+      <h2 style="font-family: var(--font-editorial); font-size: 1.85rem; color: var(--color-plum-royal); margin: 8px 0 6px;">Typical Custom Cake Sizes &amp; Starting Prices</h2>
+      <p style="font-size: 0.92rem; color: var(--color-text-muted);">
+        All custom creations are 100% Pure Veg Eggless using Belgian Callebaut chocolate and French butter. Exact final quote is confirmed on your 10-minute call.
+      </p>
+    </div>
 
-      <!-- Step-by-Step Configuration Panels -->
-      <div class="builder-controls">
-        
-        <!-- Step 1: Cake Size Selection -->
-        <div class="control-group">
-          <div class="control-header">
-            <span class="step-badge">1</span>
-            <div>
-              <h2 class="control-title">Choose Cake Size</h2>
-              <p class="control-subtitle">Pick the perfect size for your celebration, from mini dessert boxes to grand celebration cakes</p>
-            </div>
-          </div>
-          <div id="tier-cards-container" class="tier-select-grid">
-            <!-- Populated dynamically by app.js with photo thumbnails -->
-          </div>
+    <div class="bespoke-guide-grid">
+      <article class="bespoke-guide-card">
+        <img src="assets/images/bento-noir-clean.jpg" alt="Velvet Noir Bento Cake" loading="lazy" />
+        <div class="bespoke-guide-body">
+          <h3>Bento Petite Cake</h3>
+          <p class="bespoke-guide-meta">0.5 kg • Serves 2–4 guests • Custom short message</p>
+          <div class="bespoke-guide-price">Starts at ₹850</div>
         </div>
+      </article>
 
-        <!-- Step 2: Flavor Selection -->
-        <div class="control-group">
-          <div class="control-header">
-            <span class="step-badge">2</span>
-            <div>
-              <h2 class="control-title">Choose Cake Flavor</h2>
-              <p class="control-subtitle">100% pure vegetarian (eggless) recipes made with real Belgian chocolate and fresh ingredients</p>
-            </div>
-          </div>
-          <div id="flavor-cards-container" class="flavor-select-grid">
-            <!-- Populated dynamically by app.js with flavor slice photos -->
-          </div>
+      <article class="bespoke-guide-card">
+        <img src="assets/images/tier-mini-couture.jpg" alt="Mini Couture Box Set of 4" loading="lazy" />
+        <div class="bespoke-guide-body">
+          <h3>Mini Couture Gift Set (4 Pcs)</h3>
+          <p class="bespoke-guide-meta">600g Quad • 4 individual piped couture mini cakes</p>
+          <div class="bespoke-guide-price">Starts at ₹1,200</div>
         </div>
+      </article>
 
-        <!-- Step 3: Decoration Style -->
-        <div class="control-group">
-          <div class="control-header">
-            <span class="step-badge">3</span>
-            <div>
-              <h2 class="control-title">Choose Cake Design Style</h2>
-              <p class="control-subtitle">Select your favorite decoration and hand-piped frosting style</p>
-            </div>
-          </div>
-          <div id="finish-cards-container" class="finish-select-grid">
-            <!-- Populated dynamically by app.js -->
-          </div>
+      <article class="bespoke-guide-card">
+        <img src="assets/images/tier-single-petite.jpg" alt="Single Tier Celebration Cake" loading="lazy" />
+        <div class="bespoke-guide-body">
+          <h3>Single-Tier Celebration Cake</h3>
+          <p class="bespoke-guide-meta">1.2 kg • Serves 10–14 guests • Vintage Lambeth or floral</p>
+          <div class="bespoke-guide-price">Starts at ₹2,100</div>
         </div>
+      </article>
 
-        <!-- Step 4: Custom Message & Dietary Guarantee -->
-        <div class="control-group">
-          <div class="control-header">
-            <span class="step-badge">4</span>
-            <div>
-              <h2 class="control-title">Message on Cake</h2>
-              <p class="control-subtitle">Custom name, birthday wish, or celebration text to be piped on your cake</p>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-field full-width">
-              <label for="txt-inscription">Text / Name on Cake (Max 26 letters)</label>
-              <input type="text" id="txt-inscription" placeholder="e.g. Happy Birthday Joe, Happy Anniversary" maxlength="26" value="" />
-              <span class="field-hint">Hand-piped in golden or rich chocolate royal icing on your cake.</span>
-            </div>
-          </div>
-          <div class="dietary-toggle-wrap eggless-guarantee-card">
-            <div class="eggless-guarantee-left">
-              <span class="fssai-veg-emblem-box" title="FSSAI 100% Pure Vegetarian">
-                <span class="fssai-veg-dot"></span>
-              </span>
-              <div class="eggless-guarantee-text">
-                <span class="eggless-guarantee-title">100% Pure Vegetarian &amp; Eggless</span>
-                <span class="eggless-guarantee-sub">Strictly eggless Parisian recipe standard • Belgian Callebaut chocolate &amp; French cultured butter</span>
-              </div>
-            </div>
-            <div class="eggless-verified-badge">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-              <span>Kitchen Certified</span>
-            </div>
-            <input type="checkbox" id="chk-eggless" checked style="display: none;" />
-            <span id="eggless-badge" style="display: none;">100% Pure Veg Active</span>
-          </div>
+      <article class="bespoke-guide-card">
+        <img src="assets/images/tier-two-tier-milestone.jpg" alt="Two-Tier Milestone Cake" loading="lazy" />
+        <div class="bespoke-guide-body">
+          <h3>Two-Tier Grand Milestone</h3>
+          <p class="bespoke-guide-meta">2.5 kg • Serves 18–24 guests • Heirloom pearls &amp; ruffles</p>
+          <div class="bespoke-guide-price">Starts at ₹3,950</div>
         </div>
+      </article>
 
-        <!-- Step 5: Delivery or Kitchen Pickup -->
-        <div class="control-group">
-          <div class="control-header">
-            <span class="step-badge">5</span>
-            <div>
-              <h2 class="control-title">Delivery or Kitchen Pickup</h2>
-              <p class="control-subtitle">Select your delivery location in Chennai and preferred delivery time</p>
-            </div>
-          </div>
-          <div class="form-row two-col">
-            <div class="form-field">
-              <label for="select-zone">Delivery Location / Free Pickup</label>
-              <select id="select-zone" class="form-select">
-                <!-- Populated dynamically by app.js -->
-              </select>
-            </div>
-            <div class="form-field">
-              <label for="date-delivery">Delivery Date</label>
-              <input type="date" id="date-delivery" class="form-select" />
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-field full-width">
-              <label for="slot-delivery">Preferred Time Slot</label>
-              <select id="slot-delivery" class="form-select slot-select">
-                <option value="11:00 AM – 1:00 PM">Morning: 11:00 AM – 1:00 PM</option>
-                <option value="1:00 PM – 4:00 PM">Afternoon: 1:00 PM – 4:00 PM</option>
-                <option value="4:00 PM – 6:00 PM" selected>Evening: 4:00 PM – 6:00 PM (Most Popular)</option>
-                <option value="6:00 PM – 8:30 PM">Night: 6:00 PM – 8:30 PM</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-row two-col">
-            <div class="form-field">
-              <label for="cust-name">Your Full Name *</label>
-              <input type="text" id="cust-name" placeholder="e.g. Priya Sundaram" required />
-            </div>
-            <div class="form-field">
-              <label for="cust-phone">WhatsApp / Phone Number *</label>
-              <input type="tel" id="cust-phone" placeholder="e.g. 98400 12345" required />
-            </div>
-          </div>
-          <div class="form-row two-col">
-            <div class="form-field">
-              <label for="cust-email">Email Address (For Receipt &amp; Tracking) *</label>
-              <input type="email" id="cust-email" placeholder="e.g. priya@example.com" required />
-            </div>
-            <div class="form-field">
-              <label for="cust-pincode">Chennai Pincode *</label>
-              <input type="text" id="cust-pincode" placeholder="e.g. 600006" maxlength="6" value="600006" required />
-            </div>
-          </div>
-          <div class="form-row" id="cust-address-row">
-            <div class="form-field full-width">
-              <label for="cust-address">Delivery Address &amp; Landmark (or Pickup Note)</label>
-              <textarea id="cust-address" rows="2" placeholder="House / Flat No., Apartment Name, Street, Landmark in Chennai"></textarea>
-            </div>
-          </div>
+      <article class="bespoke-guide-card">
+        <img src="assets/images/tier-three-tier-grand.jpg" alt="Three-Tier Royal Wedding Cake" loading="lazy" />
+        <div class="bespoke-guide-body">
+          <h3>Three-Tier Wedding Centerpiece</h3>
+          <p class="bespoke-guide-meta">4.5 kg+ • Serves 35–60+ guests • Sugar florals &amp; gold leaf</p>
+          <div class="bespoke-guide-price">Starts at ₹6,500</div>
         </div>
+      </article>
+    </div>
 
-      </div>
-
-      <!-- Real-Time Architectural Visualizer & Booking Summary Sidebar -->
-      <aside class="builder-preview-sidebar">
-        <div class="preview-card-sticky">
-          <div class="preview-card-header">
-            
-            <h3>Live Specification Studio</h3>
-          </div>
-
-          <!-- Dynamic Live Photo Showcase Canvas -->
-          <div id="dynamic-cake-canvas" class="cake-canvas-wrap">
-            <!-- Populated dynamically by app.js with real photo and glassmorphic badge -->
-          </div>
-
-          <!-- Real-Time Specification Breakdown -->
-          <ul class="spec-list">
-            <li>
-              <span>Scale:</span>
-              <strong id="spec-tier-text">Two-Tier Milestone (2.5 kg)</strong>
-            </li>
-            <li>
-              <span>Flavour:</span>
-              <strong id="spec-flavor-text">Persian Pistachio &amp; Raspberry Rose</strong>
-            </li>
-            <li>
-              <span>Atelier Finish:</span>
-              <strong id="spec-finish-text">Vintage Lambeth Ruffle Piping</strong>
-            </li>
-            <li>
-              <span>Recipe:</span>
-              <strong id="spec-dietary-text">100% Eggless Pure Veg</strong>
-            </li>
-            <li>
-              <span>Plaque Inscription:</span>
-              <strong id="spec-plaque-text">“Happy Celebration”</strong>
-            </li>
-            <li>
-              <span>Delivery / Pickup:</span>
-              <strong id="spec-zone-text">Shafee Mohammed Rd Atelier</strong>
-            </li>
-            <li>
-              <span>Celebration Slot:</span>
-              <strong id="spec-slot-text">Tomorrow • 4:00 PM – 6:00 PM</strong>
-            </li>
-          </ul>
-
-          <div class="summary-divider"></div>
-
-          <!-- Transparent Price Display -->
-          <div class="price-display-row">
-            <span class="price-display-label">Estimated Total</span>
-            <span id="label-total-price" class="price-display-amount">₹3,950</span>
-          </div>
-          <div class="advance-deposit-note">
-            50% Advance to Secure Baking Slot: <strong id="label-advance-price">₹1,975</strong>
-          </div>
-
-          <!-- Payment QR Quick Preview Pill in Sidebar -->
-          <div style="background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.3); border-radius: 12px; padding: 10px 14px; margin: 12px 0; font-size: 0.78rem; text-align: center; color: var(--color-plum-royal);">
-            <div style="font-weight: 600; margin-bottom: 2px;">UPI Advance Booking: <span style="font-family: monospace; color: var(--color-gold-deep);">eoteatop@okicici</span></div>
-            <div style="font-size: 0.72rem; color: var(--color-text-muted);">Payee: huckle berry • 1-Click QR in Modal</div>
-          </div>
-
-          <!-- Dispatch to WhatsApp CTA -->
-          <button id="btn-dispatch-whatsapp" class="btn-whatsapp-dispatch">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-            <span>Lock Slot via WhatsApp</span>
-          </button>
-          <p class="sidebar-dispatch-footnote">
-            Direct to Your Huckleberry Kitchen (+91 8511839668)
-          </p>
-        </div>
-      </aside>
-
+    <div style="text-align: center; margin-top: 28px; background: var(--color-surface-subtle); border: 1px solid var(--color-border-gold); border-radius: 14px; padding: 20px 24px;">
+      <p style="font-size: 0.94rem; color: var(--color-plum-royal); font-weight: 600; margin-bottom: 10px;">
+        Looking to order ready-made Festive Plum Cakes, Corporate Hampers, or Daily Desserts right now?
+      </p>
+      <a href="collection.html" class="btn btn-primary btn-sm">Browse Ready-to-Order Menu ➔</a>
     </div>
   </section>
 
-  <!-- Floating Mobile Sticky Bottom Bar (High-Quality Glassmorphism) -->
-  <div class="mobile-bottom-bar" aria-label="Mobile Order Summary">
-    <div class="mobile-bar-inner">
-      <div class="mobile-bar-info">
-        <span id="mobile-bar-tier" class="mobile-tier-name">Two-Tier Milestone</span>
-        <span id="mobile-bar-price" class="mobile-price-amount">₹3,950</span>
-      </div>
-      <button id="btn-mobile-whatsapp" class="btn btn-primary btn-sm">
-        <span>Reserve on WhatsApp ➔</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- Order Confirmation Modal Dialog with Embedded Verified Payment QR -->
-  <dialog id="order-modal-dialog" class="order-dialog">
-    <div class="modal-dialog-header">
-      <div class="modal-dialog-title">
-        
-        <span>Order Token Ready</span>
-      </div>
-      <button id="btn-close-dialog" class="modal-close-button">&times;</button>
-    </div>
-    <div class="modal-inner-content">
-      <div class="modal-token-banner">
-        <div style="font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-gold-deep); font-weight: 600;">
-          Verified Booking Token
-        </div>
-        <div id="dialog-token-id" class="modal-token-id">#HK-4912</div>
-        <div id="dialog-price-display" style="font-size: 0.9rem; font-weight: 600; color: var(--color-plum-royal); margin-top: 4px;">
-          ₹3,950 (Advance Deposit: ₹1,975)
-        </div>
-      </div>
-
-      <!-- Embedded Payment QR Card -->
-      <div id="modal-qr-container" class="modal-payment-qr-card">
-        <div class="qr-card-header">
-          <span class="qr-step-chip">Step 1: Scan &amp; Pay Advance Deposit</span>
-          <div class="qr-advance-amount">Pay 50% Advance via UPI</div>
-        </div>
-        <div class="qr-image-wrapper">
-          <img src="assets/payment-qr.jpg" alt="UPI Payment QR Code for Your Huckleberry" class="modal-qr-img" />
-          <div class="qr-payee-info">
-            <span class="qr-payee-name">huckle berry</span>
-            <div class="qr-upi-pill">
-              <span class="upi-id-code">eoteatop@okicici</span>
-              <button type="button" class="btn-copy-upi" data-upi="eoteatop@okicici" title="Copy UPI ID">Copy</button>
-            </div>
-          </div>
-        </div>
-        <div class="qr-apps-row">
-          <span>GPay</span> • <span>PhonePe</span> • <span>Paytm</span> • <span>BHIM</span> • <span>iMobile</span>
-        </div>
-        <div class="qr-direct-pay-action">
-          <a id="dialog-upi-intent" href="upi://pay?pa=eoteatop@okicici&pn=huckle%20berry&cu=INR" class="btn-upi-app-link">
-            <span>Pay Directly via UPI App</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Mandatory Payment Screenshot Upload Box (Slot Gate) -->
-      <div id="modal-screenshot-gate" class="modal-screenshot-gate" style="background: #FFF7ED; border: 1.5px dashed #FF5C00; border-radius: 12px; padding: 16px; margin: 16px 0; text-align: left;">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
-          <div style="display: flex; align-items: center; gap: 6px;">
-            <span style="font-size: 1.1rem;">📸</span>
-            <strong style="font-size: 0.88rem; color: #7C2D12;">Step 2: Attach Payment Screenshot (Mandatory)</strong>
-          </div>
-          <span style="font-size: 0.7rem; font-weight: 700; color: #FFFFFF; background: #C2410C; padding: 2px 6px; border-radius: 4px;">REQUIRED</span>
-        </div>
-        <p style="font-size: 0.78rem; color: #9A3412; margin-bottom: 10px; line-height: 1.4;">
-          Kitchen baking slots are confirmed strictly upon verified payment. Orders without an attached UPI transfer screenshot cannot be scheduled into the oven.
-        </p>
-        <div style="display: flex; flex-direction: column; gap: 8px;">
-          <label for="order-payment-proof" style="font-size: 0.75rem; font-weight: 600; color: #7C2D12;">Select Transfer Screenshot (GPay / PhonePe / Paytm):</label>
-          <input type="file" id="order-payment-proof" accept="image/*" required style="font-size: 0.8rem; padding: 8px; background: #FFFFFF; border: 1px solid #FED7AA; border-radius: 6px; width: 100%; cursor: pointer;" />
-          <input type="text" id="order-utr-number" name="utr" placeholder="Enter UPI Reference / UTR Number (Optional)" style="font-size: 0.8rem; padding: 8px 12px; background: #FFFFFF; border: 1px solid #FED7AA; border-radius: 6px; width: 100%;" />
-        </div>
-        <div id="screenshot-preview-container" style="display: none; margin-top: 10px; align-items: center; gap: 10px; background: #FFFFFF; padding: 8px; border-radius: 6px; border: 1px solid #10B981;">
-          <img id="screenshot-preview-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Screenshot Preview" style="width: 44px; height: 44px; object-fit: cover; border-radius: 4px;" />
-          <span style="font-size: 0.78rem; color: #047857; font-weight: 700;">✓ Payment Screenshot Attached</span>
-        </div>
-        <p id="screenshot-required-msg" style="display: none; color: #DC2626; font-size: 0.78rem; font-weight: 700; margin-top: 8px; background: #FEE2E2; padding: 6px 10px; border-radius: 6px;">
-          ⚠️ Action Required: Please attach your UPI payment screenshot to lock your baking slot.
-        </p>
-      </div>
-
-      <p style="font-size: 0.84rem; color: var(--color-text-muted); text-align: center; line-height: 1.45; margin-bottom: 18px;">
-        Your custom architecture, flavour profile, and delivery slot have been packaged into a formal booking slip. Complete the 50% advance token and dispatch your slip to WhatsApp to secure your baking slot directly with the chef.
-      </p>
-
-      <div class="modal-cta-stack">
-        <a id="dialog-wa-cta" href="#" target="_blank" rel="noopener" class="btn btn-whatsapp-dispatch" style="text-decoration: none;">
-          <span>Step 3: Lock Baking Slot &amp; Send to Kitchen ➔</span>
-        </a>
-        <button id="btn-copy-slip" type="button" class="btn btn-secondary" style="width: 100%; padding: 10px 14px;">
-          <span>Copy Booking Details 📋</span>
-        </button>
-      </div>
-    </div>
-  </dialog>
-
-  <!-- Floating Toast Notification Container -->
   <div id="toast-container" class="toast-container" aria-live="polite"></div>
 
   <!-- Site Footer -->
@@ -569,53 +282,39 @@
       <div class="footer-columns">
         <div class="footer-brand">
           <h3>Your Huckleberry</h3>
-          <p>
-            Luxury artisanal cakes and Miniature Couture patisserie by @huckleberry.inn, Shafee Mohammed Road, Nungambakkam, Chennai 600006. 100% Pure Veg Eggless Haute Pâtisserie.
-          </p>
+          <p>Luxury artisanal cakes and Miniature Couture patisserie by @huckleberry.inn, Shafee Mohammed Road, Nungambakkam, Chennai 600006. 100% Pure Veg Eggless Haute Pâtisserie.</p>
         </div>
         <div>
           <h4 class="footer-col-title">Atelier Menu</h4>
           <ul class="footer-links-list">
             <li><a href="index.html">Atelier Home</a></li>
-            <li><a href="collection.html">Mini Couture Collection</a></li>
-            <li><a href="atelier.html">Interactive Cake Atelier</a></li>
-            <li><a href="pipeline.html">Creation Pipeline &amp; Live Board</a></li>
-            <li><a href="gallery.html">Artisanal Specialties</a></li>
-            <li><a href="location.html">Shafee Mohammed Rd Atelier</a></li>
-            <li><a href="faq.html">Pâtisserie Guidelines &amp; FAQs</a></li>
+            <li><a href="collection.html">Order Menu &amp; Hampers</a></li>
+            <li><a href="atelier.html">Custom &amp; Wedding Cakes</a></li>
+            <li><a href="pipeline.html">Track Your Order</a></li>
+            <li><a href="gallery.html">Cake Gallery</a></li>
+            <li><a href="location.html">Shafee Mohammed Rd Studio</a></li>
+            <li><a href="faq.html">FAQs</a></li>
             <li><a href="policies.html">Store Policies &amp; Privacy</a></li>
           </ul>
         </div>
         <div>
           <h4 class="footer-col-title">Kitchen Contact</h4>
-          <p style="font-size: 0.82rem; color: rgba(255,255,255,0.75); margin-bottom: 6px;">
-            Shafee Mohammed Road, Nungambakkam, Chennai 600006
-          </p>
-          <p style="font-size: 0.82rem; color: rgba(255,255,255,0.75); margin-bottom: 6px;">
-            WhatsApp Kitchen: +91 8511839668
-          </p>
-          <p style="font-size: 0.82rem; color: rgba(255,255,255,0.75); margin-bottom: 6px;">
-            Orders Email: orders@yourhuckleberry.in
-          </p>
-          <p style="font-size: 0.82rem; color: rgba(255,255,255,0.75);">
-            Instagram: <a href="https://www.instagram.com/huckleberry.inn" target="_blank" rel="noopener" style="color: var(--color-gold-light);">@huckleberry.inn</a>
-          </p>
+          <p style="font-size: 0.84rem; color: rgba(255,255,255,0.78); margin-bottom: 6px;">Shafee Mohammed Road, Nungambakkam, Chennai 600006</p>
+          <p style="font-size: 0.84rem; color: rgba(255,255,255,0.78); margin-bottom: 6px;">WhatsApp Kitchen: +91 8511839668</p>
+          <p style="font-size: 0.84rem; color: rgba(255,255,255,0.78); margin-bottom: 6px;">Orders Email: orders@yourhuckleberry.in</p>
+          <p style="font-size: 0.84rem; color: rgba(255,255,255,0.78);">Instagram: <a href="https://www.instagram.com/huckleberry.inn" target="_blank" rel="noopener" style="color: var(--color-gold-light);">@huckleberry.inn</a></p>
         </div>
       </div>
       <div class="footer-legal-bar">
-        <div>
-          © 2026 Your Huckleberry (<a href="https://yourhuckleberry.in" style="color: var(--color-gold-light); text-decoration: none;">yourhuckleberry.in</a>). All rights reserved.
-        </div>
-        <div>
-          Haute Pâtisserie Française • Engineered by <a href="https://github.com/A-Generative-Slice" target="_blank" rel="noopener">A Generative Slice</a>
-        </div>
+        <div>© 2026 Your Huckleberry (<a href="https://yourhuckleberry.in" style="color: var(--color-gold-light); text-decoration: none;">yourhuckleberry.in</a>). All rights reserved.</div>
+        <div>Haute Pâtisserie Française • Engineered by <a href="https://github.com/A-Generative-Slice" target="_blank" rel="noopener">A Generative Slice</a></div>
       </div>
     </div>
   </footer>
 
-  <script src="firebase-config.js?v=5.0.0"></script>
-  <script type="module" src="firebase-service.js?v=5.0.0"></script>
-  <script src="data.js?v=5.0.0"></script>
-  <script src="app.js?v=5.0.1"></script>
+  <script src="firebase-config.js?v=5.2.0"></script>
+  <script type="module" src="firebase-service.js?v=5.2.0"></script>
+  <script src="data.js?v=5.2.0"></script>
+  <script src="app.js?v=5.2.0"></script>
 </body>
 </html>
