@@ -208,7 +208,7 @@ const HUCKLEBERRY_DATA = {
 
   // Chennai Delivery Zones
   deliveryZones: [
-    { zone: "Free Kitchen Pickup (Shafee Mohammed Rd, Nungambakkam)", pin: "600006", fee: 0 },
+    { zone: "Free Studio Pickup, Nungambakkam", pin: "600006", fee: 0 },
     { zone: "Nungambakkam & Nearby", pin: "600034", fee: 120 },
     { zone: "Alwarpet, Gopalapuram & T. Nagar", pin: "600018", fee: 150 },
     { zone: "Anna Nagar & Kilpauk", pin: "600040", fee: 200 },

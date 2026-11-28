@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/jpeg" href="assets/logo.jpg" />
-  <link rel="stylesheet" href="style.css?v=5.3.0" />
+  <link rel="stylesheet" href="style.css?v=5.3.1" />
 </head>
 <body>
   <!-- Main Navigation Bar -->
@@ -153,17 +153,17 @@
           <div style="display: flex; flex-direction: column; gap: 12px;">
             <div>
               <label for="consult-name" style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--color-plum-royal); margin-bottom: 4px;">Your Full Name *</label>
-              <input type="text" id="consult-name" name="name" placeholder="Kavya Ramanathan" required style="width: 100%; padding: 10px 12px; border: 1px solid #D5C9BF; border-radius: 8px; font-size: 0.9rem; background: #FFFFFF;" />
+              <input type="text" id="consult-name" name="name" autocomplete="name" placeholder="Kavya Ramanathan" required style="width: 100%; padding: 10px 12px; border: 1px solid #D5C9BF; border-radius: 8px; font-size: 0.9rem; background: #FFFFFF;" />
             </div>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
               <div>
                 <label for="consult-phone" style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--color-plum-royal); margin-bottom: 4px;">WhatsApp / Phone *</label>
-                <input type="tel" id="consult-phone" name="phone" placeholder="10-digit mobile" required style="width: 100%; padding: 10px 12px; border: 1px solid #D5C9BF; border-radius: 8px; font-size: 0.9rem; background: #FFFFFF;" />
+                <input type="tel" id="consult-phone" name="phone" autocomplete="tel" placeholder="10-digit mobile" required style="width: 100%; padding: 10px 12px; border: 1px solid #D5C9BF; border-radius: 8px; font-size: 0.9rem; background: #FFFFFF;" />
               </div>
               <div>
                 <label for="consult-email" style="display: block; font-size: 0.8rem; font-weight: 600; color: var(--color-plum-royal); margin-bottom: 4px;">Email Address *</label>
-                <input type="email" id="consult-email" name="email" placeholder="you@example.com" required style="width: 100%; padding: 10px 12px; border: 1px solid #D5C9BF; border-radius: 8px; font-size: 0.9rem; background: #FFFFFF;" />
+                <input type="email" id="consult-email" name="email" autocomplete="email" placeholder="you@example.com" required style="width: 100%; padding: 10px 12px; border: 1px solid #D5C9BF; border-radius: 8px; font-size: 0.9rem; background: #FFFFFF;" />
               </div>
             </div>
 
@@ -312,9 +312,9 @@
     </div>
   </footer>
 
-  <script src="firebase-config.js?v=5.3.0"></script>
-  <script type="module" src="firebase-service.js?v=5.3.0"></script>
-  <script src="data.js?v=5.3.0"></script>
-  <script src="app.js?v=5.3.0"></script>
+  <script src="firebase-config.js?v=5.3.1"></script>
+  <script type="module" src="firebase-service.js?v=5.3.1"></script>
+  <script src="data.js?v=5.3.1"></script>
+  <script src="app.js?v=5.3.1"></script>
 </body>
 </html>

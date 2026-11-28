@@ -107,6 +107,10 @@ body.nav-open {
   touch-action: none;
 }
 
+input, select, textarea, button {
+  font-family: inherit;
+}
+
 :focus-visible {
   outline: 2.5px solid var(--color-plum-royal);
   outline-offset: 2px;
@@ -4137,14 +4141,38 @@ dialog.order-dialog::backdrop {
 .token-input-group {
   display: flex;
   gap: 10px;
+  align-items: stretch;
 }
 
 .token-input-group input {
   flex: 1;
+  min-width: 0;
   padding: 10px 14px;
   border: 1px solid rgba(160, 120, 61, 0.25);
   border-radius: 10px;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
+}
+
+.token-input-group button {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .token-tracker-bar {
+    padding: 16px;
+  }
+  .token-input-group {
+    flex-direction: column;
+  }
+  .token-input-group input {
+    min-height: 44px;
+  }
+  .token-input-group button {
+    width: 100%;
+    min-height: 44px;
+    justify-content: center;
+  }
 }
 
 /* ==========================================================================
@@ -4822,11 +4850,12 @@ dialog.order-dialog::backdrop {
 }
 
 .sticky-bag-count {
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   color: var(--color-gold-light);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
 }
 
 .sticky-bag-total {
@@ -4883,14 +4912,17 @@ dialog.order-dialog::backdrop {
   pointer-events: none;
 }
 
-/* Bespoke Reference Guide Grid on Simplified atelier.html */
+/* Bespoke Reference Guide Grid on Simplified atelier.html (Symmetrical 3+2 on desktop) */
 .bespoke-guide-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 18px;
 }
 
 .bespoke-guide-card {
+  flex: 1 1 280px;
+  max-width: 360px;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);

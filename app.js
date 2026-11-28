@@ -344,7 +344,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const subtotal = orderBag.reduce((s, i) => s + i.price * i.qty, 0);
     if (totalItems > 0) {
       bar.classList.add("visible");
-      bar.querySelector("#sticky-bag-count").textContent = `${totalItems} item${totalItems === 1 ? "" : "s"} in your bag`;
+      bar.querySelector("#sticky-bag-count").textContent = `${totalItems} item${totalItems === 1 ? "" : "s"} in bag`;
       bar.querySelector("#sticky-bag-total").textContent = `₹${subtotal.toLocaleString("en-IN")}`;
       if (shouldBump) {
         bar.classList.remove("bump");
@@ -417,8 +417,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 <input type="number" id="uc-qty" name="qty" min="1" max="50" value="1" style="width:100%; padding:8px 10px; border:1px solid #D5C9BF; border-radius:8px; font-size:0.88rem; background:#FFF;" />
               </div>
               <div id="uc-zone-wrap">
-                <label for="uc-zone" style="display:block; font-size:0.76rem; font-weight:600; color:var(--color-plum-royal); margin-bottom:4px;">Chennai Delivery / Free Pickup</label>
-                <select id="uc-zone" name="zone" class="form-select" style="width:100%; padding:8px 10px; font-size:0.84rem; background:#FFF;"></select>
+                <label for="uc-zone" style="display:block; font-size:0.76rem; font-weight:600; color:var(--color-plum-royal); margin-bottom:4px;">Chennai Delivery or Pickup</label>
+                <select id="uc-zone" name="zone" class="form-select" style="width:100%; padding:8px 32px 8px 10px; font-size:0.84rem; background:#FFF; text-overflow:ellipsis;"></select>
               </div>
             </div>
 
@@ -434,21 +434,21 @@ document.addEventListener("DOMContentLoaded", () => {
           <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap:8px; margin-bottom:8px;">
             <div>
               <label for="uc-name" style="display:block; font-size:0.76rem; font-weight:600; margin-bottom:3px; color:var(--color-plum-royal);">Your Name *</label>
-              <input type="text" id="uc-name" name="customerName" placeholder="e.g. Sneha Reddy" required style="width:100%; padding:9px 10px; border:1px solid #D5C9BF; border-radius:8px; font-size:0.88rem;" />
+              <input type="text" id="uc-name" name="customerName" autocomplete="name" placeholder="Sneha Reddy" required style="width:100%; padding:9px 10px; border:1px solid #D5C9BF; border-radius:8px; font-size:0.88rem;" />
             </div>
             <div>
               <label for="uc-phone" style="display:block; font-size:0.76rem; font-weight:600; margin-bottom:3px; color:var(--color-plum-royal);">WhatsApp Number *</label>
-              <input type="tel" id="uc-phone" name="customerPhone" placeholder="10-digit mobile" required style="width:100%; padding:9px 10px; border:1px solid #D5C9BF; border-radius:8px; font-size:0.88rem;" />
+              <input type="tel" id="uc-phone" name="customerPhone" autocomplete="tel" placeholder="10-digit mobile" required style="width:100%; padding:9px 10px; border:1px solid #D5C9BF; border-radius:8px; font-size:0.88rem;" />
             </div>
           </div>
           <div style="display:grid; grid-template-columns: 1fr 115px; gap:8px; margin-bottom:8px;">
             <div>
               <label for="uc-email" style="display:block; font-size:0.76rem; font-weight:600; margin-bottom:3px; color:var(--color-plum-royal);">Email Address *</label>
-              <input type="email" id="uc-email" name="customerEmail" placeholder="you@example.com" required style="width:100%; padding:9px 10px; border:1px solid #D5C9BF; border-radius:8px; font-size:0.88rem;" />
+              <input type="email" id="uc-email" name="customerEmail" autocomplete="email" placeholder="you@example.com" required style="width:100%; padding:9px 10px; border:1px solid #D5C9BF; border-radius:8px; font-size:0.88rem;" />
             </div>
             <div>
               <label for="uc-pincode" style="display:block; font-size:0.76rem; font-weight:600; margin-bottom:3px; color:var(--color-plum-royal);">Chennai PIN *</label>
-              <input type="text" id="uc-pincode" name="pincode" placeholder="600006" maxlength="6" required style="width:100%; padding:9px 10px; border:1px solid #D5C9BF; border-radius:8px; font-size:0.88rem;" />
+              <input type="text" id="uc-pincode" name="pincode" autocomplete="postal-code" placeholder="600006" maxlength="6" required style="width:100%; padding:9px 10px; border:1px solid #D5C9BF; border-radius:8px; font-size:0.88rem;" />
             </div>
           </div>
           <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-bottom:8px;">
@@ -513,8 +513,8 @@ document.addEventListener("DOMContentLoaded", () => {
           <button type="button" id="uc-btn-submit" class="btn btn-whatsapp-dispatch" style="width:100%;">
             <span>Confirm &amp; Lock Baking Slot ➔</span>
           </button>
-          <p style="font-size:0.75rem; color:var(--color-text-muted); text-align:center; margin-top:8px;">
-            By ordering you agree to our <a href="policies.html" target="_blank" rel="noopener">Booking &amp; Refund Policy</a>.
+          <p style="font-size:0.76rem; color:var(--color-text-muted); text-align:center; margin-top:8px;">
+            By ordering you agree to our <a href="policies.html" target="_blank" rel="noopener" style="color:var(--color-plum-royal); font-weight:600; text-decoration:underline;">Booking &amp; Refund Policy</a>.
           </p>
         </div>
 
@@ -964,6 +964,9 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
     dlg.showModal();
+    dlg.scrollTop = 0;
+    const modalBody = dlg.querySelector("#uc-body");
+    if (modalBody) modalBody.scrollTop = 0;
   }
 
   function openBagCheckout() {
@@ -1242,18 +1245,18 @@ document.addEventListener("DOMContentLoaded", () => {
           const group = document.createElement("div");
           group.className = "card-action-group";
 
-          if (!variants) {
-            const addBtn = document.createElement("button");
-            addBtn.type = "button";
-            addBtn.className = "btn-add-bag";
-            addBtn.textContent = "+ Bag";
-            addBtn.setAttribute("aria-label", `Add ${title} to Order Bag`);
-            addBtn.addEventListener("click", (ev) => {
-              ev.stopPropagation();
-              addToBag({ title, price: priceNum, qty: 1, orderType: category === "festive" ? "festive" : "everyday" }, addBtn);
-            });
-            group.appendChild(addBtn);
-          }
+          const addBtn = document.createElement("button");
+          addBtn.type = "button";
+          addBtn.className = "btn-add-bag";
+          addBtn.textContent = "+ Bag";
+          const bagTitle = variants ? `${title} (${variants[0].label})` : title;
+          const bagPrice = variants ? Number(variants[0].price) : priceNum;
+          addBtn.setAttribute("aria-label", `Add ${bagTitle} to Order Bag`);
+          addBtn.addEventListener("click", (ev) => {
+            ev.stopPropagation();
+            addToBag({ title: bagTitle, price: bagPrice, qty: 1, orderType: category === "festive" ? "festive" : "everyday" }, addBtn);
+          });
+          group.appendChild(addBtn);
 
           targetBtn.textContent = "Order Now ➔";
           targetBtn.className = "btn btn-sm btn-primary";
